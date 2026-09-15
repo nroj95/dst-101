@@ -25,7 +25,7 @@ return {
         sidebar_selected_text = { 0.12, 0.10, 0.06, 1 },
 
         headline_text = { 0.10, 0.08, 0.05, 1 },
-        body_text = { 0.24, 0.20, 0.15, 1 },
+        body_text = { 0.12, 0.10, 0.07, 1 },
         subtle_text = { 0.34, 0.29, 0.22, 0.82 },
     },
 
@@ -149,6 +149,8 @@ return {
         },
     },
 }
+
+
 
 
 

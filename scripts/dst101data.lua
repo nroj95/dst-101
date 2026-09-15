@@ -11,6 +11,7 @@ return {
             id = "getting_started",
             title = "Getting Started",
             icon = "getting_started",
+            related_topic_tile = 1,
             pages = {
                 {
                     regions = {
@@ -29,14 +30,14 @@ return {
                         bottom_left = {
                             {
                                 type = "heading",
-                                text = "Your first night",
+                                text = "Related Topics",
                                 divider = true,
                             },
                             {
-                                type = "text",
-                                text = [[
-Gather some grass and twigs before night and make sure you have a source of light ready.
-]],
+                                type = "related_topics",
+                                topics = {
+                                    "sailing",
+                                },
                             },
                         },
 
@@ -75,6 +76,7 @@ Explore, experiment, and learn as you go.
             id = "sailing",
             title = "Sailing",
             icon = "sailing",
+            related_topic_tile = 2,
             pages = {
                 {
                     regions = {
@@ -98,14 +100,14 @@ Explore, experiment, and learn as you go.
                         bottom_left = {
                             {
                                 type = "heading",
-                                text = "Emergency rowing",
+                                text = "Related Topics",
                                 divider = true,
                             },
                             {
-                                type = "text",
-                                text = [[
-Oars are useful for getting away from shore, making small corrections, and positioning a boat carefully.
-]],
+                                type = "related_topics",
+                                topics = {
+                                    "getting_started",
+                                },
                             },
                         },
 
@@ -160,5 +162,8 @@ For travelling longer distances, sails provide continuous movement.
         },
     },
 }
+
+
+
 
 

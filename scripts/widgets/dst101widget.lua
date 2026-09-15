@@ -9,6 +9,7 @@ local BACKDROP_ATLAS = "images/ui/base_template.xml"
 local BACKDROP_TEXTURE = "base_template.tex"
 
 local TOPIC_ATLAS = "images/topics/dst101_topics_color.xml"
+local TOPIC_GRAY_ATLAS = "images/topics/dst101_topics_gray.xml"
 local UI_ATLAS = "images/ui/dst101_ui.xml"
 
 local BODY_FONT = "dst101_alegreya_regular"
@@ -176,7 +177,250 @@ local function add_divider(parent, region, source_cursor_y)
     return source_cursor_y + 8
 end
 
+local function get_related_topic_tile_texture(topic)
+    local tile_index = tonumber(
+        topic.related_topic_tile
+    ) or 1
+
+    tile_index = math.max(
+        1,
+        math.min(
+            6,
+            math.floor(tile_index)
+        )
+    )
+
+    return string.format(
+        "related_topic_tile_%02d.tex",
+        tile_index
+    )
+end
+
+
+local function render_related_topics(
+    handbook,
+    parent,
+    topic,
+    region,
+    source_cursor_y,
+    block
+)
+    local related_topics = {}
+
+    for _, topic_id in ipairs(block.topics or {}) do
+        local related_topic = find_topic(
+            handbook.data,
+            topic_id
+        )
+
+        if related_topic ~= nil
+            and related_topic.id ~= topic.id
+        then
+            table.insert(
+                related_topics,
+                related_topic
+            )
+        end
+    end
+
+    if #related_topics == 0 then
+        return source_cursor_y
+    end
+
+    local tile_size = 76
+    local icon_size = 50
+    local label_height = 20
+    local label_gap = 1
+    local column_gap = 14
+    local row_gap = 12
+    local maximum_columns = 4
+
+    local available_width =
+        region_width(region)
+
+    local fitting_columns = math.max(
+        1,
+        math.floor(
+            (available_width + column_gap) /
+            (tile_size + column_gap)
+        )
+    )
+
+    local columns = math.min(
+        maximum_columns,
+        fitting_columns,
+        #related_topics
+    )
+
+    local row_height =
+        tile_size +
+        label_gap +
+        label_height +
+        row_gap
+
+    local tile_texture =
+        get_related_topic_tile_texture(topic)
+
+    local hover_colour = {
+        1,
+        0.88,
+        0.62,
+        1,
+    }
+
+    for index, related_topic in ipairs(related_topics) do
+        local row = math.floor(
+            (index - 1) / columns
+        )
+
+        local column =
+            (index - 1) % columns
+
+        local row_start_index =
+            row * columns + 1
+
+        local row_item_count = math.min(
+            columns,
+            #related_topics - row_start_index + 1
+        )
+
+        local row_width =
+            row_item_count * tile_size +
+            (row_item_count - 1) * column_gap
+
+        local row_left =
+            region.left +
+            (
+                available_width -
+                row_width
+            ) / 2
+
+        local tile_center_x =
+            row_left +
+            column * (
+                tile_size +
+                column_gap
+            ) +
+            tile_size / 2
+
+        local row_top =
+            source_cursor_y -
+            12 +
+            row * row_height
+
+        local button = parent:AddChild(
+            ImageButton(
+                UI_ATLAS,
+                tile_texture
+            )
+        )
+
+        button.scale_on_focus = false
+        button.move_on_click = false
+
+        button:ForceImageSize(
+            tile_size,
+            tile_size
+        )
+
+        button:SetImageNormalColour(
+            1,
+            1,
+            1,
+            1
+        )
+
+        button:SetImageFocusColour(
+            hover_colour[1],
+            hover_colour[2],
+            hover_colour[3],
+            hover_colour[4]
+        )
+
+        button:SetPosition(
+            source_x(tile_center_x),
+            source_y(
+                row_top +
+                tile_size / 2
+            )
+        )
+
+        button:SetOnClick(function()
+            handbook:SetCurrentTopic(
+                related_topic.id
+            )
+        end)
+
+        local icon = button:AddChild(
+            Image(
+                TOPIC_GRAY_ATLAS,
+                related_topic.icon .. ".tex"
+            )
+        )
+
+        icon:ScaleToSize(
+            icon_size,
+            icon_size
+        )
+
+        icon:SetTint(
+            LAYOUT.colours.body_text[1],
+            LAYOUT.colours.body_text[2],
+            LAYOUT.colours.body_text[3],
+            0.95
+        )
+
+        icon:SetClickable(false)
+        icon:SetPosition(0, 3)
+
+        local label = parent:AddChild(
+            Text(
+                BODY_FONT,
+                17,
+                "",
+                LAYOUT.colours.body_text
+            )
+        )
+
+        label:SetTruncatedString(
+            related_topic.title or "",
+            tile_size + 24,
+            nil,
+            false
+        )
+
+        label:SetRegionSize(
+            tile_size + 24,
+            label_height
+        )
+
+        label:SetHAlign(ANCHOR_MIDDLE)
+        label:SetVAlign(ANCHOR_MIDDLE)
+        label:SetClickable(false)
+
+        label:SetPosition(
+            source_x(tile_center_x),
+            source_y(
+                row_top +
+                tile_size +
+                label_gap +
+                label_height / 2
+            )
+        )
+    end
+
+    local row_count = math.ceil(
+        #related_topics / columns
+    )
+
+    return source_cursor_y +
+        row_count * row_height -
+        row_gap +
+        8
+end
+
 local function render_flow_block(
+    handbook,
     parent,
     topic,
     region,
@@ -185,6 +429,17 @@ local function render_flow_block(
 )
     if block.type == "spacer" then
         return source_cursor_y + (block.height or 10)
+    end
+
+    if block.type == "related_topics" then
+        return render_related_topics(
+            handbook,
+            parent,
+            topic,
+            region,
+            source_cursor_y,
+            block
+        )
     end
 
     if block.type == "divider" then
@@ -593,6 +848,7 @@ function DST101Widget:RenderRegion(
 
     for _, block in ipairs(blocks) do
         source_cursor_y = render_flow_block(
+            self,
             parent,
             topic,
             region,
@@ -679,7 +935,7 @@ function DST101Widget:RenderFooter(parent, topic)
             LAYOUT.colours.body_text[1],
             LAYOUT.colours.body_text[2],
             LAYOUT.colours.body_text[3],
-            0.75
+            1
         )
 
         return
@@ -698,12 +954,8 @@ function DST101Widget:RenderFooter(parent, topic)
         0.45,
     }
 
-    local normal_colour = {
-        1,
-        1,
-        1,
-        0.90,
-    }
+    local normal_colour =
+        LAYOUT.colours.body_text
 
     local hover_colour = {
         1,
@@ -817,7 +1069,7 @@ function DST101Widget:RenderFooter(parent, topic)
         LAYOUT.colours.body_text[1],
         LAYOUT.colours.body_text[2],
         LAYOUT.colours.body_text[3],
-        0.90
+        1
     )
 
     local page_counter = parent:AddChild(
@@ -992,6 +1244,11 @@ function DST101Widget:ReloadData()
 end
 
 return DST101Widget
+
+
+
+
+
 
 
 
