@@ -163,8 +163,28 @@ end
 -- generic page-content rendering
 -- =============================================================================
 
-local function add_divider(parent, region, source_cursor_y)
-    local divider_index = math.random(1, 6)
+local function get_divider_index(key)
+    local hash = 0
+
+    for index = 1, #key do
+        hash = (
+            hash * 31 +
+            string.byte(key, index)
+        ) % 2147483647
+    end
+
+    return hash % 6 + 1
+end
+
+
+local function add_divider(
+    parent,
+    region,
+    source_cursor_y,
+    divider_key
+)
+    local divider_index =
+        get_divider_index(divider_key)
 
     local divider_texture = string.format(
         "divider_%02d.tex",
@@ -398,10 +418,10 @@ local function render_related_topics(
         )
 
         icon:SetTint(
-            LAYOUT.colours.body_text[1],
-            LAYOUT.colours.body_text[2],
-            LAYOUT.colours.body_text[3],
-            0.95
+            0.88,
+            0.84,
+            0.76,
+            1
         )
 
         icon:SetClickable(false)
@@ -410,7 +430,7 @@ local function render_related_topics(
         local label = parent:AddChild(
             Text(
                 BODY_FONT,
-                17,
+                19,
                 "",
                 LAYOUT.colours.body_text
             )
@@ -459,7 +479,8 @@ local function render_flow_block(
     topic,
     region,
     source_cursor_y,
-    block
+    block,
+    divider_key
 )
     if block.type == "spacer" then
         return source_cursor_y + (block.height or 10)
@@ -480,7 +501,8 @@ local function render_flow_block(
         return add_divider(
             parent,
             region,
-            source_cursor_y
+            source_cursor_y,
+            divider_key
         )
     end
 
@@ -545,7 +567,8 @@ local function render_flow_block(
         source_cursor_y = add_divider(
             parent,
             region,
-            source_cursor_y + 2
+            source_cursor_y + 2,
+            divider_key
         )
     end
 
@@ -646,6 +669,47 @@ local DST101Widget = Class(Widget, function(self, owner)
         LAYOUT.source.width,
         LAYOUT.source.height
     )
+
+    local search_defocus_button =
+        self.design_root:AddChild(
+            ImageButton(
+                "images/global.xml",
+                "square.tex"
+            )
+        )
+
+    search_defocus_button.scale_on_focus = false
+    search_defocus_button.move_on_click = false
+
+    search_defocus_button:ForceImageSize(
+        LAYOUT.source.width,
+        LAYOUT.source.height
+    )
+
+    search_defocus_button:SetImageNormalColour(
+        1,
+        1,
+        1,
+        0
+    )
+
+    search_defocus_button:SetImageFocusColour(
+        1,
+        1,
+        1,
+        0
+    )
+
+    search_defocus_button:SetImageSelectedColour(
+        1,
+        1,
+        1,
+        0
+    )
+
+    search_defocus_button:SetOnClick(function()
+        self:StopSearchEditing()
+    end)
 
     self:ReloadData()
 end)
@@ -801,18 +865,43 @@ end
 
 
 function DST101Widget:SetSearchQuery(value)
+    local previous_query =
+        self.search_query or ""
+
     local query = normalize_search_text(
         value
     )
 
-    if query == (self.search_query or "") then
+    if query == previous_query then
         return
     end
+
+    local query_expanded =
+        #query > #previous_query
 
     self.search_query = query
     self.topic_scroll_index = 1
 
     self:RefreshSidebar()
+
+    if not query_expanded
+        or query == ""
+    then
+        return
+    end
+
+    local page_number =
+        self.search_match_pages
+        and self.search_match_pages[
+            self.current_topic_id
+        ]
+
+    if page_number ~= nil
+        and page_number ~= self.current_page
+    then
+        self.current_page = page_number
+        self:RefreshPage()
+    end
 end
 
 
@@ -840,6 +929,35 @@ function DST101Widget:BuildSearchRow()
             search.bottom
         ) / 2
     )
+
+    local row_button = self.search_root:AddChild(
+        ImageButton(
+            "images/global.xml",
+            "square.tex"
+        )
+    )
+
+    row_button.scale_on_focus = false
+    row_button.move_on_click = false
+
+    row_button:ForceImageSize(
+        search.right - search.left + 1,
+        search.bottom - search.top + 1
+    )
+
+    row_button:SetPosition(
+        source_x(
+            (
+                search.left +
+                search.right
+            ) / 2
+        ),
+        center_y
+    )
+
+    row_button:SetImageNormalColour(1, 1, 1, 0)
+    row_button:SetImageFocusColour(1, 1, 1, 0)
+    row_button:SetImageSelectedColour(1, 1, 1, 0)
 
     local icon = self.search_root:AddChild(
         Image(
@@ -942,6 +1060,28 @@ function DST101Widget:BuildSearchRow()
         self.search_query
     )
 
+    local search_edit_on_control =
+        self.search_edit.OnControl
+
+    self.search_edit.OnControl =
+        function(edit, control, down)
+            if edit.editing
+                and control == CONTROL_ACCEPT
+            then
+                return true
+            end
+
+            return search_edit_on_control(
+                edit,
+                control,
+                down
+            )
+        end
+
+    row_button:SetOnClick(function()
+        self.search_edit:SetEditing(true)
+    end)
+
     self.search_edit.OnTextInputted =
         function()
             self:SetSearchQuery(
@@ -955,7 +1095,14 @@ function DST101Widget:BuildSearchRow()
         end
 end
 
+function DST101Widget:StopSearchEditing()
+    if self.search_edit ~= nil then
+        self.search_edit:SetEditing(false)
+    end
+end
+
 function DST101Widget:SetCurrentTopic(topic_id, page_number)
+    self:StopSearchEditing()
     if find_topic(self.data, topic_id) == nil then
         return
     end
@@ -1106,11 +1253,25 @@ function DST101Widget:RefreshSidebar()
                 unpack(LAYOUT.colours.row_selected)
             )
 
+            button.AllowOnControlWhenSelected = true
+
             button:SetOnClick(function()
+                self:StopSearchEditing()
+
                 local page_number =
                     self.search_match_pages
                     and self.search_match_pages[topic.id]
                     or 1
+
+                if topic.id == self.current_topic_id then
+                    if self.current_page ~= page_number then
+                        self.current_page = page_number
+                        self:RefreshPage()
+                        self:RefreshSidebar()
+                    end
+
+                    return
+                end
 
                 self:SetCurrentTopic(
                     topic.id,
@@ -1210,19 +1371,31 @@ function DST101Widget:RenderRegion(
 
     local source_cursor_y = region.top
 
-    for _, block in ipairs(blocks) do
+    for block_index, block in ipairs(blocks) do
+        local divider_key = table.concat(
+            {
+                topic.id or "",
+                tostring(self.current_page),
+                region_name,
+                tostring(block_index),
+            },
+            "|"
+        )
+
         source_cursor_y = render_flow_block(
             self,
             parent,
             topic,
             region,
             source_cursor_y,
-            block
+            block,
+            divider_key
         )
     end
 end
 
 function DST101Widget:ChangePage(offset)
+    self:StopSearchEditing()
     local topic = find_topic(
         self.data,
         self.current_topic_id
