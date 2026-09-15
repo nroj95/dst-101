@@ -2,6 +2,9 @@ Assets = {
     Asset("ATLAS", "images/ui/base_template.xml"),
     Asset("IMAGE", "images/ui/base_template.tex"),
 
+    Asset("ATLAS", "images/ui/dst101_ui.xml"),
+    Asset("IMAGE", "images/ui/dst101_ui.tex"),
+
     Asset("ATLAS", "images/topics/dst101_topics_color.xml"),
     Asset("IMAGE", "images/topics/dst101_topics_color.tex"),
 
@@ -195,4 +198,5 @@ for _, font in ipairs(DST101_FONTS) do
 end
 
 AddSimPostInit(GLOBAL.LoadFonts)
+
 

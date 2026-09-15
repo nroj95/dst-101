@@ -9,6 +9,7 @@ local BACKDROP_ATLAS = "images/ui/base_template.xml"
 local BACKDROP_TEXTURE = "base_template.tex"
 
 local TOPIC_ATLAS = "images/topics/dst101_topics_color.xml"
+local UI_ATLAS = "images/ui/dst101_ui.xml"
 
 local BODY_FONT = "dst101_alegreya_regular"
 local ITALIC_FONT = "dst101_alegreya_italic"
@@ -601,6 +602,297 @@ function DST101Widget:RenderRegion(
     end
 end
 
+function DST101Widget:ChangePage(offset)
+    local topic = find_topic(
+        self.data,
+        self.current_topic_id
+    )
+
+    if topic == nil or topic.pages == nil then
+        return
+    end
+
+    local page_count = #topic.pages
+
+    if page_count <= 1 then
+        return
+    end
+
+    local next_page = math.max(
+        1,
+        math.min(
+            page_count,
+            self.current_page + offset
+        )
+    )
+
+    if next_page == self.current_page then
+        return
+    end
+
+    self.current_page = next_page
+    self:RefreshPage()
+end
+
+
+function DST101Widget:RenderFooter(parent, topic)
+    local region = LAYOUT.regions.bottom_footer
+
+    if region == nil then
+        return
+    end
+
+    local pages = topic.pages or {}
+    local page_count = #pages
+
+    if page_count == 0 then
+        return
+    end
+
+    local footer_y = (
+        region.top +
+        region.bottom
+    ) / 2
+
+    local navigation_y = footer_y - 3
+
+    -- Single-page topics only need the decorative footer.
+    if page_count == 1 then
+        local divider = parent:AddChild(
+            Image(
+                UI_ATLAS,
+                "fleur_de_lis_divider.tex"
+            )
+        )
+
+        divider:ScaleToSize(
+            240,
+            46
+        )
+
+        divider:SetPosition(
+            source_x(755),
+            source_y(footer_y - 8)
+        )
+
+        divider:SetTint(
+            LAYOUT.colours.body_text[1],
+            LAYOUT.colours.body_text[2],
+            LAYOUT.colours.body_text[3],
+            0.75
+        )
+
+        return
+    end
+
+    local previous_enabled =
+        self.current_page > 1
+
+    local next_enabled =
+        self.current_page < page_count
+
+    local disabled_colour = {
+        0.55,
+        0.55,
+        0.55,
+        0.45,
+    }
+
+    local normal_colour = {
+        1,
+        1,
+        1,
+        0.90,
+    }
+
+    local hover_colour = {
+        1,
+        0.84,
+        0.38,
+        1,
+    }
+
+    local function configure_button(button, enabled)
+        button.scale_on_focus = false
+        button.move_on_click = false
+
+        button:ForceImageSize(
+            32,
+            29
+        )
+
+        button:SetImageNormalColour(
+            normal_colour[1],
+            normal_colour[2],
+            normal_colour[3],
+            normal_colour[4]
+        )
+
+        button:SetImageFocusColour(
+            hover_colour[1],
+            hover_colour[2],
+            hover_colour[3],
+            hover_colour[4]
+        )
+
+        button:SetImageDisabledColour(
+            disabled_colour[1],
+            disabled_colour[2],
+            disabled_colour[3],
+            disabled_colour[4]
+        )
+
+        if enabled then
+            button:Enable()
+        else
+            button:Disable()
+        end
+    end
+
+    local previous_button = parent:AddChild(
+        ImageButton(
+            UI_ATLAS,
+            "page_button_previous.tex"
+        )
+    )
+
+    configure_button(
+        previous_button,
+        previous_enabled
+    )
+
+    previous_button:SetPosition(
+        source_x(452),
+        source_y(navigation_y)
+    )
+
+    previous_button:SetOnClick(function()
+        self:ChangePage(-1)
+    end)
+
+    local previous_colour =
+        previous_enabled
+        and LAYOUT.colours.body_text
+        or disabled_colour
+
+    local previous_label = parent:AddChild(
+        Text(
+            BODY_FONT,
+            20,
+            self.data.strings.previous_page,
+            previous_colour
+        )
+    )
+
+    previous_label:SetRegionSize(
+        110,
+        28
+    )
+    previous_label:SetHAlign(ANCHOR_MIDDLE)
+    previous_label:SetVAlign(ANCHOR_MIDDLE)
+    previous_label:SetClickable(false)
+    previous_label:SetPosition(
+        source_x(530),
+        source_y(navigation_y)
+    )
+
+    local divider = parent:AddChild(
+        Image(
+            UI_ATLAS,
+            "fleur_de_lis_divider_asymmetric.tex"
+        )
+    )
+
+    divider:ScaleToSize(
+        150,
+        29
+    )
+
+    divider:SetPosition(
+        source_x(700),
+        source_y(navigation_y)
+    )
+
+    divider:SetTint(
+        LAYOUT.colours.body_text[1],
+        LAYOUT.colours.body_text[2],
+        LAYOUT.colours.body_text[3],
+        0.90
+    )
+
+    local page_counter = parent:AddChild(
+        Text(
+            BODY_FONT,
+            21,
+            string.format(
+                "%d / %d",
+                self.current_page,
+                page_count
+            ),
+            LAYOUT.colours.headline_text
+        )
+    )
+
+    page_counter:SetRegionSize(
+        64,
+        28
+    )
+    page_counter:SetHAlign(ANCHOR_MIDDLE)
+    page_counter:SetVAlign(ANCHOR_MIDDLE)
+    page_counter:SetClickable(false)
+    page_counter:SetPosition(
+        source_x(805),
+        source_y(navigation_y)
+    )
+
+    local next_colour =
+        next_enabled
+        and LAYOUT.colours.body_text
+        or disabled_colour
+
+    local next_label = parent:AddChild(
+        Text(
+            BODY_FONT,
+            20,
+            self.data.strings.next_page,
+            next_colour
+        )
+    )
+
+    next_label:SetRegionSize(
+        100,
+        28
+    )
+    next_label:SetHAlign(ANCHOR_MIDDLE)
+    next_label:SetVAlign(ANCHOR_MIDDLE)
+    next_label:SetClickable(false)
+    next_label:SetPosition(
+        source_x(870),
+        source_y(navigation_y)
+    )
+
+    local next_button = parent:AddChild(
+        ImageButton(
+            UI_ATLAS,
+            "page_button_next.tex"
+        )
+    )
+
+    configure_button(
+        next_button,
+        next_enabled
+    )
+
+    next_button:SetPosition(
+        source_x(933),
+        source_y(navigation_y)
+    )
+
+    next_button:SetOnClick(function()
+        self:ChangePage(1)
+    end)
+end
+
 function DST101Widget:RefreshPage()
     local topic = find_topic(
         self.data,
@@ -611,11 +903,21 @@ function DST101Widget:RefreshPage()
         return
     end
 
-    local page = topic.pages[self.current_page]
+    local page_count = #topic.pages
 
-    if page == nil then
+    if page_count == 0 then
         return
     end
+
+    self.current_page = math.max(
+        1,
+        math.min(
+            self.current_page,
+            page_count
+        )
+    )
+
+    local page = topic.pages[self.current_page]
 
     if self.page_root ~= nil then
         self.page_root:Kill()
@@ -633,6 +935,11 @@ function DST101Widget:RefreshPage()
             region_name
         )
     end
+
+    self:RenderFooter(
+        self.page_root,
+        topic
+    )
 end
 
 
@@ -685,4 +992,12 @@ function DST101Widget:ReloadData()
 end
 
 return DST101Widget
+
+
+
+
+
+
+
+
 
