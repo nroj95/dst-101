@@ -10,47 +10,57 @@ local BACKDROP_TEXTURE = "base_template.tex"
 
 local TOPIC_ATLAS = "images/topics/dst101_topics_color.xml"
 
+local BODY_FONT = "dst101_alegreya_regular"
+local ITALIC_FONT = "dst101_alegreya_italic"
+
 local BLOCK_STYLES = {
     topic_title = {
         font = HEADERFONT,
+        colour = LAYOUT.colours.headline_text,
         size = 64,
         spacing = 7,
     },
 
     subtitle = {
-        font = HEADERFONT,
+        font = ITALIC_FONT,
+        colour = LAYOUT.colours.headline_text,
         size = 31,
         spacing = 13,
     },
 
     heading = {
         font = HEADERFONT,
+        colour = LAYOUT.colours.headline_text,
         size = 36,
         spacing = 13,
     },
 
     text = {
-        font = HEADERFONT,
+        font = BODY_FONT,
+        colour = LAYOUT.colours.body_text,
         size = 24,
         spacing = 17,
     },
 
     bullets = {
-        font = HEADERFONT,
+        font = BODY_FONT,
+        colour = LAYOUT.colours.body_text,
         size = 24,
         spacing = 17,
     },
 
     caption = {
-        font = HEADERFONT,
-        size = 23,
+        font = ITALIC_FONT,
+        colour = LAYOUT.colours.headline_text,
+        size = 25,
         spacing = 0,
         align = ANCHOR_MIDDLE,
     },
 
     quote = {
-        font = HEADERFONT,
-        size = 24,
+        font = ITALIC_FONT,
+        colour = LAYOUT.colours.headline_text,
+        size = 26,
         spacing = 0,
         align = ANCHOR_MIDDLE,
     },
@@ -195,7 +205,7 @@ local function render_flow_block(
             style.font,
             block.size or style.size,
             "",
-            UICOLOURS.BROWN_DARK
+            style.colour or UICOLOURS.BROWN_DARK
         )
     )
 
@@ -260,7 +270,7 @@ local function render_box_region(
             style.font,
             block.size or style.size,
             "",
-            UICOLOURS.BROWN_DARK
+            style.colour or UICOLOURS.BROWN_DARK
         )
     )
 
@@ -675,7 +685,4 @@ function DST101Widget:ReloadData()
 end
 
 return DST101Widget
-
-
-
 

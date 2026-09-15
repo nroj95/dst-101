@@ -23,6 +23,10 @@ return {
 
         sidebar_text = { 0.84, 0.81, 0.70, 1 },
         sidebar_selected_text = { 0.12, 0.10, 0.06, 1 },
+
+        headline_text = { 0.10, 0.08, 0.05, 1 },
+        body_text = { 0.24, 0.20, 0.15, 1 },
+        subtle_text = { 0.34, 0.29, 0.22, 0.82 },
     },
 
     sidebar = {
@@ -31,7 +35,7 @@ return {
 
         topic_icon = {
             center_x = 72,
-            size = 34,
+            size = 44,
         },
 
         topic_text = {
@@ -145,6 +149,9 @@ return {
         },
     },
 }
+
+
+
 
 
 

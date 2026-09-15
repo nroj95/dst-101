@@ -7,6 +7,9 @@ Assets = {
 
     Asset("ATLAS", "images/topics/dst101_topics_gray.xml"),
     Asset("IMAGE", "images/topics/dst101_topics_gray.tex"),
+
+    Asset("FONT", "fonts/dst101_alegreya_regular.zip"),
+    Asset("FONT", "fonts/dst101_alegreya_italic.zip"),
 }
 local TheInput = GLOBAL.TheInput
 
@@ -168,8 +171,28 @@ TheInput:AddControlHandler(
 
 AddPlayerPostInit(add_simple_controller_skill)
 
+-- =============================================================================
+-- custom fonts
+-- =============================================================================
 
+local DST101_FONTS = {
+    {
+        filename = MODROOT .. "fonts/dst101_alegreya_regular.zip",
+        alias = "dst101_alegreya_regular",
+    },
+    {
+        filename = MODROOT .. "fonts/dst101_alegreya_italic.zip",
+        alias = "dst101_alegreya_italic",
+    },
+}
 
+for _, font in ipairs(DST101_FONTS) do
+    table.insert(GLOBAL.FONTS, {
+        filename = font.filename,
+        alias = font.alias,
+        fallback = GLOBAL.DEFAULT_FALLBACK_TABLE,
+    })
+end
 
-
+AddSimPostInit(GLOBAL.LoadFonts)
 
