@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Atlas>
+	<Texture filename="game_ui_template.tex" />
+	<Elements>
+		<Element name="game_ui_template.tex" u1="0.000244141" u2="0.706787" v1="0.469971" v2="0.999756" />
+	</Elements>
+</Atlas>

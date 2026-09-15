@@ -1,0 +1,8 @@
+*.bak
+*.bak.*
+*.test-backup
+Thumbs.db
+.DS_Store
+
+/.build/
+/reference/

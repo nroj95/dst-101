@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Atlas>
+	<Texture filename="base_template_test_877x550.tex" />
+	<Elements>
+		<Element name="base_template_877x550.tex" u1="0.000488281" u2="0.855957" v1="0.463379" v2="0.999512" />
+	</Elements>
+</Atlas>
