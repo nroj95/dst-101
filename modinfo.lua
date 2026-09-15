@@ -36,7 +36,7 @@ configuration_options = {
     {
         name = "reload_shortcut",
         label = "Reload handbook shortcut",
-        hover = "Reloads handbook topics and pages from disk without restarting DST.",
+        hover = "Reloads handbook Lua from disk without restarting DST.",
         options = shortcuts,
         default = "f7",
     },

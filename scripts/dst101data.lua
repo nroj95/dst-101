@@ -12,6 +12,15 @@ return {
             title = "Getting Started",
             icon = "getting_started",
             related_topic_tile = 1,
+            tags = {
+                "beginner",
+                "basics",
+                "survival",
+                "first night",
+                "darkness",
+                "light",
+                "new player",
+            },
             pages = {
                 {
                     regions = {
@@ -69,6 +78,7 @@ Explore, experiment, and learn as you go.
                         quote = {},
                     },
                 },
+
             },
         },
 
@@ -77,6 +87,19 @@ Explore, experiment, and learn as you go.
             title = "Sailing",
             icon = "sailing",
             related_topic_tile = 2,
+            tags = {
+                "boat",
+                "boats",
+                "oar",
+                "oars",
+                "rowing",
+                "ocean",
+                "sea",
+                "water",
+                "anchor",
+                "sail",
+                "sails",
+            },
             pages = {
                 {
                     regions = {
@@ -162,8 +185,3 @@ For travelling longer distances, sails provide continuous movement.
         },
     },
 }
-
-
-
-
-

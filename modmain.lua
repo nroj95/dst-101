@@ -70,23 +70,85 @@ local function open_handbook()
     )
 end
 
-local function reload_handbook()
-    GLOBAL.package.loaded["dst101data"] = nil
+local function clear_handbook_modules()
+    local modules = {
+        "dst101data",
+        "dst101layout",
+        "widgets/dst101widget",
+        "screens/dst101popupscreen",
+    }
 
+    for _, module_name in ipairs(modules) do
+        GLOBAL.package.loaded[module_name] = nil
+    end
+end
+
+
+local function reload_handbook()
     if GLOBAL.TheFrontEnd == nil then
         return
     end
 
-    local active_screen = GLOBAL.TheFrontEnd:GetActiveScreen()
+    local active_screen =
+        GLOBAL.TheFrontEnd:GetActiveScreen()
 
-    if active_screen ~= nil
+    local was_open =
+        active_screen ~= nil
         and active_screen.name == "DST101PopupScreen"
-        and active_screen.book ~= nil
-    then
-        active_screen.book:ReloadData()
+
+    local topic_id = nil
+    local page_number = nil
+
+    if was_open and active_screen.book ~= nil then
+        topic_id =
+            active_screen.book.current_topic_id
+
+        page_number =
+            active_screen.book.current_page
     end
 
-    print("[dst 101] handbook reloaded")
+    if was_open then
+        GLOBAL.TheFrontEnd:PopScreen()
+    end
+
+    clear_handbook_modules()
+
+    if not was_open then
+        print("[dst 101] handbook modules reloaded")
+        return
+    end
+
+    local player = GLOBAL.ThePlayer
+
+    if player == nil or not player:IsValid() then
+        print("[dst 101] handbook modules reloaded")
+        return
+    end
+
+    player:DoTaskInTime(0, function()
+        if GLOBAL.TheFrontEnd == nil then
+            return
+        end
+
+        local DST101PopupScreen =
+            require("screens/dst101popupscreen")
+
+        local screen =
+            DST101PopupScreen(player)
+
+        GLOBAL.TheFrontEnd:PushScreen(screen)
+
+        if screen.book ~= nil
+            and topic_id ~= nil
+        then
+            screen.book:SetCurrentTopic(
+                topic_id,
+                page_number or 1
+            )
+        end
+
+        print("[dst 101] handbook hot reloaded")
+    end)
 end
 
 local function bind_shortcut(config_name, callback)
@@ -198,5 +260,3 @@ for _, font in ipairs(DST101_FONTS) do
 end
 
 AddSimPostInit(GLOBAL.LoadFonts)
-
-

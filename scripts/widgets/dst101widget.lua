@@ -1,6 +1,7 @@
 local Image = require("widgets/image")
 local ImageButton = require("widgets/imagebutton")
 local Text = require("widgets/text")
+local TextEdit = require("widgets/textedit")
 local Widget = require("widgets/widget")
 
 local LAYOUT = require("dst101layout")
@@ -27,28 +28,29 @@ local BLOCK_STYLES = {
         font = ITALIC_FONT,
         colour = LAYOUT.colours.headline_text,
         size = 31,
-        spacing = 13,
+        spacing = 5,
     },
 
     heading = {
         font = HEADERFONT,
         colour = LAYOUT.colours.headline_text,
         size = 36,
-        spacing = 13,
+        line_height = 36,
+        spacing = 5,
     },
 
     text = {
         font = BODY_FONT,
         colour = LAYOUT.colours.body_text,
         size = 24,
-        spacing = 17,
+        spacing = 32,
     },
 
     bullets = {
         font = BODY_FONT,
         colour = LAYOUT.colours.body_text,
         size = 24,
-        spacing = 17,
+        spacing = 32,
     },
 
     caption = {
@@ -197,15 +199,19 @@ local function add_divider(parent, region, source_cursor_y)
     )
 
     divider:SetPosition(
-        region_center_x(region),
+        source_x(
+            region.left +
+            divider_width / 2
+        ),
         source_y(
-            source_cursor_y +
+            source_cursor_y -
+            8 +
             divider_height / 2
         )
     )
 
     return source_cursor_y +
-        divider_height +
+        divider_height -
         6
 end
 
@@ -259,11 +265,11 @@ local function render_related_topics(
         return source_cursor_y
     end
 
-    local tile_size = 76
-    local icon_size = 50
+    local tile_size = 70
+    local icon_size = 46
     local label_height = 20
-    local label_gap = 1
-    local column_gap = 14
+    local label_gap = -3
+    local column_gap = 34
     local row_gap = 12
     local maximum_columns = 4
 
@@ -321,11 +327,7 @@ local function render_related_topics(
             (row_item_count - 1) * column_gap
 
         local row_left =
-            region.left +
-            (
-                available_width -
-                row_width
-            ) / 2
+            region.left
 
         local tile_center_x =
             row_left +
@@ -337,7 +339,7 @@ local function render_related_topics(
 
         local row_top =
             source_cursor_y -
-            12 +
+            8 +
             row * row_height
 
         local button = parent:AddChild(
@@ -511,17 +513,33 @@ local function render_flow_block(
         width
     )
 
-    local _, height = text:GetRegionSize()
+    local _, measured_height =
+        text:GetRegionSize()
+
+
+    local layout_height = math.max(
+        measured_height,
+        block.line_height
+            or style.line_height
+            or 0
+    )
 
     -- Keep the full authored region width so left alignment is meaningful.
-    text:SetRegionSize(width, height)
+    text:SetRegionSize(
+        width,
+        measured_height
+    )
 
     text:SetPosition(
         region_center_x(region),
-        source_y(source_cursor_y + height / 2)
+        source_y(
+            source_cursor_y +
+            measured_height / 2
+        )
     )
 
-    source_cursor_y = source_cursor_y + height
+    source_cursor_y =
+        source_cursor_y + layout_height
 
     if block.divider then
         source_cursor_y = add_divider(
@@ -637,20 +655,320 @@ end)
 -- sidebar
 -- =============================================================================
 
-function DST101Widget:SetCurrentTopic(topic_id)
+local function normalize_search_text(value)
+    local text = string.lower(value or "")
+
+    -- Lua's normal string.lower() is ASCII-oriented.
+    -- Cover the Norwegian letters used by the handbook translation.
+    text = text:gsub("Å", "å")
+    text = text:gsub("Æ", "æ")
+    text = text:gsub("Ø", "ø")
+
+    text = text:gsub("^%s+", "")
+    text = text:gsub("%s+$", "")
+    text = text:gsub("%s+", " ")
+
+    return text
+end
+
+
+local function search_text_matches(value, query)
+    if value == nil or value == "" then
+        return false
+    end
+
+    local text = normalize_search_text(
+        tostring(value)
+    )
+
+    return string.find(
+        text,
+        query,
+        1,
+        true
+    ) ~= nil
+end
+
+
+local function block_matches_search(block, query)
+    if search_text_matches(
+        block.text,
+        query
+    ) then
+        return true
+    end
+
+    if block.type == "bullets" then
+        for _, item in ipairs(block.items or {}) do
+            if search_text_matches(
+                item,
+                query
+            ) then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+
+local function page_matches_search(page, query)
+    for _, blocks in pairs(
+        page.regions or {}
+    ) do
+        for _, block in ipairs(blocks or {}) do
+            if block_matches_search(
+                block,
+                query
+            ) then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+
+local function topic_match_page(topic, query)
+    -- Topic-level matches deliberately open page 1.
+    if search_text_matches(
+        topic.title,
+        query
+    ) then
+        return 1
+    end
+
+    for _, tag in ipairs(topic.tags or {}) do
+        if search_text_matches(
+            tag,
+            query
+        ) then
+            return 1
+        end
+    end
+
+    -- Page-content matches jump to the first matching page.
+    for page_index, page in ipairs(
+        topic.pages or {}
+    ) do
+        if page_matches_search(
+            page,
+            query
+        ) then
+            return page_index
+        end
+    end
+
+    return nil
+end
+
+
+function DST101Widget:GetSidebarTopics()
+    local topics = self.data.topics or {}
+    local query = self.search_query or ""
+
+    if query == "" then
+        self.search_match_pages = {}
+        return topics
+    end
+
+    local filtered_topics = {}
+    local match_pages = {}
+
+    for _, topic in ipairs(topics) do
+        local page_index = topic_match_page(
+            topic,
+            query
+        )
+
+        if page_index ~= nil then
+            table.insert(
+                filtered_topics,
+                topic
+            )
+
+            match_pages[topic.id] =
+                page_index
+        end
+    end
+
+    self.search_match_pages = match_pages
+
+    return filtered_topics
+end
+
+
+function DST101Widget:SetSearchQuery(value)
+    local query = normalize_search_text(
+        value
+    )
+
+    if query == (self.search_query or "") then
+        return
+    end
+
+    self.search_query = query
+    self.topic_scroll_index = 1
+
+    self:RefreshSidebar()
+end
+
+
+function DST101Widget:BuildSearchRow()
+    if self.search_root ~= nil then
+        return
+    end
+
+    self.search_query =
+        self.search_query or ""
+
+    self.search_match_pages =
+        self.search_match_pages or {}
+
+    local sidebar = LAYOUT.sidebar
+    local search = sidebar.search
+
+    self.search_root = self.design_root:AddChild(
+        Widget("search_root")
+    )
+
+    local center_y = source_y(
+        (
+            search.top +
+            search.bottom
+        ) / 2
+    )
+
+    local icon = self.search_root:AddChild(
+        Image(
+            TOPIC_ATLAS,
+            "magnifying_glass.tex"
+        )
+    )
+
+    icon:ScaleToSize(
+        sidebar.topic_icon.size,
+        sidebar.topic_icon.size
+    )
+
+    icon:SetPosition(
+        source_x(
+            sidebar.topic_icon.center_x
+        ),
+        center_y
+    )
+
+    icon:SetClickable(false)
+
+    local text_left =
+        sidebar.topic_text.left
+
+    local text_right =
+        sidebar.topic_text.right
+
+    local text_width =
+        text_right -
+        text_left +
+        1
+
+    self.search_edit =
+        self.search_root:AddChild(
+            TextEdit(
+                HEADERFONT,
+                26,
+                "",
+                LAYOUT.colours.sidebar_text
+            )
+        )
+
+    self.search_edit:SetRegionSize(
+        text_width,
+        search.bottom - search.top + 1
+    )
+
+    self.search_edit:SetHAlign(
+        ANCHOR_LEFT
+    )
+
+    self.search_edit:SetVAlign(
+        ANCHOR_MIDDLE
+    )
+
+    self.search_edit:SetPosition(
+        source_x(
+            (
+                text_left +
+                text_right
+            ) / 2
+        ),
+        center_y
+    )
+
+    self.search_edit:SetIdleTextColour(
+        unpack(
+            LAYOUT.colours.sidebar_text
+        )
+    )
+
+    self.search_edit:SetEditTextColour(
+        unpack(
+            LAYOUT.colours.sidebar_text
+        )
+    )
+
+    self.search_edit:SetEditCursorColour(
+        unpack(
+            LAYOUT.colours.sidebar_text
+        )
+    )
+
+    self.search_edit:SetTextLengthLimit(80)
+    self.search_edit:EnableScrollEditWindow(true)
+
+    self.search_edit:SetTextPrompt(
+        self.data.strings.search_placeholder
+            or "Search...",
+        {
+            LAYOUT.colours.sidebar_text[1],
+            LAYOUT.colours.sidebar_text[2],
+            LAYOUT.colours.sidebar_text[3],
+            0.55,
+        }
+    )
+
+    self.search_edit:SetString(
+        self.search_query
+    )
+
+    self.search_edit.OnTextInputted =
+        function()
+            self:SetSearchQuery(
+                self.search_edit:GetString()
+            )
+        end
+
+    self.search_edit.OnTextEntered =
+        function(value)
+            self:SetSearchQuery(value)
+        end
+end
+
+function DST101Widget:SetCurrentTopic(topic_id, page_number)
     if find_topic(self.data, topic_id) == nil then
         return
     end
 
     self.current_topic_id = topic_id
-    self.current_page = 1
+    self.current_page = page_number or 1
 
     self:RefreshPage()
     self:RefreshSidebar()
 end
 
 function DST101Widget:ScrollTopics(offset)
-    local topics = self.data.topics or {}
+    local topics = self:GetSidebarTopics()
     local visible_count = #LAYOUT.sidebar.topic_rows
 
     local maximum_start = math.max(
@@ -686,6 +1004,12 @@ function DST101Widget:RefreshSidebar()
     self.sidebar_rows = {}
 
     local sidebar = LAYOUT.sidebar
+
+    if self.search_root == nil then
+        self:BuildSearchRow()
+    end
+
+    local topics = self:GetSidebarTopics()
 
     local header = self.sidebar_root:AddChild(
         Text(
@@ -737,7 +1061,7 @@ function DST101Widget:RefreshSidebar()
         local topic_index =
             self.topic_scroll_index + slot_index - 1
 
-        local topic = self.data.topics[topic_index]
+        local topic = topics[topic_index]
 
         if topic ~= nil then
             local row_height =
@@ -783,7 +1107,15 @@ function DST101Widget:RefreshSidebar()
             )
 
             button:SetOnClick(function()
-                self:SetCurrentTopic(topic.id)
+                local page_number =
+                    self.search_match_pages
+                    and self.search_match_pages[topic.id]
+                    or 1
+
+                self:SetCurrentTopic(
+                    topic.id,
+                    page_number
+                )
             end)
 
             local icon = button:AddChild(
@@ -954,13 +1286,13 @@ function DST101Widget:RenderFooter(parent, topic)
         )
 
         divider:ScaleToSize(
-            240,
-            46
+            150,
+            29
         )
 
         divider:SetPosition(
-            source_x(755),
-            source_y(footer_y - 8)
+            source_x(715),
+            source_y(footer_y - 3)
         )
 
         divider:SetTint(
@@ -1006,10 +1338,10 @@ function DST101Widget:RenderFooter(parent, topic)
         )
 
         button:SetImageNormalColour(
-            normal_colour[1],
-            normal_colour[2],
-            normal_colour[3],
-            normal_colour[4]
+            1,
+            1,
+            1,
+            1
         )
 
         button:SetImageFocusColour(
@@ -1093,7 +1425,7 @@ function DST101Widget:RenderFooter(parent, topic)
     )
 
     divider:SetPosition(
-        source_x(700),
+        source_x(715),
         source_y(navigation_y)
     )
 
@@ -1107,7 +1439,7 @@ function DST101Widget:RenderFooter(parent, topic)
     local page_counter = parent:AddChild(
         Text(
             BODY_FONT,
-            21,
+            42,
             string.format(
                 "%d / %d",
                 self.current_page,
@@ -1118,15 +1450,15 @@ function DST101Widget:RenderFooter(parent, topic)
     )
 
     page_counter:SetRegionSize(
-        64,
-        28
+        120,
+        52
     )
     page_counter:SetHAlign(ANCHOR_MIDDLE)
     page_counter:SetVAlign(ANCHOR_MIDDLE)
     page_counter:SetClickable(false)
     page_counter:SetPosition(
-        source_x(805),
-        source_y(navigation_y)
+        source_x(795),
+        source_y(navigation_y - 4)
     )
 
     local next_colour =
@@ -1151,7 +1483,7 @@ function DST101Widget:RenderFooter(parent, topic)
     next_label:SetVAlign(ANCHOR_MIDDLE)
     next_label:SetClickable(false)
     next_label:SetPosition(
-        source_x(870),
+        source_x(890),
         source_y(navigation_y)
     )
 
@@ -1168,7 +1500,7 @@ function DST101Widget:RenderFooter(parent, topic)
     )
 
     next_button:SetPosition(
-        source_x(933),
+        source_x(953),
         source_y(navigation_y)
     )
 
@@ -1276,18 +1608,3 @@ function DST101Widget:ReloadData()
 end
 
 return DST101Widget
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
