@@ -162,19 +162,51 @@ end
 -- =============================================================================
 
 local function add_divider(parent, region, source_cursor_y)
-    local divider = parent:AddChild(
-        Image("images/global.xml", "square.tex")
+    local divider_index = math.random(1, 6)
+
+    local divider_texture = string.format(
+        "divider_%02d.tex",
+        divider_index
     )
 
-    divider:SetTint(0.28, 0.24, 0.18, 0.35)
-    divider:ScaleToSize(region_width(region), 1)
+    local divider_width = math.min(
+        region_width(region),
+        496
+    )
+
+    local divider_height =
+        divider_width * 26 / 496
+
+    local divider = parent:AddChild(
+        Image(
+            UI_ATLAS,
+            divider_texture
+        )
+    )
+
+    divider:ScaleToSize(
+        divider_width,
+        divider_height
+    )
+
+    divider:SetTint(
+        LAYOUT.colours.body_text[1],
+        LAYOUT.colours.body_text[2],
+        LAYOUT.colours.body_text[3],
+        0.55
+    )
 
     divider:SetPosition(
         region_center_x(region),
-        source_y(source_cursor_y)
+        source_y(
+            source_cursor_y +
+            divider_height / 2
+        )
     )
 
-    return source_cursor_y + 8
+    return source_cursor_y +
+        divider_height +
+        6
 end
 
 local function get_related_topic_tile_texture(topic)
@@ -1244,6 +1276,7 @@ function DST101Widget:ReloadData()
 end
 
 return DST101Widget
+
 
 
 
