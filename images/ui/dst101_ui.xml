@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Atlas>
+    <Texture filename="dst101_ui.tex" />
+    <Elements>
+        <Element name="related_topic_tile_01.tex" u1="0.008300781" u2="0.241699219" v1="0.758300781" v2="0.991699219" />
+        <Element name="related_topic_tile_02.tex" u1="0.250488281" u2="0.483886719" v1="0.758300781" v2="0.991699219" />
+        <Element name="related_topic_tile_03.tex" u1="0.492675781" u2="0.726074219" v1="0.758300781" v2="0.991699219" />
+        <Element name="related_topic_tile_04.tex" u1="0.008300781" u2="0.241699219" v1="0.516113281" v2="0.749511719" />
+        <Element name="related_topic_tile_05.tex" u1="0.250488281" u2="0.483886719" v1="0.516113281" v2="0.749511719" />
+        <Element name="related_topic_tile_06.tex" u1="0.492675781" u2="0.726074219" v1="0.516113281" v2="0.749511719" />
+        <Element name="page_button_previous.tex" u1="0.742675781" u2="0.858886719" v1="0.886230469" v2="0.991699219" />
+        <Element name="page_button_next.tex" u1="0.867675781" u2="0.983886719" v1="0.886230469" v2="0.991699219" />
+        <Element name="slider_handle.tex" u1="0.836425781" u2="0.890136719" v1="0.625488281" v2="0.858886719" />
+        <Element name="divider_01.tex" u1="0.008300781" u2="0.491699219" v1="0.490722656" v2="0.515136719" />
+        <Element name="divider_02.tex" u1="0.508300781" u2="0.991699219" v1="0.490722656" v2="0.515136719" />
+        <Element name="divider_03.tex" u1="0.008300781" u2="0.491699219" v1="0.453613281" v2="0.478027344" />
+        <Element name="divider_04.tex" u1="0.508300781" u2="0.991699219" v1="0.453613281" v2="0.478027344" />
+        <Element name="divider_05.tex" u1="0.008300781" u2="0.491699219" v1="0.416503906" v2="0.440917969" />
+        <Element name="divider_06.tex" u1="0.508300781" u2="0.991699219" v1="0.416503906" v2="0.440917969" />
+        <Element name="fleur_de_lis_divider.tex" u1="0.008300781" u2="0.491699219" v1="0.305175781" v2="0.397949219" />
+        <Element name="fleur_de_lis_divider_asymmetric.tex" u1="0.508300781" u2="0.991699219" v1="0.305175781" v2="0.397949219" />
+    </Elements>
+</Atlas>
