@@ -1,3 +1,6 @@
+local illustration_data =
+    require("dst101illustrations")
+
 Assets = {
     Asset("ATLAS", "images/ui/base_template.xml"),
     Asset("IMAGE", "images/ui/base_template.tex"),
@@ -14,6 +17,20 @@ Assets = {
     Asset("FONT", "fonts/dst101_alegreya_regular.zip"),
     Asset("FONT", "fonts/dst101_alegreya_italic.zip"),
 }
+
+for _, illustration_atlas in ipairs(
+    illustration_data.atlases or {}
+) do
+    table.insert(
+        Assets,
+        Asset("ATLAS", illustration_atlas.atlas)
+    )
+
+    table.insert(
+        Assets,
+        Asset("IMAGE", illustration_atlas.image)
+    )
+end
 local TheInput = GLOBAL.TheInput
 
 local key_by_shortcut = {
@@ -222,6 +239,7 @@ end
 local function clear_handbook_modules()
     local modules = {
         "dst101data",
+        "dst101illustrations",
         "dst101layout",
         "widgets/dst101widget",
         "screens/dst101popupscreen",

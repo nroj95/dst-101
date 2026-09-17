@@ -5,6 +5,7 @@ local TextEdit = require("widgets/textedit")
 local Widget = require("widgets/widget")
 
 local LAYOUT = require("dst101layout")
+local ILLUSTRATIONS = require("dst101illustrations")
 
 local BACKDROP_ATLAS = "images/ui/base_template.xml"
 local BACKDROP_TEXTURE = "base_template.tex"
@@ -12,6 +13,45 @@ local BACKDROP_TEXTURE = "base_template.tex"
 local TOPIC_ATLAS = "images/topics/dst101_topics_color.xml"
 local TOPIC_GRAY_ATLAS = "images/topics/dst101_topics_gray.xml"
 local UI_ATLAS = "images/ui/dst101_ui.xml"
+
+local NOTE_ANIMAL_ORDER = {
+    "crow",
+    "catcoon",
+    "splumonkey",
+}
+
+local NOTE_STRIP = {
+    width = 462,
+    height = 98,
+    center_x = 1220,
+    center_y = 762,
+}
+
+local NOTE_ANIMALS = {
+    crow = {
+        texture = "note_animal_crow.tex",
+        width = 100,
+        height = 114,
+        right_inset = 8,
+        bottom_offset = 0,
+    },
+
+    catcoon = {
+        texture = "note_animal_catcoon.tex",
+        width = 118,
+        height = 96,
+        right_inset = 5,
+        bottom_offset = 0,
+    },
+
+    splumonkey = {
+        texture = "note_animal_splumonkey.tex",
+        width = 96,
+        height = 109,
+        right_inset = 7,
+        bottom_offset = 0,
+    },
+}
 
 local BODY_FONT = "dst101_alegreya_regular"
 local ITALIC_FONT = "dst101_alegreya_italic"
@@ -61,7 +101,7 @@ local BLOCK_STYLES = {
         align = ANCHOR_MIDDLE,
     },
 
-    quote = {
+    note = {
         font = ITALIC_FONT,
         colour = LAYOUT.colours.headline_text,
         size = 26,
@@ -75,7 +115,7 @@ local REGION_ORDER = {
     "illustration_caption",
     "bottom_left",
     "right",
-    "quote",
+    "note",
 }
 
 
@@ -138,11 +178,7 @@ end
 
 local function get_block_text(block, topic)
     if block.type == "topic_title" then
-        return topic.title or ""
-    end
-
-    if block.type == "quote" then
-        return '"' .. (block.text or "") .. '"'
+        return block.text or topic.title or ""
     end
 
     if block.type == "bullets" then
@@ -163,7 +199,7 @@ end
 -- generic page-content rendering
 -- =============================================================================
 
-local function get_divider_index(key)
+local function get_stable_variant_index(key, variant_count)
     local hash = 0
 
     for index = 1, #key do
@@ -173,7 +209,12 @@ local function get_divider_index(key)
         ) % 2147483647
     end
 
-    return hash % 6 + 1
+    return hash % variant_count + 1
+end
+
+
+local function get_divider_index(key)
+    return get_stable_variant_index(key, 6)
 end
 
 
@@ -197,7 +238,7 @@ local function add_divider(
     )
 
     local divider_height =
-        divider_width * 26 / 496
+        divider_width * 25 / 496
 
     local divider = parent:AddChild(
         Image(
@@ -580,7 +621,8 @@ local function render_box_region(
     parent,
     topic,
     region,
-    blocks
+    blocks,
+    variant_key
 )
     local block = blocks[1]
 
@@ -592,6 +634,108 @@ local function render_box_region(
 
     if style == nil then
         return
+    end
+
+    if block.type == "note" then
+        local strip_width =
+            NOTE_STRIP.width
+
+        local strip_height =
+            NOTE_STRIP.height
+
+        local strip_center_x =
+            NOTE_STRIP.center_x
+
+        local strip_center_y =
+            NOTE_STRIP.center_y
+
+        local strip = parent:AddChild(
+            Image(
+                UI_ATLAS,
+                "note_strip.tex"
+            )
+        )
+
+        strip:ScaleToSize(
+            strip_width,
+            strip_height
+        )
+
+        strip:SetPosition(
+            source_x(strip_center_x),
+            source_y(strip_center_y)
+        )
+
+        strip:SetClickable(false)
+
+        strip:SetTint(
+            LAYOUT.colours.body_text[1],
+            LAYOUT.colours.body_text[2],
+            LAYOUT.colours.body_text[3],
+            0.58
+        )
+
+        local animal_index =
+            get_stable_variant_index(
+                variant_key .. "|animal",
+                #NOTE_ANIMAL_ORDER
+            )
+
+        local animal_name =
+            NOTE_ANIMAL_ORDER[animal_index]
+
+        local animal =
+            NOTE_ANIMALS[animal_name]
+
+        if animal ~= nil then
+            local animal_image =
+                parent:AddChild(
+                    Image(
+                        UI_ATLAS,
+                        animal.texture
+                    )
+                )
+
+            animal_image:ScaleToSize(
+                animal.width,
+                animal.height
+            )
+
+            -- Anchor every animal to the note strip rather than the text region.
+            -- Per-animal dimensions and offsets account for different silhouettes.
+            local strip_right =
+                strip_center_x + strip_width / 2
+
+            local strip_bottom =
+                strip_center_y + strip_height / 2
+
+            local animal_right =
+                strip_right - animal.right_inset
+
+            local animal_bottom =
+                strip_bottom + animal.bottom_offset
+
+            local animal_center_x =
+                animal_right - animal.width / 2
+
+            local animal_center_y =
+                animal_bottom - animal.height / 2
+
+            animal_image:SetPosition(
+                source_x(animal_center_x),
+                source_y(animal_center_y)
+            )
+
+            animal_image:SetClickable(false)
+
+            -- Note animals are full-colour authored assets. Do not tint them.
+            animal_image:SetTint(
+                1,
+                1,
+                1,
+                1
+            )
+        end
     end
 
     local text = parent:AddChild(
@@ -617,7 +761,7 @@ local function render_box_region(
             nil,
             false
         )
-    elseif block.type == "quote" then
+    elseif block.type == "note" then
         text:SetMultilineTruncatedString(
             value,
             2,
@@ -646,7 +790,7 @@ local DST101Widget = Class(Widget, function(self, owner)
     Widget._ctor(self, "DST101Widget")
 
     self.owner = owner
-    self.current_topic_id = "sailing"
+    self.current_topic_id = "setting_out"
     self.current_page = 1
     self.topic_scroll_index = 1
 
@@ -660,6 +804,12 @@ local DST101Widget = Class(Widget, function(self, owner)
         LAYOUT.display.scale,
         LAYOUT.display.scale,
         1
+    )
+
+    -- Illustrations sit behind the handbook template so the authored frame
+    -- and its corner details remain above the page artwork.
+    self.illustration_root = self.design_root:AddChild(
+        Widget("illustration_root")
     )
 
     self.backdrop = self.design_root:AddChild(
@@ -1801,6 +1951,64 @@ end
 -- page
 -- =============================================================================
 
+function DST101Widget:RenderIllustration(page)
+    if self.page_illustration ~= nil then
+        self.page_illustration:Kill()
+        self.page_illustration = nil
+    end
+
+    local illustration_name =
+        page.illustration
+
+    if illustration_name == nil
+        or illustration_name == ""
+    then
+        return
+    end
+
+    local illustration =
+        ILLUSTRATIONS.illustrations
+        and ILLUSTRATIONS.illustrations[
+            illustration_name
+        ]
+        or nil
+
+    if illustration == nil then
+        print(
+            "[dst 101] missing illustration: "
+            .. tostring(illustration_name)
+        )
+
+        return
+    end
+
+    local region =
+        LAYOUT.regions.illustration
+
+    if region == nil then
+        return
+    end
+
+    self.page_illustration =
+        self.illustration_root:AddChild(
+            Image(
+                illustration.atlas,
+                illustration.texture
+            )
+        )
+
+    self.page_illustration:ScaleToSize(
+        region_width(region),
+        region_height(region)
+    )
+
+    self.page_illustration:SetPosition(
+        region_center_x(region),
+        region_center_y(region)
+    )
+end
+
+
 function DST101Widget:RenderRegion(
     parent,
     topic,
@@ -1821,11 +2029,21 @@ function DST101Widget:RenderRegion(
     end
 
     if region.mode == "box" then
+        local variant_key = table.concat(
+            {
+                topic.id or "",
+                tostring(self.current_page),
+                region_name,
+            },
+            "|"
+        )
+
         render_box_region(
             parent,
             topic,
             region,
-            blocks
+            blocks,
+            variant_key
         )
 
         return
@@ -2218,6 +2436,8 @@ function DST101Widget:RefreshPage()
     )
 
     local page = topic.pages[self.current_page]
+
+    self:RenderIllustration(page)
 
     if self.page_root ~= nil then
         self.page_root:Kill()

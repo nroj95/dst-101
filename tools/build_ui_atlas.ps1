@@ -127,80 +127,118 @@ $assets = @(
         Height = 240
     },
 
-    # content dividers: 496 x 26
+    # content dividers: 496 x 25
     @{
         Name = 'divider_01'
         File = 'divider_01.png'
-        ExpectedSource = '2060x106'
+        ExpectedSource = '2112x106'
         X = 8
         Y = 496
         Width = 496
-        Height = 26
+        Height = 25
     },
     @{
         Name = 'divider_02'
         File = 'divider_02.png'
-        ExpectedSource = '2060x106'
+        ExpectedSource = '2112x106'
         X = 520
         Y = 496
         Width = 496
-        Height = 26
+        Height = 25
     },
     @{
         Name = 'divider_03'
         File = 'divider_03.png'
-        ExpectedSource = '2060x106'
+        ExpectedSource = '2112x106'
         X = 8
         Y = 534
         Width = 496
-        Height = 26
+        Height = 25
     },
     @{
         Name = 'divider_04'
         File = 'divider_04.png'
-        ExpectedSource = '2060x106'
+        ExpectedSource = '2112x106'
         X = 520
         Y = 534
         Width = 496
-        Height = 26
+        Height = 25
     },
     @{
         Name = 'divider_05'
         File = 'divider_05.png'
-        ExpectedSource = '2060x106'
+        ExpectedSource = '2112x106'
         X = 8
         Y = 572
         Width = 496
-        Height = 26
+        Height = 25
     },
     @{
         Name = 'divider_06'
         File = 'divider_06.png'
-        ExpectedSource = '2060x106'
+        ExpectedSource = '2112x106'
         X = 520
         Y = 572
         Width = 496
-        Height = 26
+        Height = 25
     },
 
-    # footer dividers: 496 x 96
+    # optional note artwork
+    @{
+        Name = 'note_strip'
+        File = 'note_strip.png'
+        ExpectedSource = '2067x439'
+        X = 8
+        Y = 728
+        Width = 496
+        Height = 105
+    },
+    @{
+        Name = 'note_animal_crow'
+        File = 'note_animal_crow.png'
+        ExpectedSource = '1031x1172'
+        X = 520
+        Y = 728
+        Width = 152
+        Height = 173
+    },
+    @{
+        Name = 'note_animal_catcoon'
+        File = 'note_animal_catcoon.png'
+        ExpectedSource = '1222x990'
+        X = 680
+        Y = 728
+        Width = 176
+        Height = 143
+    },
+    @{
+        Name = 'note_animal_splumonkey'
+        File = 'note_animal_splumonkey.png'
+        ExpectedSource = '1073x1221'
+        X = 864
+        Y = 728
+        Width = 152
+        Height = 173
+    },
+
+    # footer dividers: 496 x 82
     @{
         Name = 'fleur_de_lis_divider'
         File = 'fleur_de_lis_divider.png'
-        ExpectedSource = '1722x332'
+        ExpectedSource = '1722x286'
         X = 8
         Y = 616
         Width = 496
-        Height = 96
+        Height = 82
     },
     @{
         Name = 'fleur_de_lis_divider_asymmetric'
         File = 'fleur_de_lis_divider_asymmetric.png'
-        ExpectedSource = '1722x332'
+        ExpectedSource = '1722x286'
         X = 520
         Y = 616
         Width = 496
-        Height = 96
+        Height = 82
     }
 )
 

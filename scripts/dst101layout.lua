@@ -133,7 +133,7 @@ return {
             mode = "flow",
         },
 
-        quote = {
+        note = {
             left = 1014,
             right = 1337,
             top = 740,
