@@ -962,7 +962,7 @@ function DST101Widget:BuildSearchRow()
     local icon = self.search_root:AddChild(
         Image(
             TOPIC_ATLAS,
-            "magnifying_glass.tex"
+            "search.tex"
         )
     )
 

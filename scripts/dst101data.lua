@@ -9,8 +9,8 @@ return {
     topics = {
         {
             id = "getting_started",
-            title = "Getting Started",
-            icon = "getting_started",
+            title = "Setting Out",
+            icon = "setting_out",
             related_topic_tile = 1,
             tags = {
                 "beginner",
