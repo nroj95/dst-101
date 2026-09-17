@@ -17,19 +17,168 @@ Assets = {
 local TheInput = GLOBAL.TheInput
 
 local key_by_shortcut = {
-    f1 = GLOBAL.KEY_F1,
-    f2 = GLOBAL.KEY_F2,
-    f3 = GLOBAL.KEY_F3,
-    f4 = GLOBAL.KEY_F4,
-    f5 = GLOBAL.KEY_F5,
-    f6 = GLOBAL.KEY_F6,
-    f7 = GLOBAL.KEY_F7,
-    f8 = GLOBAL.KEY_F8,
-    f9 = GLOBAL.KEY_F9,
-    f10 = GLOBAL.KEY_F10,
-    f11 = GLOBAL.KEY_F11,
-    f12 = GLOBAL.KEY_F12,
+    tab = GLOBAL.KEY_TAB,
+    minus = GLOBAL.KEY_MINUS,
+    equals = GLOBAL.KEY_EQUALS,
+    space = GLOBAL.KEY_SPACE,
+    enter = GLOBAL.KEY_ENTER,
+    escape = GLOBAL.KEY_ESCAPE,
+    home = GLOBAL.KEY_HOME,
+    insert = GLOBAL.KEY_INSERT,
+    delete = GLOBAL.KEY_DELETE,
+    ["end"] = GLOBAL.KEY_END,
+    pause = GLOBAL.KEY_PAUSE,
+    print = GLOBAL.KEY_PRINT,
+    capslock = GLOBAL.KEY_CAPSLOCK,
+    scrolllock = GLOBAL.KEY_SCROLLOCK,
+    backspace = GLOBAL.KEY_BACKSPACE,
+    period = GLOBAL.KEY_PERIOD,
+    slash = GLOBAL.KEY_SLASH,
+    semicolon = GLOBAL.KEY_SEMICOLON,
+    leftbracket = GLOBAL.KEY_LEFTBRACKET,
+    backslash = GLOBAL.KEY_BACKSLASH,
+    rightbracket = GLOBAL.KEY_RIGHTBRACKET,
+    tilde = GLOBAL.KEY_TILDE,
+
+    up = GLOBAL.KEY_UP,
+    down = GLOBAL.KEY_DOWN,
+    right = GLOBAL.KEY_RIGHT,
+    left = GLOBAL.KEY_LEFT,
+    pageup = GLOBAL.KEY_PAGEUP,
+    pagedown = GLOBAL.KEY_PAGEDOWN,
+
+    kp_period = GLOBAL.KEY_KP_PERIOD,
+    kp_divide = GLOBAL.KEY_KP_DIVIDE,
+    kp_multiply = GLOBAL.KEY_KP_MULTIPLY,
+    kp_minus = GLOBAL.KEY_KP_MINUS,
+    kp_plus = GLOBAL.KEY_KP_PLUS,
+    kp_enter = GLOBAL.KEY_KP_ENTER,
+    kp_equals = GLOBAL.KEY_KP_EQUALS,
 }
+
+for number = 1, 12 do
+    key_by_shortcut["f" .. number] =
+        GLOBAL["KEY_F" .. number]
+end
+
+for code = string.byte("a"), string.byte("z") do
+    local letter = string.char(code)
+
+    key_by_shortcut[letter] =
+        GLOBAL["KEY_" .. string.upper(letter)]
+end
+
+for number = 0, 9 do
+    key_by_shortcut[tostring(number)] =
+        GLOBAL["KEY_" .. number]
+
+    key_by_shortcut["kp_" .. number] =
+        GLOBAL["KEY_KP_" .. number]
+end
+
+
+local modifier_requirements = {
+    none = {
+        ctrl = false,
+        shift = false,
+        alt = false,
+    },
+    ctrl = {
+        ctrl = true,
+        shift = false,
+        alt = false,
+    },
+    shift = {
+        ctrl = false,
+        shift = true,
+        alt = false,
+    },
+    alt = {
+        ctrl = false,
+        shift = false,
+        alt = true,
+    },
+    ctrl_shift = {
+        ctrl = true,
+        shift = true,
+        alt = false,
+    },
+    ctrl_alt = {
+        ctrl = true,
+        shift = false,
+        alt = true,
+    },
+    shift_alt = {
+        ctrl = false,
+        shift = true,
+        alt = true,
+    },
+    ctrl_shift_alt = {
+        ctrl = true,
+        shift = true,
+        alt = true,
+    },
+}
+
+
+local text_input_shortcuts = {
+    tab = true,
+    minus = true,
+    equals = true,
+    space = true,
+    enter = true,
+    backspace = true,
+    period = true,
+    slash = true,
+    semicolon = true,
+    leftbracket = true,
+    backslash = true,
+    rightbracket = true,
+    tilde = true,
+}
+
+for code = string.byte("a"), string.byte("z") do
+    text_input_shortcuts[string.char(code)] = true
+end
+
+for number = 0, 9 do
+    text_input_shortcuts[tostring(number)] = true
+end
+
+
+local function modifiers_match(modifier_name)
+    local required =
+        modifier_requirements[modifier_name]
+        or modifier_requirements.none
+
+    return TheInput:IsKeyDown(GLOBAL.KEY_CTRL)
+            == required.ctrl
+        and TheInput:IsKeyDown(GLOBAL.KEY_SHIFT)
+            == required.shift
+        and TheInput:IsKeyDown(GLOBAL.KEY_ALT)
+            == required.alt
+end
+
+
+local function is_text_input_active()
+    if GLOBAL.TheFrontEnd == nil then
+        return false
+    end
+
+    if GLOBAL.TheFrontEnd.forceProcessText == true then
+        return true
+    end
+
+    local active_screen =
+        GLOBAL.TheFrontEnd:GetActiveScreen()
+
+    return active_screen ~= nil
+        and active_screen.name == "DST101PopupScreen"
+        and active_screen.book ~= nil
+        and active_screen.book.search_edit ~= nil
+        and active_screen.book.search_edit.editing == true
+end
+
 
 local function is_simple_controller_active()
     local player = GLOBAL.ThePlayer
@@ -151,13 +300,43 @@ local function reload_handbook()
     end)
 end
 
-local function bind_shortcut(config_name, callback)
-    local shortcut = GetModConfigData(config_name)
+local function bind_shortcut(
+    key_config_name,
+    modifier_config_name,
+    callback
+)
+    local shortcut =
+        GetModConfigData(key_config_name)
+
+    local modifier =
+        GetModConfigData(modifier_config_name)
+        or "none"
+
     local key = key_by_shortcut[shortcut]
 
-    if key ~= nil then
-        TheInput:AddKeyDownHandler(key, callback)
+    if key == nil then
+        return
     end
+
+    TheInput:AddKeyDownHandler(
+        key,
+        function()
+            if not modifiers_match(modifier) then
+                return
+            end
+
+            -- Do not steal ordinary typing keys from active text fields.
+            -- Function/navigation keys such as F5 still work normally.
+            if is_text_input_active()
+                and modifier == "none"
+                and text_input_shortcuts[shortcut]
+            then
+                return
+            end
+
+            callback()
+        end
+    )
 end
 
 local function open_handbook_from_controller(down)
@@ -226,8 +405,17 @@ local function add_simple_controller_skill(player)
     player:DoTaskInTime(0, try_register)
 end
 
-bind_shortcut("open_shortcut", open_handbook)
-bind_shortcut("reload_shortcut", reload_handbook)
+bind_shortcut(
+    "open_shortcut",
+    "open_modifier",
+    open_handbook
+)
+
+bind_shortcut(
+    "reload_shortcut",
+    "reload_modifier",
+    reload_handbook
+)
 
 TheInput:AddControlHandler(
     GLOBAL.CONTROL_MENU_MISC_3,
