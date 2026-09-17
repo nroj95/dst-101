@@ -34,6 +34,7 @@ local NOTE_ANIMALS = {
         height = 114,
         right_inset = 8,
         bottom_offset = 0,
+        text_gap = 18,
     },
 
     catcoon = {
@@ -42,6 +43,7 @@ local NOTE_ANIMALS = {
         height = 96,
         right_inset = 5,
         bottom_offset = 0,
+        text_gap = 18,
     },
 
     splumonkey = {
@@ -50,6 +52,7 @@ local NOTE_ANIMALS = {
         height = 109,
         right_inset = 7,
         bottom_offset = 0,
+        text_gap = 20,
     },
 }
 
@@ -215,6 +218,40 @@ end
 
 local function get_divider_index(key)
     return get_stable_variant_index(key, 6)
+end
+
+
+local function get_note_page_ordinal(
+    data,
+    current_topic_id,
+    current_page
+)
+    local ordinal = 0
+
+    for _, topic in ipairs(data.topics or {}) do
+        for page_index, page in ipairs(
+            topic.pages or {}
+        ) do
+            local note_blocks =
+                page.regions
+                and page.regions.note
+                or nil
+
+            if note_blocks ~= nil
+                and #note_blocks > 0
+            then
+                ordinal = ordinal + 1
+
+                if topic.id == current_topic_id
+                    and page_index == current_page
+                then
+                    return ordinal
+                end
+            end
+        end
+    end
+
+    return 1
 end
 
 
@@ -622,7 +659,7 @@ local function render_box_region(
     topic,
     region,
     blocks,
-    variant_key
+    note_animal_index
 )
     local block = blocks[1]
 
@@ -635,6 +672,8 @@ local function render_box_region(
     if style == nil then
         return
     end
+
+    local note_text_right = nil
 
     if block.type == "note" then
         local strip_width =
@@ -675,14 +714,8 @@ local function render_box_region(
             0.58
         )
 
-        local animal_index =
-            get_stable_variant_index(
-                variant_key .. "|animal",
-                #NOTE_ANIMAL_ORDER
-            )
-
         local animal_name =
-            NOTE_ANIMAL_ORDER[animal_index]
+            NOTE_ANIMAL_ORDER[note_animal_index]
 
         local animal =
             NOTE_ANIMALS[animal_name]
@@ -721,6 +754,14 @@ local function render_box_region(
             local animal_center_y =
                 animal_bottom - animal.height / 2
 
+            local animal_left =
+                animal_center_x - animal.width / 2
+
+            -- Keep note prose clear of the selected animal. Splumonkey gets
+            -- slightly more room because its silhouette reaches farther left.
+            note_text_right =
+                animal_left - animal.text_gap
+
             animal_image:SetPosition(
                 source_x(animal_center_x),
                 source_y(animal_center_y)
@@ -753,6 +794,32 @@ local function render_box_region(
 
     local value = get_block_text(block, topic)
     local width = block.width or region_width(region)
+    local text_position_x =
+        region_center_x(region)
+
+    if block.type == "note"
+        and note_text_right ~= nil
+    then
+        local text_left =
+            region.left
+
+        local text_right =
+            math.min(
+                region.right,
+                note_text_right
+            )
+
+        width =
+            math.max(
+                1,
+                text_right - text_left
+            )
+
+        text_position_x =
+            source_x(
+                (text_left + text_right) / 2
+            )
+    end
 
     if block.type == "caption" then
         text:SetTruncatedString(
@@ -776,7 +843,7 @@ local function render_box_region(
     end
 
     text:SetPosition(
-        region_center_x(region),
+        text_position_x,
         region_center_y(region)
     )
 end
@@ -2029,21 +2096,29 @@ function DST101Widget:RenderRegion(
     end
 
     if region.mode == "box" then
-        local variant_key = table.concat(
-            {
-                topic.id or "",
-                tostring(self.current_page),
-                region_name,
-            },
-            "|"
-        )
+        local note_animal_index = 1
+
+        if region_name == "note" then
+            local note_ordinal =
+                get_note_page_ordinal(
+                    self.data,
+                    topic.id,
+                    self.current_page
+                )
+
+            -- Only pages that actually contain notes advance the cycle.
+            note_animal_index =
+                (note_ordinal - 1)
+                % #NOTE_ANIMAL_ORDER
+                + 1
+        end
 
         render_box_region(
             parent,
             topic,
             region,
             blocks,
-            variant_key
+            note_animal_index
         )
 
         return
