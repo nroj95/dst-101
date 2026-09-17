@@ -641,7 +641,9 @@ local function render_flow_block(
     source_cursor_y =
         source_cursor_y + layout_height
 
-    if block.divider then
+    -- A normal section heading and its divider are one visual unit.
+    -- Large topic titles deliberately do not use dividers.
+    if block.type == "heading" then
         source_cursor_y = add_divider(
             parent,
             region,

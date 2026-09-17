@@ -47,7 +47,6 @@ return {
                             {
                                 type = "heading",
                                 text = "Start moving",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -58,7 +57,6 @@ Pick up grass, twigs, flint, and some food while you wander. You'll find uses fo
                             {
                                 type = "heading",
                                 text = "Before night falls",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -115,7 +113,6 @@ Night is worth seeing. Darkness isn't. Make sure you have a way to make light be
                             {
                                 type = "heading",
                                 text = "Usually peaceful",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -129,7 +126,6 @@ Beefalo are often content to mind their own business. If you leave them alone, t
                             {
                                 type = "heading",
                                 text = "A red rear means distance",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -140,7 +136,6 @@ When a Beefalo's rear turns red, give it space. That is not the moment to test i
                             {
                                 type = "heading",
                                 text = "Useful without a fight",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -199,7 +194,6 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every
                             {
                                 type = "heading",
                                 text = "Carry some light",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -213,7 +207,6 @@ If you expect to be travelling after dark, bring a light you can take with you. 
                             {
                                 type = "heading",
                                 text = "If the light goes out",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -224,7 +217,6 @@ Make another source of light or reach one quickly. Complete darkness is not a sa
                             {
                                 type = "heading",
                                 text = "Fires are for stopping",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -284,7 +276,6 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                             {
                                 type = "heading",
                                 text = "Ready from the start",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -298,7 +289,6 @@ Some useful things can be made without a machine. If you have the materials, you
                             {
                                 type = "heading",
                                 text = "Prototype nearby",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -309,7 +299,6 @@ A Science Machine lets you prototype more recipes while you are near it. Once yo
                             {
                                 type = "heading",
                                 text = "More science later",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -368,7 +357,6 @@ An Alchemy Engine opens more advanced science recipes. There is no need to learn
                             {
                                 type = "heading",
                                 text = "Gather as you go",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -382,7 +370,6 @@ Berries, carrots, and other familiar food can keep a journey moving. You do not 
                             {
                                 type = "heading",
                                 text = "Food does not wait forever",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -393,7 +380,6 @@ Most food spoils after it is picked. Keep an eye on freshness and use what is fa
                             {
                                 type = "heading",
                                 text = "Empty means trouble",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -418,9 +404,10 @@ Once your stomach is empty, hunger starts costing health. Better to eat before o
                     regions = {
                         top_left = {
                             {
-                                type = "heading",
-                                text = "Cooking changes things",
-                                divider = true,
+                                type = "text",
+                                text = [[
+Cooking can change familiar ingredients in useful ways. Heat changes some things; a pot changes even more.
+]],
                             },
                         },
 
@@ -435,7 +422,6 @@ Once your stomach is empty, hunger starts costing health. Better to eat before o
                             {
                                 type = "heading",
                                 text = "Over the fire",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -449,7 +435,6 @@ Many raw foods can be cooked at a fire. Cooking changes what they restore and ho
                             {
                                 type = "heading",
                                 text = "Four things in a pot",
-                                divider = true,
                             },
                             {
                                 type = "text",
@@ -460,7 +445,6 @@ A Crock Pot takes four ingredients and turns them into a dish. What comes out de
                             {
                                 type = "heading",
                                 text = "Experiment with a spare meal",
-                                divider = true,
                             },
                             {
                                 type = "text",
