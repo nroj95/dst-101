@@ -25,7 +25,7 @@ return {
                     regions = {
                         top_left = {
                             {
-                                type = "topic_title",
+                                type = "headline",
                                 text = "Before you wander",
                             },
                             {
@@ -93,7 +93,7 @@ Night is worth seeing. Darkness isn't. Make sure you have a way to make light be
                     regions = {
                         top_left = {
                             {
-                                type = "topic_title",
+                                type = "headline",
                                 text = "Large company",
                             },
                             {
@@ -174,7 +174,7 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every
                     regions = {
                         top_left = {
                             {
-                                type = "topic_title",
+                                type = "headline",
                                 text = "Keep a light handy",
                             },
                             {
@@ -256,7 +256,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                     regions = {
                         top_left = {
                             {
-                                type = "topic_title",
+                                type = "headline",
                                 text = "Learn it once",
                             },
                             {
@@ -337,7 +337,7 @@ An Alchemy Engine opens more advanced science recipes. There is no need to learn
                     regions = {
                         top_left = {
                             {
-                                type = "topic_title",
+                                type = "headline",
                                 text = "Keep food nearby",
                             },
                             {

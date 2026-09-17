@@ -60,7 +60,7 @@ local BODY_FONT = "dst101_alegreya_regular"
 local ITALIC_FONT = "dst101_alegreya_italic"
 
 local BLOCK_STYLES = {
-    topic_title = {
+    headline = {
         font = HEADERFONT,
         colour = LAYOUT.colours.headline_text,
         size = 64,
@@ -180,7 +180,7 @@ local function find_topic(data, topic_id)
 end
 
 local function get_block_text(block, topic)
-    if block.type == "topic_title" then
+    if block.type == "headline" then
         return block.text or topic.title or ""
     end
 
