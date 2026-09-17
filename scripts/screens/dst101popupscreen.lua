@@ -41,6 +41,36 @@ function DST101PopupScreen:OnDestroy()
     DST101PopupScreen._base.OnDestroy(self)
 end
 
+function DST101PopupScreen:OnRawKey(key, down)
+    if key == KEY_UP
+        or key == KEY_DOWN
+        or key == KEY_LEFT
+        or key == KEY_RIGHT
+    then
+        if down then
+            if key == KEY_UP then
+                self.book:ChangeTopic(-1)
+            elseif key == KEY_DOWN then
+                self.book:ChangeTopic(1)
+            elseif key == KEY_LEFT then
+                self.book:NavigateBook(-1)
+            elseif key == KEY_RIGHT then
+                self.book:NavigateBook(1)
+            end
+        end
+
+        -- Consume both press and release so normal focus movement
+        -- cannot also react to the same physical arrow key.
+        return true
+    end
+
+    return DST101PopupScreen._base.OnRawKey(
+        self,
+        key,
+        down
+    )
+end
+
 function DST101PopupScreen:OnControl(control, down)
     if DST101PopupScreen._base.OnControl(self, control, down) then
         return true

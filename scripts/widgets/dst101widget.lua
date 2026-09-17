@@ -1114,14 +1114,468 @@ function DST101Widget:SetCurrentTopic(topic_id, page_number)
     self:RefreshSidebar()
 end
 
-function DST101Widget:ScrollTopics(offset)
+function DST101Widget:GetAdjacentSidebarTopic(offset)
     local topics = self:GetSidebarTopics()
-    local visible_count = #LAYOUT.sidebar.topic_rows
 
-    local maximum_start = math.max(
+    if #topics == 0 then
+        return nil, nil, topics
+    end
+
+    local current_index = nil
+
+    for index, topic in ipairs(topics) do
+        if topic.id == self.current_topic_id then
+            current_index = index
+            break
+        end
+    end
+
+    -- If the active search hides the current topic, enter the
+    -- visible result list from the appropriate end.
+    if current_index == nil then
+        local target_index =
+            offset < 0 and #topics or 1
+
+        return topics[target_index], target_index, topics
+    end
+
+    local target_index =
+        current_index + offset
+
+    if target_index < 1
+        or target_index > #topics
+    then
+        return nil, nil, topics
+    end
+
+    return topics[target_index], target_index, topics
+end
+
+function DST101Widget:ChangeTopic(offset, page_mode)
+    self:StopSearchEditing()
+
+    local topic, target_index, topics =
+        self:GetAdjacentSidebarTopic(offset)
+
+    if topic == nil then
+        return false
+    end
+
+    self.current_topic_id = topic.id
+
+    if page_mode == "last" then
+        self.current_page = math.max(
+            1,
+            #(topic.pages or {})
+        )
+    else
+        self.current_page = 1
+    end
+
+    -- Keep keyboard-selected topics inside the visible sidebar window.
+    local visible_count =
+        #LAYOUT.sidebar.topic_rows
+
+    if target_index < self.topic_scroll_index then
+        self.topic_scroll_index = target_index
+    elseif target_index
+        > self.topic_scroll_index
+        + visible_count
+        - 1
+    then
+        self.topic_scroll_index =
+            target_index - visible_count + 1
+    end
+
+    local maximum_start =
+        self:GetMaximumTopicScrollStart(topics)
+
+    self.topic_scroll_index = math.max(
+        1,
+        math.min(
+            maximum_start,
+            self.topic_scroll_index
+        )
+    )
+
+    self:RefreshPage()
+    self:RefreshSidebar()
+
+    return true
+end
+
+function DST101Widget:GetMaximumTopicScrollStart(topics)
+    local visible_count =
+        #LAYOUT.sidebar.topic_rows
+
+    return math.max(
         1,
         #topics - visible_count + 1
     )
+end
+
+function DST101Widget:GetScrollbarGeometry()
+    local scrollbar = LAYOUT.sidebar.scrollbar
+
+    local handle_source_width = 121
+    local handle_source_height = 518
+
+    local handle_width =
+        scrollbar.right - scrollbar.left + 2
+
+    local handle_height =
+        handle_width
+        * handle_source_height
+        / handle_source_width
+
+    local handle_center_x_source =
+        (scrollbar.left + scrollbar.right) / 2
+        + 0.5
+
+    local handle_top_center_source =
+        scrollbar.top + handle_height / 2 - 1
+
+    local handle_bottom_center_source =
+        scrollbar.bottom - handle_height / 2 + 2
+
+    return {
+        handle_width = handle_width,
+        handle_height = handle_height,
+
+        center_x = source_x(
+            handle_center_x_source
+        ),
+
+        top_y = source_y(
+            handle_top_center_source
+        ),
+
+        bottom_y = source_y(
+            handle_bottom_center_source
+        ),
+    }
+end
+
+function DST101Widget:GetDesignMouseY()
+    local position =
+        self.design_root:GetWorldPosition()
+
+    local _, scale_y, _ =
+        self.design_root.inst.UITransform:GetScale()
+
+    local parent = self.design_root:GetParent()
+
+    while parent ~= nil do
+        local _, parent_scale_y, _ =
+            parent.inst.UITransform:GetScale()
+
+        scale_y = scale_y * parent_scale_y
+        parent = parent:GetParent()
+    end
+
+    return (
+        TheFrontEnd.lasty - position.y
+    ) / scale_y
+end
+
+function DST101Widget:StopScrollbarDragging()
+    TheFrontEnd:LockFocus(false)
+
+    self.scrollbar_dragging = false
+    self.scrollbar_drag_offset_y = 0
+
+    self:UpdateScrollbar(
+        self:GetSidebarTopics()
+    )
+end
+
+function DST101Widget:DragScrollbar()
+    if self.scrollbar_handle == nil then
+        return
+    end
+
+    local topics = self:GetSidebarTopics()
+    local maximum_start =
+        self:GetMaximumTopicScrollStart(topics)
+
+    if maximum_start <= 1 then
+        return
+    end
+
+    local geometry =
+        self:GetScrollbarGeometry()
+
+    local mouse_y =
+        self:GetDesignMouseY()
+        + (self.scrollbar_drag_offset_y or 0)
+
+    local handle_y = math.clamp(
+        mouse_y,
+        geometry.bottom_y,
+        geometry.top_y
+    )
+
+    self.scrollbar_handle:SetPosition(
+        geometry.center_x,
+        handle_y
+    )
+
+    local scroll_ratio =
+        (geometry.top_y - handle_y)
+        / (geometry.top_y - geometry.bottom_y)
+
+    local new_index =
+        1
+        + math.floor(
+            scroll_ratio
+            * (maximum_start - 1)
+            + 0.5
+        )
+
+    if new_index == self.topic_scroll_index then
+        return
+    end
+
+    self.topic_scroll_index = new_index
+
+    -- Rebuild rows without snapping the handle away from the mouse.
+    self:RefreshSidebar(true)
+end
+
+function DST101Widget:BuildScrollbar()
+    if self.scrollbar_root ~= nil then
+        return
+    end
+
+    local scrollbar = LAYOUT.sidebar.scrollbar
+    local geometry =
+        self:GetScrollbarGeometry()
+
+    self.scrollbar_root = self.design_root:AddChild(
+        Widget("scrollbar_root")
+    )
+
+    local track_left = scrollbar.left - 4
+    local track_right = scrollbar.right + 4
+
+    self.scrollbar_track =
+        self.scrollbar_root:AddChild(
+            ImageButton(
+                "images/global.xml",
+                "square.tex"
+            )
+        )
+
+    self.scrollbar_track.scale_on_focus = false
+    self.scrollbar_track.move_on_click = false
+
+    self.scrollbar_track:ForceImageSize(
+        track_right - track_left + 1,
+        scrollbar.bottom - scrollbar.top + 1
+    )
+
+    self.scrollbar_track:SetPosition(
+        source_x(
+            (track_left + track_right) / 2
+        ),
+        source_y(
+            (scrollbar.top + scrollbar.bottom) / 2
+        )
+    )
+
+    self.scrollbar_track:SetImageNormalColour(1, 1, 1, 0)
+    self.scrollbar_track:SetImageFocusColour(1, 1, 1, 0)
+    self.scrollbar_track:SetImageSelectedColour(1, 1, 1, 0)
+
+    self.scrollbar_track:SetOnClick(function()
+        self:StopSearchEditing()
+
+        local topics = self:GetSidebarTopics()
+        local maximum_start =
+            self:GetMaximumTopicScrollStart(topics)
+
+        if maximum_start <= 1 then
+            return
+        end
+
+        local geometry =
+            self:GetScrollbarGeometry()
+
+        local click_y = math.clamp(
+            self:GetDesignMouseY(),
+            geometry.bottom_y,
+            geometry.top_y
+        )
+
+        local scroll_ratio =
+            (geometry.top_y - click_y)
+            / (geometry.top_y - geometry.bottom_y)
+
+        self.topic_scroll_index =
+            1
+            + math.floor(
+                scroll_ratio
+                * (maximum_start - 1)
+                + 0.5
+            )
+
+        self:RefreshSidebar()
+    end)
+
+    self.scrollbar_handle =
+        self.scrollbar_root:AddChild(
+            ImageButton(
+                UI_ATLAS,
+                "slider_handle.tex"
+            )
+        )
+
+    self.scrollbar_handle.scale_on_focus = false
+    self.scrollbar_handle.move_on_click = false
+
+    self.scrollbar_handle:ForceImageSize(
+        geometry.handle_width,
+        geometry.handle_height
+    )
+
+    self.scrollbar_handle:SetImageNormalColour(
+        1, 1, 1, 1
+    )
+
+    self.scrollbar_handle:SetImageFocusColour(
+        1, 1, 1, 1
+    )
+
+    self.scrollbar_handle:SetImageSelectedColour(
+        1, 1, 1, 1
+    )
+
+    self.scrollbar_handle:SetOnDown(function()
+        self:StopSearchEditing()
+
+        self.scrollbar_dragging = true
+
+        local handle_position =
+            self.scrollbar_handle:GetPosition()
+
+        self.scrollbar_drag_offset_y =
+            handle_position.y
+            - self:GetDesignMouseY()
+    end)
+
+    self.scrollbar_handle:SetWhileDown(function()
+        if self.scrollbar_dragging then
+            TheFrontEnd:LockFocus(true)
+            self:DragScrollbar()
+        end
+    end)
+
+    self.scrollbar_handle.OnLoseFocus = function()
+        self:StopScrollbarDragging()
+    end
+
+    self.scrollbar_handle:SetOnClick(function()
+        self:StopScrollbarDragging()
+    end)
+
+    -- Invisible hitboxes operate the arrows baked into the backdrop.
+    local function add_scroll_arrow_button(
+        top,
+        bottom,
+        offset
+    )
+        local left = scrollbar.left - 4
+        local right = scrollbar.right + 4
+
+        local button =
+            self.scrollbar_root:AddChild(
+                ImageButton(
+                    "images/global.xml",
+                    "square.tex"
+                )
+            )
+
+        button.scale_on_focus = false
+        button.move_on_click = false
+
+        button:ForceImageSize(
+            right - left + 1,
+            bottom - top + 1
+        )
+
+        button:SetPosition(
+            source_x((left + right) / 2),
+            source_y((top + bottom) / 2)
+        )
+
+        button:SetImageNormalColour(1, 1, 1, 0)
+        button:SetImageFocusColour(1, 1, 1, 0)
+        button:SetImageSelectedColour(1, 1, 1, 0)
+
+        button:SetOnClick(function()
+            self:StopSearchEditing()
+            self:ScrollTopics(offset)
+        end)
+    end
+
+    add_scroll_arrow_button(
+        scrollbar.top - 24,
+        scrollbar.top - 1,
+        -1
+    )
+
+    add_scroll_arrow_button(
+        scrollbar.bottom + 1,
+        scrollbar.bottom + 24,
+        1
+    )
+end
+
+function DST101Widget:UpdateScrollbar(topics)
+    if self.scrollbar_root == nil then
+        self:BuildScrollbar()
+    end
+
+    local maximum_start =
+        self:GetMaximumTopicScrollStart(topics)
+
+    self.topic_scroll_index = math.max(
+        1,
+        math.min(
+            maximum_start,
+            self.topic_scroll_index
+        )
+    )
+
+    local scroll_ratio = 0
+
+    if maximum_start > 1 then
+        scroll_ratio =
+            (self.topic_scroll_index - 1)
+            / (maximum_start - 1)
+    end
+
+    local geometry =
+        self:GetScrollbarGeometry()
+
+    local handle_y =
+        geometry.top_y
+        + (
+            geometry.bottom_y
+            - geometry.top_y
+        ) * scroll_ratio
+
+    self.scrollbar_handle:SetPosition(
+        geometry.center_x,
+        handle_y
+    )
+end
+
+function DST101Widget:ScrollTopics(offset)
+    local topics = self:GetSidebarTopics()
+
+    local maximum_start =
+        self:GetMaximumTopicScrollStart(topics)
 
     local new_index = math.max(
         1,
@@ -1139,7 +1593,7 @@ function DST101Widget:ScrollTopics(offset)
     self:RefreshSidebar()
 end
 
-function DST101Widget:RefreshSidebar()
+function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
     if self.sidebar_root ~= nil then
         self.sidebar_root:Kill()
     end
@@ -1157,6 +1611,14 @@ function DST101Widget:RefreshSidebar()
     end
 
     local topics = self:GetSidebarTopics()
+
+    if self.scrollbar_root == nil then
+        self:BuildScrollbar()
+    end
+
+    if not preserve_scrollbar_handle then
+        self:UpdateScrollbar(topics)
+    end
 
     local header = self.sidebar_root:AddChild(
         Text(
@@ -1392,6 +1854,55 @@ function DST101Widget:RenderRegion(
             divider_key
         )
     end
+end
+
+function DST101Widget:NavigateBook(offset)
+    self:StopSearchEditing()
+
+    local topic = find_topic(
+        self.data,
+        self.current_topic_id
+    )
+
+    if topic == nil or topic.pages == nil then
+        return false
+    end
+
+    local page_count = #topic.pages
+
+    if page_count == 0 then
+        return false
+    end
+
+    if offset < 0 then
+        if self.current_page > 1 then
+            self.current_page =
+                self.current_page - 1
+
+            self:RefreshPage()
+            return true
+        end
+
+        -- Continue backwards through the book by opening
+        -- the previous topic on its final page.
+        return self:ChangeTopic(-1, "last")
+    end
+
+    if offset > 0 then
+        if self.current_page < page_count then
+            self.current_page =
+                self.current_page + 1
+
+            self:RefreshPage()
+            return true
+        end
+
+        -- Right from the final page continues to the
+        -- next topic, starting on page 1.
+        return self:ChangeTopic(1)
+    end
+
+    return false
 end
 
 function DST101Widget:ChangePage(offset)
