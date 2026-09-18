@@ -1028,9 +1028,110 @@ local function render_flow_block(
         return headline_cursor_y
             + headline_spacing
     end
+    local rendered_value = value
+
+    -- Keep headings on one line whenever they fit. Only headings that would
+    -- wrap are given a deliberate, balanced two-line split.
+    if block.type == "heading" then
+        text:SetString(value)
+
+        local one_line_width =
+            select(
+                1,
+                text:GetRegionSize()
+            )
+
+        if one_line_width > width then
+            local words = {}
+
+            for word in value:gmatch("%S+") do
+                words[#words + 1] = word
+            end
+
+            local best_split = nil
+
+            for split_index = 1, #words - 1 do
+                local first_line =
+                    table.concat(
+                        words,
+                        " ",
+                        1,
+                        split_index
+                    )
+
+                local second_line =
+                    table.concat(
+                        words,
+                        " ",
+                        split_index + 1,
+                        #words
+                    )
+
+                text:SetString(first_line)
+
+                local first_width =
+                    select(
+                        1,
+                        text:GetRegionSize()
+                    )
+
+                text:SetString(second_line)
+
+                local second_width =
+                    select(
+                        1,
+                        text:GetRegionSize()
+                    )
+
+                if first_width <= width
+                    and second_width <= width
+                then
+                    local width_difference =
+                        math.abs(
+                            first_width
+                            - second_width
+                        )
+
+                    local widest_line =
+                        math.max(
+                            first_width,
+                            second_width
+                        )
+
+                    if best_split == nil
+                        or width_difference
+                            < best_split.width_difference
+                        or (
+                            width_difference
+                                == best_split.width_difference
+                            and widest_line
+                                < best_split.widest_line
+                        )
+                    then
+                        best_split = {
+                            first_line = first_line,
+                            second_line = second_line,
+                            width_difference =
+                                width_difference,
+                            widest_line =
+                                widest_line,
+                        }
+                    end
+                end
+            end
+
+            if best_split ~= nil then
+                rendered_value =
+                    best_split.first_line
+                    .. "\n"
+                    .. best_split.second_line
+            end
+        end
+    end
+
     -- Page length intentionally stays under manual author control.
     text:SetMultilineTruncatedString(
-        value,
+        rendered_value,
         100,
         width
     )
