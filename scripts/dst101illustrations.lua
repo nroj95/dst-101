@@ -7,17 +7,17 @@ return {
     },
 
     illustrations = {
-        beefalo_color = {
+        beefalo = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
-            texture = "beefalo_color.tex",
+            texture = "beefalo.tex",
         },
-        crafting_science = {
+        crafting = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
-            texture = "crafting_science.tex",
+            texture = "crafting.tex",
         },
-        darkness_night = {
+        darkness = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
-            texture = "darkness_night.tex",
+            texture = "darkness.tex",
         },
         food_cooking = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
@@ -27,9 +27,9 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "food_foraging.tex",
         },
-        setting_out_sketch = {
+        setting_out = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
-            texture = "setting_out_sketch.tex",
+            texture = "setting_out.tex",
         },
     },
 }
