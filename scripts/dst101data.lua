@@ -11,6 +11,7 @@ local TOPIC_MODULES = {
     "dst101topics/wetness",
     "dst101topics/seasons",
     "dst101topics/beefalo",
+    "dst101topics/caves",
 }
 
 

@@ -11,6 +11,14 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "beefalo.tex",
         },
+        caves_first_descent = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "caves_first_descent.tex",
+        },
+        caves_nightmare_cycle = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "caves_nightmare_cycle.tex",
+        },
         combat_study = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "combat_study.tex",

@@ -2,17 +2,19 @@
     <Texture filename="dst101_illustrations_01.tex" />
     <Elements>
         <Element name="beefalo.tex" u1="0.02416992" u2="0.3034668" v1="0.82446289" v2="0.98071289" />
-        <Element name="combat_study.tex" u1="0.35229492" u2="0.6315918" v1="0.82446289" v2="0.98071289" />
-        <Element name="crafting.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
-        <Element name="darkness.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
-        <Element name="fire_tending.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
-        <Element name="food_cooking.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
-        <Element name="food_foraging.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
-        <Element name="health_recovering.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
-        <Element name="sanity.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
-        <Element name="seasons_winter_arrives.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
-        <Element name="setting_out.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
-        <Element name="temperature_thermal_stone.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
-        <Element name="wetness_rain.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
+        <Element name="caves_first_descent.tex" u1="0.35229492" u2="0.6315918" v1="0.82446289" v2="0.98071289" />
+        <Element name="caves_nightmare_cycle.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
+        <Element name="combat_study.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
+        <Element name="crafting.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
+        <Element name="darkness.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
+        <Element name="fire_tending.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
+        <Element name="food_cooking.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
+        <Element name="food_foraging.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
+        <Element name="health_recovering.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
+        <Element name="sanity.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
+        <Element name="seasons_winter_arrives.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
+        <Element name="setting_out.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
+        <Element name="temperature_thermal_stone.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="wetness_rain.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>
