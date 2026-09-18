@@ -11,10 +11,6 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "beefalo_color.tex",
         },
-        beefalo_sketch = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
-            texture = "beefalo_sketch.tex",
-        },
         crafting_science = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "crafting_science.tex",
@@ -30,10 +26,6 @@ return {
         food_foraging = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "food_foraging.tex",
-        },
-        setting_out_polished = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
-            texture = "setting_out_polished.tex",
         },
         setting_out_sketch = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
