@@ -189,16 +189,6 @@ local function get_block_text(block, topic)
         return block.text or topic.title or ""
     end
 
-    if block.type == "bullets" then
-        local lines = {}
-
-        for _, item in ipairs(block.items or {}) do
-            table.insert(lines, "◆  " .. item)
-        end
-
-        return table.concat(lines, "\n")
-    end
-
     return block.text or ""
 end
 
@@ -372,12 +362,14 @@ local function render_related_topics(
     local icon_size = 46
     local label_height = 20
     local label_gap = -3
-    local column_gap = 34
+    local column_gap = 26
     local row_gap = 12
     local maximum_columns = 4
+    local left_inset = 16
 
     local available_width =
-        region_width(region)
+        region_width(region) -
+        left_inset
 
     local fitting_columns = math.max(
         1,
@@ -430,7 +422,8 @@ local function render_related_topics(
             (row_item_count - 1) * column_gap
 
         local row_left =
-            region.left
+            region.left +
+            left_inset
 
         local tile_center_x =
             row_left +
@@ -508,7 +501,7 @@ local function render_related_topics(
         )
 
         icon:SetClickable(false)
-        icon:SetPosition(0, 3)
+        icon:SetPosition(0, 1)
 
         local label = parent:AddChild(
             Text(
@@ -725,12 +718,7 @@ local function render_flow_block(
         )
     end
 
-    local style_type =
-        block.type == "bullets"
-        and "text"
-        or block.type
-
-    local style = BLOCK_STYLES[style_type]
+    local style = BLOCK_STYLES[block.type]
 
     if style == nil then
         return source_cursor_y

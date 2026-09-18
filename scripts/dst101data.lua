@@ -41,7 +41,19 @@ return {
                             },
                         },
 
-                        bottom_left = {},
+                        bottom_left = {
+                            {
+                                type = "heading",
+                                text = "Related topics",
+                            },
+                            {
+                                type = "related_topics",
+                                topics = {
+                                    "darkness",
+                                    "food",
+                                },
+                            },
+                        },
 
                         right = {
                             {
