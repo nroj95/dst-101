@@ -1,5 +1,5 @@
 local Image = require("widgets/image")
-local ImageButton = require("widgets/imagebutton")
+local ImageButton = require("widgets/dst101quietimagebutton")
 local Text = require("widgets/text")
 local TextEdit = require("widgets/textedit")
 local Widget = require("widgets/widget")

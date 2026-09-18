@@ -1,6 +1,6 @@
 local Screen = require("widgets/screen")
 local Widget = require("widgets/widget")
-local ImageButton = require("widgets/imagebutton")
+local ImageButton = require("widgets/dst101quietimagebutton")
 local DST101Widget = require("widgets/dst101widget")
 
 local DST101PopupScreen = Class(Screen, function(self, owner)
