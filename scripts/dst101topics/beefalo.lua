@@ -18,7 +18,7 @@ return {
                     },
                     {
                         type = "subtitle",
-                        text = "Big, shaggy, and not always in the mood for company.",
+                        text = "Big, shaggy, and usually peaceful if you give them space.",
                     },
                 },
 
