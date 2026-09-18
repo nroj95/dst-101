@@ -30,14 +30,14 @@ return {
                             },
                             {
                                 type = "subtitle",
-                                text = "You do not need to know where you are going yet.",
+                                text = "You don't need a destination yet.",
                             },
                         },
 
                         illustration_caption = {
                             {
                                 type = "caption",
-                                text = "The path was convincing. I followed it anyway.",
+                                text = "I started walking before I had a plan.",
                             },
                         },
 
@@ -69,7 +69,7 @@ Pick up grass, twigs, flint, and some food while you wander. You'll find uses fo
                             {
                                 type = "text",
                                 text = [[
-Night is worth seeing. Darkness isn't. Make sure you have a way to make light before it arrives.
+Night's fine if you have a light. Have one ready before it gets dark.
 ]],
                             },
                         },
@@ -108,7 +108,7 @@ Night is worth seeing. Darkness isn't. Make sure you have a way to make light be
                         illustration_caption = {
                             {
                                 type = "caption",
-                                text = "They look like trouble. Usually they are only large.",
+                                text = "Bigger up close. Calmer than I expected.",
                             },
                         },
 
@@ -124,22 +124,22 @@ Beefalo are often content to mind their own business. If you leave them alone, t
                         right = {
                             {
                                 type = "heading",
-                                text = "A red rear means distance",
+                                text = "When their rear turns red",
                             },
                             {
                                 type = "text",
                                 text = [[
-When a Beefalo's rear turns red, give it space. That is not the moment to test its patience — or the herd's.
+When a Beefalo's rear turns red, give it space. The herd is best left alone then.
 ]],
                             },
                             {
                                 type = "heading",
-                                text = "Useful without a fight",
+                                text = "Useful when left alone",
                             },
                             {
                                 type = "text",
                                 text = [[
-They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every useful thing needs chasing.
+They leave manure behind, and sleeping Beefalo can be shaved for wool. They are useful even when you leave them alone.
 ]],
                             },
                         },
@@ -180,7 +180,7 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every
                         illustration_caption = {
                             {
                                 type = "caption",
-                                text = "The road does not end just because the sun does.",
+                                text = "I kept walking after dark. The torch was worth carrying.",
                             },
                         },
 
@@ -188,7 +188,7 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every
                             {
                                 type = "text",
                                 text = [[
-If you expect to be travelling after dark, bring a light you can take with you. Being able to see is considerably more useful than discovering why you should have.
+If you expect to be travelling after dark, bring a light you can take with you. It is easier to make one before you need it.
 ]],
                             },
                         },
@@ -206,7 +206,7 @@ Make another source of light or reach one quickly. Complete darkness is not a sa
                             },
                             {
                                 type = "heading",
-                                text = "Fires are for stopping",
+                                text = "Stopping for the night",
                             },
                             {
                                 type = "text",
@@ -258,7 +258,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                         illustration_caption = {
                             {
                                 type = "caption",
-                                text = "It looked absurd. Then it taught me something.",
+                                text = "Odd little machine. Useful, though.",
                             },
                         },
 
@@ -342,7 +342,7 @@ An Alchemy Engine opens more advanced science recipes. There is no need to learn
                             {
                                 type = "text",
                                 text = [[
-Berries, carrots, and other familiar food can keep a journey moving. You do not need to carry the whole landscape home.
+Berries, carrots, and other familiar food can keep a journey moving. Pick up what you need as you go.
 ]],
                             },
                         },
@@ -350,7 +350,7 @@ Berries, carrots, and other familiar food can keep a journey moving. You do not 
                         right = {
                             {
                                 type = "heading",
-                                text = "Food does not wait forever",
+                                text = "Food spoils",
                             },
                             {
                                 type = "text",
@@ -360,12 +360,12 @@ Most food spoils after it is picked. Keep an eye on freshness and use what is fa
                             },
                             {
                                 type = "heading",
-                                text = "Empty means trouble",
+                                text = "An empty stomach costs health",
                             },
                             {
                                 type = "text",
                                 text = [[
-Once your stomach is empty, hunger starts costing health. Better to eat before one problem becomes two.
+Once your stomach is empty, hunger starts costing health. Eat before it gets that far.
 ]],
                             },
                         },
@@ -390,7 +390,7 @@ Cooking changes familiar ingredients in useful ways. A fire treats one ingredien
                         illustration_caption = {
                             {
                                 type = "caption",
-                                text = "Four things in. One answer out. Worth taking notes.",
+                                text = "Some combinations worked better than others. I wrote those down.",
                             },
                         },
 
@@ -417,7 +417,7 @@ A Crock Pot takes four ingredients and turns them into a dish. What comes out de
                             {
                                 type = "text",
                                 text = [[
-Try combinations when you can afford a surprise. Keep something simple to eat while you learn what the pot likes, and remember the combinations that are worth repeating.
+Experiment when you have enough food to spare. Keep something simple to eat while you learn, and remember the combinations worth repeating.
 ]],
                             },
                         },
