@@ -9,6 +9,7 @@ local TOPIC_MODULES = {
     "dst101topics/combat",
     "dst101topics/temperature",
     "dst101topics/wetness",
+    "dst101topics/seasons",
     "dst101topics/beefalo",
 }
 

@@ -43,6 +43,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "sanity.tex",
         },
+        seasons_winter_arrives = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "seasons_winter_arrives.tex",
+        },
         setting_out = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "setting_out.tex",

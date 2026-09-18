@@ -28,7 +28,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Much nicer when the fire stays where I put it.",
+                        text = "Useful flame. Slightly enthusiastic handling.",
                     },
                 },
 
