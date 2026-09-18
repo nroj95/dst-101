@@ -64,11 +64,7 @@ Sanity changes with what you do and what is around you. If it starts falling, no
                         type = "text",
                         text = [[
 Low sanity can make the world behave strangely. Let it fall far enough and some of those changes become dangerous. You do not have to stay and find out how dangerous.
-]],
-                    },
-                    {
-                        type = "text",
-                        text = [[
+
 Move away from whatever seems to be draining it and give yourself room to recover. Picking ordinary flowers is an easy early help; some foods, equipment, and places to rest can help too.
 ]],
                     },

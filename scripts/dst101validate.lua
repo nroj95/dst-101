@@ -122,6 +122,93 @@ local function validate_illustration_caption(
     end
 end
 
+local function validate_right_region(
+    topic,
+    page_number,
+    blocks
+)
+    if #blocks == 0 then
+        return
+    end
+
+    if blocks[1].type ~= "heading" then
+        authoring_error(
+            topic.id,
+            page_number,
+            "right",
+            "right region must begin with a heading"
+        )
+    end
+
+    local section_has_body = false
+    local previous_type = nil
+
+    for _, block in ipairs(blocks) do
+        if block.type == "heading" then
+            if previous_type == "heading"
+                or (
+                    previous_type ~= nil
+                    and not section_has_body
+                )
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    "right",
+                    "each right-region heading must have body content"
+                )
+            end
+
+            section_has_body = false
+
+        elseif block.type == "text"
+            or block.type == "bullets"
+        then
+            if previous_type == nil then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    "right",
+                    "right-region body content requires a preceding heading"
+                )
+            end
+
+            if block.type == "text"
+                and previous_type == "text"
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    "right",
+                    "consecutive text blocks are not allowed in the right region; use paragraphs inside one text block"
+                )
+            end
+
+            section_has_body = true
+
+        else
+            authoring_error(
+                topic.id,
+                page_number,
+                "right",
+                "unsupported block type in right region: " ..
+                tostring(block.type)
+            )
+        end
+
+        previous_type = block.type
+    end
+
+    if not section_has_body then
+        authoring_error(
+            topic.id,
+            page_number,
+            "right",
+            "final right-region heading must have body content"
+        )
+    end
+end
+
 local function validate_related_topics(
     topic,
     page_number,
@@ -286,6 +373,14 @@ local function validate_topics(data)
                 page.regions or {}
             ) do
                 blocks = blocks or {}
+
+                if region_name == "right" then
+                    validate_right_region(
+                        topic,
+                        page_number,
+                        blocks
+                    )
+                end
 
                 validate_headline_pair(
                     topic,

@@ -106,11 +106,7 @@ Many foods can be cooked directly over a fire. Cooking changes what they restore
                         type = "text",
                         text = [[
 A Crock Pot needs four ingredients before it starts. What comes out depends on what went in, and a promising combination can still become something disappointing. Once you find a reliable recipe, it becomes much easier to plan around what you have.
-]],
-                    },
-                    {
-                        type = "text",
-                        text = [[
+
 Experiment when you have food to spare. Keep something simple to eat while you test combinations, and remember the ones worth repeating.
 ]],
                     },

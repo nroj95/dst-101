@@ -57,11 +57,7 @@ A few useful things need no machine at all. Keep the materials handy and you can
                         type = "text",
                         text = [[
 A Science Machine lets you prototype more recipes while you are near it. Prototype something once and you have learned it; after that, you can make it elsewhere whenever you have the materials.
-]],
-                    },
-                    {
-                        type = "text",
-                        text = [[
+
 An Alchemy Engine has more advanced science to offer. Learn what helps now. The rest will still be there when you come back.
 ]],
                     },

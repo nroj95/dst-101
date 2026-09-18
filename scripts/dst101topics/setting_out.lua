@@ -48,6 +48,10 @@ return {
 
                 right = {
                     {
+                        type = "heading",
+                        text = "Gather as you go",
+                    },
+                    {
                         type = "text",
                         text = [[
 Pick up grass, twigs, flint, and something to eat as you wander. A few basics in your pockets make an unexpected detour much easier.
