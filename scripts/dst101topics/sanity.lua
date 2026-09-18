@@ -14,7 +14,7 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "When the world feels wrong",
+                        text = "When things stop looking right",
                     },
                     {
                         type = "subtitle",
@@ -26,21 +26,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Nothing had changed. That was the troubling part.",
-                    },
-                },
-
-                bottom_left = {
-                    {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
-                        type = "related_topics",
-                        topics = {
-                            "darkness",
-                            "food",
-                        },
+                        text = "Looked around twice. I still couldn't tell what had changed.",
                     },
                 },
 

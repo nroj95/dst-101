@@ -18,18 +18,18 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "The warning comes first",
+                        text = "Watch for the first signs",
                     },
                     {
                         type = "subtitle",
-                        text = "Cold and heat warn you before they start hurting.",
+                        text = "Your view changes before cold or heat hurts.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "The stone was still warm when the fire was already out of sight.",
+                        text = "It stayed warm longer than I expected. Useful little rock.",
                     },
                 },
 
@@ -48,7 +48,7 @@ return {
                     },
                     {
                         type = "heading",
-                        text = "Make the trip longer",
+                        text = "Slow the change",
                     },
                     {
                         type = "text",
@@ -67,7 +67,7 @@ return {
                     },
                     {
                         type = "related_topics",
-                        topics = { "health", "setting_out", "crafting" },
+                        topics = { "health", "crafting" },
                     },
                 },
             },

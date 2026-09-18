@@ -17,7 +17,7 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "Leave room to recover",
+                        text = "Don't use all your healing at once",
                     },
                     {
                         type = "subtitle",
@@ -47,7 +47,7 @@ return {
                     },
                     {
                         type = "heading",
-                        text = "Keep something back",
+                        text = "How to recover",
                     },
                     {
                         type = "text",

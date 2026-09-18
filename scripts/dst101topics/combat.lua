@@ -18,7 +18,7 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "Watch before you swing",
+                        text = "Watch how it attacks",
                     },
                     {
                         type = "subtitle",
@@ -29,14 +29,14 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "One is much easier to study than six.",
+                        text = "The timing was much easier to see with only one of them.",
                     },
                 },
 
                 right = {
                     {
                         type = "heading",
-                        text = "Find the rhythm",
+                        text = "Learn the timing",
                     },
                     {
                         type = "text",
@@ -48,7 +48,7 @@ return {
                     },
                     {
                         type = "heading",
-                        text = "When the rhythm breaks",
+                        text = "When the fight gets messy",
                     },
                     {
                         type = "text",
@@ -67,7 +67,7 @@ return {
                     },
                     {
                         type = "related_topics",
-                        topics = { "health", "crafting", "setting_out" },
+                        topics = { "health", "crafting" },
                     },
                 },
             },
