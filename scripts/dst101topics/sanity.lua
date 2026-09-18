@@ -24,6 +24,13 @@ return {
                 },
 
 
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Nothing had changed. That was the troubling part.",
+                    },
+                },
+
                 bottom_left = {
                     {
                         type = "heading",

@@ -59,6 +59,69 @@ local function validate_headline_pair(
 end
 
 
+local function validate_illustration_caption(
+    topic,
+    page_number,
+    page
+)
+    local regions =
+        page.regions or {}
+
+    local caption_blocks =
+        regions.illustration_caption
+
+    if page.illustration ~= nil then
+        if caption_blocks == nil then
+            authoring_error(
+                topic.id,
+                page_number,
+                "illustration_caption",
+                "illustrated page must have an illustration_caption region"
+            )
+        end
+
+        if #caption_blocks ~= 1 then
+            authoring_error(
+                topic.id,
+                page_number,
+                "illustration_caption",
+                "illustration_caption must contain exactly one block"
+            )
+        end
+
+        local caption =
+            caption_blocks[1]
+
+        if caption.type ~= "caption" then
+            authoring_error(
+                topic.id,
+                page_number,
+                "illustration_caption",
+                "illustration_caption block must use type 'caption'"
+            )
+        end
+
+        if caption.text == nil
+            or caption.text == ""
+        then
+            authoring_error(
+                topic.id,
+                page_number,
+                "illustration_caption",
+                "illustration caption text may not be empty"
+            )
+        end
+
+    elseif caption_blocks ~= nil then
+        authoring_error(
+            topic.id,
+            page_number,
+            "illustration_caption",
+            "illustration_caption requires a page illustration"
+        )
+    end
+end
+
 local function validate_related_topics(
     topic,
     page_number,
@@ -213,6 +276,12 @@ local function validate_topics(data)
         for page_number, page in ipairs(
             topic.pages or {}
         ) do
+            validate_illustration_caption(
+                topic,
+                page_number,
+                page
+            )
+
             for region_name, blocks in pairs(
                 page.regions or {}
             ) do
