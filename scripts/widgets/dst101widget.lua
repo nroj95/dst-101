@@ -1275,6 +1275,107 @@ function DST101Widget:SetSearchQuery(value)
 end
 
 
+local function get_deleted_text(before, after)
+    if before == after or #after >= #before then
+        return nil, nil
+    end
+
+    local prefix_length = 0
+    local maximum_prefix =
+        math.min(#before, #after)
+
+    while prefix_length < maximum_prefix
+        and before:byte(prefix_length + 1)
+            == after:byte(prefix_length + 1)
+    do
+        prefix_length = prefix_length + 1
+    end
+
+    local suffix_length = 0
+    local maximum_suffix =
+        #after - prefix_length
+
+    while suffix_length < maximum_suffix
+        and before:byte(#before - suffix_length)
+            == after:byte(#after - suffix_length)
+    do
+        suffix_length = suffix_length + 1
+    end
+
+    return before:sub(
+        prefix_length + 1,
+        #before - suffix_length
+    ), suffix_length
+end
+
+
+local function delete_previous_search_word(edit)
+    local removed_word_character = false
+    local removing_boundary_whitespace = false
+    local preserve_boundary_whitespace = nil
+
+    -- Search input is capped at 80 characters, so this also prevents an
+    -- unexpected native edit state from looping indefinitely.
+    for deletion_index = 1, 80 do
+        local before =
+            edit:GetLineEditString()
+
+        edit.inst.TextEditWidget:OnKeyDown(
+            KEY_BACKSPACE
+        )
+
+        local after =
+            edit:GetLineEditString()
+
+        if before == after then
+            break
+        end
+
+        local deleted, suffix_length =
+            get_deleted_text(before, after)
+
+        if deleted == nil or deleted == "" then
+            break
+        end
+
+        -- Let native selection deletion stand on its own.
+        if deleted:utf8len() > 1 then
+            break
+        end
+
+        local deleted_whitespace =
+            deleted:match("^%s+$") ~= nil
+
+        if preserve_boundary_whitespace == nil then
+            -- If the caret began inside a word, keep the separator before
+            -- that word so "food coo|king" becomes "food |king".
+            preserve_boundary_whitespace =
+                not deleted_whitespace
+                and suffix_length ~= nil
+                and suffix_length > 0
+        end
+
+        if removing_boundary_whitespace then
+            if not deleted_whitespace then
+                -- We reached the preceding word. Restore its first character.
+                edit:OnTextInput(deleted)
+                break
+            end
+        elseif removed_word_character then
+            if deleted_whitespace then
+                if preserve_boundary_whitespace then
+                    edit:OnTextInput(deleted)
+                    break
+                end
+
+                removing_boundary_whitespace = true
+            end
+        elseif not deleted_whitespace then
+            removed_word_character = true
+        end
+    end
+end
+
 function DST101Widget:BuildSearchRow()
     if self.search_root ~= nil then
         return
@@ -1444,6 +1545,31 @@ function DST101Widget:BuildSearchRow()
             return search_edit_on_control(
                 edit,
                 control,
+                down
+            )
+        end
+    local search_edit_on_raw_key =
+        self.search_edit.OnRawKey
+
+    self.search_edit.OnRawKey =
+        function(edit, key, down)
+            if edit.editing
+                and down
+                and key == KEY_BACKSPACE
+                and TheInput:IsKeyDown(KEY_CTRL)
+            then
+                delete_previous_search_word(edit)
+
+                if edit.OnTextInputted ~= nil then
+                    edit.OnTextInputted(true)
+                end
+
+                return true
+            end
+
+            return search_edit_on_raw_key(
+                edit,
+                key,
                 down
             )
         end
