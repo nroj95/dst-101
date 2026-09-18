@@ -501,7 +501,7 @@ local function render_related_topics(
         local label = parent:AddChild(
             Text(
                 BODY_FONT,
-                19,
+                20,
                 "",
                 LAYOUT.colours.body_text
             )
@@ -2867,9 +2867,9 @@ function DST101Widget:RenderFooter(parent, topic)
         self.current_page < page_count
 
     local disabled_colour = {
-        0.55,
-        0.55,
-        0.55,
+        0.40,
+        0.40,
+        0.40,
         0.45,
     }
 
@@ -2941,17 +2941,12 @@ function DST101Widget:RenderFooter(parent, topic)
         self:ChangePage(-1)
     end)
 
-    local previous_colour =
-        previous_enabled
-        and LAYOUT.colours.body_text
-        or disabled_colour
-
     local previous_label = parent:AddChild(
         Text(
             BODY_FONT,
-            20,
+            22,
             self.data.strings.previous_page,
-            previous_colour
+            LAYOUT.colours.body_text
         )
     )
 
@@ -3016,17 +3011,12 @@ function DST101Widget:RenderFooter(parent, topic)
         source_y(navigation_y - 4)
     )
 
-    local next_colour =
-        next_enabled
-        and LAYOUT.colours.body_text
-        or disabled_colour
-
     local next_label = parent:AddChild(
         Text(
             BODY_FONT,
-            20,
+            22,
             self.data.strings.next_page,
-            next_colour
+            LAYOUT.colours.body_text
         )
     )
 
