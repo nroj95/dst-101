@@ -257,6 +257,14 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
 Some useful things can be made without a machine. If you have the materials, you already know how.
 ]],
                             },
+                            {
+                                type = "bullets",
+                                items = {
+                                    "Axe for chopping trees",
+                                    "Pickaxe for breaking boulders",
+                                    "Torch for light that travels",
+                                },
+                            },
                         },
 
                         right = {

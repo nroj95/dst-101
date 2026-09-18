@@ -556,6 +556,131 @@ local function render_related_topics(
         8
 end
 
+local function render_bullets(
+    parent,
+    region,
+    source_cursor_y,
+    block,
+    horizontal_inset
+)
+    local style = BLOCK_STYLES.text
+    local body_size = block.size or style.size
+    local marker_size = body_size * 0.84
+
+    local left_inset = horizontal_inset or 0
+    local available_width =
+        block.width
+        or (
+            region_width(region) -
+            left_inset
+        )
+
+    local marker_width = 16
+    local marker_gap = 7
+    local item_indent =
+        marker_width +
+        marker_gap
+
+    local item_width = math.max(
+        1,
+        available_width -
+        item_indent
+    )
+
+    local item_gap = block.item_gap or 3
+
+    for _, item in ipairs(block.items or {}) do
+        local item_text = parent:AddChild(
+            Text(
+                style.font,
+                body_size,
+                "",
+                style.colour or UICOLOURS.BROWN_DARK
+            )
+        )
+
+        item_text:SetHAlign(ANCHOR_LEFT)
+        item_text:SetVAlign(ANCHOR_TOP)
+        item_text:SetClickable(false)
+
+        item_text:SetMultilineTruncatedString(
+            tostring(item),
+            100,
+            item_width
+        )
+
+        local _, item_height =
+            item_text:GetRegionSize()
+
+        item_text:SetRegionSize(
+            item_width,
+            item_height
+        )
+
+        item_text:SetPosition(
+            source_x(
+                region.left +
+                left_inset +
+                item_indent +
+                item_width / 2
+            ),
+            source_y(
+                source_cursor_y +
+                item_height / 2
+            )
+        )
+
+        local marker = parent:AddChild(
+            Text(
+                style.font,
+                marker_size,
+                "◆",
+                style.colour or UICOLOURS.BROWN_DARK
+            )
+        )
+
+        marker:SetHAlign(ANCHOR_MIDDLE)
+        marker:SetVAlign(ANCHOR_TOP)
+        marker:SetClickable(false)
+
+        local _, marker_height =
+            marker:GetRegionSize()
+
+        marker:SetRegionSize(
+            marker_width,
+            marker_height
+        )
+
+        marker:SetPosition(
+            source_x(
+                region.left +
+                left_inset +
+                marker_width / 2
+            ),
+            source_y(
+                source_cursor_y +
+                2 +
+                marker_height / 2
+            )
+        )
+
+        local row_height = math.max(
+            item_height,
+            marker_height + 2,
+            style.line_height or 0
+        )
+
+        source_cursor_y =
+            source_cursor_y +
+            row_height +
+            item_gap
+    end
+
+    return source_cursor_y
+        + (block.spacing or style.spacing or 0)
+end
+
+
 local function render_flow_block(
     handbook,
     parent,
@@ -590,7 +715,22 @@ local function render_flow_block(
         )
     end
 
-    local style = BLOCK_STYLES[block.type]
+    if block.type == "bullets" then
+        return render_bullets(
+            parent,
+            region,
+            source_cursor_y,
+            block,
+            horizontal_inset
+        )
+    end
+
+    local style_type =
+        block.type == "bullets"
+        and "text"
+        or block.type
+
+    local style = BLOCK_STYLES[style_type]
 
     if style == nil then
         return source_cursor_y
