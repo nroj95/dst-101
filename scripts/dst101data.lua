@@ -1,4 +1,14 @@
-return {
+local TOPIC_MODULES = {
+    "dst101topics/setting_out",
+    "dst101topics/beefalo",
+    "dst101topics/darkness",
+    "dst101topics/sanity",
+    "dst101topics/crafting",
+    "dst101topics/food",
+}
+
+
+local data = {
     strings = {
         topics = "Topics",
         search_placeholder = "Search...",
@@ -6,12 +16,16 @@ return {
         next_page = "Next page",
     },
 
-    topics = {
-        require("dst101topics/setting_out"),
-        require("dst101topics/beefalo"),
-        require("dst101topics/darkness"),
-        require("dst101topics/sanity"),
-        require("dst101topics/crafting"),
-        require("dst101topics/food"),
-    },
+    topics = {},
 }
+
+
+for _, module_name in ipairs(TOPIC_MODULES) do
+    data.topics[#data.topics + 1] =
+        require(module_name)
+end
+
+
+require("dst101validate")(data)
+
+return data

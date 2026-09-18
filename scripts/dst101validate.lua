@@ -1,0 +1,252 @@
+local function authoring_error(
+    topic_id,
+    page_number,
+    region_name,
+    message
+)
+    error(
+        string.format(
+            "[dst 101] invalid handbook content: " ..
+            "topic=%s page=%s region=%s: %s",
+            tostring(topic_id),
+            tostring(page_number),
+            tostring(region_name),
+            message
+        ),
+        2
+    )
+end
+
+
+local function validate_headline_pair(
+    topic,
+    page_number,
+    region_name,
+    blocks
+)
+    for block_index, block in ipairs(blocks) do
+        if block.type == "headline" then
+            local next_block =
+                blocks[block_index + 1]
+
+            if next_block == nil
+                or next_block.type ~= "subtitle"
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "headline must be immediately followed by subtitle"
+                )
+            end
+
+        elseif block.type == "subtitle" then
+            local previous_block =
+                blocks[block_index - 1]
+
+            if previous_block == nil
+                or previous_block.type ~= "headline"
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "subtitle must immediately follow headline"
+                )
+            end
+        end
+    end
+end
+
+
+local function validate_related_topics(
+    topic,
+    page_number,
+    region_name,
+    blocks,
+    topic_ids
+)
+    local related_block_count = 0
+
+    for block_index, block in ipairs(blocks) do
+        if block.type == "heading"
+            and block.text == "Related topics"
+        then
+            local next_block =
+                blocks[block_index + 1]
+
+            if next_block == nil
+                or next_block.type ~= "related_topics"
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "'Related topics' heading must immediately precede related_topics"
+                )
+            end
+
+        elseif block.type == "related_topics" then
+            related_block_count =
+                related_block_count + 1
+
+            if region_name ~= "bottom_left" then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "related_topics must be in bottom_left"
+                )
+            end
+
+            if page_number ~= #topic.pages then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "related_topics may appear only on the final page"
+                )
+            end
+
+            if block_index ~= #blocks then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "related_topics must be the final block in bottom_left"
+                )
+            end
+
+            local previous_block =
+                blocks[block_index - 1]
+
+            if previous_block == nil
+                or previous_block.type ~= "heading"
+                or previous_block.text ~= "Related topics"
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "related_topics must immediately follow the 'Related topics' heading"
+                )
+            end
+
+            local related =
+                block.topics or {}
+
+            if #related < 2 or #related > 4 then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "related_topics must contain 2-4 topics"
+                )
+            end
+
+            local seen_related = {}
+
+            for _, related_id in ipairs(related) do
+                if related_id == topic.id then
+                    authoring_error(
+                        topic.id,
+                        page_number,
+                        region_name,
+                        "topic may not link to itself"
+                    )
+                end
+
+                if seen_related[related_id] then
+                    authoring_error(
+                        topic.id,
+                        page_number,
+                        region_name,
+                        "related topic appears more than once: " ..
+                        tostring(related_id)
+                    )
+                end
+
+                if not topic_ids[related_id] then
+                    authoring_error(
+                        topic.id,
+                        page_number,
+                        region_name,
+                        "unknown related topic: " ..
+                        tostring(related_id)
+                    )
+                end
+
+                seen_related[related_id] = true
+            end
+        end
+    end
+
+    return related_block_count
+end
+
+
+local function validate_topics(data)
+    local topic_ids = {}
+
+    for _, topic in ipairs(data.topics or {}) do
+        if topic.id == nil or topic.id == "" then
+            error(
+                "[dst 101] invalid handbook content: topic id is missing",
+                2
+            )
+        end
+
+        if topic_ids[topic.id] then
+            error(
+                "[dst 101] invalid handbook content: duplicate topic id: " ..
+                tostring(topic.id),
+                2
+            )
+        end
+
+        topic_ids[topic.id] = true
+    end
+
+    for _, topic in ipairs(data.topics or {}) do
+        local related_block_count = 0
+
+        for page_number, page in ipairs(
+            topic.pages or {}
+        ) do
+            for region_name, blocks in pairs(
+                page.regions or {}
+            ) do
+                blocks = blocks or {}
+
+                validate_headline_pair(
+                    topic,
+                    page_number,
+                    region_name,
+                    blocks
+                )
+
+                related_block_count =
+                    related_block_count +
+                    validate_related_topics(
+                        topic,
+                        page_number,
+                        region_name,
+                        blocks,
+                        topic_ids
+                    )
+            end
+        end
+
+        if related_block_count > 1 then
+            error(
+                "[dst 101] invalid handbook content: topic=" ..
+                tostring(topic.id) ..
+                " contains more than one related_topics block",
+                2
+            )
+        end
+    end
+end
+
+
+return validate_topics

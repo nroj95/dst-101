@@ -239,6 +239,7 @@ end
 local function clear_handbook_modules()
     local modules = {
         "dst101data",
+        "dst101validate",
         "dst101illustrations",
         "dst101layout",
         "widgets/dst101widget",
