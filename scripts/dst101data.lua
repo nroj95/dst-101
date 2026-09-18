@@ -45,10 +45,6 @@ return {
 
                         right = {
                             {
-                                type = "heading",
-                                text = "Start moving",
-                            },
-                            {
                                 type = "text",
                                 text = [[
 Pick up grass, twigs, flint, and some food while you wander. You'll find uses for all of them soon enough.
@@ -66,12 +62,7 @@ Night is worth seeing. Darkness isn't. Make sure you have a way to make light be
                             },
                         },
 
-                        note = {
-                            {
-                                type = "note",
-                                text = "Night arrives whether the plan is finished or not.",
-                            },
-                        },
+                        note = {},
                     },
                 },
             },
@@ -111,10 +102,6 @@ Night is worth seeing. Darkness isn't. Make sure you have a way to make light be
 
                         bottom_left = {
                             {
-                                type = "heading",
-                                text = "Usually peaceful",
-                            },
-                            {
                                 type = "text",
                                 text = [[
 Beefalo are often content to mind their own business. If you leave them alone, they will usually return the favor.
@@ -145,12 +132,7 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every
                             },
                         },
 
-                        note = {
-                            {
-                                type = "note",
-                                text = "Red rear. Wrong time.",
-                            },
-                        },
+                        note = {},
                     },
                 },
             },
@@ -191,10 +173,6 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. Not every
                         },
 
                         bottom_left = {
-                            {
-                                type = "heading",
-                                text = "Carry some light",
-                            },
                             {
                                 type = "text",
                                 text = [[
@@ -274,10 +252,6 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
 
                         bottom_left = {
                             {
-                                type = "heading",
-                                text = "Ready from the start",
-                            },
-                            {
                                 type = "text",
                                 text = [[
 Some useful things can be made without a machine. If you have the materials, you already know how.
@@ -297,10 +271,6 @@ A Science Machine lets you prototype more recipes while you are near it. Once yo
 ]],
                             },
                             {
-                                type = "heading",
-                                text = "More science later",
-                            },
-                            {
                                 type = "text",
                                 text = [[
 An Alchemy Engine opens more advanced science recipes. There is no need to learn the whole workshop at once.
@@ -308,12 +278,7 @@ An Alchemy Engine opens more advanced science recipes. There is no need to learn
                             },
                         },
 
-                        note = {
-                            {
-                                type = "note",
-                                text = "Once learned, the recipe travels better than the machine.",
-                            },
-                        },
+                        note = {},
                     },
                 },
             },
@@ -355,10 +320,6 @@ An Alchemy Engine opens more advanced science recipes. There is no need to learn
 
                         bottom_left = {
                             {
-                                type = "heading",
-                                text = "Gather as you go",
-                            },
-                            {
                                 type = "text",
                                 text = [[
 Berries, carrots, and other familiar food can keep a journey moving. You do not need to carry the whole landscape home.
@@ -389,12 +350,7 @@ Once your stomach is empty, hunger starts costing health. Better to eat before o
                             },
                         },
 
-                        note = {
-                            {
-                                type = "note",
-                                text = "Found it before I needed it. Much nicer that way.",
-                            },
-                        },
+                        note = {},
                     },
                 },
 
@@ -406,7 +362,7 @@ Once your stomach is empty, hunger starts costing health. Better to eat before o
                             {
                                 type = "text",
                                 text = [[
-Cooking can change familiar ingredients in useful ways. Heat changes some things; a pot changes even more.
+Cooking changes familiar ingredients in useful ways. A fire treats one ingredient at a time; a Crock Pot combines several into something new. Both are useful, but they solve different problems.
 ]],
                             },
                         },
@@ -420,13 +376,9 @@ Cooking can change familiar ingredients in useful ways. Heat changes some things
 
                         bottom_left = {
                             {
-                                type = "heading",
-                                text = "Over the fire",
-                            },
-                            {
                                 type = "text",
                                 text = [[
-Many raw foods can be cooked at a fire. Cooking changes what they restore and how long they keep, so it is useful without being an automatic upgrade.
+Many raw foods can be cooked directly over a fire. Cooking changes what they restore and how long they keep, so it is worth checking the result instead of assuming cooked is always better. Simple food is still useful when you only need a quick meal.
 ]],
                             },
                         },
@@ -439,27 +391,18 @@ Many raw foods can be cooked at a fire. Cooking changes what they restore and ho
                             {
                                 type = "text",
                                 text = [[
-A Crock Pot takes four ingredients and turns them into a dish. What comes out depends on what went in; some combinations are much better than others.
+A Crock Pot takes four ingredients and turns them into a dish. What comes out depends on what went in; some combinations are much better than others. Once you find a reliable recipe, it becomes much easier to plan a meal around what you have.
 ]],
-                            },
-                            {
-                                type = "heading",
-                                text = "Experiment with a spare meal",
                             },
                             {
                                 type = "text",
                                 text = [[
-Try combinations when you can afford a surprise. Keep something simple to eat while you learn what the pot likes.
+Try combinations when you can afford a surprise. Keep something simple to eat while you learn what the pot likes, and remember the combinations that are worth repeating.
 ]],
                             },
                         },
 
-                        note = {
-                            {
-                                type = "note",
-                                text = "Keep one ordinary meal until the experiment earns your trust.",
-                            },
-                        },
+                        note = {},
                     },
                 },
             },

@@ -59,6 +59,11 @@ local NOTE_ANIMALS = {
 local BODY_FONT = "dst101_alegreya_regular"
 local ITALIC_FONT = "dst101_alegreya_italic"
 
+-- Plain prose opening the top-left region benefits from a little breathing
+-- room. Headlines and section headings remain aligned to the authored top.
+local TOP_LEFT_TEXT_START_OFFSET = 24
+local TOP_LEFT_TEXT_START_INSET = 20
+
 local BLOCK_STYLES = {
     headline = {
         font = HEADERFONT,
@@ -558,7 +563,8 @@ local function render_flow_block(
     region,
     source_cursor_y,
     block,
-    divider_key
+    divider_key,
+    horizontal_inset
 )
     if block.type == "spacer" then
         return source_cursor_y + (block.height or 10)
@@ -600,7 +606,24 @@ local function render_flow_block(
     )
 
     local value = get_block_text(block, topic)
+    local left_inset = horizontal_inset or 0
     local width = block.width or region_width(region)
+    local text_position_x = region_center_x(region)
+
+    if left_inset > 0 then
+        if block.width == nil then
+            width = math.max(
+                1,
+                region_width(region) - left_inset
+            )
+        end
+
+        text_position_x = source_x(
+            region.left +
+            left_inset +
+            width / 2
+        )
+    end
 
     text:SetHAlign(ANCHOR_LEFT)
     text:SetVAlign(ANCHOR_TOP)
@@ -631,7 +654,7 @@ local function render_flow_block(
     )
 
     text:SetPosition(
-        region_center_x(region),
+        text_position_x,
         source_y(
             source_cursor_y +
             measured_height / 2
@@ -2128,6 +2151,22 @@ function DST101Widget:RenderRegion(
 
     local source_cursor_y = region.top
 
+    -- The top-left region is editorially flexible. Opening body prose receives
+    -- a small inset and vertical offset so it reads as deliberately placed
+    -- prose rather than as a headline that has lost its title.
+    local top_left_starts_with_text =
+        region_name == "top_left"
+        and blocks[1].type == "text"
+
+    if top_left_starts_with_text then
+        source_cursor_y =
+            source_cursor_y +
+            TOP_LEFT_TEXT_START_OFFSET
+    end
+
+    local in_opening_text_run =
+        top_left_starts_with_text
+
     for block_index, block in ipairs(blocks) do
         local divider_key = table.concat(
             {
@@ -2139,6 +2178,17 @@ function DST101Widget:RenderRegion(
             "|"
         )
 
+        local horizontal_inset = 0
+
+        if in_opening_text_run
+            and block.type == "text"
+        then
+            horizontal_inset =
+                TOP_LEFT_TEXT_START_INSET
+        else
+            in_opening_text_run = false
+        end
+
         source_cursor_y = render_flow_block(
             self,
             parent,
@@ -2146,7 +2196,8 @@ function DST101Widget:RenderRegion(
             region,
             source_cursor_y,
             block,
-            divider_key
+            divider_key,
+            horizontal_inset
         )
     end
 end
