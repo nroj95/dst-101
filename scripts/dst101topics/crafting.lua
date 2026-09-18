@@ -2,7 +2,6 @@ return {
     id = "crafting",
     title = "Crafting",
     icon = "crafting",
-    related_topic_tile = 5,
     tags = {
         "prototyping",
         "recipe",

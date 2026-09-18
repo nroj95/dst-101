@@ -2,7 +2,6 @@ return {
     id = "darkness",
     title = "Darkness",
     icon = "darkness",
-    related_topic_tile = 4,
     tags = {
         "beginner",
     },

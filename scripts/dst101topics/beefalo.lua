@@ -2,7 +2,6 @@ return {
     id = "beefalo",
     title = "Beefalo",
     icon = "beefalo",
-    related_topic_tile = 3,
     tags = {
         "mating season",
         "heat",

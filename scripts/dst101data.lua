@@ -1,10 +1,13 @@
 local TOPIC_MODULES = {
     "dst101topics/setting_out",
-    "dst101topics/beefalo",
     "dst101topics/darkness",
+    "dst101topics/food",
+    "dst101topics/health",
     "dst101topics/sanity",
     "dst101topics/crafting",
-    "dst101topics/food",
+    "dst101topics/combat",
+    "dst101topics/temperature",
+    "dst101topics/beefalo",
 }
 
 

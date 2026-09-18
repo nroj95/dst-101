@@ -2,7 +2,6 @@ return {
     id = "food",
     title = "Food",
     icon = "food",
-    related_topic_tile = 6,
     tags = {
         "hungry",
         "starving",

@@ -2,7 +2,6 @@ return {
     id = "setting_out",
     title = "Setting Out",
     icon = "setting_out",
-    related_topic_tile = 1,
     tags = {
         "beginner",
         "basics",

@@ -310,17 +310,11 @@ local function add_divider(
 end
 
 local function get_related_topic_tile_texture(topic)
-    local tile_index = tonumber(
-        topic.related_topic_tile
-    ) or 1
-
-    tile_index = math.max(
-        1,
-        math.min(
-            6,
-            math.floor(tile_index)
+    local tile_index =
+        get_stable_variant_index(
+            topic.id .. ":related_topics",
+            6
         )
-    )
 
     return string.format(
         "related_topic_tile_%02d.tex",

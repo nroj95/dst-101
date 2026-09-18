@@ -11,6 +11,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "beefalo.tex",
         },
+        combat_study = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "combat_study.tex",
+        },
         crafting = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "crafting.tex",
@@ -27,6 +31,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "food_foraging.tex",
         },
+        health_recovering = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "health_recovering.tex",
+        },
         sanity = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "sanity.tex",
@@ -34,6 +42,10 @@ return {
         setting_out = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "setting_out.tex",
+        },
+        temperature_thermal_stone = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "temperature_thermal_stone.tex",
         },
     },
 }

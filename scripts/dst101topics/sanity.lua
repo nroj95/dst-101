@@ -2,7 +2,6 @@ return {
     id = "sanity",
     title = "Sanity",
     icon = "sanity",
-    related_topic_tile = 2,
     tags = {
         "insane",
         "insanity",
