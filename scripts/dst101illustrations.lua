@@ -27,6 +27,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "food_foraging.tex",
         },
+        sanity = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "sanity.tex",
+        },
         setting_out = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "setting_out.tex",
