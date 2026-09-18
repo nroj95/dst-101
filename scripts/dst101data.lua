@@ -59,7 +59,7 @@ return {
                             {
                                 type = "text",
                                 text = [[
-Pick up grass, twigs, flint, and some food while you wander. You'll find uses for all of them soon enough.
+Pick up grass, twigs, flint, and something to eat as you wander. A few basics in your pockets make an unexpected detour much easier.
 ]],
                             },
                             {
@@ -69,7 +69,7 @@ Pick up grass, twigs, flint, and some food while you wander. You'll find uses fo
                             {
                                 type = "text",
                                 text = [[
-Night's fine if you have a light. Have one ready before it gets dark.
+Night is manageable with a light in hand. Make one before you need it.
 ]],
                             },
                         },
@@ -129,7 +129,7 @@ Beefalo are often content to mind their own business. If you leave them alone, t
                             {
                                 type = "text",
                                 text = [[
-When a Beefalo's rear turns red, give it space. The herd is best left alone then.
+When a Beefalo's rear turns red, give the herd plenty of space. They become much less interested in minding their own business.
 ]],
                             },
                             {
@@ -139,7 +139,7 @@ When a Beefalo's rear turns red, give it space. The herd is best left alone then
                             {
                                 type = "text",
                                 text = [[
-They leave manure behind, and sleeping Beefalo can be shaved for wool. They are useful even when you leave them alone.
+They leave manure as they wander, and a sleeping Beefalo can be shaved for wool. Plenty to gather without picking a fight.
 ]],
                             },
                         },
@@ -157,9 +157,6 @@ They leave manure behind, and sleeping Beefalo can be shaved for wool. They are 
             related_topic_tile = 4,
             tags = {
                 "beginner",
-                "night",
-                "light",
-                "fire",
             },
             pages = {
                 {
@@ -233,10 +230,8 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
             icon = "crafting",
             related_topic_tile = 5,
             tags = {
-                "science machine",
-                "alchemy engine",
-                "prototype",
                 "prototyping",
+                "recipe",
                 "recipes",
             },
             pages = {
@@ -258,7 +253,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                         illustration_caption = {
                             {
                                 type = "caption",
-                                text = "Odd little machine. Useful, though.",
+                                text = "Strange little machine. It keeps giving me ideas.",
                             },
                         },
 
@@ -266,7 +261,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                             {
                                 type = "text",
                                 text = [[
-Some useful things can be made without a machine. If you have the materials, you already know how.
+A few useful things need no machine at all. Keep the materials handy and you can make them wherever the road takes you.
 ]],
                             },
                             {
@@ -287,13 +282,13 @@ Some useful things can be made without a machine. If you have the materials, you
                             {
                                 type = "text",
                                 text = [[
-A Science Machine lets you prototype more recipes while you are near it. Once you have learned one, you can make it elsewhere whenever you have the materials.
+A Science Machine lets you prototype more recipes while you are near it. Prototype something once and you have learned it; after that, you can make it elsewhere whenever you have the materials.
 ]],
                             },
                             {
                                 type = "text",
                                 text = [[
-An Alchemy Engine opens more advanced science recipes. There is no need to learn the whole workshop at once.
+An Alchemy Engine has more advanced science to offer. Learn what helps now. The rest will still be there when you come back.
 ]],
                             },
                         },
@@ -317,7 +312,7 @@ An Alchemy Engine opens more advanced science recipes. There is no need to learn
             },
             pages = {
                 {
-                    illustration = "food_cooking",
+                    illustration = "food_foraging",
 
                     regions = {
                         top_left = {
@@ -355,7 +350,7 @@ Berries, carrots, and other familiar food can keep a journey moving. Pick up wha
                             {
                                 type = "text",
                                 text = [[
-Most food spoils after it is picked. Keep an eye on freshness and use what is fading before the better stuff.
+Most food does not stay fresh forever. Keep an eye on what is fading. Use those things first when you can; the fresher food will wait.
 ]],
                             },
                             {
@@ -375,14 +370,14 @@ Once your stomach is empty, hunger starts costing health. Eat before it gets tha
                 },
 
                 {
-                    illustration = "food_foraging",
+                    illustration = "food_cooking",
 
                     regions = {
                         top_left = {
                             {
                                 type = "text",
                                 text = [[
-Cooking changes familiar ingredients in useful ways. A fire treats one ingredient at a time; a Crock Pot combines several into something new. Both are useful, but they solve different problems.
+There is more than one way to cook what you find. A fire changes one ingredient at a time. A Crock Pot combines four into a dish. Both are worth trying; neither makes every ingredient better.
 ]],
                             },
                         },
@@ -398,7 +393,7 @@ Cooking changes familiar ingredients in useful ways. A fire treats one ingredien
                             {
                                 type = "text",
                                 text = [[
-Many raw foods can be cooked directly over a fire. Cooking changes what they restore and how long they keep, so it is worth checking the result instead of assuming cooked is always better. Simple food is still useful when you only need a quick meal.
+Many foods can be cooked directly over a fire. Cooking changes what they restore and sometimes how long they keep, so pay attention to the result. Simple food is still useful when all you need is lunch.
 ]],
                             },
                         },
@@ -411,13 +406,13 @@ Many raw foods can be cooked directly over a fire. Cooking changes what they res
                             {
                                 type = "text",
                                 text = [[
-A Crock Pot takes four ingredients and turns them into a dish. What comes out depends on what went in; some combinations are much better than others. Once you find a reliable recipe, it becomes much easier to plan a meal around what you have.
+A Crock Pot needs four ingredients before it starts. What comes out depends on what went in, and a promising combination can still become something disappointing. Once you find a reliable recipe, it becomes much easier to plan around what you have.
 ]],
                             },
                             {
                                 type = "text",
                                 text = [[
-Experiment when you have enough food to spare. Keep something simple to eat while you learn, and remember the combinations worth repeating.
+Experiment when you have food to spare. Keep something simple to eat while you test combinations, and remember the ones worth repeating.
 ]],
                             },
                         },
