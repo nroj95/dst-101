@@ -47,5 +47,9 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "temperature_thermal_stone.tex",
         },
+        wetness_rain = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "wetness_rain.tex",
+        },
     },
 }

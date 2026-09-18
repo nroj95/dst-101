@@ -7,6 +7,7 @@ local TOPIC_MODULES = {
     "dst101topics/crafting",
     "dst101topics/combat",
     "dst101topics/temperature",
+    "dst101topics/wetness",
     "dst101topics/beefalo",
 }
 
