@@ -23,6 +23,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "darkness.tex",
         },
+        fire_tending = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "fire_tending.tex",
+        },
         food_cooking = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "food_cooking.tex",
