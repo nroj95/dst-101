@@ -98,7 +98,9 @@ return {
             left = 409,
             right = 883,
             top = 99,
-            bottom = 214,
+            bottom = 236,
+            headline_max_height = 92,
+            headline_line_gap = -2,
             mode = "flow",
         },
 

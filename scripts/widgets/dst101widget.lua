@@ -70,6 +70,7 @@ local BLOCK_STYLES = {
         colour = LAYOUT.colours.headline_text,
         size = 64,
         spacing = 7,
+        wrapped_spacing = 2,
     },
 
     subtitle = {
@@ -757,6 +758,282 @@ local function render_flow_block(
     text:SetVAlign(ANCHOR_TOP)
     text:SetClickable(false)
 
+    if block.type == "headline" then
+        local one_line_size =
+            block.size or style.size
+
+        local two_line_size =
+            block.wrapped_size or 48
+
+        local maximum_headline_height =
+            block.max_height
+            or region.headline_max_height
+
+        local line_gap =
+            block.line_gap
+            or region.headline_line_gap
+            or 0
+
+        local words = {}
+
+        for word in tostring(value):gmatch("%S+") do
+            words[#words + 1] = word
+        end
+
+        local full_line =
+            table.concat(words, " ")
+
+        local headline_size = nil
+        local headline_lines = nil
+        local headline_heights = nil
+
+        local function measure_line(line)
+            text:SetString(line)
+
+            local line_width, line_height =
+                text:GetRegionSize()
+
+            return line_width, line_height
+        end
+
+        local function fits_height(height)
+            return maximum_headline_height == nil
+                or height <= maximum_headline_height
+        end
+
+        local function choose_balanced_two_lines()
+            local best = nil
+
+            for split_index = 1, #words - 1 do
+                local first_line =
+                    table.concat(
+                        words,
+                        " ",
+                        1,
+                        split_index
+                    )
+
+                local second_line =
+                    table.concat(
+                        words,
+                        " ",
+                        split_index + 1,
+                        #words
+                    )
+
+                local first_width, first_height =
+                    measure_line(first_line)
+
+                local second_width, second_height =
+                    measure_line(second_line)
+
+                if first_width <= width
+                    and second_width <= width
+                then
+                    local width_difference =
+                        math.abs(
+                            first_width -
+                            second_width
+                        )
+
+                    local widest_line =
+                        math.max(
+                            first_width,
+                            second_width
+                        )
+
+                    if best == nil
+                        or width_difference
+                            < best.width_difference
+                        or (
+                            width_difference
+                                == best.width_difference
+                            and widest_line
+                                < best.widest_line
+                        )
+                    then
+                        best = {
+                            lines = {
+                                first_line,
+                                second_line,
+                            },
+
+                            heights = {
+                                first_height,
+                                second_height,
+                            },
+
+                            height =
+                                first_height +
+                                line_gap +
+                                second_height,
+
+                            width_difference =
+                                width_difference,
+
+                            widest_line =
+                                widest_line,
+                        }
+                    end
+                end
+            end
+
+            return best
+        end
+
+        -- Keep one-line headlines at their authored display size.
+        text:SetSize(one_line_size)
+
+        local line_width, line_height =
+            measure_line(full_line)
+
+        if line_width <= width
+            and fits_height(line_height)
+        then
+            headline_size =
+                one_line_size
+
+            headline_lines = {
+                full_line,
+            }
+
+            headline_heights = {
+                line_height,
+            }
+        end
+
+        -- Wrapped headlines use one fixed size.
+        if headline_lines == nil then
+            text:SetSize(two_line_size)
+
+            local candidate =
+                choose_balanced_two_lines()
+
+            if candidate ~= nil
+                and fits_height(
+                    candidate.height
+                )
+            then
+                headline_size =
+                    two_line_size
+
+                headline_lines =
+                    candidate.lines
+
+                headline_heights =
+                    candidate.heights
+            end
+        end
+
+        if headline_lines == nil then
+            -- Headlines beyond this treatment should normally be rewritten.
+            headline_size =
+                two_line_size
+
+            text:SetSize(headline_size)
+
+            text:SetMultilineTruncatedString(
+                value,
+                2,
+                width
+            )
+
+            local wrapped_value =
+                text:GetString()
+
+            headline_lines = {}
+            headline_heights = {}
+
+            for line in wrapped_value:gmatch("[^\n]+") do
+                headline_lines[
+                    #headline_lines + 1
+                ] = line
+
+                local _, line_height =
+                    measure_line(line)
+
+                headline_heights[
+                    #headline_heights + 1
+                ] = line_height
+            end
+        end
+
+
+        local headline_cursor_y =
+            source_cursor_y
+
+        for line_index, line in ipairs(
+            headline_lines
+        ) do
+            local line_text
+
+            if line_index == 1 then
+                line_text = text
+            else
+                line_text = parent:AddChild(
+                    Text(
+                        style.font,
+                        headline_size,
+                        "",
+                        style.colour
+                            or UICOLOURS.BROWN_DARK
+                    )
+                )
+
+                line_text:SetHAlign(ANCHOR_LEFT)
+                line_text:SetVAlign(ANCHOR_TOP)
+                line_text:SetClickable(false)
+            end
+
+            line_text:SetSize(headline_size)
+            line_text:SetString(line)
+
+            local line_height =
+                headline_heights[line_index]
+
+            line_text:SetRegionSize(
+                width,
+                line_height
+            )
+
+            line_text:SetPosition(
+                text_position_x,
+                source_y(
+                    headline_cursor_y +
+                    line_height / 2
+                )
+            )
+
+            headline_cursor_y =
+                headline_cursor_y +
+                line_height
+
+            if line_index < #headline_lines then
+                headline_cursor_y =
+                    headline_cursor_y +
+                    line_gap
+            end
+        end
+
+        local headline_spacing
+
+        if #headline_lines > 1 then
+            headline_spacing =
+                block.wrapped_spacing
+                or style.wrapped_spacing
+                or block.spacing
+                or style.spacing
+                or 0
+        else
+            headline_spacing =
+                block.spacing
+                or style.spacing
+                or 0
+        end
+
+        return headline_cursor_y
+            + headline_spacing
+    end
     -- Page length intentionally stays under manual author control.
     text:SetMultilineTruncatedString(
         value,
