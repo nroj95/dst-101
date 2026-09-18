@@ -32,7 +32,7 @@ return {
                     {
                         type = "text",
                         text = [[
-If you expect to be travelling after dark, bring a light you can take with you. It is easier to make one before you need it.
+If you expect to travel after dark, bring a light you can carry.
 ]],
                     },
                 },

@@ -46,7 +46,7 @@ Beefalo are often content to mind their own business. If you leave them alone, t
                     {
                         type = "text",
                         text = [[
-When a Beefalo's rear turns red, give the herd plenty of space. They become much less interested in minding their own business.
+When a Beefalo's rear turns red, give the herd plenty of space. They become aggressive toward anything that gets too close.
 ]],
                     },
                     {

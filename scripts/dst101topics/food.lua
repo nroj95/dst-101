@@ -75,7 +75,7 @@ Once your stomach is empty, hunger starts costing health. Eat before it gets tha
                     {
                         type = "text",
                         text = [[
-There is more than one way to cook what you find. A fire changes one ingredient at a time. A Crock Pot combines four into a dish. Both are worth trying; neither makes every ingredient better.
+A fire cooks one ingredient at a time. A Crock Pot combines four into a dish. Both are worth experimenting with.
 ]],
                     },
                 },

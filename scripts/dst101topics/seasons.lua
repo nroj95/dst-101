@@ -23,14 +23,14 @@ return {
                     },
                     {
                         type = "subtitle",
-                        text = "A good plan for one season may be a poor one for the next.",
+                        text = "What works now may stop working when the season changes.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Winter does not care whether I feel ready.",
+                        text = "Winter arrived before I was ready.",
                     },
                 },
 

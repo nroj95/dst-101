@@ -18,7 +18,7 @@ return {
                     },
                     {
                         type = "subtitle",
-                        text = "Pay attention before deciding what is real.",
+                        text = "If the world starts changing, check your sanity first.",
                     },
                 },
 
@@ -58,7 +58,7 @@ Move away from whatever seems to be draining it and give yourself room to recove
                 note = {
                     {
                         type = "note",
-                        text = "The shadows are dangerous. Inconveniently, they also carry something useful.",
+                        text = "The shadows are dangerous. They also carry something useful.",
                     },
                 },
             },

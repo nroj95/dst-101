@@ -43,7 +43,7 @@ return {
                         text = table.concat({
                             "Your body temperature follows the conditions around you. Stay too cold and you begin freezing; stay too hot and you begin overheating. The edges of your view warn you before either starts hurting you.",
                             "",
-                            "That warning is useful time. Find a way to warm or cool yourself before the weather turns into a health problem.",
+                            "Use that warning to warm or cool yourself before you start taking damage.",
                         }, "\n"),
                     },
                     {
@@ -55,7 +55,7 @@ return {
                         text = table.concat({
                             "Insulation slows temperature change. A Thermal Stone can carry stored warmth or cold after you warm or cool it with the right source.",
                             "",
-                            "Both buy time rather than immunity. Use that time to reach the next place where you can warm up or cool down properly.",
+                            "Neither makes you immune. They just give you more time to reach somewhere safer.",
                         }, "\n"),
                     },
                 },

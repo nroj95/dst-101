@@ -28,7 +28,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Useful flame. Slightly enthusiastic handling.",
+                        text = "Useful flame. I may have added a little too much fuel.",
                     },
                 },
 

@@ -54,7 +54,7 @@ return {
                         text = table.concat({
                             "Food can restore health, and dedicated healing items can restore it directly. Character abilities can change the details, so pay attention to what works for the survivor you are playing.",
                             "",
-                            "I like to keep a little recovery unused before setting out. The moment you need it is usually a poor time to discover you left the ingredients at camp.",
+                            "I like to keep a little recovery unused before setting out. Running out halfway home is unpleasant.",
                         }, "\n"),
                     },
                 },
