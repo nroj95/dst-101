@@ -9,6 +9,8 @@ return {
     },
     pages = {
         {
+            illustration = "sanity",
+
             regions = {
                 top_left = {
                     {
