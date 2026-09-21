@@ -445,19 +445,27 @@ wheeler voice/character evidence
 -> single-player/hamlet primary material and dontstarve.wiki.gg
 ```
 
+community discussions and practical guides are a separate required research layer for gameplay topics.
+
+use them to discover recurring beginner problems, commonly recommended tactics, overlooked mechanics, misconceptions, and disagreements. prefer repeated patterns across multiple discussions over isolated advice.
+
+community consensus does not establish mechanical truth. verify useful community-derived claims separately against current `dst` sources before publishing them.
+
 do not turn stable beginner facts into unnecessary changelog archaeology. use freshness checks where they can materially affect correctness.
 
 ## normal content-production workflow
 
-1. author a real topic.
-2. verify mechanics and spoiler boundaries.
-3. compose it with the established grammar.
-4. create the scene in the approved visual family.
-5. review it beside the anchor set and at handbook size.
-6. add useful search tags only when needed.
-7. add selective related-topic links only when useful.
-8. polish where real content exposes a need.
-9. change structure only when the current system genuinely cannot express the content.
+1. author or identify a real topic.
+2. inspect current community discussions and practical guides for recurring beginner problems, useful advice, overlooked mechanics, misconceptions, and disagreements.
+3. verify candidate mechanics and spoiler boundaries against current `dst` sources.
+4. decide what belongs in `dst 101` and what should remain discoverable.
+5. compose it with the established grammar.
+6. create the scene in the approved visual family.
+7. review it beside the anchor set and at handbook size.
+8. add useful search tags only when needed.
+9. add selective related-topic links only when useful.
+10. polish where real content exposes a need.
+11. change structure only when the current system genuinely cannot express the content.
 
 future work should normally focus on topic modules, wording, scene-image production, search metadata, and related-topic relationships rather than core widget redesign.
 

@@ -254,6 +254,29 @@ practical rule:
 
 > use wheeler's game for wheeler. use current dst for the handbook's mechanics.
 
+### community perspective is required
+
+before finalizing any gameplay topic, inspect a useful sample of current community discussions and practical guides.
+
+look especially for:
+
+- problems beginners repeatedly report.
+- advice experienced players repeatedly give.
+- mechanics that are technically documented but easy for new players to miss.
+- practical choices, escape options, recovery methods, and quality-of-life knowledge.
+- common misconceptions or traps.
+- places where experienced players disagree.
+
+look for repeated patterns across multiple discussions rather than treating one comment or guide as consensus.
+
+community research is a prioritization and player-experience source, not the final authority for mechanics.
+
+when community advice suggests a useful fact or tactic, verify the underlying mechanic separately against current `dst` sources before publishing it.
+
+do not copy community optimization culture blindly. frequent advice may still be too advanced, too spoilery, too rigid, or too efficiency-focused for `dst 101`.
+
+the goal is to discover what players genuinely need help noticing, then teach only the part that fits the handbook.
+
 ## page-element voice jobs
 
 | element | voice job |
@@ -312,15 +335,16 @@ use those clues sparingly.
 for each topic:
 
 1. identify why the page exists.
-2. decide what a beginner genuinely needs.
-3. decide what should remain discoverable.
-4. verify mechanics separately.
-5. ask what caught wheeler's attention.
-6. decide what the image contributes.
-7. write the clear teaching first.
-8. add personality only where it naturally belongs.
-9. leave the reader with judgment rather than a script.
-10. read nearby pages and remove repeated rhythms, jokes, warnings, or character clues.
+2. inspect current community discussions and practical guides for recurring beginner problems, useful advice, overlooked mechanics, and disagreements.
+3. decide what a beginner genuinely needs.
+4. decide what should remain discoverable.
+5. verify candidate mechanics separately against current `dst`.
+6. ask what caught wheeler's attention.
+7. decide what the image contributes.
+8. write the clear teaching first.
+9. add personality only where it naturally belongs.
+10. leave the reader with judgment rather than a script.
+11. read nearby pages and remove repeated rhythms, jokes, warnings, or character clues.
 
 ## final check
 
