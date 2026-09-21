@@ -1,34 +1,35 @@
 return {
-    id = "companions",
-    title = "Companions",
-    icon = "companions",
+    id = "gathering",
+    title = "Gathering",
+    icon = "gathering",
     tags = {
-        "followers",
-        "allies",
-        "friends",
-        "pets",
-        "pigmen",
+        "resources",
+        "materials",
+        "harvest",
+        "harvesting",
+        "collect",
+        "collecting",
     },
     pages = {
         {
-            illustration = "companions_pigmen",
+            illustration = "gathering_shadow_servants",
 
             regions = {
                 top_left = {
                     {
                         type = "headline",
-                        text = "Bring some company",
+                        text = "Notice where things come from",
                     },
                     {
                         type = "subtitle",
-                        text = "Not every companion follows the same rules.",
+                        text = "Knowing where useful materials come from saves time.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Followers tend to stick around longer for a certain woodsman.",
+                        text = "I had help with the heavy work.",
                     },
                 },
 
@@ -40,8 +41,8 @@ return {
                     {
                         type = "related_topics",
                         topics = {
-                            "creatures",
-                            "combat",
+                            "crafting",
+                            "storage",
                             "food",
                         },
                     },
@@ -50,26 +51,26 @@ return {
                 right = {
                     {
                         type = "heading",
-                        text = "Company comes in different forms",
+                        text = "Use the right tool",
                     },
                     {
                         type = "text",
                         text = [[
-Some creatures can be persuaded to follow for a while. Others stay with you for different reasons, and some are better thought of as pets than helpers.
+Some materials can be picked up by hand. Others need an axe, pickaxe, shovel, or another tool before you can gather them.
 
-Pigs are one easy example: meat can make one friendly for a time. Other companions may want something completely different.
+When you need something unfamiliar, look at what is growing, lying around, or moving nearby. The source is often easier to remember once you have found it yourself.
 ]],
                     },
                     {
                         type = "heading",
-                        text = "See what kind of help they offer",
+                        text = "Gather for what you are doing",
                     },
                     {
                         type = "text",
                         text = [[
-A companion might help in a fight, carry things, work nearby, or simply follow along. It may wander off, react to something nearby, or stop following later.
+I can lose half a day collecting things simply because they are there. I try to take what helps with the next part of the trip and leave some room for whatever I find.
 
-Keep an eye on what they are doing. Do not assume every companion behaves the same way.
+If I keep needing the same material, I remember where I found it.
 ]],
                     },
                 },

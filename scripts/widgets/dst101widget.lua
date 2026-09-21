@@ -2387,14 +2387,14 @@ function DST101Widget:BuildScrollbar()
     end
 
     add_scroll_arrow_button(
-        scrollbar.top - 24,
+        scrollbar.top_arrow_top,
         scrollbar.top - 1,
         -1
     )
 
     add_scroll_arrow_button(
         scrollbar.bottom + 1,
-        scrollbar.bottom + 24,
+        scrollbar.bottom_arrow_bottom,
         1
     )
 end

@@ -63,12 +63,16 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "food_foraging.tex",
         },
+        gathering_shadow_servants = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "gathering_shadow_servants.tex",
+        },
         health_recovering = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "health_recovering.tex",
         },
         sanity = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "sanity.tex",
         },
         seasons_winter_arrives = {
@@ -78,6 +82,10 @@ return {
         setting_out = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "setting_out.tex",
+        },
+        storage_supplies = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "storage_supplies.tex",
         },
         temperature_thermal_stone = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",

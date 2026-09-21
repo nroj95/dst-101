@@ -64,6 +64,8 @@ return {
             right = 353,
             top = 143,
             bottom = 755,
+            top_arrow_top = 111,
+            bottom_arrow_bottom = 789,
         },
 
         topic_rows = {

@@ -30,7 +30,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Winter arrived before I was ready.",
+                        text = "A good beard takes some of winter's bite away.",
                     },
                 },
 
