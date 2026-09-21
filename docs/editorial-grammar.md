@@ -250,6 +250,7 @@ headings receive their divider automatically.
 `top_left` is flexible, not a title slot. it may contain:
 
 - headline + subtitle.
+- page heading + text.
 - heading + text.
 - text only.
 - multiple prose blocks.
@@ -257,13 +258,15 @@ headings receive their divider automatically.
 
 ### secondary-page openings
 
-after page 1, `top_left` should normally begin with concise body text or a short bullet list.
+after page 1, use a compact `page_heading` when a distinct subtopic benefits from being recognizable immediately.
 
-secondary pages continue the current topic; they do not need another headline or heading to reintroduce it.
+`page_heading` is a small page label, not another headline or section heading. it uses the handbook header font without a divider and normally sits above concise body text.
 
-if a later page genuinely needs a prominent new heading to establish what it is about, treat that as a sign that the material may belong in a separate topic instead.
+the body should continue from the label rather than repeat it. for example, after `Winter`, begin with the useful fact rather than another sentence beginning `Winter...`.
 
-use a secondary-page `top_left` heading only as a rare exception.
+plain body text or a short bullet list is still valid when a label adds nothing. do not add a `page_heading` merely because the page number changed.
+
+normal `heading` blocks remain conceptual divisions, not substitutes for `page_heading`.
 
 ### right column
 
@@ -298,9 +301,10 @@ do not turn reasoning into bullets when context matters more than scanability.
 ### dividers
 
 ```text
-headline -> no divider
-heading  -> automatic divider
-text     -> no divider
+headline     -> no divider
+page_heading -> no divider
+heading      -> automatic divider
+text         -> no divider
 ```
 
 authors do not independently place decorative dividers.
@@ -354,7 +358,7 @@ do not invent an extra lesson merely to justify page 2, and do not compress usef
 
 ## search metadata
 
-search already indexes topic title, topic tags, subtitle, headings, body text, bullets, captions, and notes.
+search already indexes topic title, topic tags, subtitle, page headings, headings, body text, bullets, captions, and notes.
 
 use topic-level tags only for useful vocabulary a reader might search for that visible content does not already provide.
 

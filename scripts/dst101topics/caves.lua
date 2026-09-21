@@ -75,9 +75,13 @@ You can always come back after you know what you actually need.
             regions = {
                 top_left = {
                     {
+                        type = "page_heading",
+                        text = "The Nightmare Cycle",
+                    },
+                    {
                         type = "text",
                         text = [[
-Some deeper places change on their own. If the red lights and fissures start growing more active, pay attention.
+Red lights and fissures can grow brighter and more active before the dangerous phase begins.
 ]],
                     },
                 },
@@ -107,24 +111,22 @@ Some deeper places change on their own. If the red lights and fissures start gro
                 right = {
                     {
                         type = "heading",
-                        text = "The nightmare cycle",
+                        text = "Read the warning",
                     },
                     {
                         type = "text",
                         text = [[
-At their worst, those lights and fissures can release hostile Shadow Creatures even when your sanity is fine.
-
-The danger settles again later.
+The stronger the red glow becomes, the more dangerous the cycle is getting. Nightmare lights can also drain sanity while they are active.
 ]],
                     },
                     {
                         type = "heading",
-                        text = "You can wait",
+                        text = "When it peaks",
                     },
                     {
                         type = "text",
                         text = [[
-If an area suddenly becomes much more dangerous, backing out and waiting for the cycle to ease is a reasonable choice. You do not have to fight everything that appears.
+At its worst, nightmare lights and fissures can release hostile Shadow Creatures even when your sanity is fine. The cycle eventually settles again, and those creatures disappear with it.
 ]],
                     },
                 },

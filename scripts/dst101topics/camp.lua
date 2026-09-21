@@ -75,9 +75,13 @@ If another part of the world becomes more useful, build there too or move on. I 
             regions = {
                 top_left = {
                     {
+                        type = "page_heading",
+                        text = "Camp safety",
+                    },
+                    {
                         type = "text",
                         text = [[
-Camp tends to collect things I would rather not lose. I leave some room between important structures, especially where fire or a fight could spread.
+Useful things have a habit of collecting in one place. I leave some room between important structures, especially where fire or a fight could spread.
 ]],
                     },
                 },

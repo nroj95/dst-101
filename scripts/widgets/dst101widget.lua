@@ -88,6 +88,14 @@ local BLOCK_STYLES = {
         spacing = 5,
     },
 
+    page_heading = {
+        font = HEADERFONT,
+        colour = LAYOUT.colours.headline_text,
+        size = 30,
+        line_height = 30,
+        spacing = 4,
+    },
+
     text = {
         font = BODY_FONT,
         colour = LAYOUT.colours.body_text,
@@ -1032,7 +1040,7 @@ local function render_flow_block(
 
     -- Keep headings on one line whenever they fit. Only headings that would
     -- wrap are given a deliberate, balanced two-line split.
-    if block.type == "heading" then
+    if block.type == "heading" or block.type == "page_heading" then
         text:SetString(value)
 
         local one_line_width =

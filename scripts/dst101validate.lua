@@ -59,6 +59,67 @@ local function validate_headline_pair(
 end
 
 
+local function validate_page_heading(
+    topic,
+    page_number,
+    region_name,
+    blocks
+)
+    local page_heading_count = 0
+
+    for block_index, block in ipairs(blocks) do
+        if block.type == "page_heading" then
+            page_heading_count =
+                page_heading_count + 1
+
+            if region_name ~= "top_left" then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "page_heading may only appear in top_left"
+                )
+            end
+
+            if page_number == 1 then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "page_heading is reserved for secondary pages"
+                )
+            end
+
+            if block_index ~= 1 then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "page_heading must be the first top_left block"
+                )
+            end
+
+            if block.text == nil or block.text == "" then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "page_heading text may not be empty"
+                )
+            end
+        end
+    end
+
+    if page_heading_count > 1 then
+        authoring_error(
+            topic.id,
+            page_number,
+            region_name,
+            "top_left may contain at most one page_heading"
+        )
+    end
+end
+
 local function validate_illustration_caption(
     topic,
     page_number,

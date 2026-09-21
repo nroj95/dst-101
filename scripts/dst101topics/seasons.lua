@@ -66,8 +66,12 @@ return {
             regions = {
                 top_left = {
                     {
+                        type = "page_heading",
+                        text = "Winter",
+                    },
+                    {
                         type = "text",
-                        text = "Winter turns cold enough to freeze you. A reliable way to warm up matters both at camp and while travelling.",
+                        text = "The cold can become severe enough to freeze you. A reliable way to warm up matters both at camp and while travelling.",
                     },
                 },
 
@@ -105,8 +109,12 @@ return {
             regions = {
                 top_left = {
                     {
+                        type = "page_heading",
+                        text = "Spring",
+                    },
+                    {
                         type = "text",
-                        text = "Spring brings long stretches of rain, wet ground, and frequent storms. Staying soaked causes several smaller problems to pile up.",
+                        text = "Expect long stretches of rain, wet ground, and frequent storms. Staying soaked causes several smaller problems to pile up.",
                     },
                 },
 
@@ -152,8 +160,12 @@ return {
             regions = {
                 top_left = {
                     {
+                        type = "page_heading",
+                        text = "Summer",
+                    },
+                    {
                         type = "text",
-                        text = "Summer heats the surface enough to overheat you, while nearby flammable things can begin to smolder. Decide how you want to spend the season before the worst heat arrives.",
+                        text = "The surface becomes hot enough to overheat you, while nearby flammable things can begin to smolder. Decide how you want to spend the season before the worst heat arrives.",
                     },
                 },
 

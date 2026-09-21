@@ -60,6 +60,7 @@ current reusable content blocks:
 ```text
 headline
 subtitle
+page_heading
 heading
 text
 bullets
@@ -80,6 +81,8 @@ currently enforced:
 - topic ids exist and are unique.
 - headline is immediately followed by subtitle.
 - subtitle never appears without its headline.
+- `page_heading` may appear only as the first `top_left` block on page 2+.
+- each page may contain at most one non-empty `page_heading`.
 - every illustrated page has exactly one non-empty caption block.
 - caption regions do not exist without an illustration.
 - non-empty right columns begin with a heading.
@@ -101,17 +104,21 @@ custom fonts:
 ```text
 body:              dst101_alegreya_regular
 subtitle/caption:  dst101_alegreya_italic
-headline/heading:  HEADERFONT
+headline/page_heading/heading: HEADERFONT
 ```
 
 important values:
 
 ```text
-heading size        36
-heading line_height 36
-heading spacing      5
+page_heading size        30
+page_heading line_height 30
+page_heading spacing      4
 
-body size           24
+heading size             36
+heading line_height      36
+heading spacing           5
+
+body size                24
 body spacing        32
 ```
 
@@ -132,6 +139,16 @@ only headlines that cannot fit switch to the fixed two-line treatment, where the
 
 if copy still cannot fit, rewrite the headline rather than progressively shrinking type.
 
+## secondary-page headings
+
+`page_heading` is a compact identifier for a distinct subtopic on page 2 or later.
+
+it uses `HEADERFONT` at size `30`, shares the balanced heading-wrapping behavior, and does not create a divider.
+
+when used, it is the first block in `top_left`. body text that follows should continue the thought rather than repeat the label.
+
+plain prose openings remain valid when a secondary page does not benefit from a label.
+
 ## normal heading wrapping
 
 normal section headings also preserve one-line rendering whenever possible.
@@ -144,7 +161,7 @@ headings automatically create their ornamental divider.
 
 ## top-left text-only openings
 
-when `top_left` begins with body text rather than a headline/heading, the renderer applies:
+when `top_left` begins with body text rather than a headline/page heading/heading, the renderer applies:
 
 ```text
 vertical offset: 24 source units
@@ -182,9 +199,10 @@ divider_01 ... divider_06
 authors do not choose divider presence or variant.
 
 ```text
-heading  -> automatic divider
-headline -> no divider
-text     -> no divider
+heading      -> automatic divider
+headline     -> no divider
+page_heading -> no divider
+text         -> no divider
 ```
 
 variant selection is deterministic from topic/page/region/block context.
@@ -277,6 +295,7 @@ search indexes:
 topic title
 topic tags
 subtitle
+page heading
 heading
 body text
 bullets
