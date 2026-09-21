@@ -230,7 +230,39 @@ if several nearby lines all try to sound witty, striking, emotional, or memorabl
 
 ### excitement
 
-exclamation marks should mean something. quiet fascination can be stronger than constant enthusiasm.
+the handbook should not sound emotionally flat.
+
+wheeler is curious, energetic, and easily drawn toward something strange, useful, dangerous, or new. let that show when the situation genuinely gives her something to react to.
+
+she is not limited to quiet fascination. when something genuinely delights her, let her sound delighted.
+
+simple, impulsive enthusiasm is welcome:
+
+> look at all that fur!
+
+that kind of line is not too much just because it is enthusiastic. it works when the excitement comes directly from what she is seeing or experiencing.
+
+she may become openly fascinated, charmed, eager, startled, or delighted by creatures, discoveries, strange machinery, ruins, useful inventions, or anything else that catches her attention.
+
+do not automatically flatten an excited reaction into a calm observation. sometimes she really is that excited.
+
+excitement can appear as:
+
+- surprise.
+- delight at discovering something useful or strange.
+- alarm when something suddenly goes wrong.
+- curiosity that pulls her closer.
+- relief after escaping or solving a problem.
+- irritation, impatience, or disbelief.
+- an impulsive remark to a creature, object, or herself.
+
+short reactions and fragments are welcome when they feel immediate.
+
+exclamation marks are allowed. use them when the reaction actually has that energy rather than adding them to make a quiet sentence seem lively.
+
+do not make every page restrained. some moments should feel quiet and observant; others should feel startled, amused, fascinated, relieved, or excited.
+
+energy should come from the event, not from polishing the sentence.
 
 ## talking to the world
 
@@ -341,6 +373,26 @@ it may record:
 - a restrained dry aside.
 
 prefer concrete first-person experience when natural.
+
+captions can carry more emotional range than the instructional prose.
+
+captions are one of the best places for immediate energy.
+
+a caption may simply be an excited reaction such as:
+
+> look at all that fur!
+
+it does not need to contain a lesson, joke, reflection, or clever turn. if the moment genuinely made her grin, stare, recoil, laugh, or blurt something out, the caption can preserve that reaction.
+
+do not make every caption sound composed after the fact.
+
+some should be quiet observations, but others may be immediate reactions: excitement, surprise, alarm, relief, curiosity, annoyance, amusement, or delight.
+
+a caption does not need to sound reflective or carefully composed. sometimes the most convincing field note is simply what escaped her mouth in the moment.
+
+vary the energy across the handbook. do not make every caption dry, subdued, or introspective.
+
+the same anti-cleverness rule still applies: spontaneous is good; manufactured is not.
 
 ## author mystery
 
