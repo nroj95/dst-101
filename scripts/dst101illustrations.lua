@@ -51,6 +51,14 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "darkness.tex",
         },
+        death_ghost = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "death_ghost.tex",
+        },
+        death_recovery = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "death_recovery.tex",
+        },
         exploration_biome_edge = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "exploration_biome_edge.tex",
@@ -64,11 +72,11 @@ return {
             texture = "food_cooking.tex",
         },
         food_foraging = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "food_foraging.tex",
         },
         gathering_shadow_servants = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "gathering_shadow_servants.tex",
         },
         health_recovering = {

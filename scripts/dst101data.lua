@@ -4,6 +4,7 @@ local TOPIC_MODULES = {
     "dst101topics/fire",
     "dst101topics/food",
     "dst101topics/health",
+    "dst101topics/death",
     "dst101topics/sanity",
     "dst101topics/crafting",
     "dst101topics/camp",
