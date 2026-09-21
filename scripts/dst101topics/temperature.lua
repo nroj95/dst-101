@@ -18,45 +18,45 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "Watch for the first signs",
+                        text = "Stay ahead of the temperature",
                     },
                     {
                         type = "subtitle",
-                        text = "Your view changes before cold or heat hurts.",
+                        text = "Warm up, cool down, or slow the change before either extreme hurts.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "It stayed warm longer than I expected. Useful little rock.",
+                        text = "A Thermal Stone is handy when I need to warm up or cool down.",
                     },
                 },
 
                 right = {
                     {
                         type = "heading",
-                        text = "Read the change",
+                        text = "Your surroundings push it around",
                     },
                     {
                         type = "text",
-                        text = table.concat({
-                            "Your body temperature follows the conditions around you. Stay too cold and you begin freezing; stay too hot and you begin overheating. The edges of your view warn you before either starts hurting you.",
-                            "",
-                            "Use that warning to warm or cool yourself before you start taking damage.",
-                        }, "\n"),
+                        text = "Cold conditions pull your temperature down, while heat pushes it up. Being wet can make the cold worse. Stay too cold and you begin freezing; stay too hot and you begin overheating.",
                     },
                     {
                         type = "heading",
-                        text = "Slow the change",
+                        text = "Change it on purpose",
                     },
                     {
                         type = "text",
-                        text = table.concat({
-                            "Insulation slows temperature change. A Thermal Stone can carry stored warmth or cold after you warm or cool it with the right source.",
-                            "",
-                            "Neither makes you immune. They just give you more time to reach somewhere safer.",
-                        }, "\n"),
+                        text = "Fires and other heat sources warm you. Endothermic fires and other cold sources cool you. A Thermal Stone can carry warmth or cold with you, which makes it especially useful while travelling.",
+                    },
+                    {
+                        type = "heading",
+                        text = "Buy yourself more time",
+                    },
+                    {
+                        type = "text",
+                        text = "Warm clothing slows cooling, while summer gear slows heating. Neither makes you immune. Watch the edges of your view and react before the temperature starts costing health.",
                     },
                 },
 
@@ -67,7 +67,12 @@ return {
                     },
                     {
                         type = "related_topics",
-                        topics = { "health", "crafting" },
+                        topics = {
+                            "health",
+                            "wetness",
+                            "seasons",
+                            "fire",
+                        },
                     },
                 },
             },

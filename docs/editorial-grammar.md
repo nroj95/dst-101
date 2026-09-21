@@ -194,6 +194,18 @@ do not force equal representation or a strict rotation quota.
 
 do not depict wheeler simply because she is the internal author foundation; the author remains visually unconfirmed.
 
+### character-specific visual hints
+
+when a survivor appears, their selection may quietly teach something true about that character.
+
+a scene can show a survivor using a distinctive strength, companion, resistance, tool, or other mechanic when it fits the page naturally. this should add a second layer of information without turning a general topic into a character guide.
+
+the page must still make sense to a reader who does not recognize the character-specific hint.
+
+do not force character-specific casting when another survivor, no survivor, or an object/environment study would serve the page better.
+
+when an image demonstrates a mechanic belonging to the pictured survivor, avoid first-person captions that could incorrectly attribute that mechanic to the handbook's internal author. use neutral or third-person phrasing when needed.
+
 ## page grammar
 
 ### sidebar label

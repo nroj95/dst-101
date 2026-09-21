@@ -1,4 +1,4 @@
-# dst 101 — development checkpoint
+# dst 101 — development
 
 status: concise production reference
 
@@ -15,38 +15,6 @@ this note documents the technical handbook implementation.
 use the separate voice/philosophy note for writing decisions and the editorial grammar note for composition and image direction.
 
 the shell and authoring grammar are considered established. new structural systems should be added only when real content exposes a concrete limitation.
-
-## current milestone
-
-the project is in content production. the current documented topic set is:
-
-```text
-setting_out
-darkness
-fire
-food
-health
-sanity
-crafting
-camp
-creatures
-companions
-combat
-temperature
-wetness
-seasons
-beefalo
-caves
-```
-
-current totals:
-
-```text
-16 topics
-19 pages
-19 scene images
-2 illustration atlases
-```
 
 ## main project areas
 
@@ -422,8 +390,6 @@ builder behavior:
 - generates runtime `.tex/.xml` files.
 - regenerates `scripts/dst101illustrations.lua`.
 
-the current 19 images use two atlases.
-
 ## other asset builders
 
 ```text
@@ -437,8 +403,7 @@ runtime atlases:
 images/ui/dst101_ui.tex/xml
 images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml
-images/illustrations/dst101_illustrations_01.tex/xml
-images/illustrations/dst101_illustrations_02.tex/xml
+images/illustrations/dst101_illustrations_*.tex/xml
 ```
 
 ## research/version verification

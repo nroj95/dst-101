@@ -51,6 +51,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "darkness.tex",
         },
+        exploration_biome_edge = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "exploration_biome_edge.tex",
+        },
         fire_tending = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "fire_tending.tex",
@@ -68,16 +72,32 @@ return {
             texture = "gathering_shadow_servants.tex",
         },
         health_recovering = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "health_recovering.tex",
+        },
+        hounds_distraction = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "hounds_distraction.tex",
         },
         sanity = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "sanity.tex",
         },
-        seasons_winter_arrives = {
+        seasons_overview = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
-            texture = "seasons_winter_arrives.tex",
+            texture = "seasons_overview.tex",
+        },
+        seasons_spring = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "seasons_spring.tex",
+        },
+        seasons_summer = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "seasons_summer.tex",
+        },
+        seasons_winter = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "seasons_winter.tex",
         },
         setting_out = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",

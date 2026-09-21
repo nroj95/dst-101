@@ -13,7 +13,7 @@ return {
 
     pages = {
         {
-            illustration = "seasons_winter_arrives",
+            illustration = "seasons_overview",
 
             regions = {
                 top_left = {
@@ -23,29 +23,29 @@ return {
                     },
                     {
                         type = "subtitle",
-                        text = "What works now may stop working when the season changes.",
+                        text = "Use the easier days to prepare for what comes next.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "A good beard takes some of winter's bite away.",
+                        text = "The weather is mild. Good time to get things ready.",
                     },
                 },
 
                 right = {
                     {
                         type = "heading",
-                        text = "Different season, different trouble",
+                        text = "Each season changes the rules",
                     },
                     {
                         type = "bullets",
                         items = {
-                            "Autumn is usually mild and forgiving.",
-                            "Winter makes warmth essential.",
-                            "Spring brings much more rain and wetness.",
-                            "Summer makes overheating and fire much harder to ignore.",
+                            "Autumn is usually mild and gives you room to explore and prepare.",
+                            "Winter makes warmth important.",
+                            "Spring brings frequent rain and wetness.",
+                            "Summer brings dangerous heat and surface fires.",
                         },
                     },
                     {
@@ -54,9 +54,132 @@ return {
                     },
                     {
                         type = "text",
-                        text = [[Watch how the world changes and use the easier days to prepare for what seems to be coming next.
+                        text = "Watch for the season changing and use calmer days to gather what the next one may demand. Food, fuel, clothing, cooling, and a few useful structures are much easier to arrange before conditions become urgent.",
+                    },
+                },
+            },
+        },
 
-You do not need a perfect seasonal schedule. A little food, fuel, suitable clothing, and the right equipment prepared early gives you far more room to adapt when conditions change.]],
+        {
+            illustration = "seasons_winter",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "text",
+                        text = "Winter turns cold enough to freeze you. A reliable way to warm up matters both at camp and while travelling.",
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "I never regret bringing enough fuel.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Keep warmth within reach",
+                    },
+                    {
+                        type = "text",
+                        text = "Fires restore warmth, while insulated clothing and a heated Thermal Stone give you more time before the cold catches up. Carry enough fuel to make another fire when you are away from camp.",
+                    },
+                    {
+                        type = "heading",
+                        text = "Winter is still for exploring",
+                    },
+                    {
+                        type = "text",
+                        text = "Winter changes what grows and which creatures appear, but the world is still worth exploring. With enough warmth and fuel, you can keep travelling instead of waiting for better weather.",
+                    },
+                },
+            },
+        },
+
+        {
+            illustration = "seasons_spring",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "text",
+                        text = "Spring brings long stretches of rain, wet ground, and frequent storms. Staying soaked causes several smaller problems to pile up.",
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Wet again. At least the plants seem happy.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Stay dry enough to function",
+                    },
+                    {
+                        type = "text",
+                        text = "Rain protection keeps wetness under control. Too much wetness can drain sanity, make tools slippery, and cool you enough to start freezing, especially early in the season.",
+                    },
+                    {
+                        type = "heading",
+                        text = "Give lightning somewhere safe to go",
+                    },
+                    {
+                        type = "text",
+                        text = "Spring storms bring frequent lightning. A Lightning Rod helps protect nearby camp structures from strikes and the fires they can start.",
+                    },
+                    {
+                        type = "heading",
+                        text = "The rain is useful too",
+                    },
+                    {
+                        type = "text",
+                        text = "Spring is not only trouble. Rain helps crops grow quickly and brings other parts of the world back to life, so good rain protection lets you keep working instead of simply waiting for dry weather.",
+                    },
+                },
+            },
+        },
+
+        {
+            illustration = "seasons_summer",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "text",
+                        text = "Summer heats the surface enough to overheat you, while nearby flammable things can begin to smolder. Decide how you want to spend the season before the worst heat arrives.",
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "A cold fire still feels strange, but I am not complaining.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Keep something cold nearby",
+                    },
+                    {
+                        type = "text",
+                        text = "Endothermic Fires cool instead of warm you. Chilled Thermal Stones, cooling gear, and shade can also buy time while you travel on the surface.",
+                    },
+                    {
+                        type = "heading",
+                        text = "Choose your summer plan",
+                    },
+                    {
+                        type = "text",
+                        text = "Underground, you avoid surface overheating and wildfires, making the caves a useful place to spend much of summer. A prepared camp around the oasis is another option. If you stay at an ordinary surface base, protect nearby flammable structures from smoldering.",
                     },
                 },
 
@@ -71,6 +194,7 @@ You do not need a perfect seasonal schedule. A little food, fuel, suitable cloth
                             "temperature",
                             "wetness",
                             "fire",
+                            "caves",
                         },
                     },
                 },
