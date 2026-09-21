@@ -182,11 +182,15 @@ protect the first encounter; explain opaque useful mechanics when the reader del
 
 ## survivor selection
 
-wilson is a reasonable generic survivor and may recur frequently, but he is not the automatic subject of every scene.
+wilson is a reasonable generic survivor, but he should not become the automatic subject of most scenes.
 
-use another current survivor when the scene benefits from it naturally. omit survivors entirely when an environment, creature, object, or activity study is stronger.
+when a survivor is shown, first consider whether another current survivor can carry the scene just as clearly or more interestingly. prefer broad variety across the handbook over repeatedly falling back to wilson by habit.
 
-do not force equal representation or a rotation quota.
+use wilson when a plain generic survivor is genuinely the clearest choice, or when no other survivor adds anything useful to the scene.
+
+omit survivors entirely when an environment, creature, object, or activity study is stronger.
+
+do not force equal representation or a strict rotation quota.
 
 do not depict wheeler simply because she is the internal author foundation; the author remains visually unconfirmed.
 
@@ -238,6 +242,16 @@ headings receive their divider automatically.
 - text only.
 - multiple prose blocks.
 - nothing.
+
+### secondary-page openings
+
+after page 1, `top_left` should normally begin with concise body text or a short bullet list.
+
+secondary pages continue the current topic; they do not need another headline or heading to reintroduce it.
+
+if a later page genuinely needs a prominent new heading to establish what it is about, treat that as a sign that the material may belong in a separate topic instead.
+
+use a secondary-page `top_left` heading only as a rare exception.
 
 ### right column
 
@@ -306,6 +320,7 @@ related-topic tiles are optional navigation, not decoration.
 when used:
 
 - place them at the bottom of the final page only.
+- when present, `bottom_left` contains only the `Related topics` heading and the related-topic tiles.
 - introduce them with a normal `Related topics` heading.
 - use 2–4 genuinely close, distinct topic links.
 - never link the topic to itself.

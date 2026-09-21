@@ -18,14 +18,7 @@ the shell and authoring grammar are considered established. new structural syste
 
 ## current milestone
 
-current production checkpoint:
-
-```text
-HEAD: 3268b70 add seasons handbook topic
-tag:  handbook-content-v1
-```
-
-current ordered topics:
+the project is in content production. the current documented topic set is:
 
 ```text
 setting_out
@@ -35,20 +28,24 @@ food
 health
 sanity
 crafting
+camp
+creatures
+companions
 combat
 temperature
 wetness
 seasons
 beefalo
+caves
 ```
 
 current totals:
 
 ```text
-12 topics
-13 pages
-13 scene images
-1 illustration atlas
+16 topics
+19 pages
+19 scene images
+2 illustration atlases
 ```
 
 ## main project areas
@@ -123,6 +120,7 @@ currently enforced:
 - no consecutive right-column text blocks for one thought.
 - related topics appear at most once per topic.
 - related topics live in `bottom_left` on the final page only.
+- when present, `bottom_left` contains only the `Related topics` heading and related topics.
 - they immediately follow `Related topics`.
 - they are the final block in `bottom_left`.
 - they contain 2–4 distinct valid topic ids.
@@ -424,7 +422,7 @@ builder behavior:
 - generates runtime `.tex/.xml` files.
 - regenerates `scripts/dst101illustrations.lua`.
 
-current 13 images still fit in one atlas.
+the current 19 images use two atlases.
 
 ## other asset builders
 
@@ -440,6 +438,7 @@ images/ui/dst101_ui.tex/xml
 images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml
 images/illustrations/dst101_illustrations_01.tex/xml
+images/illustrations/dst101_illustrations_02.tex/xml
 ```
 
 ## research/version verification

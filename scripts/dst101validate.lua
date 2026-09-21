@@ -249,6 +249,17 @@ local function validate_related_topics(
                 )
             end
 
+            if region_name == "bottom_left"
+                and block_index ~= 2
+            then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "bottom_left with related_topics may contain only the 'Related topics' heading and related_topics"
+                )
+            end
+
             if page_number ~= #topic.pages then
                 authoring_error(
                     topic.id,
