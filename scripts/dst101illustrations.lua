@@ -23,6 +23,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "camp_safety.tex",
         },
+        caves_depths_worms = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "caves_depths_worms.tex",
+        },
         caves_first_descent = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "caves_first_descent.tex",
@@ -68,7 +72,7 @@ return {
             texture = "fire_tending.tex",
         },
         food_cooking = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "food_cooking.tex",
         },
         food_foraging = {

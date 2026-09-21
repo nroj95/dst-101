@@ -54,9 +54,9 @@ return {
                     {
                         type = "text",
                         text = [[
-A plugged Sinkhole can be opened with a pickaxe. The stairs lead into the caves, and the stairway below leads back to the surface.
+Opening a plugged Sinkhole with a pickaxe reveals the stairs below. Those stairs are also your way back to the surface.
 
-There is some daylight around the stairway, but it does not follow you. Bring a light you can rely on, plus enough fuel or materials to replace it.
+Light Flowers grow underground. Their bulbs are used to make Lanterns and can refuel both Lanterns and Miner Hats, giving you a renewable way to keep portable light going.
 ]],
                     },
                     {
@@ -66,9 +66,9 @@ There is some daylight around the stairway, but it does not follow you. Bring a 
                     {
                         type = "text",
                         text = [[
-Food, healing, armor, and a few basic tools are plenty for a first look. Check your map before wandering far from the stairs, and leave some light and supplies for the return trip.
+Food, healing, armor, and a few basic tools are plenty for a first look. Check your map before wandering far from the stairs.
 
-You can always come back after you know what you actually need.
+Long trips underground also wear on sanity. You do not need to push farther just because your light is still good. You can always come back after you know what you actually need.
 ]],
                     },
                 },
@@ -89,7 +89,7 @@ You can always come back after you know what you actually need.
                     {
                         type = "text",
                         text = [[
-Red lights and fissures can grow brighter and more active before the dangerous phase begins.
+In some deeper places, red lights and fissures can grow brighter and more active before the dangerous phase begins.
 ]],
                     },
                 },
@@ -100,7 +100,6 @@ Red lights and fissures can grow brighter and more active before the dangerous p
                         text = "I noticed the red glow before the shadows appeared.",
                     },
                 },
-
 
                 right = {
                     {
@@ -121,6 +120,57 @@ The stronger the red glow becomes, the more dangerous the cycle is getting. Nigh
                         type = "text",
                         text = [[
 At its worst, nightmare lights and fissures can release hostile Shadow Creatures even when your sanity is fine. The cycle eventually settles again, and those creatures disappear with it.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
+
+        {
+            illustration = "caves_depths_worms",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Depths Worms",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+While you are underground, rumbling growls can warn that a Depths Worm attack is coming. The growls become more frequent as it gets closer.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "That growling was getting closer.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Move before they arrive",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+If you are near camp or somewhere awkward, use the warning to find more room. Depths Worms hit hard, and several arriving together can turn a cramped fight into a bad one.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "You do not have to fight them there",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+They are slow enough to outrun, and enough distance can make them lose interest. Use that room to regroup or choose a better place to fight instead of taking on the whole group where it found you.
 ]],
                     },
                 },
