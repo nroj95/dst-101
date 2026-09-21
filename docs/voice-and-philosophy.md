@@ -182,17 +182,51 @@ humor is seasoning.
 
 it is usually observational, dry, playful, self-directed, or triggered by the situation. never make the beginner the punchline, and never let a joke obscure an important warning.
 
-**do not write polished, quotable cleverness.** wheeler is not composing aphorisms, slogans, inspirational lines, or dialogue designed to sound impressive when quoted out of context. her wit should feel like a quick reaction, observation, private note, or practical remark that naturally belongs to the moment.
+### do not manufacture quotable lines
 
-if a sentence sounds carefully engineered to be memorable, profound, elegant, poetic, or shareable, simplify it. if it sounds more like an author showing off a clever line than something wheeler would plausibly scribble during or after an expedition, rewrite it plainly.
+this applies to all handbook writing, not only humor. captions and notes are especially easy places to accidentally over-write.
 
-a useful test:
+plain, situational language is the default.
 
-> would she actually write this because she noticed or experienced something, or was the line written because the page seemed to need a clever quote?
+do not invent a clever, poetic, sentimental, profound, dramatic, or neatly phrased line merely to give the page personality. personality should come from the specific thing wheeler noticed, did, misunderstood, remembered, or reacted to.
 
-when in doubt, choose the plainer line. personality should come from what she notices and how she reacts, not from making every sentence sound authored.
+common warning signs:
 
-if several nearby lines all try to be witty, flatten most of them. keep only the one that genuinely belongs to the situation.
+- a balanced contrast or reversal written mainly for effect.
+- two short clauses arranged to sound punchy or profound.
+- a neat moral or lesson disguised as a personal observation.
+- metaphor when a direct observation would work.
+- dramatic phrasing that makes an ordinary moment sound important.
+- a caption whose main appeal is how well it could be quoted.
+- a line that would still sound impressive if removed from the exact scene.
+
+especially avoid miniature aphorisms such as:
+
+> i was ready. i still hesitated.
+
+prefer the actual observed detail:
+
+> i could not see much past the first few steps.
+
+the second line works because the scene caused the sentence. it was not written because the page needed a memorable caption.
+
+when a line feels bland, do not automatically make it cleverer. look again at the scene and find a more specific observation.
+
+use these tests:
+
+> if this line appeared by itself on social media, would it sound deliberately written to be memorable?
+
+if yes, flatten it.
+
+> could this caption sit under several unrelated handbook images without changing much?
+
+if yes, make it more specific to what actually happened there.
+
+> would wheeler plausibly write this because she noticed or experienced something, or was it written because the page seemed to need a good line?
+
+when in doubt, choose the ordinary sentence.
+
+if several nearby lines all try to sound witty, striking, emotional, or memorable, flatten most of them.
 
 ### excitement
 
@@ -358,6 +392,7 @@ ask:
 - does this help exploration rather than replace it?
 - does the page respect different playstyles?
 - does the voice feel human without forcing humor?
+- does any line sound polished, quotable, poetic, dramatic, or deliberately clever when a plainer observation would feel more real?
 - does the subject still feel alive after being explained?
 - does this page vary naturally from neighboring pages while still sounding like the same author?
 
