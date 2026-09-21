@@ -335,7 +335,7 @@ related-topic tiles are optional navigation, not decoration.
 
 when used:
 
-- place them at the bottom of the final page only.
+- place them at the bottom of page 1 only, so they clearly relate to the overall topic rather than a later subtopic.
 - when present, `bottom_left` contains only the `Related topics` heading and the related-topic tiles.
 - introduce them with a normal `Related topics` heading.
 - use 2–4 genuinely close, distinct topic links.

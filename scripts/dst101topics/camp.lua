@@ -33,10 +33,17 @@ return {
 
                 bottom_left = {
                     {
-                        type = "text",
-                        text = [[
-Your first camp does not need to become your permanent home. A place to leave supplies, cook, craft, and recover is already useful.
-]],
+                        type = "heading",
+                        text = "Related topics",
+                    },
+                    {
+                        type = "related_topics",
+                        topics = {
+                            "fire",
+                            "crafting",
+                            "food",
+                            "seasons",
+                        },
                     },
                 },
 
@@ -48,6 +55,8 @@ Your first camp does not need to become your permanent home. A place to leave su
                     {
                         type = "text",
                         text = [[
+Your first camp does not need to become your permanent home. A place to leave supplies, cook, craft, and recover is already useful.
+
 I like some room around camp and a few useful things within easy reach. Paths, food, materials, and whatever you are exploring next can all matter.
 
 Different trips make different places convenient.
@@ -93,21 +102,6 @@ Useful things have a habit of collecting in one place. I leave some room between
                     },
                 },
 
-                bottom_left = {
-                    {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
-                        type = "related_topics",
-                        topics = {
-                            "fire",
-                            "crafting",
-                            "food",
-                            "seasons",
-                        },
-                    },
-                },
 
                 right = {
                     {

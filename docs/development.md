@@ -90,7 +90,7 @@ currently enforced:
 - right-column body currently uses `text` and/or `bullets`.
 - no consecutive right-column text blocks for one thought.
 - related topics appear at most once per topic.
-- related topics live in `bottom_left` on the final page only.
+- related topics live in `bottom_left` on page 1 only.
 - when present, `bottom_left` contains only the `Related topics` heading and related topics.
 - they immediately follow `Related topics`.
 - they are the final block in `bottom_left`.
@@ -249,7 +249,7 @@ important rules:
 
 - optional.
 - 2–4 valid close links.
-- final page only.
+- page 1 only.
 - introduced by `Related topics` heading.
 - final block in `bottom_left`.
 

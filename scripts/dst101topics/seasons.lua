@@ -34,6 +34,21 @@ return {
                     },
                 },
 
+                bottom_left = {
+                    {
+                        type = "heading",
+                        text = "Related topics",
+                    },
+                    {
+                        type = "related_topics",
+                        topics = {
+                            "temperature",
+                            "wetness",
+                            "fire",
+                            "caves",
+                        },
+                    },
+                },
                 right = {
                     {
                         type = "heading",
@@ -195,21 +210,7 @@ return {
                     },
                 },
 
-                bottom_left = {
-                    {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
-                        type = "related_topics",
-                        topics = {
-                            "temperature",
-                            "wetness",
-                            "fire",
-                            "caves",
-                        },
-                    },
-                },
+
             },
         },
     },

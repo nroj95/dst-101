@@ -321,12 +321,12 @@ local function validate_related_topics(
                 )
             end
 
-            if page_number ~= #topic.pages then
+            if page_number ~= 1 then
                 authoring_error(
                     topic.id,
                     page_number,
                     region_name,
-                    "related_topics may appear only on the final page"
+                    "related_topics must be on page 1"
                 )
             end
 

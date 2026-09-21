@@ -33,10 +33,16 @@ return {
 
                 bottom_left = {
                     {
-                        type = "text",
-                        text = [[
-A plugged Sinkhole can be opened with a pickaxe. The stairs lead into the caves, and the stairway below leads back to the surface.
-]],
+                        type = "heading",
+                        text = "Related topics",
+                    },
+                    {
+                        type = "related_topics",
+                        topics = {
+                            "darkness",
+                            "sanity",
+                            "combat",
+                        },
                     },
                 },
 
@@ -48,6 +54,8 @@ A plugged Sinkhole can be opened with a pickaxe. The stairs lead into the caves,
                     {
                         type = "text",
                         text = [[
+A plugged Sinkhole can be opened with a pickaxe. The stairs lead into the caves, and the stairway below leads back to the surface.
+
 There is some daylight around the stairway, but it does not follow you. Bring a light you can rely on, plus enough fuel or materials to replace it.
 ]],
                     },
@@ -93,20 +101,6 @@ Red lights and fissures can grow brighter and more active before the dangerous p
                     },
                 },
 
-                bottom_left = {
-                    {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
-                        type = "related_topics",
-                        topics = {
-                            "darkness",
-                            "sanity",
-                            "combat",
-                        },
-                    },
-                },
 
                 right = {
                     {
