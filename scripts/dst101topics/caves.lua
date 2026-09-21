@@ -42,6 +42,7 @@ return {
                             "darkness",
                             "sanity",
                             "combat",
+                            "hounds",
                         },
                     },
                 },
@@ -170,7 +171,9 @@ If you are near camp or somewhere awkward, use the warning to find more room. De
                     {
                         type = "text",
                         text = [[
-They are slow enough to outrun, and enough distance can make them lose interest. Use that room to regroup or choose a better place to fight instead of taking on the whole group where it found you.
+They are slow enough to outrun, and enough distance can make them lose interest. If the growling starts near an exit, returning to the surface before they arrive is another option.
+
+The same idea works the other way above ground: if hounds are coming and you are near an open Sinkhole, heading into the caves before they arrive can avoid the surface attack.
 ]],
                     },
                 },
