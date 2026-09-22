@@ -14,7 +14,7 @@
         <Element name="fishing_pond.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
         <Element name="food_cooking.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
         <Element name="food_foraging.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
-        <Element name="gathering_shadow_servants.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
-        <Element name="health_recovering.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
+        <Element name="food_preservation.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="gathering_shadow_servants.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>

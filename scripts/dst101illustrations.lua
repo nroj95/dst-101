@@ -131,12 +131,16 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "food_foraging.tex",
         },
+        food_preservation = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "food_preservation.tex",
+        },
         gathering_shadow_servants = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "gathering_shadow_servants.tex",
         },
         health_recovering = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "health_recovering.tex",
         },
         hounds_distraction = {
@@ -196,7 +200,7 @@ return {
             texture = "storage_supplies.tex",
         },
         temperature_thermal_stone = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "temperature_thermal_stone.tex",
         },
         wetness_rain = {

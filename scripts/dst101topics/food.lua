@@ -118,5 +118,60 @@ You do not need to unlock recipes before trying them. Experiment when you have f
                 note = {},
             },
         },
+
+        {
+            illustration = "food_preservation",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Keeping food longer",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+When you have more food than you can eat soon, preserving it saves you from replacing the same supplies again.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Stored well, a good haul lasts much longer.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Keep food cold",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+An Ice Box slows food spoilage. It works on its own; you do not need to put ice inside it.
+
+A Salt Box keeps certain raw foods fresh even longer, but it cannot store every kind of food.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "Dry meat in clear weather",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Drying Rack turns many raw meats into longer-lasting jerky. The finished jerky comes off fresh, so drying meat that is getting old can give it much more time.
+
+Rain pauses the drying process. If the weather is already wet, an Ice Box or Salt Box is usually the better choice until the rain stops.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
     },
 }
