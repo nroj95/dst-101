@@ -14,6 +14,7 @@ local TOPIC_MODULES = {
     "dst101topics/fishing",
     "dst101topics/hunting",
     "dst101topics/exploration",
+    "dst101topics/sailing",
     "dst101topics/creatures",
     "dst101topics/companions",
     "dst101topics/combat",

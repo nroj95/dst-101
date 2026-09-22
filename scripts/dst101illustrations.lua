@@ -139,6 +139,18 @@ return {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "hunting_tracks.tex",
         },
+        sailing_first_trip = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "sailing_first_trip.tex",
+        },
+        sailing_keeping_afloat = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "sailing_keeping_afloat.tex",
+        },
+        sailing_sails_and_steering = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "sailing_sails_and_steering.tex",
+        },
         sanity = {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "sanity.tex",
