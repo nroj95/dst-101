@@ -57,6 +57,8 @@ return {
                         type = "text",
                         text = [[
 Your hand holds one tool, weapon, or other hand item. Hats and head armor use the head slot. Body armor, many clothes, and Backpacks use the body slot.
+
+A Backpack and Football Helmet already go a long way early on. An Axe or Pickaxe will do in a pinch, but keep an eye out for something better suited to fighting.
 ]],
                     },
                     {
