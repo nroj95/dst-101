@@ -147,6 +147,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "health_recovering.tex",
         },
+        health_sleeping = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "health_sleeping.tex",
+        },
         hounds_distraction = {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "hounds_distraction.tex",
@@ -196,7 +200,7 @@ return {
             texture = "seasons_winter.tex",
         },
         setting_out = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "setting_out.tex",
         },
         storage_supplies = {
