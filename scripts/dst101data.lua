@@ -10,6 +10,7 @@ local TOPIC_MODULES = {
     "dst101topics/camp",
     "dst101topics/storage",
     "dst101topics/gathering",
+    "dst101topics/farming",
     "dst101topics/exploration",
     "dst101topics/creatures",
     "dst101topics/companions",

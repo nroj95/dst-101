@@ -79,6 +79,14 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "exploration_biome_edge.tex",
         },
+        farming_plants = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "farming_plants.tex",
+        },
+        farming_wormwood = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "farming_wormwood.tex",
+        },
         fire_tending = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "fire_tending.tex",
@@ -128,11 +136,11 @@ return {
             texture = "setting_out.tex",
         },
         storage_supplies = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "storage_supplies.tex",
         },
         temperature_thermal_stone = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "temperature_thermal_stone.tex",
         },
         wetness_rain = {
