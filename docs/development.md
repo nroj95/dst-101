@@ -237,7 +237,7 @@ catcoon
 splumonkey
 ```
 
-variation advances only across pages that actually contain notes.
+the starting animal is derived deterministically from the topic id, then rotates by page number. adding or removing notes elsewhere does not reshuffle existing pages.
 
 text clearance adapts to the current animal.
 

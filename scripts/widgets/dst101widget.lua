@@ -225,40 +225,6 @@ local function get_divider_index(key)
 end
 
 
-local function get_note_page_ordinal(
-    data,
-    current_topic_id,
-    current_page
-)
-    local ordinal = 0
-
-    for _, topic in ipairs(data.topics or {}) do
-        for page_index, page in ipairs(
-            topic.pages or {}
-        ) do
-            local note_blocks =
-                page.regions
-                and page.regions.note
-                or nil
-
-            if note_blocks ~= nil
-                and #note_blocks > 0
-            then
-                ordinal = ordinal + 1
-
-                if topic.id == current_topic_id
-                    and page_index == current_page
-                then
-                    return ordinal
-                end
-            end
-        end
-    end
-
-    return 1
-end
-
-
 local function add_divider(
     parent,
     region,
@@ -2781,16 +2747,20 @@ function DST101Widget:RenderRegion(
         local note_animal_index = 1
 
         if region_name == "note" then
-            local note_ordinal =
-                get_note_page_ordinal(
-                    self.data,
-                    topic.id,
-                    self.current_page
+            -- Give each topic a stable starting animal, then rotate by
+            -- page number. Adding notes elsewhere cannot reshuffle it.
+            local topic_animal_start =
+                get_stable_variant_index(
+                    topic.id or "",
+                    #NOTE_ANIMAL_ORDER
                 )
 
-            -- Only pages that actually contain notes advance the cycle.
             note_animal_index =
-                (note_ordinal - 1)
+                (
+                    topic_animal_start
+                    + self.current_page
+                    - 2
+                )
                 % #NOTE_ANIMAL_ORDER
                 + 1
         end
