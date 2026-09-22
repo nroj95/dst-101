@@ -179,6 +179,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "sailing_sails_and_steering.tex",
         },
+        sanity_nightmare_fuel = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "sanity_nightmare_fuel.tex",
+        },
         sanity = {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "sanity.tex",
@@ -196,7 +200,7 @@ return {
             texture = "seasons_summer.tex",
         },
         seasons_winter = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "seasons_winter.tex",
         },
         setting_out = {

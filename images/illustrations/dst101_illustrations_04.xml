@@ -1,9 +1,10 @@
 <Atlas>
     <Texture filename="dst101_illustrations_04.tex" />
     <Elements>
-        <Element name="setting_out.tex" u1="0.02416992" u2="0.3034668" v1="0.64892578" v2="0.96142578" />
-        <Element name="storage_supplies.tex" u1="0.35229492" u2="0.6315918" v1="0.64892578" v2="0.96142578" />
-        <Element name="temperature_thermal_stone.tex" u1="0.68041992" u2="0.9597168" v1="0.64892578" v2="0.96142578" />
-        <Element name="wetness_rain.tex" u1="0.02416992" u2="0.3034668" v1="0.25830078" v2="0.57080078" />
+        <Element name="seasons_winter.tex" u1="0.02416992" u2="0.3034668" v1="0.64892578" v2="0.96142578" />
+        <Element name="setting_out.tex" u1="0.35229492" u2="0.6315918" v1="0.64892578" v2="0.96142578" />
+        <Element name="storage_supplies.tex" u1="0.68041992" u2="0.9597168" v1="0.64892578" v2="0.96142578" />
+        <Element name="temperature_thermal_stone.tex" u1="0.02416992" u2="0.3034668" v1="0.25830078" v2="0.57080078" />
+        <Element name="wetness_rain.tex" u1="0.35229492" u2="0.6315918" v1="0.25830078" v2="0.57080078" />
     </Elements>
 </Atlas>
