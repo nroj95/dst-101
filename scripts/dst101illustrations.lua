@@ -95,6 +95,14 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "fire_tending.tex",
         },
+        fishing_ocean = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "fishing_ocean.tex",
+        },
+        fishing_pond = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "fishing_pond.tex",
+        },
         food_cooking = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "food_cooking.tex",
@@ -128,11 +136,11 @@ return {
             texture = "seasons_spring.tex",
         },
         seasons_summer = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "seasons_summer.tex",
         },
         seasons_winter = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "seasons_winter.tex",
         },
         setting_out = {
