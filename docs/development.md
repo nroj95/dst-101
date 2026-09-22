@@ -89,6 +89,7 @@ currently enforced:
 - each right-column heading has body content.
 - right-column body currently uses `text` and/or `bullets`.
 - no consecutive right-column text blocks for one thought.
+- `bottom_left` does not use normal headings; `Related topics` is the only allowed heading there.
 - related topics appear at most once per topic.
 - related topics live in `bottom_left` on page 1 only.
 - when present, `bottom_left` contains only the `Related topics` heading and related topics.

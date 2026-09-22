@@ -270,6 +270,26 @@ local function validate_right_region(
     end
 end
 
+local function validate_bottom_left_region(
+    topic,
+    page_number,
+    blocks
+)
+    for _, block in ipairs(blocks) do
+        if block.type == "heading"
+            and block.text ~= "Related topics"
+        then
+            authoring_error(
+                topic.id,
+                page_number,
+                "bottom_left",
+                "bottom_left may not contain normal headings"
+            )
+        end
+    end
+end
+
+
 local function validate_related_topics(
     topic,
     page_number,
@@ -448,6 +468,12 @@ local function validate_topics(data)
 
                 if region_name == "right" then
                     validate_right_region(
+                        topic,
+                        page_number,
+                        blocks
+                    )
+                elseif region_name == "bottom_left" then
+                    validate_bottom_left_region(
                         topic,
                         page_number,
                         blocks

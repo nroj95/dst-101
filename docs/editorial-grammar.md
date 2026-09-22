@@ -274,6 +274,20 @@ plain body text or a short bullet list is still valid when a label adds nothing.
 
 normal `heading` blocks remain conceptual divisions, not substitutes for `page_heading`.
 
+### bottom-left region
+
+`bottom_left` is quieter supporting space beneath the illustration.
+
+normally use:
+
+- body text.
+- bullets when the items are genuinely parallel.
+- related topics.
+
+do not use normal `heading` blocks in `bottom_left`. conceptual sections that need headings belong in the right column or another more suitable part of the page.
+
+the only standard heading allowed in `bottom_left` is `Related topics`, when related-topic tiles are present.
+
 ### right column
 
 right-column content is deliberately more structured:
