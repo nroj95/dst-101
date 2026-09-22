@@ -48,9 +48,9 @@ Sanity rises and falls with what you do and what is around you. Watch what makes
                     {
                         type = "text",
                         text = [[
-As sanity falls, the world starts to distort and Shadow Creatures become easier to see. At very low sanity, they become hostile.
+As sanity falls, the world starts to distort and shadows become harder to ignore. If it falls far enough, some can become tangible and attack.
 
-If you want to raise sanity, flowers give a small early boost. Some foods, clothing, sleep, and prototyping a new recipe can help too.
+For most survivors, picking flowers gives a small early boost. Some foods, clothing, sleep, and prototyping a new recipe can help too.
 ]],
                     },
                 },
