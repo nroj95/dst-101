@@ -63,6 +63,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "companions_pigmen.tex",
         },
+        crafting_magic = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "crafting_magic.tex",
+        },
         crafting = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "crafting.tex",
@@ -76,7 +80,7 @@ return {
             texture = "darkness_shadow_hand.tex",
         },
         darkness = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "darkness.tex",
         },
         death_ghost = {
@@ -136,7 +140,7 @@ return {
             texture = "food_preservation.tex",
         },
         gathering_shadow_servants = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "gathering_shadow_servants.tex",
         },
         health_recovering = {
@@ -196,7 +200,7 @@ return {
             texture = "setting_out.tex",
         },
         storage_supplies = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "storage_supplies.tex",
         },
         temperature_thermal_stone = {

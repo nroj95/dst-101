@@ -67,5 +67,60 @@ Learning a recipe for the first time also gives you a small sanity boost. Learn 
                 note = {},
             },
         },
+
+        {
+            illustration = "crafting_magic",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Magic crafting",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Some strange materials become much more useful once you start experimenting beyond ordinary science.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Keeping the strange stuff opens more possibilities later.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Another kind of station",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Prestihatitator opens the first magical recipes. A Shadow Manipulator opens more advanced ones, much like the Science Machine and Alchemy Engine do for science.
+
+Once you prototype something, you can make it elsewhere later when you have the materials.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "Keep the strange stuff",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Living Logs and Nightmare Fuel are worth keeping for magical crafting. Gems have uses there too, but they also turn up in other recipes and structures.
+
+You do not need to know what every strange material is for when you first find it. Keeping a few gives you more options later, including some unusually powerful or peculiar equipment.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
     },
 }
