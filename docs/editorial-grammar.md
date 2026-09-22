@@ -240,6 +240,10 @@ do not force character-specific casting when another survivor, no survivor, or a
 
 when another recognizable survivor is pictured, avoid first-person captions that make that survivor appear to be the handbook's internal author. neutral phrasing or naming or referring to the pictured survivor is fine. this is especially important when the image demonstrates a mechanic belonging specifically to that survivor.
 
+a caption may quietly reinforce a character-specific connection. use neutral or survivor-specific wording so the hint does not confuse the handbook author's identity.
+
+the hint does not need to explain the mechanic. it may simply reward a reader who recognizes why that survivor fits the scene.
+
 ## page grammar
 
 ### sidebar label
@@ -315,6 +319,14 @@ normally use:
 do not use normal `heading` blocks in `bottom_left`. conceptual sections that need headings belong in the right column or another more suitable part of the page.
 
 the only standard heading allowed in `bottom_left` is `Related topics`, when related-topic tiles are present.
+
+### balancing page density
+
+do not crowd the right column simply because it is the most structured region.
+
+when a secondary or supporting idea does not need its own heading, `bottom_left` may carry concise prose that gives the page more breathing room. this is especially useful when the right column already contains the page's main explanation.
+
+move information because its role fits the quieter region, not merely to fill empty parchment.
 
 ### right column
 

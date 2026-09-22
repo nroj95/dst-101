@@ -72,6 +72,12 @@ note
 
 normal authored data should stay inside these reusable types rather than creating topic-specific renderer branches.
 
+## topic ordering
+
+sidebar order uses loose thematic grouping for readability. it is not a progression path, prerequisite tree, or recommended play order.
+
+related subjects may sit near one another, and foundational topics may appear earlier, but players should remain free to jump directly to whatever interests or troubles them.
+
 ## authoring grammar enforced by validation
 
 `dst101data.lua` loads the ordered topic modules, then runs `dst101validate.lua`.
