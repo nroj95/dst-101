@@ -63,6 +63,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "creatures_observation.tex",
         },
+        darkness_shadow_hand = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "darkness_shadow_hand.tex",
+        },
         darkness = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "darkness.tex",
@@ -72,7 +76,7 @@ return {
             texture = "death_ghost.tex",
         },
         death_recovery = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "death_recovery.tex",
         },
         exploration_biome_edge = {
@@ -132,7 +136,7 @@ return {
             texture = "hunting_small_game.tex",
         },
         hunting_tracks = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "hunting_tracks.tex",
         },
         sanity = {
