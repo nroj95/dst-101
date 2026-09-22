@@ -38,7 +38,7 @@ return {
                     {
                         type = "text",
                         text = [[
-Sanity changes with what you do and what is around you. If it starts falling, notice what changed. A creature, a place, the weather, or something you used may be responsible.
+Sanity changes with what you do and what is around you. If it starts falling, notice what changed. A creature, a place, the weather, the time of day, or something you used may be responsible.
 ]],
                     },
                     {
@@ -48,9 +48,9 @@ Sanity changes with what you do and what is around you. If it starts falling, no
                     {
                         type = "text",
                         text = [[
-Low sanity can make the world behave strangely. Let it fall far enough and some of those changes become dangerous. You do not have to stay and find out how dangerous.
+Low sanity can make the world behave strangely. As it falls, Shadow Creatures become easier to see; let it drop far enough and they can attack. If you are not ready for them, give yourself room to recover.
 
-Move away from whatever seems to be draining it and give yourself room to recover. Picking ordinary flowers is an easy early help; some foods, equipment, and places to rest can help too.
+Move away from anything that seems to be draining sanity. Picking a few ordinary flowers gives a small immediate boost. Some foods, clothing, sleeping, and prototyping a new recipe can help too.
 ]],
                     },
                 },
@@ -58,7 +58,7 @@ Move away from whatever seems to be draining it and give yourself room to recove
                 note = {
                     {
                         type = "note",
-                        text = "The shadows are dangerous. They also carry something useful.",
+                        text = "One of the shadows left something behind.",
                     },
                 },
             },

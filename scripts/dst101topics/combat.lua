@@ -67,7 +67,11 @@ return {
                     },
                     {
                         type = "related_topics",
-                        topics = { "health", "crafting" },
+                        topics = {
+                            "health",
+                            "creatures",
+                            "hounds",
+                        },
                     },
                 },
             },

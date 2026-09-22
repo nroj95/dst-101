@@ -50,26 +50,26 @@ return {
                 right = {
                     {
                         type = "heading",
-                        text = "Company comes in different forms",
+                        text = "How some followers work",
                     },
                     {
                         type = "text",
                         text = [[
 Some creatures can be persuaded to follow for a while. Others stay with you for different reasons, and some are better thought of as pets than helpers.
 
-Pigs are one easy example: meat can make one friendly for a time. Other companions may want something completely different.
+Pigs are one easy example: meat can make one friendly for a time. A friendly Pig can help in a fight, and may join in chopping after it sees you start on a tree. Other companions may want something completely different.
 ]],
                     },
                     {
                         type = "heading",
-                        text = "See what kind of help they offer",
+                        text = "Watch what they do",
                     },
                     {
                         type = "text",
                         text = [[
-A companion might help in a fight, carry things, work nearby, or simply follow along. It may wander off, react to something nearby, or stop following later.
+Followers still react to the world around them. They may notice a creature, stop to work, wander away, or eventually stop following.
 
-Keep an eye on what they are doing. Do not assume every companion behaves the same way.
+Learn what kind of help a companion offers instead of assuming it will behave like the last one.
 ]],
                     },
                 },

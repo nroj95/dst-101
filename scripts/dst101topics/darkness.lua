@@ -24,7 +24,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I kept walking after dark. The torch was worth carrying.",
+                        text = "I was glad I still had a torch.",
                     },
                 },
 
@@ -32,7 +32,7 @@ return {
                     {
                         type = "text",
                         text = [[
-If you expect to travel after dark, bring a light you can carry.
+Bring a light you can carry if you expect to keep moving into the night. You do not need it during dusk, so save it until the world goes dark.
 ]],
                     },
                 },

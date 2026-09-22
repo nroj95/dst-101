@@ -367,11 +367,12 @@ there is no mandatory tag count. zero extra tags is valid.
 remember:
 
 ```text
+exact page_heading match -> that page
 topic title/tag match -> page 1
-visible page-content match -> first matching page
+other visible page-content match -> first matching page
 ```
 
-do not use a page-2-specific term as a topic tag if it would misdirect the reader to page 1.
+avoid page-specific topic tags unless an exact page_heading match routes that term to the intended page.
 
 ## same-artist audit
 

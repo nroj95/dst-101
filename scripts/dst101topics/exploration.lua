@@ -38,7 +38,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Before camp needs much attention, spend some time moving. Gather basics as you go and reveal a good part of the map. Knowing what your world contains gives you more choices later.",
+                        text = "Early on, spend some time moving. Gather basics as you go and reveal a good part of the map. Knowing what your world contains gives you more choices later.",
                     },
                     {
                         type = "heading",
@@ -46,15 +46,19 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Roads, strange entrances, unusual structures, and patches of resources are worth noticing. You do not need to understand everything yet. The map can help you find them again.",
+                        text = [[
+Roads make travel faster, and Worm Holes connect two fixed places on the map at a small sanity cost. Strange structures and patches of resources are worth remembering too.
+
+You do not need to understand everything yet. The map can help you find it again.
+]],
                     },
                     {
                         type = "heading",
-                        text = "Leave room to return",
+                        text = "You can come back later",
                     },
                     {
                         type = "text",
-                        text = "Bring enough food, light, and time for the trip back. You do not need to uncover every corner on the first pass. Leave the gaps until you have a reason to return.",
+                        text = "Bring enough food and light to keep exploring safely. You do not need to uncover every corner on the first pass. Notice what looks interesting, then leave the gaps until you have a reason to return.",
                     },
                 },
 
@@ -68,7 +72,7 @@ return {
                         topics = {
                             "setting_out",
                             "gathering",
-                            "darkness",
+                            "camp",
                             "caves",
                         },
                     },

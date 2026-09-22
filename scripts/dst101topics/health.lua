@@ -17,7 +17,7 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "Don't use all your healing at once",
+                        text = "Getting health back",
                     },
                     {
                         type = "subtitle",
@@ -28,7 +28,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Kept one salve for the walk home. Used it sooner than planned.",
+                        text = "I thought that salve would last longer.",
                     },
                 },
 
@@ -52,9 +52,11 @@ return {
                     {
                         type = "text",
                         text = table.concat({
-                            "Food can restore health, and dedicated healing items can restore it directly. Character abilities can change the details, so pay attention to what works for the survivor you are playing.",
+                            "Food can restore health. Spider Glands can be used directly or made into Healing Salve, and most survivors can also recover health by sleeping at the cost of hunger.",
                             "",
-                            "I like to keep a little recovery unused before setting out. Running out halfway home is unpleasant.",
+                            "Character abilities can change the details, so pay attention to what works for the survivor you are playing.",
+                            "",
+                            "I like to keep a little healing in reserve before setting out. It is easy to need more than expected.",
                         }, "\n"),
                     },
                 },

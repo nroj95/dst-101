@@ -30,7 +30,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "The weather is mild. Good time to get things ready.",
+                        text = "Autumn is when I get most things ready.",
                     },
                 },
 
@@ -86,14 +86,14 @@ return {
                     },
                     {
                         type = "text",
-                        text = "The cold can become severe enough to freeze you. A reliable way to warm up matters both at camp and while travelling.",
+                        text = "The cold can become severe enough to freeze you. A reliable way to warm up matters both at camp and while traveling.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I never regret bringing enough fuel.",
+                        text = "That fire went through more fuel than I expected.",
                     },
                 },
 
@@ -112,7 +112,11 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Winter changes what grows and which creatures appear, but the world is still worth exploring. With enough warmth and fuel, you can keep travelling instead of waiting for better weather.",
+                        text = [[
+Winter changes what grows and which creatures appear, but it also brings things worth looking for. Mini Glaciers are fullest now, so this is a good time to mine some ice while you travel.
+
+With enough warmth and fuel, you can keep exploring instead of waiting for better weather.
+]],
                     },
                 },
             },
@@ -206,7 +210,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Underground, you avoid surface overheating and wildfires, making the caves a useful place to spend much of summer. A prepared camp around the oasis is another option. If you stay at an ordinary surface base, protect nearby flammable structures from smoldering.",
+                        text = "Underground, you avoid surface overheating and wildfires, making the caves a useful place to spend much of summer. A prepared camp around the oasis is another option. If you stay at an ordinary surface base, an Ice Flingomatic can protect nearby structures and plants from smoldering.",
                     },
                 },
 

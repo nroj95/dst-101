@@ -29,7 +29,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I had help with the heavy work.",
+                        text = "His shadows did most of the gathering.",
                     },
                 },
 
@@ -57,6 +57,8 @@ return {
                         type = "text",
                         text = [[
 Some materials can be picked up by hand. Others need an axe, pickaxe, shovel, or another tool before you can gather them.
+
+A shovel can also move some useful plants. Grass Tufts and Berry Bushes need fertilizer after you replant them.
 
 When you need something unfamiliar, look at what is growing, lying around, or moving nearby. The source is often easier to remember once you have found it yourself.
 ]],

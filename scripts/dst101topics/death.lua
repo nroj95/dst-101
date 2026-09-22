@@ -32,7 +32,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Still here. More or less.",
+                        text = "I could still move!",
                     },
                 },
 
@@ -98,7 +98,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "A few spare basics here could save a lot of trouble.",
+                        text = "Next time I'm leaving a torch here.",
                     },
                 },
 
@@ -125,7 +125,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Each Touch Stone can normally be used once by each player. Finding more than one gives you more options if things go badly later.",
+                        text = "Each Touch Stone can be used once by each player. Finding more than one gives you more options if things go badly later.",
                     },
                 },
 

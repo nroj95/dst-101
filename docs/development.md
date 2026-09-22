@@ -306,8 +306,9 @@ note
 page selection:
 
 ```text
-topic title/tag match -> page 1
-page-content match     -> first matching page
+exact page_heading match -> that page
+topic title/tag match     -> page 1
+other page-content match  -> first matching page
 ```
 
 query growth may move the current topic to its matching page.

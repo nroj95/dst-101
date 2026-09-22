@@ -41,6 +41,7 @@ return {
                         topics = {
                             "darkness",
                             "food",
+                            "exploration",
                         },
                     },
                 },

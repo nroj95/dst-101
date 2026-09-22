@@ -171,9 +171,9 @@ If you are near camp or somewhere awkward, use the warning to find more room. De
                     {
                         type = "text",
                         text = [[
-They are slow enough to outrun, and enough distance can make them lose interest. If the growling starts near an exit, returning to the surface before they arrive is another option.
+They are slow enough to outrun, and enough distance can make them lose interest. Running gives you time to separate them or simply get away.
 
-The same idea works the other way above ground: if hounds are coming and you are near an open Sinkhole, heading into the caves before they arrive can avoid the surface attack.
+Surface hounds work differently. If you head into the caves before they arrive, the attack is postponed rather than gone. Be ready for it when you come back up.
 ]],
                     },
                 },

@@ -30,7 +30,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I knew where most of it was.",
+                        text = "I keep the food cold and the bulky things where I can reach them.",
                     },
                 },
 
@@ -57,9 +57,9 @@ return {
                     {
                         type = "text",
                         text = [[
-Light, food, tools, protection, and spare materials can all be useful. A backpack gives you more room, but even that fills quickly.
+Light, food, tools, and protection all compete for space. A Backpack adds room, but it shares the body slot with armor and seasonal clothing.
 
-Take what seems useful for this trip. Leave some space for what you find; the rest can wait at camp.
+Take what this trip needs and leave some room for what you find.
 ]],
                     },
                     {
@@ -69,19 +69,16 @@ Take what seems useful for this trip. Leave some space for what you find; the re
                     {
                         type = "text",
                         text = [[
-Chests are useful, but ground piles can keep common materials easy to see and grab. Dropped items are less protected, and some creatures may carry them away.
+Chests are useful, but ground piles work well for common materials.
 
-Some containers have special uses. An Ice Box keeps food and slows spoilage.
-
-Use whatever arrangement helps you find things quickly.
+An Ice Box slows food spoilage. Use whatever arrangement is easy to find.
 ]],
                     },
                 },
-
                 note = {
                     {
                         type = "note",
-                        text = "Stop leaving the loose rocks outside.",
+                        text = "Some creatures are surprisingly interested in other people's things.",
                     },
                 },
             },

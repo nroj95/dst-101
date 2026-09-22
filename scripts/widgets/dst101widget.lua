@@ -1546,7 +1546,29 @@ end
 
 
 local function topic_match_page(topic, query)
-    -- Topic-level matches deliberately open page 1.
+    -- An exact secondary-page label is the most
+    -- specific navigation target available.
+    for page_index, page in ipairs(
+        topic.pages or {}
+    ) do
+        local top_left =
+            page.regions
+            and page.regions.top_left
+            or {}
+
+        for _, block in ipairs(top_left) do
+            if block.type == "page_heading"
+                and normalize_search_text(
+                    tostring(block.text or "")
+                ) == query
+            then
+                return page_index
+            end
+        end
+    end
+
+    -- Broader topic-level matches deliberately open
+    -- the topic introduction on page 1.
     if search_text_matches(
         topic.title,
         query
@@ -1563,7 +1585,8 @@ local function topic_match_page(topic, query)
         end
     end
 
-    -- Page-content matches jump to the first matching page.
+    -- Other page-content matches jump to the first
+    -- matching page.
     for page_index, page in ipairs(
         topic.pages or {}
     ) do

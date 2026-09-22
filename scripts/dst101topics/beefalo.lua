@@ -4,7 +4,6 @@ return {
     icon = "beefalo",
     tags = {
         "mating season",
-        "heat",
     },
     pages = {
         {
@@ -25,7 +24,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Bigger up close. Calmer than I expected.",
+                        text = "Look at all that fur!",
                     },
                 },
 
@@ -33,7 +32,7 @@ return {
                     {
                         type = "text",
                         text = [[
-Beefalo are often content to mind their own business. If you leave them alone, they will usually return the favor.
+They live in herds. Picking a fight with one can quickly involve several nearby adults.
 ]],
                     },
                 },
@@ -46,7 +45,7 @@ Beefalo are often content to mind their own business. If you leave them alone, t
                     {
                         type = "text",
                         text = [[
-When a Beefalo's rear turns red, give the herd plenty of space. They become aggressive toward anything that gets too close.
+A red rear means a Beefalo is in heat. Give the herd plenty of space; nearby adults become aggressive toward things that get too close.
 ]],
                     },
                     {
@@ -56,7 +55,17 @@ When a Beefalo's rear turns red, give the herd plenty of space. They become aggr
                     {
                         type = "text",
                         text = [[
-They leave manure as they wander, and a sleeping Beefalo can be shaved for wool. Plenty to gather without picking a fight.
+They leave manure as they wander, and wild Beefalo can be shaved for wool while they sleep. Plenty to gather without picking a fight.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "If you want a mount",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Beefalo Bell lets you bond with one, and Beefalo can be saddled, ridden, and eventually tamed. Taming takes regular care, so there is no need to start unless that sounds useful.
 ]],
                     },
                 },

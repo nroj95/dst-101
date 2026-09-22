@@ -58,7 +58,7 @@ return {
                         text = [[
 When distant growling starts, hounds are on the way. Get your weapon and armor ready, make sure you can see what you are doing, and choose somewhere with room to move.
 
-I would rather leave camp for the fight than discover what the hounds can damage while I am busy with them. If an open Sinkhole is nearby, heading underground before they arrive is another option.
+I would rather leave camp for the fight than discover what the hounds can damage while I am busy with them. If an open Sinkhole is nearby, heading underground before they arrive postpones the attack until you return to the surface.
 ]],
                     },
                     {
@@ -70,7 +70,7 @@ I would rather leave camp for the fight than discover what the hounds can damage
                         text = [[
 Hounds are aggressive toward more than just you. If a pack becomes difficult to handle, other creatures may distract them and change the fight.
 
-Later attacks can bring more hounds, so something that worked comfortably before may need a different plan next time.
+Later attacks can bring larger packs with less warning, so something that worked comfortably before may need a different plan next time.
 ]],
                     },
 

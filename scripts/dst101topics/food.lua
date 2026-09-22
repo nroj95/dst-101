@@ -48,7 +48,7 @@ Berries, carrots, and other familiar food can keep a journey moving. Pick up wha
                     {
                         type = "text",
                         text = [[
-Most food does not stay fresh forever. Keep an eye on what is fading. Use those things first when you can; the fresher food will wait.
+Most food does not stay fresh forever. As it goes stale, it becomes less useful; leave it long enough and it rots. Use the older food first when you can.
 ]],
                     },
                     {
@@ -110,7 +110,7 @@ Many foods can be cooked directly over a fire. Cooking changes what they restore
                         text = [[
 A Crock Pot needs four ingredients before it starts. What comes out depends on what went in, and a promising combination can still become something disappointing. Once you find a reliable recipe, it becomes much easier to plan around what you have.
 
-Experiment when you have food to spare. Keep something simple to eat while you test combinations, and remember the ones worth repeating.
+You do not need to unlock recipes before trying them. Experiment when you have food to spare, and keep something simple to eat while you test combinations. A Cookbook can keep track of the dishes you discover.
 ]],
                     },
                 },

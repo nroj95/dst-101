@@ -45,9 +45,9 @@ return {
                         type = "bullets",
                         items = {
                             "Your body cools down, making freezing easier.",
-                            "Wet equipment can drain sanity.",
-                            "Held tools and weapons can become slippery.",
-                            "Wet food spoils faster, and wet fuel is less useful.",
+                            "Wet clothing and held tools can drain sanity.",
+                            "Held tools and weapons can slip from your hands.",
+                            "Soggy food spoils faster, and wet fuel burns for less time.",
                         },
                     },
                     {
@@ -56,16 +56,16 @@ return {
                     },
                     {
                         type = "text",
-                        text = [[Rain protection adds together, up to full coverage. An umbrella already does most of the work, so even a little more protection can make a large difference.
+                        text = [[Rain protection adds together, up to full coverage. An Umbrella already blocks most rain, so even a little more protection can make a large difference.
 
-If you are already soaked, warm up near a fire. Keeping important supplies inside a backpack or chest also protects them from the rain.]],
+If you are already soaked, warm up near a fire. A Backpack can get wet, but the items inside stay dry. Chests protect their contents too.]],
                     },
                 },
 
                 note = {
                     {
                         type = "note",
-                        text = "Trees help. Not a roof, but enough to make a shower less miserable.",
+                        text = "I didn't expect the trees to help with the rain.",
                     },
                 },
                 bottom_left = {
@@ -79,6 +79,7 @@ If you are already soaked, warm up near a fire. Keeping important supplies insid
                             "temperature",
                             "sanity",
                             "food",
+                            "seasons",
                         },
                     },
                 },

@@ -29,14 +29,14 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "A Thermal Stone is handy when I need to warm up or cool down.",
+                        text = "It works cold too!",
                     },
                 },
 
                 right = {
                     {
                         type = "heading",
-                        text = "Your surroundings push it around",
+                        text = "What changes your temperature",
                     },
                     {
                         type = "text",
@@ -48,7 +48,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Fires and other heat sources warm you. Endothermic fires and other cold sources cool you. A Thermal Stone can carry warmth or cold with you, which makes it especially useful while travelling.",
+                        text = "Fires and other heat sources warm you. Endothermic Fires and other cold sources cool you. A Thermal Stone carries warmth or cold with you. Warm it near a fire, or chill it in an Ice Box or near an Endothermic Fire.",
                     },
                     {
                         type = "heading",
@@ -56,7 +56,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Warm clothing slows cooling, while summer gear slows heating. Neither makes you immune. Watch the edges of your view and react before the temperature starts costing health.",
+                        text = "Warm clothing slows cooling, while summer gear slows heating. Neither makes you immune. Icy or orange edges around your view warn that your temperature is getting dangerous. Warm up or cool down before it starts costing health.",
                     },
                 },
 

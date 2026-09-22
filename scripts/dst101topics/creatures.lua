@@ -20,14 +20,14 @@ return {
                     },
                     {
                         type = "subtitle",
-                        text = "Not every creature wants the same thing from you.",
+                        text = "Not every creature reacts to you the same way.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Much easier to think when I watch first.",
+                        text = "I stayed back and watched what they did.",
                     },
                 },
 
@@ -40,6 +40,7 @@ return {
                         type = "related_topics",
                         topics = {
                             "combat",
+                            "companions",
                             "beefalo",
                         },
                     },
@@ -56,6 +57,8 @@ return {
 Some creatures are content to ignore you. Others care very much about how close you get, what you touch, or what is happening around them.
 
 Stay far enough away to see what a creature does before you decide what to do with it. Notice whether it ignores you, follows you, warns you off, or becomes aggressive when you get closer.
+
+Who you are can matter too. Some creatures treat certain survivors differently.
 
 Sometimes I watch for a moment and decide there is no reason to bother it.
 ]],

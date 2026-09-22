@@ -17,31 +17,31 @@ return {
                 top_left = {
                     {
                         type = "headline",
-                        text = "Keep it burning",
+                        text = "Fire needs tending",
                     },
                     {
                         type = "subtitle",
-                        text = "A useful fire still needs fuel, space, and a little attention.",
+                        text = "A fire still needs fuel, space, and a little attention.",
                     },
                 },
 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Useful flame. I may have added a little too much fuel.",
+                        text = "I may have put too much fuel on that one.",
                     },
                 },
 
                 right = {
                     {
                         type = "heading",
-                        text = "Campfire or fire pit?",
+                        text = "Campfire or Fire Pit?",
                     },
                     {
                         type = "text",
-                        text = [[A campfire is quick and temporary. Once it burns out, it is gone.
+                        text = [[A Campfire is quick and temporary. Once it burns out, it is gone. It can also ignite flammable things that are too close.
 
-A fire pit stays behind and can be fueled again later. It also keeps its flames contained, which makes it a much friendlier choice around things you would rather not burn.]],
+A Fire Pit stays behind and can be fueled again later. Its flames are contained, which makes it a much friendlier choice around things you would rather not burn.]],
                     },
                     {
                         type = "heading",

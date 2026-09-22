@@ -20,7 +20,7 @@ return {
                     },
                     {
                         type = "subtitle",
-                        text = "It only needs to be useful for now.",
+                        text = "It only needs to work for now.",
                     },
                 },
 
@@ -55,9 +55,9 @@ return {
                     {
                         type = "text",
                         text = [[
-Your first camp does not need to become your permanent home. A place to leave supplies, cook, craft, and recover is already useful.
+Your first camp does not need to become your permanent home. A place to leave supplies, cook, craft, and recover is already enough.
 
-I like some room around camp and a few useful things within easy reach. Paths, food, materials, and whatever you are exploring next can all matter.
+I like some room around camp and the things I use often within easy reach. Paths, food, materials, and whatever you are exploring next can all matter.
 
 Different trips make different places convenient.
 ]],
@@ -69,7 +69,7 @@ Different trips make different places convenient.
                     {
                         type = "text",
                         text = [[
-If another part of the world becomes more useful, build there too or move on. I still carry enough light and basic supplies to handle an unexpected night away from camp.
+If another part of the world becomes more convenient, build there too or move on. I still carry enough light and basic supplies to handle an unexpected night away from camp.
 ]],
                     },
                 },
@@ -90,7 +90,7 @@ If another part of the world becomes more useful, build there too or move on. I 
                     {
                         type = "text",
                         text = [[
-Useful things have a habit of collecting in one place. I leave some room between important structures, especially where fire or a fight could spread.
+Supplies and structures have a habit of collecting in one place. I leave some room between important structures, especially where fire or a fight could spread.
 ]],
                     },
                 },
@@ -111,7 +111,7 @@ Useful things have a habit of collecting in one place. I leave some room between
                     {
                         type = "text",
                         text = [[
-I do not like every useful thing living in one place. A few basics carried with you, or a small spare supply somewhere else, can make recovery much easier.
+I do not like all my important supplies in one place. A few basics carried with you, or a small spare supply somewhere else, can make recovery much easier.
 ]],
                     },
                     {
