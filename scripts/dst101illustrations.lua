@@ -123,16 +123,28 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "hounds_distraction.tex",
         },
-        sanity = {
+        hunting_herds_nests = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "hunting_herds_nests.tex",
+        },
+        hunting_small_game = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "hunting_small_game.tex",
+        },
+        hunting_tracks = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "hunting_tracks.tex",
+        },
+        sanity = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "sanity.tex",
         },
         seasons_overview = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "seasons_overview.tex",
         },
         seasons_spring = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "seasons_spring.tex",
         },
         seasons_summer = {
