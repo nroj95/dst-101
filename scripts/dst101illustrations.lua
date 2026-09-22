@@ -83,6 +83,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "farming_plants.tex",
         },
+        farming_upkeep = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "farming_upkeep.tex",
+        },
         farming_wormwood = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "farming_wormwood.tex",
@@ -132,7 +136,7 @@ return {
             texture = "seasons_winter.tex",
         },
         setting_out = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "setting_out.tex",
         },
         storage_supplies = {

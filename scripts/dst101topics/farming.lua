@@ -87,7 +87,7 @@ Do not wait until you understand every farming system. A small imperfect garden 
                     {
                         type = "text",
                         text = [[
-Farm plants react to the conditions around them as they grow. Stress slows them down and reduces how many crop-specific seeds they return, but a stressed plant can still give you its crop.
+Farm plants check their surroundings as they grow. Better conditions mean faster growth and better seed returns, and exceptionally well-cared-for crops can grow huge.
 ]],
                     },
                 },
@@ -102,6 +102,18 @@ Farm plants react to the conditions around them as they grow. Stress slows them 
                 right = {
                     {
                         type = "heading",
+                        text = "Water the soil",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Watering Can moistens the whole farm-soil tile at once. You do not need to keep it soaked; watering once during each growth stage is enough for the plant's moisture need.
+
+Refill the can at a Pond. Rain can help keep the soil wet too.
+]],
+                    },
+                    {
+                        type = "heading",
                         text = "What plants notice",
                     },
                     {
@@ -109,21 +121,68 @@ Farm plants react to the conditions around them as they grow. Stress slows them 
                         items = {
                             "Whether the crop likes the current season.",
                             "Moisture and nutrients in its farm-soil tile.",
-                            "Nearby plants, including whether it has enough of its own kind or is overcrowded.",
+                            "Nearby plants: enough of its own kind without overcrowding.",
                             "Weeds, rotten plants, or garden debris nearby.",
                             "Whether someone tends to it as it changes growth stages.",
                         },
                     },
                     {
-                        type = "heading",
-                        text = "Let the garden teach you",
+                        type = "text",
+                        text = "Giant crops need almost all of those needs met while they grow.",
+                    },
+                },
+
+                note = {},
+            },
+        },
+
+        {
+            illustration = "farming_upkeep",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Garden upkeep",
                     },
                     {
                         type = "text",
                         text = [[
-A Gardeneer Hat lets you research crops, weeds, and seeds and builds their entries in the Plant Registry. It can also tell you when a plant is stressed.
+Once a garden is producing food, you can start keeping the crops you want and clearing out what interferes with them.
+]],
+                    },
+                },
 
-Once you know the basics, you can experiment with seasons, neighboring crops, and soil nutrients if that sounds fun. You do not need giant crops to make farming worthwhile.
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "It ate the pumpkin and gave me a pumpkin seed.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Keep the seeds coming",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Better-cared-for Farm Plants can return Crop Seeds when harvested. Those seeds grow the same crop again.
+
+A bird in a Birdcage gives one corresponding Crop Seed when fed an uncooked Farm Plant crop. That gives you another way to turn a crop you like into something you can replant.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "Keep the beds clear",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Ordinary Seeds can grow into weeds. Weeds, rotten plants, and Garden Detritus stress nearby crops, and weeds also consume soil nutrients without replacing them.
+
+Dig weeds up when they get in the way. Some can hurt or trap you when handled, and some have useful harvests of their own, so unfamiliar weeds are worth inspecting before you clear them.
 ]],
                     },
                 },
@@ -131,7 +190,7 @@ Once you know the basics, you can experiment with seasons, neighboring crops, an
                 note = {
                     {
                         type = "note",
-                        text = "Some weeds have uses of their own. I still keep them out of the crop rows.",
+                        text = "A Gardeneer Hat can research crops, seeds, and weeds for the Plant Registry.",
                     },
                 },
             },
