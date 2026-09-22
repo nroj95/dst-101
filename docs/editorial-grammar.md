@@ -184,15 +184,15 @@ protect the first encounter; explain opaque useful mechanics when the reader del
 
 ## survivor selection
 
-wilson is a reasonable generic survivor, but he should not become the automatic subject of most scenes.
+when a survivor is shown, choose the current `dst` character who fits the scene best.
 
-when a survivor is shown, first consider whether another current survivor can carry the scene just as clearly or more interestingly. prefer broad variety across the handbook over repeatedly falling back to wilson by habit.
+consider their personality, abilities, equipment, companions, interests, habits, silhouette, and the activity or environment being shown. a character-specific connection is welcome when it makes the scene feel more natural or adds a useful second layer.
 
-use wilson when a plain generic survivor is genuinely the clearest choice, or when no other survivor adds anything useful to the scene.
+no survivor is the default generic choice. wilson receives no special preference over the rest of the cast.
+
+keep track of who has already appeared and actively look for natural opportunities to use survivors who have not. broad representation across the handbook is desirable, and ideally every current `dst` survivor will eventually appear at least once, but never choose a worse fit merely to complete the roster.
 
 omit survivors entirely when an environment, creature, object, or activity study is stronger.
-
-do not force equal representation or a strict rotation quota.
 
 do not depict wheeler simply because she is the internal author foundation; the author remains visually unconfirmed.
 
