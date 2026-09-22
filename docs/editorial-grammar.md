@@ -109,6 +109,12 @@ do not carry forward a landscape merely because it worked in earlier illustratio
 
 vary terrain, vegetation, openness, water presence, horizon shape, weather, season, time of day, and background density when the subject allows it.
 
+treat scenery variation as a deliberate production check for every new image, especially the background. before generating, compare against the most recent approved scenes and deliberately choose a different background structure unless the subject genuinely calls for something similar.
+
+do not let a successful backdrop become the generator's default. repeated autumn hills, distant rocky spires, lakes, pine-lined horizons, open grassland, birch framing, or similar foreground-and-horizon arrangements still count as repetition even when the characters and lesson are different.
+
+vary not only the named biome but the composition of the environment: enclosed or open, near or distant horizon, flat or vertical terrain, foreground framing, background density, weather, light, water, and how much of the world is visible.
+
 forest interiors, marshes, savannas, rocky ground, coastlines, fields, dense vegetation, bare clearings, caves, ruins, shorelines, islands, and other environments should all feel available.
 
 repetition is fine when the content genuinely takes place in a similar environment. it should come from the subject, not from treating familiar scenery as part of the handbook style.
@@ -147,7 +153,7 @@ subject-specific decisions should answer only what matters:
 - what practical lesson, mood, or question does the scene support?
 - what must remain accurate?
 - what must remain undisclosed?
-- what environment naturally belongs around it?
+- what environment naturally belongs around it, and how will its background differ from recent approved scenes?
 - what crop or safe-area requirement matters?
 
 ## image delivery
