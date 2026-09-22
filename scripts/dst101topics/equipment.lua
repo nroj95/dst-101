@@ -28,7 +28,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Wendy checked what was worth carrying.",
+                        text = "Wendy was still deciding what to leave behind.",
                     },
                 },
 
@@ -97,7 +97,7 @@ Many tools, weapons, armor pieces, and clothes wear out as you use them. Check t
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Winona checked the wear before trusting it again.",
+                        text = "Winona did not look convinced by that spear.",
                     },
                 },
 
