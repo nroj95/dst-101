@@ -139,7 +139,7 @@ When you have more food than you can eat soon, preserving it saves you from repl
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Stored well, a good haul lasts much longer.",
+                        text = "I should have put that haul away sooner.",
                     },
                 },
 

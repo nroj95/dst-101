@@ -88,7 +88,7 @@ Some strange materials become much more useful once you start experimenting beyo
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Keeping the strange stuff opens more possibilities later.",
+                        text = "So that's what the Living Logs were for.",
                     },
                 },
 

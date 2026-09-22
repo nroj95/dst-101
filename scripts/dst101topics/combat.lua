@@ -98,7 +98,7 @@ A proper weapon shortens a fight, while armor gives you room to make a mistake. 
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Simple gear made the fight much safer.",
+                        text = "The helmet caught that one.",
                     },
                 },
 
