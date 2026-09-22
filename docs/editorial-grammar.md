@@ -140,11 +140,33 @@ use the handbook layout only for crop, scale, and display integration.
 
 never let the most recent generated image become the sole style reference; compare against the broader approved set to avoid generational drift.
 
+### primary anchors are the style lock
+
+the original primary anchors define the underlying hand. later approved images may expand subject matter, scenery, weather, lighting, and mood, but they do not redefine the artist's linework, rendering density, color restraint, shading, texture, or degree of polish.
+
+the primary-anchor look is deliberately modest and economical:
+
+- colors are muted, dusty, and slightly parchment-warmed rather than vivid or jewel-saturated. ochres, faded greens, browns, dull reds, charcoal, and restrained gray-blues dominate.
+- overall contrast is moderate and fairly soft. important subjects may read more strongly, but the whole image should not become dramatic, glossy, or cinematic.
+- linework is lightly rough, scratchy, and imperfect. contours strengthen selectively around important forms instead of giving every object the same heavy black outline.
+- shading uses simple washes, sparse hatching, and broad value changes rather than highly rendered volume or dense surface treatment.
+- backgrounds are simpler and quieter than the focal subject. they suggest terrain, vegetation, weather, and distance without rendering every small feature at equal importance.
+- compositions leave breathing room. one clear observation is preferable to filling the scene with props, decoration, or visual information simply because space is available.
+- paper and sketch texture should remain visible, but texture should not become dense digital noise across every surface.
+
+when a newer image conflicts with the primary anchors on those qualities, follow the primary anchors.
+
+do not average the style across generations. small deviations can accumulate until the collection becomes cleaner, heavier, more saturated, more detailed, or more digitally polished than the visual language that was originally approved.
+
+use newer images mainly to show what else the same artist can observe. use the primary anchors to decide how that artist actually draws.
+
+before approving a new scene, compare it directly with at least one primary anchor. ask whether the new image still looks like the same hand before considering whether it merely looks good on its own.
+
 ## scene-image production brief
 
 stable instruction:
 
-> create another standalone scene image by the same unnamed explorer who made the approved handbook references. preserve lightly rough exploratory dark linework, selective contour strength, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, and the sense of an observed field-journal moment. match the artist's habits, not the literal scenery of previous images. preserve current dst recognition cues. generate only the scene itself: no frame, page, title, caption, UI, signature, or decorative border.
+> create another standalone scene image by the same unnamed explorer who made the original primary handbook anchors. treat those anchors as the style lock even when newer approved images differ. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms. match the artist's habits, not the literal scenery of previous images. preserve current dst recognition cues. generate only the scene itself: no frame, page, title, caption, UI, signature, or decorative border.
 
 subject-specific decisions should answer only what matters:
 
