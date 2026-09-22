@@ -1,0 +1,6 @@
+<Atlas>
+    <Texture filename="dst101_illustrations_04.tex" />
+    <Elements>
+        <Element name="wetness_rain.tex" u1="0.04833984" u2="0.60693359" v1="0.29785156" v2="0.92285156" />
+    </Elements>
+</Atlas>

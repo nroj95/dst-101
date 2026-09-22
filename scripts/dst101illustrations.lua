@@ -12,6 +12,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             image = "images/illustrations/dst101_illustrations_03.tex",
         },
+        {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            image = "images/illustrations/dst101_illustrations_04.tex",
+        },
     },
 
     illustrations = {
@@ -51,6 +55,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "combat_study.tex",
         },
+        combat_weapons_armor = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "combat_weapons_armor.tex",
+        },
         companions_pigmen = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "companions_pigmen.tex",
@@ -72,12 +80,20 @@ return {
             texture = "darkness.tex",
         },
         death_ghost = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "death_ghost.tex",
         },
         death_recovery = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "death_recovery.tex",
+        },
+        equipment_durability = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "equipment_durability.tex",
+        },
+        equipment_slots = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "equipment_slots.tex",
         },
         exploration_biome_edge = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
@@ -124,15 +140,15 @@ return {
             texture = "health_recovering.tex",
         },
         hounds_distraction = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "hounds_distraction.tex",
         },
         hunting_herds_nests = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "hunting_herds_nests.tex",
         },
         hunting_small_game = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "hunting_small_game.tex",
         },
         hunting_tracks = {
@@ -184,7 +200,7 @@ return {
             texture = "temperature_thermal_stone.tex",
         },
         wetness_rain = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "wetness_rain.tex",
         },
     },
