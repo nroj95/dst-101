@@ -103,13 +103,17 @@ quick observations and more careful studies may coexist. the amount of attention
 
 ## style is not recurring scenery
 
-do not confuse the visual identity with surface motifs.
+style does not require recurring scenery. each image should use the environment that best belongs to its subject, moment, and lesson.
 
-sunsets, orange skies, autumn fields, winding paths, identical trees, the same horizon, or the same survivor pose are not required ingredients.
+do not carry forward a landscape merely because it worked in earlier illustrations. repeated pines, lakes, rocky spires, autumn grass, distant cliffs, similar horizons, or the same open hillside can become visual habits just as easily as repeated poses.
 
-at the current production stage, deliberately welcome opportunities for clear midday, gray daylight, forest shade, rain, snow, fog, blue twilight, cave light, coastlines, marshes, and other natural conditions when they suit the subject.
+vary terrain, vegetation, openness, water presence, horizon shape, weather, season, time of day, and background density when the subject allows it.
 
-warm evening scenes are still allowed. they simply should not become shorthand for the whole book.
+forest interiors, marshes, savannas, rocky ground, coastlines, fields, dense vegetation, bare clearings, caves, ruins, shorelines, islands, and other environments should all feel available.
+
+repetition is fine when the content genuinely takes place in a similar environment. it should come from the subject, not from treating familiar scenery as part of the handbook style.
+
+warm evening scenes, pale blue daylight, lakes, and distant mountains are all allowed. none of them should become the default backdrop.
 
 ## approved visual anchors
 
