@@ -32,7 +32,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I could still move!",
+                        text = "Apparently ghosts can still move around.",
                     },
                 },
 

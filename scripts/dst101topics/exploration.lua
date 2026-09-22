@@ -27,7 +27,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I want to know where this one comes out.",
+                        text = "Willow went straight in!",
                     },
                 },
 

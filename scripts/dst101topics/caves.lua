@@ -27,7 +27,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I could not see much past the first few steps.",
+                        text = "The light did not reach far past the first few steps.",
                     },
                 },
 

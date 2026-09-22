@@ -26,7 +26,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Looked around twice. I still couldn't tell what had changed.",
+                        text = "The world was starting to bend around the edges.",
                     },
                 },
 
@@ -38,7 +38,7 @@ return {
                     {
                         type = "text",
                         text = [[
-Sanity changes with what you do and what is around you. If it starts falling, notice what changed. A creature, a place, the weather, the time of day, or something you used may be responsible.
+Sanity rises and falls with what you do and what is around you. Watch what makes the meter rise or fall. Creatures, places, weather, time of day, and some things you use can all affect it.
 ]],
                     },
                     {
@@ -48,9 +48,9 @@ Sanity changes with what you do and what is around you. If it starts falling, no
                     {
                         type = "text",
                         text = [[
-Low sanity can make the world behave strangely. As it falls, Shadow Creatures become easier to see; let it drop far enough and they can attack. If you are not ready for them, give yourself room to recover.
+As sanity falls, the world starts to distort and Shadow Creatures become easier to see. At very low sanity, they become hostile.
 
-Move away from anything that seems to be draining sanity. Picking a few ordinary flowers gives a small immediate boost. Some foods, clothing, sleeping, and prototyping a new recipe can help too.
+If you want to raise sanity, flowers give a small early boost. Some foods, clothing, sleep, and prototyping a new recipe can help too.
 ]],
                     },
                 },
@@ -58,7 +58,7 @@ Move away from anything that seems to be draining sanity. Picking a few ordinary
                 note = {
                     {
                         type = "note",
-                        text = "One of the shadows left something behind.",
+                        text = "Shadow Creatures drop Nightmare Fuel.",
                     },
                 },
             },

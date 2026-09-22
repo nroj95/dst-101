@@ -8,9 +8,21 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             image = "images/illustrations/dst101_illustrations_02.tex",
         },
+        {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            image = "images/illustrations/dst101_illustrations_03.tex",
+        },
     },
 
     illustrations = {
+        beefalo_riding = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "beefalo_riding.tex",
+        },
+        beefalo_taming = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "beefalo_taming.tex",
+        },
         beefalo = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "beefalo.tex",
@@ -64,11 +76,11 @@ return {
             texture = "death_recovery.tex",
         },
         exploration_biome_edge = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "exploration_biome_edge.tex",
         },
         fire_tending = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "fire_tending.tex",
         },
         food_cooking = {
@@ -124,7 +136,7 @@ return {
             texture = "temperature_thermal_stone.tex",
         },
         wetness_rain = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "wetness_rain.tex",
         },
     },

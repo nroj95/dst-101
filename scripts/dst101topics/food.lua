@@ -87,7 +87,7 @@ A fire cooks one ingredient at a time. A Crock Pot combines four into a dish. Bo
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Some combinations worked better than others. I wrote those down.",
+                        text = "Some combinations turned out better than others.",
                     },
                 },
 

@@ -24,7 +24,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I was glad I still had a torch.",
+                        text = "The torch was enough to keep moving.",
                     },
                 },
 

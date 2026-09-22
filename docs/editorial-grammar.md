@@ -178,6 +178,8 @@ verify current `dst` creatures, objects, equipment, environments, and behavior s
 
 visual spoilers count. do not reveal a memorable transformation, deeper area, reward, creature, or solution merely because an image slot exists.
 
+when a named or recognizable survivor appears, verify the identifying visual cues that matter: silhouette, hair, clothing, signature equipment, companions, and other distinctive details. do not borrow another survivor's signature belongings or visual traits. if the generated character is ambiguous or wrong, fix the image rather than explaining the mismatch away.
+
 protect the first encounter; explain opaque useful mechanics when the reader deliberately seeks that subject.
 
 ## survivor selection
@@ -204,7 +206,7 @@ the page must still make sense to a reader who does not recognize the character-
 
 do not force character-specific casting when another survivor, no survivor, or an object/environment study would serve the page better.
 
-when an image demonstrates a mechanic belonging to the pictured survivor, avoid first-person captions that could incorrectly attribute that mechanic to the handbook's internal author. use neutral or third-person phrasing when needed.
+when another recognizable survivor is pictured, avoid first-person captions that make that survivor appear to be the handbook's internal author. neutral phrasing or naming or referring to the pictured survivor is fine. this is especially important when the image demonstrates a mechanic belonging specifically to that survivor.
 
 ## page grammar
 
@@ -319,6 +321,10 @@ it may contain an observation, reaction, question, memory, small discovery, or r
 
 keep it brief.
 
+do not force advice, explanation, or a lesson into the caption merely because the image has one. instructional work belongs primarily in the page text.
+
+choose first-person, neutral, or survivor-specific phrasing according to the scene. first person is welcome when the scene can plausibly belong to the author; recognizable survivor cameos should preserve the author mystery.
+
 ## notes
 
 notes are intentionally rare.
@@ -326,6 +332,8 @@ notes are intentionally rare.
 use them when a private reminder, warning, mistake, aside, creature remark, useful contradiction, or unresolved thought genuinely adds something.
 
 do not manufacture a note merely because the strip exists.
+
+a short factual oddity may also earn the margin when it adds something memorable without duplicating the body.
 
 essential survival information must not depend only on a note.
 

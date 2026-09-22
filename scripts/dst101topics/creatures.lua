@@ -27,7 +27,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I stayed back and watched what they did.",
+                        text = "He stayed back and watched what they did.",
                     },
                 },
 

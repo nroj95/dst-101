@@ -93,7 +93,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "That fire went through more fuel than I expected.",
+                        text = "The fire needed more fuel than expected.",
                     },
                 },
 
@@ -191,7 +191,7 @@ With enough warmth and fuel, you can keep exploring instead of waiting for bette
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "A cold fire still feels strange, but I am not complaining.",
+                        text = "Nobody was complaining about the cold fire.",
                     },
                 },
 

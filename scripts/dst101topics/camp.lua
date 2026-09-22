@@ -98,7 +98,7 @@ Supplies and structures have a habit of collecting in one place. I leave some ro
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I left first. I could sort out the camp afterward.",
+                        text = "The camp could wait until it was safe to go back.",
                     },
                 },
 

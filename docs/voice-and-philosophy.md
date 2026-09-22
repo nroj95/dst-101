@@ -70,6 +70,8 @@ mistakes can produce information. recovery is often more useful than pretending 
 
 risk is not automatically bad. teach enough for the reader to choose it deliberately.
 
+dangerous or inconvenient states are not automatically mistakes. when a state or tactic has real uses as well as costs, explain the trade-off before presenting recovery or avoidance as the default.
+
 ### patience and retreat
 
 waiting, returning later, or leaving can be excellent judgment. courage is not accepting every fight.
@@ -351,16 +353,16 @@ the goal is to discover what players genuinely need help noticing, then teach on
 | headline + subtitle | establish a strong page angle, lesson, or mood when useful. |
 | heading | mark a real division in the explanation. |
 | body | teach the practical idea and reasoning. |
-| scene image | show what made the explorer stop and look. |
-| caption | record what the author noticed, felt, remembered, or questioned. |
-| note | leave a private reminder, aside, mistake, warning, or unresolved thought. |
+| scene image | show the moment, subject, or behavior worth recording. |
+| caption | add authored perspective to the scene; first person is optional. |
+| note | leave a brief marginal reminder, aside, mistake, warning, useful oddity, or unresolved thought. |
 | related topics | suggest useful connections without implying a mandatory route. |
 
 captions and notes should not repeat the body.
 
 ## captions
 
-every illustrated page has one short caption in the author's voice.
+every illustrated page has one short authored caption. it does not have to use first person.
 
 it should read like a field-note observation, not a literal description of the image.
 
@@ -372,7 +374,13 @@ it may record:
 - a question worth keeping.
 - a restrained dry aside.
 
-prefer concrete first-person experience when natural.
+prefer concrete first-person experience when the scene can plausibly be the author's own.
+
+when another recognizable survivor is pictured, avoid first person that makes that survivor appear to be the handbook author. use neutral phrasing or refer to or name the pictured survivor instead.
+
+this applies even when the scene is not demonstrating a character-specific mechanic. character-specific scenes simply make the distinction especially important.
+
+do not force advice into a caption. the body teaches; the caption may simply react to what happened.
 
 captions can carry more emotional range than the instructional prose.
 
@@ -398,7 +406,7 @@ the same anti-cleverness rule still applies: spontaneous is good; manufactured i
 
 never name wheeler, sign the notes, insert formal author credits, or explain her biography to solve the mystery.
 
-recognition should come from personality and occasional natural clues: restless curiosity, practical improvisation, dry remarks under pressure, fascination with flight or ruins, talking to creatures, travelling light, and knowing when to run.
+recognition should come from personality and occasional natural clues: restless curiosity, practical improvisation, dry remarks under pressure, fascination with flight or ruins, talking to creatures, traveling light, and knowing when to run.
 
 use those clues sparingly.
 
@@ -443,6 +451,8 @@ ask:
 - have we preserved useful experimentation?
 - does this help exploration rather than replace it?
 - does the page respect different playstyles?
+- if a dangerous or inconvenient state has useful trade-offs, did we avoid treating it as automatically wrong?
+- if another recognizable survivor is pictured, does the caption preserve the author's identity?
 - does the voice feel human without forcing humor?
 - does any line sound polished, quotable, poetic, dramatic, or deliberately clever when a plainer observation would feel more real?
 - does the subject still feel alive after being explained?

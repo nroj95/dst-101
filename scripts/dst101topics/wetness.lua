@@ -28,7 +28,7 @@ return {
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "Much easier to think when my tools stay in my hands.",
+                        text = "At least Bernie was staying dry.",
                     },
                 },
 
