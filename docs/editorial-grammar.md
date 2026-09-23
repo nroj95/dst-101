@@ -105,23 +105,63 @@ quick observations and more careful studies may coexist. the amount of attention
 
 ## style is not recurring scenery
 
-each image should use the environment that best belongs to its subject, moment, and lesson.
+style does not require recurring scenery. each image should use the environment that best belongs to its subject, moment, and lesson.
 
 do not carry forward a landscape merely because it worked in earlier illustrations. repeated pines, lakes, rocky spires, autumn grass, distant cliffs, similar horizons, or the same open hillside can become visual habits just as easily as repeated poses.
 
 before generating, compare against recent approved scenes and deliberately avoid repeating the same background structure unless the subject genuinely calls for something similar.
 
+### use the environmental range of dst
+
+the constant contains far more visual variety than one temperate open landscape. when the subject and spoiler boundary allow it, draw from environments such as:
+
+- dense evergreen forest and enclosed forest interiors.
+- deciduous woodland.
+- savanna and broad grassland.
+- marshes, reeds, wet ground, ponds, and swampy terrain.
+- mosaic and mixed broken terrain.
+- rocky ground, mineral country, and meteor-scarred areas.
+- badlands and oasis desert.
+- coastlines, beaches, islands, and ocean environments.
+- lunar island terrain and vegetation.
+- ice and frozen coastal environments.
+- cave mud, rocky caverns, stalagmite country, and underground forests.
+- red, green, blue, and mixed fungal cave environments.
+- lunar grotto and other unusual underground environments.
+- ancient ruins, labyrinths, residential ruins, sacred areas, military ruins, and the atrium.
+
+these are possibilities, not a rotation schedule or quota. choose an environment because it plausibly belongs to the scene.
+
+variety never outranks mechanical accuracy, spoiler restraint, or the subject of the page. do not reveal a late, hidden, or memorable environment merely because the recent images need variety.
+
+when several environments would serve equally well, prefer one that expands the handbook's visual range rather than returning automatically to the most familiar backdrop.
+
+### vary spatial structure, not only biome labels
+
+changing a few props inside the same landscape is not enough. an open hillside with different trees, weather, or foreground objects may still be fundamentally the same composition.
+
 vary terrain, vegetation, openness, water presence, horizon shape, weather, season, time of day, foreground framing, background density, and how much of the world is visible when the subject allows it.
 
-vary not only the named biome but the composition of the environment: enclosed or open, near or distant horizon, flat or vertical terrain, heavily framed or exposed, dense or sparse, wet or dry, bright or dark.
+vary not only the named biome but the structure of the scene:
+
+- enclosed or open.
+- near or distant horizon.
+- flat, rolling, broken, or strongly vertical terrain.
+- dense forest interior or exposed clearing.
+- narrow path or broad plain.
+- foreground-heavy or distant vista.
+- dry ground, standing water, coastline, or open ocean.
+- dense vegetation or sparse terrain.
+- natural landscape, camp, ruins, or cave chamber.
+- clear weather, rain, snow, fog, darkness, or unusual light.
+
+a visible horizon is not required. some scenes should be enclosed by trees, vegetation, rock, structures, darkness, weather, or terrain, with little or no distant vista.
 
 do not let a successful backdrop become the generator's default. repeated autumn hills, distant rocky spires, lakes, pine-lined horizons, open grassland, birch framing, or similar foreground-and-horizon arrangements still count as repetition even when the characters and lesson are different.
 
-forest interiors, marshes, savannas, rocky ground, coastlines, fields, dense vegetation, bare clearings, caves, ruins, shorelines, islands, and other environments should all feel available.
-
 repetition is fine when the content genuinely belongs in a similar environment. it should come from the subject, not from treating familiar scenery as part of the handbook style.
 
-warm evening scenes, pale blue daylight, gray rain, winter cold, lakes, distant mountains, autumn grass, and other successful motifs are all allowed. none is the default backdrop.
+warm evening scenes, pale blue daylight, gray rain, winter cold, dense green forest, murky marsh, dry desert, cave darkness, ocean blue, and other conditions are all valid. none is the default handbook backdrop.
 
 ## approved visual anchors
 
@@ -158,7 +198,11 @@ never let the most recent generated image become the sole style reference. befor
 
 stable instruction:
 
-> create another standalone scene image by the same unnamed explorer who made the original primary handbook anchors. treat those anchors as the style lock even when newer approved images differ. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms. match the artist's habits, not the literal scenery of previous images. preserve current dst recognition cues. generate only the scene itself: no frame, page, title, caption, UI, signature, or decorative border.
+> create another standalone scene image by the same unnamed explorer who made the original primary handbook anchors. treat those anchors as the style lock even when newer approved images differ. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms.
+>
+> match the artist's habits, not the literal scenery of previous images. choose an environment that actually belongs in `dst` and fits the subject. if several environments fit equally well, prefer one whose biome, vegetation, terrain, openness, horizon structure, weather, or spatial character differs materially from recent approved scenes. do not default to open temperate hills, a distant lake, pine-lined horizons, rocky spires, or any other successful recurring backdrop. enclosed forest interiors, marshes, savannas, rocky country, deserts, coasts, ocean, lunar terrain, caves, fungal forests, ruins, and other appropriate `dst` environments are all available when the content and spoiler boundary permit them.
+>
+> when a recognizable survivor appears, preserve current `dst` identity, silhouette, exaggerated proportions, facial simplicity, hair, clothing, and signature visual cues, then redraw those traits through the same rough handbook hand. do not normalize survivors toward realistic anatomy, generic anime proportions, a shared pretty face, or polished character concept art. generate only the scene itself: no frame, page, title, caption, UI, signature, or decorative border.
 
 subject-specific decisions should answer only what matters:
 
@@ -191,6 +235,24 @@ verify current `dst` creatures, objects, equipment, environments, and behavior s
 visual spoilers count. do not reveal a memorable transformation, deeper area, reward, creature, or solution merely because an image slot exists.
 
 when a named or recognizable survivor appears, verify the identifying visual cues that matter: silhouette, hair, clothing, signature equipment, companions, and other distinctive details. do not borrow another survivor's signature belongings or visual traits. if the generated character is ambiguous or wrong, fix the image rather than explaining the mismatch away.
+
+### survivor drawing style
+
+the current handbook direction is recognizable `dst` survivor design translated through the same field-sketch hand as the rest of the book.
+
+preserve character identity through silhouette first. hair shape, head shape, posture, body proportions, clothing, equipment, and other distinctive traits should remain recognizable before relying on small facial details.
+
+keep the exaggerated, stylized anatomy of `dst` rather than normalizing survivors toward realism. oversized heads, narrow bodies, thin or lanky limbs, unusual posture, and other exaggerated proportions are welcome where they belong to that survivor, but do not force every character into one shared body template.
+
+faces should remain simple and graphic rather than realistically modeled or highly rendered. expression should come mainly from eye shape, brows, mouth, pose, and gesture.
+
+preserve individual differences across the cast. do not force survivors toward one shared face shape, body type, expression style, prettiness standard, or generic cartoon / anime design.
+
+signature clothing, hair, equipment, companions, and other recognition cues should remain character-specific.
+
+render those traits through the handbook's established hand: lightly rough exploratory linework, selective contour emphasis, restrained color, economical shading, visible sketch character, and modest finish.
+
+survivors should look redrawn by the same traveler who drew the environments. they should not look pasted in from official game art or rendered as cleaner, more polished character concept art than the surrounding scene.
 
 protect the first encounter; explain opaque useful mechanics when the reader deliberately seeks that subject.
 
@@ -431,11 +493,13 @@ before approving an image, ask:
 1. does the linework look like the same hand, including its roughness, searching contours, and selective emphasis?
 2. does color behave with similar restraint without forcing every scene toward the same temperature or palette?
 3. is detail concentrated selectively rather than spread evenly across every object and surface?
-4. does distant scenery simplify compatibly with the primary anchors?
-5. does the subject sit naturally in the world rather than looking pasted onto a decorative backdrop?
-6. does the scene feel observed rather than staged or promotional?
-7. without the handbook frame, would this still look like another drawing by the same traveler?
-8. if the image looks impressive on its own but conflicts with the primary anchors, have we resisted approving polish at the expense of the established hand?
+4. does the environment differ materially from recent scenes when the subject permits it, or did we merely rearrange props inside another version of the same backdrop?
+5. does distant scenery simplify compatibly with the primary anchors?
+6. does the subject sit naturally in the world rather than looking pasted onto a decorative backdrop?
+7. does the scene feel observed rather than staged or promotional?
+8. when a survivor appears, do silhouette, proportions, facial simplicity, hair, clothing, posture, and other identity cues still read as that `dst` survivor without drifting into a generic character style?
+9. without the handbook frame, would this still look like another drawing by the same traveler?
+10. if the image looks impressive on its own but conflicts with the primary anchors, have we resisted approving polish at the expense of the established hand?
 
 ## final page audit
 
@@ -445,8 +509,12 @@ ask:
 - are headings real divisions rather than labels for every paragraph?
 - do linework, color restraint, detail distribution, and rendering still match the primary-anchor hand?
 - does the image show something this explorer would actually notice?
+- does the environment genuinely fit the subject rather than merely provide a convenient backdrop?
+- when the subject allows flexibility, does the setting expand the handbook's recent biome, vegetation, terrain, or spatial variety?
+- did we vary the underlying spatial structure rather than merely swap weather, props, or characters inside the same open-landscape composition?
 - does the page vary naturally without copying a neighboring layout?
 - are mechanics and recognition cues current and correct?
+- when a recognizable survivor appears, are their silhouette, proportions, facial simplicity, clothing, and other identity cues preserved?
 - do text and image preserve discovery?
 - does the crop work at real display size?
 - does the image still read clearly at real handbook size?
