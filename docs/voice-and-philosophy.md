@@ -2,7 +2,7 @@
 
 > wheeler is trying to turn a frightened new survivor into an explorer.
 
-status: concise production reference
+status: production reference
 
 ## purpose
 
@@ -341,15 +341,24 @@ the goal is to discover what players genuinely need help noticing, then teach on
 
 captions are voice moments, not miniature lessons.
 
-they may be quiet observations or immediate reactions: excitement, surprise, alarm, relief, curiosity, annoyance, amusement, or delight.
+they may record something noticed, a small reaction, a remembered consequence, a question worth keeping, or a restrained dry aside.
+
+captions can carry more emotional range than the instructional prose. some should be quiet observations; others may be immediate reactions such as excitement, surprise, alarm, relief, curiosity, annoyance, amusement, or delight.
+
+a caption does not need to contain a lesson, joke, reflection, or clever turn. if the moment genuinely made her grin, stare, recoil, laugh, or blurt something out, the caption can simply preserve that reaction.
 
 prefer concrete first-person experience when the scene can plausibly be the author's own.
 
-when another recognizable survivor is pictured, avoid first person that makes that survivor appear to be the handbook author. use neutral or survivor-specific phrasing instead.
+when another recognizable survivor is pictured, avoid first person that makes that survivor appear to be the handbook author. use neutral or survivor-specific phrasing instead. this matters even when the scene is not demonstrating a character-specific mechanic.
+
+do not force advice into a caption. the body teaches; the caption may simply react to what happened.
 
 do not make every caption sound composed after the fact. sometimes the most convincing field note is simply what escaped her mouth in the moment.
 
+vary the energy across the handbook. do not let every caption become dry, subdued, reflective, witty, or emotionally restrained just because one treatment worked well elsewhere.
+
 the same anti-cleverness rule still applies: spontaneous is good; manufactured is not.
+
 ## author mystery
 
 never name wheeler, sign the notes, insert formal author credits, or explain her biography to solve the mystery.

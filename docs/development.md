@@ -1,6 +1,6 @@
 # dst 101 — development
 
-status: concise production reference
+status: production reference
 
 project:
 
@@ -432,3 +432,17 @@ images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml
 images/illustrations/dst101_illustrations_*.tex/xml
 ```
+
+## implementation versatility
+
+avoid turning today's successful page into tomorrow's mandatory template.
+
+renderer rules should protect consistency and prevent broken layouts without dictating one composition for every topic.
+
+prefer reusable behavior such as balanced wrapping, validation, automatic decorative variants, and generic block rendering over topic-specific branches.
+
+a topic-specific renderer exception should need a concrete content problem that the reusable grammar cannot express cleanly. do not add one merely because a single page would be easier to hard-code.
+
+when a page looks different because its content genuinely calls for it, that is healthy. structural consistency should support variation rather than erase it.
+
+this principle is intentionally repeated from the project scope because renderer rigidity is especially easy to introduce gradually while solving individual pages.

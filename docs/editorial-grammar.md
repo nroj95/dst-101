@@ -4,7 +4,7 @@
 >
 > another drawing by the same person, not another interpretation of the style.
 
-status: concise production reference
+status: production reference
 
 ## purpose
 
@@ -107,13 +107,21 @@ quick observations and more careful studies may coexist. the amount of attention
 
 each image should use the environment that best belongs to its subject, moment, and lesson.
 
-before generating, compare against recent approved scenes and avoid repeating the same background structure unless the subject genuinely calls for it.
+do not carry forward a landscape merely because it worked in earlier illustrations. repeated pines, lakes, rocky spires, autumn grass, distant cliffs, similar horizons, or the same open hillside can become visual habits just as easily as repeated poses.
 
-vary terrain, vegetation, openness, horizon shape, foreground framing, background density, weather, season, time of day, water, and how much of the world is visible when the subject allows it. forest interiors, marshes, savannas, rocky ground, coastlines, fields, dense vegetation, bare clearings, caves, ruins, shorelines, islands, and other environments should all feel available.
+before generating, compare against recent approved scenes and deliberately avoid repeating the same background structure unless the subject genuinely calls for something similar.
+
+vary terrain, vegetation, openness, water presence, horizon shape, weather, season, time of day, foreground framing, background density, and how much of the world is visible when the subject allows it.
+
+vary not only the named biome but the composition of the environment: enclosed or open, near or distant horizon, flat or vertical terrain, heavily framed or exposed, dense or sparse, wet or dry, bright or dark.
+
+do not let a successful backdrop become the generator's default. repeated autumn hills, distant rocky spires, lakes, pine-lined horizons, open grassland, birch framing, or similar foreground-and-horizon arrangements still count as repetition even when the characters and lesson are different.
+
+forest interiors, marshes, savannas, rocky ground, coastlines, fields, dense vegetation, bare clearings, caves, ruins, shorelines, islands, and other environments should all feel available.
 
 repetition is fine when the content genuinely belongs in a similar environment. it should come from the subject, not from treating familiar scenery as part of the handbook style.
 
-warm evening scenes, pale blue daylight, lakes, distant mountains, autumn grass, and other successful motifs are all allowed. none is the default backdrop.
+warm evening scenes, pale blue daylight, gray rain, winter cold, lakes, distant mountains, autumn grass, and other successful motifs are all allowed. none is the default backdrop.
 
 ## approved visual anchors
 
@@ -124,15 +132,28 @@ primary anchors:
 - `food_foraging.png`
 - `food_cooking.png`
 
-these primary anchors are the style lock. later approved images may expand subject matter, scenery, weather, lighting, and mood, but they do not redefine the underlying hand described above.
+these primary anchors are the style lock. later approved images may expand subject matter, scenery, weather, lighting, and mood, but they do not redefine the underlying hand.
 
-when a newer image conflicts with the primary anchors on linework, rendering density, color restraint, shading, texture, or degree of polish, follow the primary anchors. do not average the style across generations.
+the primary-anchor look is deliberately modest and economical:
 
-variation anchors show what else the same artist can observe; they do not replace the style lock.
+- colors are restrained, dusty, natural, and slightly weathered rather than vivid or jewel-saturated. hue and temperature belong to the scene itself; the handbook does not require a warm palette.
+- overall contrast is moderate and fairly soft. important subjects may read more strongly, but the whole image should not become dramatic, glossy, or cinematic.
+- linework is lightly rough, scratchy, and imperfect. contours strengthen selectively around important forms instead of giving every object the same heavy black outline.
+- shading uses simple washes, sparse hatching, and broad value changes rather than highly rendered volume or dense surface treatment.
+- backgrounds are simpler and quieter than the focal subject. they suggest terrain, vegetation, weather, and distance without rendering every small feature at equal importance.
+- compositions leave breathing room. one clear observation is preferable to filling the scene with props, decoration, or visual information merely because space is available.
+- paper and sketch texture should remain visible, but texture should not become dense digital noise across every surface.
+
+when a newer image conflicts with the primary anchors on linework, rendering density, color restraint, contrast, shading, texture, background treatment, or degree of polish, follow the primary anchors.
+
+do not average the style across generations. small deviations can accumulate until the collection becomes cleaner, heavier, more saturated, more detailed, or more digitally polished than the visual language that was originally approved.
+
+variation anchors show what else the same artist can observe. use newer images to expand subject matter, scenery, weather, lighting, and mood; use the primary anchors to decide how that artist actually draws.
 
 use current `dst` screenshots / assets for anatomy, objects, equipment, colors, and behavior. use the handbook layout only for crop, scale, and display integration.
 
-never let the most recent generated image become the sole style reference. before approving a new scene, compare it directly with at least one primary anchor and ask whether it still looks like the same hand.
+never let the most recent generated image become the sole style reference. before approving a new scene, compare it directly with at least one primary anchor and ask whether it still looks like the same hand before considering whether it merely looks good on its own.
+
 ## scene-image production brief
 
 stable instruction:
@@ -160,6 +181,7 @@ vary which edges carry visual weight. some images may have strong framing on one
 avoid making every scene look like a separate framed card inside the handbook. the handbook already supplies the frame.
 
 if an image feels artificially enclosed when viewed without the handbook frame, reduce the vignette or edge treatment.
+
 ## accuracy and spoilers
 
 stylization should preserve the recognition cues the reader needs.
@@ -401,6 +423,19 @@ other visible page-content match -> first matching page
 ```
 
 avoid page-specific topic tags unless an exact page_heading match routes that term to the intended page.
+
+## same-artist audit
+
+before approving an image, ask:
+
+1. does the linework look like the same hand, including its roughness, searching contours, and selective emphasis?
+2. does color behave with similar restraint without forcing every scene toward the same temperature or palette?
+3. is detail concentrated selectively rather than spread evenly across every object and surface?
+4. does distant scenery simplify compatibly with the primary anchors?
+5. does the subject sit naturally in the world rather than looking pasted onto a decorative backdrop?
+6. does the scene feel observed rather than staged or promotional?
+7. without the handbook frame, would this still look like another drawing by the same traveler?
+8. if the image looks impressive on its own but conflicts with the primary anchors, have we resisted approving polish at the expense of the established hand?
 
 ## final page audit
 
