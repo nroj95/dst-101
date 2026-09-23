@@ -69,6 +69,8 @@ these are a family, not a fixed palette.
 
 recognizable subject colors, weather, biome, season, and time of day may pull an image cooler, darker, greener, brighter, or less warm.
 
+keep the color treatment consistent without preferring one mood. the scene itself should decide whether it feels warm, cool, bright, dark, dry, wet, snowy, underground, or otherwise. sunset light, autumn warmth, pale blue daylight, gray rain, winter cold, and other conditions are all valid when the subject calls for them; none is the default handbook look.
+
 ### rendering
 
 shading is economical and illustrative. texture and linework carry much of the description.
