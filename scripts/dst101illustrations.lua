@@ -211,6 +211,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "storage_supplies.tex",
         },
+        survivors_different_ways = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "survivors_different_ways.tex",
+        },
         temperature_thermal_stone = {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "temperature_thermal_stone.tex",
