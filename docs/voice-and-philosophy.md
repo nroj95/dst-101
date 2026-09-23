@@ -38,6 +38,8 @@ players may care about exploration, bosses, building, farming, cooking, sailing,
 
 wheeler's own curiosity should make adventure inviting without turning risk, efficiency, or progression into obligations.
 
+boss progression is one possible interest, not the handbook's organizing structure.
+
 likewise, the writing itself should not become formulaic. consistency comes from the same mind, not from repeating the same paragraph rhythm, joke structure, warning style, or lesson shape.
 
 ## what wheeler teaches
@@ -113,6 +115,8 @@ protect memorable first encounters when the surprise itself is part of the fun.
 once the player has encountered the thing, or deliberately seeks help about it, explain opaque mechanics that are difficult to discover naturally — especially peaceful solutions, recovery methods, and de-escalation.
 
 > protect the surprise itself. explain the obscure useful lesson afterward.
+
+for exploratory areas, prepare, entice, and stop before the handbook becomes a biome tour, walkthrough, or loot route.
 
 ## what catches wheeler's attention
 
@@ -288,26 +292,6 @@ wheeler may know what something does while still wondering what it is, why it be
 
 some things can remain mysterious, uncanny, beautiful, or only partly understood.
 
-## specific boundaries
-
-### caves
-
-prepare, entice, stop.
-
-teach enough for a first expedition: how to enter, dependable light, basic supplies, broad environmental danger, and remembering the way back.
-
-do not turn caves into biome tours, ruins walkthroughs, boss guides, or loot routes.
-
-### combat and bosses
-
-teach broad preparation, observation, basic judgment, escape, and enough to prevent obvious beginner disasters.
-
-do not organize the handbook around boss progression.
-
-### cooperation
-
-emphasize communication, trust, adapting to group needs, and different strengths. do not turn multiplayer into rigid assigned roles.
-
 ## research discipline
 
 wheeler character evidence and current `dst` mechanics are separate source problems.
@@ -353,63 +337,19 @@ do not copy community optimization culture blindly. frequent advice may still be
 
 the goal is to discover what players genuinely need help noticing, then teach only the part that fits the handbook.
 
-## page-element voice jobs
-
-| element | voice job |
-| --- | --- |
-| sidebar label | identify the subject plainly. |
-| headline + subtitle | establish a strong page angle, lesson, or mood when useful. |
-| heading | mark a real division in the explanation. |
-| body | teach the practical idea and reasoning. |
-| scene image | show the moment, subject, or behavior worth recording. |
-| caption | add authored perspective to the scene; first person is optional. |
-| note | leave a brief marginal reminder, aside, mistake, warning, useful oddity, or unresolved thought. |
-| related topics | suggest useful connections without implying a mandatory route. |
-
-captions and notes should not repeat the body.
-
 ## captions
 
-every illustrated page has one short authored caption. it does not have to use first person.
+captions are voice moments, not miniature lessons.
 
-it should read like a field-note observation, not a literal description of the image.
-
-it may record:
-
-- something noticed.
-- a small reaction.
-- a remembered consequence.
-- a question worth keeping.
-- a restrained dry aside.
+they may be quiet observations or immediate reactions: excitement, surprise, alarm, relief, curiosity, annoyance, amusement, or delight.
 
 prefer concrete first-person experience when the scene can plausibly be the author's own.
 
-when another recognizable survivor is pictured, avoid first person that makes that survivor appear to be the handbook author. use neutral phrasing or refer to or name the pictured survivor instead.
+when another recognizable survivor is pictured, avoid first person that makes that survivor appear to be the handbook author. use neutral or survivor-specific phrasing instead.
 
-this applies even when the scene is not demonstrating a character-specific mechanic. character-specific scenes simply make the distinction especially important.
-
-do not force advice into a caption. the body teaches; the caption may simply react to what happened.
-
-captions can carry more emotional range than the instructional prose.
-
-captions are one of the best places for immediate energy.
-
-a caption may simply be an excited reaction such as:
-
-> look at all that fur!
-
-it does not need to contain a lesson, joke, reflection, or clever turn. if the moment genuinely made her grin, stare, recoil, laugh, or blurt something out, the caption can preserve that reaction.
-
-do not make every caption sound composed after the fact.
-
-some should be quiet observations, but others may be immediate reactions: excitement, surprise, alarm, relief, curiosity, annoyance, amusement, or delight.
-
-a caption does not need to sound reflective or carefully composed. sometimes the most convincing field note is simply what escaped her mouth in the moment.
-
-vary the energy across the handbook. do not make every caption dry, subdued, or introspective.
+do not make every caption sound composed after the fact. sometimes the most convincing field note is simply what escaped her mouth in the moment.
 
 the same anti-cleverness rule still applies: spontaneous is good; manufactured is not.
-
 ## author mystery
 
 never name wheeler, sign the notes, insert formal author credits, or explain her biography to solve the mystery.

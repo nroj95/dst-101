@@ -14,7 +14,7 @@ this note documents the technical handbook implementation.
 
 use the separate voice/philosophy note for writing decisions and the editorial grammar note for composition and image direction.
 
-the shell and authoring grammar are considered established. new structural systems should be added only when real content exposes a concrete limitation.
+the shell and authoring grammar are considered established. add new structural systems only when real content exposes a concrete limitation, and prefer reusable behavior over topic-specific renderer branches.
 
 ## main project areas
 
@@ -432,82 +432,3 @@ images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml
 images/illustrations/dst101_illustrations_*.tex/xml
 ```
-
-## research/version verification
-
-content production should not assume a familiar mechanic is current.
-
-preferred order:
-
-```text
-recent/change-prone dst behavior
--> official klei dst changelogs / update posts / steam announcements
-
-established dst mechanics
--> current dontstarve.wiki.gg, with game context checked
-
-exact implementation behavior
--> current game scripts/data
-
-wheeler voice/character evidence
--> single-player/hamlet primary material and dontstarve.wiki.gg
-```
-
-community discussions and practical guides are a separate required research layer for gameplay topics.
-
-use them to discover recurring beginner problems, commonly recommended tactics, overlooked mechanics, misconceptions, and disagreements. prefer repeated patterns across multiple discussions over isolated advice.
-
-community consensus does not establish mechanical truth. verify useful community-derived claims separately against current `dst` sources before publishing them.
-
-do not turn stable beginner facts into unnecessary changelog archaeology. use freshness checks where they can materially affect correctness.
-
-## normal content-production workflow
-
-1. author or identify a real topic.
-2. inspect current community discussions and practical guides for recurring beginner problems, useful advice, overlooked mechanics, misconceptions, and disagreements.
-3. verify candidate mechanics and spoiler boundaries against current `dst` sources.
-4. decide what belongs in `dst 101` and what should remain discoverable.
-5. compose it with the established grammar.
-6. create the scene in the approved visual family.
-7. review it beside the anchor set and at handbook size.
-8. add useful search tags only when needed.
-9. add selective related-topic links only when useful.
-10. polish where real content exposes a need.
-11. change structure only when the current system genuinely cannot express the content.
-
-future work should normally focus on topic modules, wording, scene-image production, search metadata, and related-topic relationships rather than core widget redesign.
-
-## implementation versatility
-
-avoid turning today's successful page into tomorrow's mandatory template.
-
-renderer rules should protect consistency and prevent broken layouts without dictating one composition for every topic.
-
-prefer reusable behavior such as balanced wrapping, validation, automatic decorative variants, and generic block rendering over topic-specific branches.
-
-when a page looks different because its content genuinely calls for it, that is healthy.
-
-## useful git checks
-
-before committing tracked changes:
-
-```powershell
-git --no-pager diff --check
-git status --short
-```
-
-for newly added files, stage first and also run:
-
-```powershell
-git diff --cached --check
-```
-
-this catches whitespace errors in untracked files that ordinary `git diff --check` cannot see.
-
-## current conclusion
-
-`dst 101` now has a stable shell, validated authoring grammar, flexible page composition, deterministic decorative variation, search/navigation systems, and a working scene-image production pipeline.
-
-the project is in content production, not framework design.
-
-keep the implementation permissive enough for varied pages while strict enough to stop accidental new conventions.
