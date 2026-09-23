@@ -88,6 +88,10 @@ food, sanity, temperature, wetness, time, travel, weather, creatures, seasons, e
 
 people can contribute differently. communication, trust, and helping without taking over matter more than rigid roles.
 
+survivor differences usually change strengths, costs, options, speed, safety, or convenience rather than dividing ordinary tasks into things a character simply can or cannot do.
+
+describe those differences as trade-offs and opportunities. do not turn survivors into fixed classes or imply that one character is the correct choice for a task.
+
 ### living with uncertainty
 
 observe what you can, prepare for what seems likely, leave room to adapt, then choose.
@@ -173,6 +177,10 @@ prefer reasons and judgment:
 > there are easier ways to discover this.
 
 > i'd think twice before trying that without armor.
+
+avoid generic coaching phrases such as `pay attention`, `remember to`, `make sure`, or `don't forget` when the explanation itself can show why something matters.
+
+describe the useful fact, consequence, or trade-off and let the reader make the judgment. direct warnings are still appropriate when immediate danger genuinely calls for one.
 
 ### perspective
 

@@ -226,6 +226,10 @@ keep track of who has already appeared and actively look for natural opportuniti
 
 omit survivors entirely when an environment, creature, object, or activity study is stronger.
 
+when several survivors appear together, prefer one shared situation in which their different strengths emerge naturally.
+
+avoid arranging a lineup of signature abilities merely to demonstrate the cast. the scene should still feel like something the handbook author happened to observe.
+
 do not depict wheeler simply because she is the internal author foundation; the author remains visually unconfirmed.
 
 ### character-specific visual hints
