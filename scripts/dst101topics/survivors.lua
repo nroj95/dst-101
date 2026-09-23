@@ -61,7 +61,7 @@ That can make the same task easier, faster, safer, or simply different depending
                         text = [[
 There is no single survivor you need to learn the game with. Trying someone else may make familiar parts of the game easier, harder, or simply different.
 
-You do not need to understand every ability before trying someone. Learn the useful parts as they become relevant.
+You can try someone before you understand every ability. Learn the useful parts as they become relevant.
 ]],
                     },
                 },

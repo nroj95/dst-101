@@ -106,7 +106,7 @@ Supplies and structures have a habit of collecting in one place. I leave some ro
                 right = {
                     {
                         type = "heading",
-                        text = "Keep a few things elsewhere",
+                        text = "A backup away from camp",
                     },
                     {
                         type = "text",

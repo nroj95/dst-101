@@ -70,7 +70,7 @@ A Backpack and Football Helmet already go a long way early on. An Axe or Pickaxe
                         text = [[
 A Backpack gives you more storage, but it uses the same body slot as body armor and many seasonal clothes.
 
-You cannot tuck a Backpack into your normal inventory. If you take it off to wear something else, it stays on the ground with its contents. Remember where you left it.
+You cannot tuck a Backpack into your normal inventory. If you take it off to wear something else, it stays on the ground with its contents.
 ]],
                     },
                 },

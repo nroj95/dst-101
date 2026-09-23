@@ -95,7 +95,7 @@ A fire cooks one ingredient at a time. A Crock Pot combines four into a dish. Bo
                     {
                         type = "text",
                         text = [[
-Many foods can be cooked directly over a fire. Cooking changes what they restore and sometimes how long they keep, so pay attention to the result. Simple food is still useful when all you need is lunch.
+Many foods can be cooked directly over a fire. Cooking changes what they restore and sometimes how long they keep. Simple food is still useful when all you need is lunch.
 ]],
                     },
                 },
@@ -110,7 +110,7 @@ Many foods can be cooked directly over a fire. Cooking changes what they restore
                         text = [[
 A Crock Pot needs four ingredients before it starts. What comes out depends on what went in, and a promising combination can still become something disappointing. Once you find a reliable recipe, it becomes much easier to plan around what you have.
 
-You do not need to unlock recipes before trying them. Experiment when you have food to spare, and keep something simple to eat while you test combinations. A Cookbook can keep track of the dishes you discover.
+You can discover recipes by trying combinations. Experiment when you have food to spare, and keep something simple to eat while you test them. A Cookbook can keep track of the dishes you discover.
 ]],
                     },
                 },
@@ -139,14 +139,14 @@ When you have more food than you can eat soon, preserving it saves you from repl
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I should have put that haul away sooner.",
+                        text = "That should last a while.",
                     },
                 },
 
                 right = {
                     {
                         type = "heading",
-                        text = "Keep food cold",
+                        text = "Cold storage",
                     },
                     {
                         type = "text",

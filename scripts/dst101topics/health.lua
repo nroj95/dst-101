@@ -54,7 +54,7 @@ return {
                         text = table.concat({
                             "Food can restore health. Spider Glands can be used directly or made into Healing Salve, and most survivors can also recover health by sleeping at the cost of hunger.",
                             "",
-                            "Character abilities can change the details, so pay attention to what works for the survivor you are playing.",
+                            "Character abilities can change the details, so food, sleep, and other recovery options do not work the same way for everyone.",
                             "",
                             "I like to keep a little healing in reserve before setting out. It is easy to need more than expected.",
                         }, "\n"),

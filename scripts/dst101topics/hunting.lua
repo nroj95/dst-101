@@ -51,7 +51,7 @@ return {
                         text = [[
 A common Trap can catch Rabbits, Frogs, and Spiders when they move across it. Bait is optional.
 
-Putting one over a Rabbit Hole is simple, but you can also lead or frighten small creatures across a trap yourself. Traps are useful when they suit the situation; you do not need to build your food supply around them.
+Putting one over a Rabbit Hole is simple, but you can also lead or frighten small creatures across a trap yourself. Traps are useful when they suit the situation, but they are only one way to find food.
 ]],
                     },
                     {

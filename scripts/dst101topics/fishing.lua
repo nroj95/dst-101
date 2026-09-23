@@ -118,7 +118,7 @@ When the rod drops and the fish swims toward you, reel. Stop again when the rod 
                         text = [[
 Lures make fish more likely to bite. Floats improve casting range and accuracy; both are optional.
 
-A Twig works as a basic float. Seeds, Berries, or Rot work as simple single-use lures, so you can learn the system without elaborate tackle.
+A Twig works as a basic float. Seeds, Berries, or Rot work as simple single-use lures.
 
 If you would rather let a net do the waiting, an Ocean Trawler can catch nearby ocean fish too.
 ]],

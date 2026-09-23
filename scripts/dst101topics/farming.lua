@@ -163,19 +163,19 @@ Once a garden is producing food, you can start keeping the crops you want and cl
                 right = {
                     {
                         type = "heading",
-                        text = "Keep the seeds coming",
+                        text = "Getting more crop seeds",
                     },
                     {
                         type = "text",
                         text = [[
 Better-cared-for Farm Plants can return Crop Seeds when harvested. Those seeds grow the same crop again.
 
-A bird in a Birdcage gives one corresponding Crop Seed when fed an uncooked Farm Plant crop. That gives you another way to turn a crop you like into something you can replant.
+A bird in a Birdcage gives one corresponding Crop Seed when fed an uncooked Farm Plant crop.
 ]],
                     },
                     {
                         type = "heading",
-                        text = "Keep the beds clear",
+                        text = "Weeds and garden debris",
                     },
                     {
                         type = "text",

@@ -117,7 +117,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "A torch, a few basic materials, and whatever protection the current season demands can make revival much easier. You do not need another full set of equipment waiting there.",
+                        text = "A torch, a few basic materials, and whatever protection the current season demands can make revival much easier. A small backup is often enough.",
                     },
                     {
                         type = "heading",

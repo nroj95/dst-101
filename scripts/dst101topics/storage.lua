@@ -64,14 +64,14 @@ Take what this trip needs and leave some room for what you find.
                     },
                     {
                         type = "heading",
-                        text = "Keep things where you can find them",
+                        text = "Chests and ground piles",
                     },
                     {
                         type = "text",
                         text = [[
 Chests are useful, but ground piles work well for common materials.
 
-An Ice Box slows food spoilage. Use whatever arrangement is easy to find.
+Put the things you use often somewhere easy to find. Use whatever arrangement works for you.
 ]],
                     },
                 },

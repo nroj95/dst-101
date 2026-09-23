@@ -62,14 +62,14 @@ Light Flowers grow underground. Their bulbs are used to make Lanterns and can re
                     },
                     {
                         type = "heading",
-                        text = "Keep the first trip simple",
+                        text = "Your first trip below",
                     },
                     {
                         type = "text",
                         text = [[
 Food, healing, armor, and a few basic tools are plenty for a first look. Check your map before wandering far from the stairs.
 
-Long trips underground also wear on sanity. You do not need to push farther just because your light is still good. You can always come back after you know what you actually need.
+Long trips underground also wear on sanity. Even with plenty of light left, food, healing, or sanity may be running low. Once you know what the trip demands, you can come back better prepared.
 ]],
                     },
                 },
@@ -98,7 +98,7 @@ In some deeper places, red lights and fissures can grow brighter and more active
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "I noticed the red glow before the shadows appeared.",
+                        text = "The red glow came first.",
                     },
                 },
 

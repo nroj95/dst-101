@@ -49,7 +49,7 @@ return {
                         text = [[
 Roads make travel faster, and Worm Holes connect two fixed places on the map at a small sanity cost. Strange structures and patches of resources are worth remembering too.
 
-You do not need to understand everything yet. The map can help you find it again.
+If something is still unfamiliar, the map can help you find it again later.
 ]],
                     },
                     {
@@ -58,7 +58,7 @@ You do not need to understand everything yet. The map can help you find it again
                     },
                     {
                         type = "text",
-                        text = "Bring enough food and light to keep exploring safely. You do not need to uncover every corner on the first pass. Notice what looks interesting, then leave the gaps until you have a reason to return.",
+                        text = "Bring enough food and light to keep exploring safely. Leave some gaps on the first pass. Notice what looks interesting, then return when you have a reason.",
                     },
                 },
 

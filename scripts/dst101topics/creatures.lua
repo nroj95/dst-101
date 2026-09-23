@@ -70,7 +70,7 @@ Sometimes I watch for a moment and decide there is no reason to bother it.
                     {
                         type = "text",
                         text = [[
-If you want a closer look, make sure you can back away again. What seemed harmless from a distance may behave differently once you get involved.
+If you want a closer look, leave yourself room to back away. What seemed harmless from a distance may behave differently once you get involved.
 ]],
                     },
                 },

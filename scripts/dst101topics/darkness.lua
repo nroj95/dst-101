@@ -106,7 +106,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                     },
                     {
                         type = "text",
-                        text = "Some shadows retreat when you approach. Pay attention to what they actually do before deciding how to respond.\n\nAt very low sanity, some become tangible and attack. What only watched from a distance before may not stay harmless.",
+                        text = "Some shadows retreat when you approach.\n\nAt very low sanity, some become tangible and attack. What only watched from a distance before may not stay harmless.",
                     },
                 },
             },

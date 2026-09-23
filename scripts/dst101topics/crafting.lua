@@ -114,7 +114,7 @@ Once you prototype something, you can make it elsewhere later when you have the 
                         text = [[
 Living Logs and Nightmare Fuel are worth keeping for magical crafting. Gems have uses there too, but they also turn up in other recipes and structures.
 
-You do not need to know what every strange material is for when you first find it. Keeping a few gives you more options later, including some unusually powerful or peculiar equipment.
+If a strange material has no obvious use yet, keeping a few gives you more options later, including some unusually powerful or peculiar equipment.
 ]],
                     },
                 },

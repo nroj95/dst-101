@@ -148,7 +148,7 @@ Riding comes first. Domestication is the longer process that turns a Beefalo int
                 right = {
                     {
                         type = "heading",
-                        text = "Keep progress moving",
+                        text = "How domestication grows",
                     },
                     {
                         type = "text",
