@@ -31,6 +31,14 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "beefalo.tex",
         },
+        bees_bee_boxes = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "bees_bee_boxes.tex",
+        },
+        bees_hive = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "bees_hive.tex",
+        },
         camp_home = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "camp_home.tex",
@@ -72,11 +80,11 @@ return {
             texture = "crafting.tex",
         },
         creatures_naughtiness = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "creatures_naughtiness.tex",
         },
         creatures_observation = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "creatures_observation.tex",
         },
         darkness_shadow_hand = {
@@ -132,11 +140,11 @@ return {
             texture = "fishing_pond.tex",
         },
         food_cooking = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "food_cooking.tex",
         },
         food_foraging = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "food_foraging.tex",
         },
         food_preservation = {
@@ -192,11 +200,11 @@ return {
             texture = "sanity_nightmare_fuel.tex",
         },
         sanity = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "sanity.tex",
         },
         seasons_overview = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "seasons_overview.tex",
         },
         seasons_spring = {
@@ -214,6 +222,14 @@ return {
         setting_out = {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "setting_out.tex",
+        },
+        spiders_growing_den = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "spiders_growing_den.tex",
+        },
+        spiders_webbing = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "spiders_webbing.tex",
         },
         storage_supplies = {
             atlas = "images/illustrations/dst101_illustrations_04.xml",

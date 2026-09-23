@@ -26,6 +26,8 @@ local TOPIC_MODULES = {
     -- living things and danger
     "dst101topics/creatures",
     "dst101topics/companions",
+    "dst101topics/spiders",
+    "dst101topics/bees",
     "dst101topics/combat",
     "dst101topics/hounds",
 
