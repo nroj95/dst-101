@@ -71,12 +71,16 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "crafting.tex",
         },
+        creatures_naughtiness = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "creatures_naughtiness.tex",
+        },
         creatures_observation = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "creatures_observation.tex",
         },
         darkness_shadow_hand = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "darkness_shadow_hand.tex",
         },
         darkness = {
@@ -136,7 +140,7 @@ return {
             texture = "food_foraging.tex",
         },
         food_preservation = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "food_preservation.tex",
         },
         gathering_regrowth = {
@@ -196,7 +200,7 @@ return {
             texture = "seasons_overview.tex",
         },
         seasons_spring = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "seasons_spring.tex",
         },
         seasons_summer = {

@@ -78,5 +78,60 @@ If you want a closer look, leave yourself room to back away. What seemed harmles
                 note = {},
             },
         },
+
+        {
+            illustration = "creatures_naughtiness",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Leave some creatures alone",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Not every harmless creature needs to become food or materials. The world quietly keeps track when you kill creatures it treats as innocent.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "That sound started after the last one.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "The world notices",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+This hidden value is called Naughtiness. Some innocent creatures count more than others, and it belongs to the player who made the kill.
+
+Leave them alone for a while and it gradually falls again.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "If you keep going",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+As Naughtiness rises, kills may be followed by an unusual hissing sound that grows more threatening as you get closer to the limit.
+
+That is your warning. You can leave the wildlife alone for a while, or keep going if you are willing to deal with whatever comes looking.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
     },
 }

@@ -14,7 +14,7 @@
         <Element name="companions_pigmen.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
         <Element name="crafting_magic.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
         <Element name="crafting.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
-        <Element name="creatures_observation.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
-        <Element name="darkness_shadow_hand.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
+        <Element name="creatures_naughtiness.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="creatures_observation.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>
