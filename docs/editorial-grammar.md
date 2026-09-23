@@ -105,6 +105,24 @@ quick observations and more careful studies may coexist. the amount of attention
 
 ## style is not recurring scenery
 
+### treat every scene as a fresh location decision
+
+do not begin a new illustration by inheriting the scenery, terrain structure, horizon, vegetation, framing, or background arrangement of an earlier image.
+
+choose the environment again from the world of `dst` based on the subject, mechanic, mood, season, time of day, and spoiler boundary. use the environmental range listed below as an active source of possibilities rather than repeatedly returning to scenery that has already worked.
+
+when several environments would fit, deliberately choose one that gives the handbook genuinely new scenery.
+
+reusing a biome is sometimes correct. reusing the same scenery is not. two forest scenes, for example, can still differ substantially in density, terrain, openness, tree type, foreground framing, weather, light, water, horizon, and spatial structure.
+
+before generating, ask:
+
+> if the subject were removed, would this background look substantially like one we have already used?
+
+if yes, redesign the scenery before generating unless the subject genuinely requires that similarity.
+
+the primary anchors define the artist's hand, not the places she keeps visiting.
+
 style does not require recurring scenery. each image should use the environment that best belongs to its subject, moment, and lesson.
 
 do not carry forward a landscape merely because it worked in earlier illustrations. repeated pines, lakes, rocky spires, autumn grass, distant cliffs, similar horizons, or the same open hillside can become visual habits just as easily as repeated poses.
@@ -200,7 +218,7 @@ stable instruction:
 
 > create another standalone scene image by the same unnamed explorer who made the original primary handbook anchors. treat those anchors as the style lock even when newer approved images differ. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms.
 >
-> match the artist's habits, not the literal scenery of previous images. choose an environment that actually belongs in `dst` and fits the subject. if several environments fit equally well, prefer one whose biome, vegetation, terrain, openness, horizon structure, weather, or spatial character differs materially from recent approved scenes. do not default to open temperate hills, a distant lake, pine-lined horizons, rocky spires, or any other successful recurring backdrop. enclosed forest interiors, marshes, savannas, rocky country, deserts, coasts, ocean, lunar terrain, caves, fungal forests, ruins, and other appropriate `dst` environments are all available when the content and spoiler boundary permit them.
+> match the artist's habits, not the literal scenery of previous images. treat the scenery as newly designed for this specific image rather than as a variation of any previous handbook background. choose an environment that actually belongs in `dst` and fits the subject. if several environments fit equally well, prefer one whose biome, vegetation, terrain, openness, horizon structure, weather, or spatial character differs materially from recent approved scenes. do not default to open temperate hills, a distant lake, pine-lined horizons, rocky spires, or any other successful recurring backdrop. enclosed forest interiors, marshes, savannas, rocky country, deserts, coasts, ocean, lunar terrain, caves, fungal forests, ruins, and other appropriate `dst` environments are all available when the content and spoiler boundary permit them.
 >
 > when a recognizable survivor appears, preserve current `dst` identity, silhouette, exaggerated proportions, facial simplicity, hair, clothing, and signature visual cues, then redraw those traits through the same rough handbook hand. do not normalize survivors toward realistic anatomy, generic anime proportions, a shared pretty face, or polished character concept art. generate only the scene itself: no frame, page, title, caption, UI, signature, or decorative border.
 
