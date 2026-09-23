@@ -16,6 +16,16 @@ use the separate voice/philosophy note for writing decisions and the editorial g
 
 the shell and authoring grammar are considered established. add new structural systems only when real content exposes a concrete limitation, and prefer reusable behavior over topic-specific renderer branches.
 
+## git checkpoint rhythm
+
+do not commit after every small edit merely to keep the working tree clean.
+
+let closely related changes stay together while they are being reviewed, tested, and refined. commit when the work forms a coherent checkpoint that is worth preserving.
+
+several logical local commits may accumulate before pushing. push at useful checkpoints rather than automatically after every commit.
+
+push sooner when changing machines, before risky history work, when collaboration needs the commit, or when an immediate remote backup is useful.
+
 ## main project areas
 
 ```text
@@ -386,6 +396,14 @@ it does **not** reload rebuilt `.tex` assets or fonts. those require rebuilding 
 changes to `modmain.lua` or `modinfo.lua` also require a proper mod/game reload because startup handlers/config metadata are not re-registered by handbook hot reload.
 
 ## scene-image pipeline
+
+### production image source of truth
+
+`source/assets/illustrations/*.png` contains the canonical editable handbook artwork.
+
+the prepared `573x321` production png is the version to keep, review, and edit. manual cleanup, paintovers, character corrections, and other small art fixes should normally be made directly to that production image, then the runtime atlases should be rebuilt.
+
+larger image-generation outputs are working intermediates rather than required project assets. they do not need to be committed or archived in the repository unless one has specific future editing value that the production image cannot preserve.
 
 production scene opening:
 

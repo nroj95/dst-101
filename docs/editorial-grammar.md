@@ -272,6 +272,18 @@ render those traits through the handbook's established hand: lightly rough explo
 
 survivors should look redrawn by the same traveler who drew the environments. they should not look pasted in from official game art or rendered as cleaner, more polished character concept art than the surrounding scene.
 
+### survivor continuity across illustrations
+
+when a survivor already has an approved handbook depiction, use those earlier depictions as secondary identity references for future scenes featuring that survivor.
+
+current `dst` assets and screenshots remain the authority for canonical silhouette, hair, clothing, equipment, proportions, and other identifying traits. the primary handbook anchors remain the authority for the artist's hand. earlier handbook depictions help preserve how that canonical character has already been translated through that hand.
+
+do not reinvent a survivor's face, hair shape, proportions, or other major identity cues from scratch on every generation when a strong approved handbook version already exists.
+
+compare the new character directly with earlier approved depictions of the same survivor. if the new image would make the reader wonder whether it is the same character, correct the character rather than accepting the drift.
+
+use previous character images for identity continuity only. do not inherit their pose, composition, scenery, lighting, or background; those should still be newly decided for the current scene.
+
 protect the first encounter; explain opaque useful mechanics when the reader deliberately seeks that subject.
 
 ## survivor selection
