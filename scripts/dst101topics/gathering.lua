@@ -80,5 +80,60 @@ If I keep needing the same material, I remember where I found it.
                 note = {},
             },
         },
+
+        {
+            illustration = "gathering_regrowth",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "What comes back",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Harvesting something and destroying its source are not always the same thing.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Walter was already planting another one.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Leave the source working",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Picking Grass, Twigs, Berries, Reeds, and many similar resources leaves the plant behind. Given enough time and the right conditions, it can produce more.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "Destroyed is different",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Digging up, burning, chopping, or mining can remove the thing that was producing the resource.
+
+Trees are a good example. Chopping removes that tree, but larger Evergreens can drop Pine Cones you can plant to grow new ones. New trees may also appear over time.
+
+Other resources may return in different ways, so something can be renewable without the original source simply growing back where it was.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
     },
 }

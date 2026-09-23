@@ -139,6 +139,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "food_preservation.tex",
         },
+        gathering_regrowth = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "gathering_regrowth.tex",
+        },
         gathering_shadow_servants = {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "gathering_shadow_servants.tex",
@@ -196,7 +200,7 @@ return {
             texture = "seasons_spring.tex",
         },
         seasons_summer = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "seasons_summer.tex",
         },
         seasons_winter = {
