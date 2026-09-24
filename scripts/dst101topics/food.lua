@@ -68,7 +68,7 @@ Once your stomach is empty, hunger starts costing health. Eat before it gets tha
         },
 
         {
-            illustration = "food_cooking",
+            illustration = "food_fire_cooking",
 
             regions = {
                 top_left = {
@@ -79,7 +79,69 @@ Once your stomach is empty, hunger starts costing health. Eat before it gets tha
                     {
                         type = "text",
                         text = [[
-A fire cooks one ingredient at a time. A Crock Pot combines four into a dish. Both are worth experimenting with.
+You can cook food directly over a fire, or combine several ingredients in a Crock Pot.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Willow was not convinced yet.",
+                    },
+                },
+
+                bottom_left = {
+                    {
+                        type = "text",
+                        text = [[
+Simple cooked food is still useful when all you need is something to eat now.
+]],
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Cooking over a fire",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Many foods can be cooked directly. Cooking changes what they restore and sometimes how long they stay fresh. It can make a food better in one way and worse in another, so it is worth trying familiar ingredients both ways.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "Using a Crock Pot",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Crock Pot takes four ingredients and turns them into one dish. Dishes can solve hunger, health, or sanity in ways the ingredients alone may not.
+
+You do not need to understand every recipe before using one. A Cookbook keeps track of dishes you have already discovered.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
+
+        {
+            illustration = "food_cooking",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Crock Pot patterns",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+The Crock Pot does not simply add the ingredients together. It checks what kinds of food you used and whether they satisfy a recipe.
 ]],
                     },
                 },
@@ -95,7 +157,7 @@ A fire cooks one ingredient at a time. A Crock Pot combines four into a dish. Bo
                     {
                         type = "text",
                         text = [[
-Many foods can be cooked directly over a fire. Cooking changes what they restore and sometimes how long they keep. Simple food is still useful when all you need is lunch.
+Many recipes need fewer than four specific ingredients. The remaining slots can often be filled with other food without changing the dish. Those extra ingredients are usually called fillers.
 ]],
                     },
                 },
@@ -103,14 +165,26 @@ Many foods can be cooked directly over a fire. Cooking changes what they restore
                 right = {
                     {
                         type = "heading",
-                        text = "Four things in a pot",
+                        text = "A few reliable combinations",
                     },
                     {
                         type = "text",
                         text = [[
-A Crock Pot needs four ingredients before it starts. What comes out depends on what went in, and a promising combination can still become something disappointing. Once you find a reliable recipe, it becomes much easier to plan around what you have.
+Meatballs are useful for hunger. One Monster Meat with three Berries is a simple example.
 
-You can discover recipes by trying combinations. Experiment when you have food to spare, and keep something simple to eat while you test them. A Cookbook can keep track of the dishes you discover.
+Pierogi are useful for healing. One Monster Meat, one Egg, one Carrot, and one Berry is a reliable combination.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "Monster Meat in the pot",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+One piece of Monster Meat can safely count as meat in many Crock Pot dishes.
+
+Two or more Monster Meats usually turn the result into Monster Lasagna. Start with one until you know a recipe can handle more.
 ]],
                     },
                 },

@@ -151,6 +151,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "food_cooking.tex",
         },
+        food_fire_cooking = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "food_fire_cooking.tex",
+        },
         food_foraging = {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "food_foraging.tex",
@@ -200,7 +204,7 @@ return {
             texture = "hounds_distraction.tex",
         },
         hunting_herds_nests = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "hunting_herds_nests.tex",
         },
         hunting_small_game = {
@@ -260,7 +264,7 @@ return {
             texture = "spiders_webbing.tex",
         },
         storage_supplies = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "storage_supplies.tex",
         },
         survivors_different_ways = {
