@@ -16,6 +16,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             image = "images/illustrations/dst101_illustrations_04.tex",
         },
+        {
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            image = "images/illustrations/dst101_illustrations_05.tex",
+        },
     },
 
     illustrations = {
@@ -163,6 +167,26 @@ return {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "gathering_shadow_servants.tex",
         },
+        giants_antlion = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "giants_antlion.tex",
+        },
+        giants_bearger = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "giants_bearger.tex",
+        },
+        giants_deerclops = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "giants_deerclops.tex",
+        },
+        giants_dragonfly = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "giants_dragonfly.tex",
+        },
+        giants_moose_goose = {
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            texture = "giants_moose_goose.tex",
+        },
         health_recovering = {
             atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "health_recovering.tex",
@@ -180,23 +204,23 @@ return {
             texture = "hunting_herds_nests.tex",
         },
         hunting_small_game = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "hunting_small_game.tex",
         },
         hunting_tracks = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "hunting_tracks.tex",
         },
         sailing_first_trip = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "sailing_first_trip.tex",
         },
         sailing_keeping_afloat = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "sailing_keeping_afloat.tex",
         },
         sailing_sails_and_steering = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "sailing_sails_and_steering.tex",
         },
         sanity_nightmare_fuel = {
@@ -240,23 +264,23 @@ return {
             texture = "storage_supplies.tex",
         },
         survivors_different_ways = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "survivors_different_ways.tex",
         },
         survivors_skill_tree = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "survivors_skill_tree.tex",
         },
         teamwork_split_up = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "teamwork_split_up.tex",
         },
         temperature_thermal_stone = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "temperature_thermal_stone.tex",
         },
         wetness_rain = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "wetness_rain.tex",
         },
     },

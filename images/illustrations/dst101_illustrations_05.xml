@@ -1,0 +1,10 @@
+<Atlas>
+    <Texture filename="dst101_illustrations_05.tex" />
+    <Elements>
+        <Element name="survivors_different_ways.tex" u1="0.02416992" u2="0.3034668" v1="0.64892578" v2="0.96142578" />
+        <Element name="survivors_skill_tree.tex" u1="0.35229492" u2="0.6315918" v1="0.64892578" v2="0.96142578" />
+        <Element name="teamwork_split_up.tex" u1="0.68041992" u2="0.9597168" v1="0.64892578" v2="0.96142578" />
+        <Element name="temperature_thermal_stone.tex" u1="0.02416992" u2="0.3034668" v1="0.25830078" v2="0.57080078" />
+        <Element name="wetness_rain.tex" u1="0.35229492" u2="0.6315918" v1="0.25830078" v2="0.57080078" />
+    </Elements>
+</Atlas>

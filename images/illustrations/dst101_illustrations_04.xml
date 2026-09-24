@@ -1,20 +1,20 @@
 <Atlas>
     <Texture filename="dst101_illustrations_04.tex" />
     <Elements>
-        <Element name="sanity_nightmare_fuel.tex" u1="0.02416992" u2="0.3034668" v1="0.82446289" v2="0.98071289" />
-        <Element name="sanity.tex" u1="0.35229492" u2="0.6315918" v1="0.82446289" v2="0.98071289" />
-        <Element name="seasons_overview.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
-        <Element name="seasons_spring.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
-        <Element name="seasons_summer.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
-        <Element name="seasons_winter.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
-        <Element name="setting_out.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
-        <Element name="spiders_growing_den.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
-        <Element name="spiders_webbing.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
-        <Element name="storage_supplies.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
-        <Element name="survivors_different_ways.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
-        <Element name="survivors_skill_tree.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
-        <Element name="teamwork_split_up.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
-        <Element name="temperature_thermal_stone.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
-        <Element name="wetness_rain.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
+        <Element name="hunting_small_game.tex" u1="0.02416992" u2="0.3034668" v1="0.82446289" v2="0.98071289" />
+        <Element name="hunting_tracks.tex" u1="0.35229492" u2="0.6315918" v1="0.82446289" v2="0.98071289" />
+        <Element name="sailing_first_trip.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
+        <Element name="sailing_keeping_afloat.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
+        <Element name="sailing_sails_and_steering.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
+        <Element name="sanity_nightmare_fuel.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
+        <Element name="sanity.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
+        <Element name="seasons_overview.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
+        <Element name="seasons_spring.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
+        <Element name="seasons_summer.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
+        <Element name="seasons_winter.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
+        <Element name="setting_out.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
+        <Element name="spiders_growing_den.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
+        <Element name="spiders_webbing.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="storage_supplies.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>

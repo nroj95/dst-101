@@ -30,6 +30,7 @@ local TOPIC_MODULES = {
     "dst101topics/bees",
     "dst101topics/combat",
     "dst101topics/hounds",
+    "dst101topics/giants",
 
     -- changing conditions
     "dst101topics/seasons",
