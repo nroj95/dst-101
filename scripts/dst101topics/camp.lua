@@ -121,7 +121,7 @@ I do not like all my important supplies in one place. A few basics carried with 
                     {
                         type = "text",
                         text = [[
-You do not have to defend it immediately. Get clear, recover, then decide when it is worth going back.
+Get clear first. Recover, then decide when it is worth going back.
 ]],
                     },
                 },

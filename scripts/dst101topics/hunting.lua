@@ -154,7 +154,7 @@ Animals do not all replace themselves in the same way. A home, nest, breeding he
                 right = {
                     {
                         type = "heading",
-                        text = "Leave the source working",
+                        text = "Nests and holes stay useful",
                     },
                     {
                         type = "text",

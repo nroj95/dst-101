@@ -108,7 +108,7 @@ Harvesting something and destroying its source are not always the same thing.
                 right = {
                     {
                         type = "heading",
-                        text = "Leave the source working",
+                        text = "Some sources keep producing",
                     },
                     {
                         type = "text",

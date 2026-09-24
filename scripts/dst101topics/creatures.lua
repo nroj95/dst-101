@@ -179,7 +179,7 @@ You may need to plant more than one. If the forest has had enough chopping, putt
                     {
                         type = "text",
                         text = [[
-You do not have to fight everything that wakes up. Treeguards are slow enough to leave behind, and Poison Birchnut Trees stay in place even though their roots and Birchnutters can still make the area dangerous.
+Treeguards are slow enough to leave behind, and Poison Birchnut Trees stay in place even though their roots and Birchnutters can still make the area dangerous.
 
 Back away if you are not ready and decide what to do later.
 ]],

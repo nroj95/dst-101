@@ -51,7 +51,7 @@ return {
                 right = {
                     {
                         type = "heading",
-                        text = "Use the warning",
+                        text = "Keep it away from camp",
                     },
                     {
                         type = "text",
@@ -60,7 +60,7 @@ Deep groans during winter mean Deerclops is on the way. If you are at camp, star
 
 Deerclops can tear through structures and trees, so take the encounter somewhere you are willing to let it make a mess.
 
-You do not have to fight it. Lead Deerclops well away from camp before leaving it behind.
+If you would rather avoid the fight, lead Deerclops well away from camp before leaving it behind.
 ]],
                     },
                     {
@@ -72,7 +72,7 @@ You do not have to fight it. Lead Deerclops well away from camp before leaving i
                         text = [[
 Its attacks cover a wide area and can freeze you quickly, while staying nearby drains sanity. Bring armor, a proper weapon, healing, and a reliable way to warm up.
 
-You can also break away or let another strong creature become involved. You do not have to solve the problem beside camp.
+You can also break away or let another strong creature become involved.
 ]],
                     },
                 },

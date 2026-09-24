@@ -58,7 +58,9 @@ return {
                         text = [[
 If you split up, tell each other about useful places, dangers, and anything worth coming back to.
 
-Compasses can also help separated players find one another when both are carrying one.
+Compasses can help separated players find one another when both are carrying one. A Flare can briefly mark your position on everyone's map.
+
+Later, a Map Scroll made at a Cartographer's Desk can share the areas you have explored with another player.
 ]],
                     },
                     {
@@ -70,7 +72,7 @@ Compasses can also help separated players find one another when both are carryin
                         text = [[
 Someone else may be gathering, exploring, fighting, or working at camp for a while. Carry enough food, light, and whatever protection you need to handle the trip you are making.
 
-Different survivors may make some jobs easier, but nobody needs a permanent role. Regroup when the next problem is easier to handle together.
+If someone finds a difficult fight or a dangerous place worth investigating, regroup before taking it on.
 ]],
                     },
                 },
