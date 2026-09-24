@@ -71,16 +71,24 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "combat_weapons_armor.tex",
         },
+        companions_cave = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "companions_cave.tex",
+        },
+        companions_chester = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "companions_chester.tex",
+        },
         companions_pigmen = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "companions_pigmen.tex",
         },
         crafting_hammer = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "crafting_hammer.tex",
         },
         crafting_magic = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "crafting_magic.tex",
         },
         crafting = {
@@ -136,11 +144,11 @@ return {
             texture = "exploration_walrus_camp.tex",
         },
         farming_plants = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "farming_plants.tex",
         },
         farming_upkeep = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "farming_upkeep.tex",
         },
         farming_wormwood = {
@@ -196,11 +204,11 @@ return {
             texture = "giants_deerclops.tex",
         },
         giants_dragonfly = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "giants_dragonfly.tex",
         },
         giants_moose_goose = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "giants_moose_goose.tex",
         },
         health_recovering = {
@@ -256,11 +264,11 @@ return {
             texture = "seasons_spring.tex",
         },
         seasons_summer = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "seasons_summer.tex",
         },
         seasons_winter = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "seasons_winter.tex",
         },
         setting_out = {
