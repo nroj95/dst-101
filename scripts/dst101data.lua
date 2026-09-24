@@ -2,8 +2,8 @@ local TOPIC_MODULES = {
     -- getting started
     "dst101topics/setting_out",
     "dst101topics/survivors",
-    "dst101topics/teamwork",
     "dst101topics/exploration",
+    "dst101topics/teamwork",
     "dst101topics/darkness",
     "dst101topics/fire",
     "dst101topics/food",
@@ -26,9 +26,9 @@ local TOPIC_MODULES = {
     -- living things and danger
     "dst101topics/creatures",
     "dst101topics/companions",
+    "dst101topics/combat",
     "dst101topics/spiders",
     "dst101topics/bees",
-    "dst101topics/combat",
     "dst101topics/hounds",
     "dst101topics/giants",
 
