@@ -42,6 +42,7 @@ return {
                             "combat",
                             "companions",
                             "beefalo",
+                            "gathering",
                         },
                     },
                 },
@@ -126,6 +127,61 @@ Leave them alone for a while and it gradually falls again.
 As Naughtiness rises, kills may be followed by an unusual hissing sound that grows more threatening as you get closer to the limit.
 
 That is your warning. You can leave the wildlife alone for a while, or keep going if you are willing to deal with whatever comes looking.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
+
+        {
+            illustration = "creatures_forest_fights_back",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "When the forest fights back",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Chopping trees can sometimes wake something in the forest. Evergreens may rouse Treeguards, and Birchnut Trees can become hostile too.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Woodie stopped chopping when one of the trees moved.",
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Try planting again",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+An angry Treeguard can sometimes be calmed by planting Pine Cones nearby. Poison Birchnut Trees respond to Birchnuts instead.
+
+You may need to plant more than one. If the forest has had enough chopping, putting some trees back can be worth trying.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "You can leave it alone",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+You do not have to fight everything that wakes up. Treeguards are slow enough to leave behind, and Poison Birchnut Trees stay in place even though their roots and Birchnutters can still make the area dangerous.
+
+Back away if you are not ready and decide what to do later.
 ]],
                     },
                 },

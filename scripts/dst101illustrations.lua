@@ -79,6 +79,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "crafting.tex",
         },
+        creatures_forest_fights_back = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "creatures_forest_fights_back.tex",
+        },
         creatures_naughtiness = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "creatures_naughtiness.tex",
@@ -136,7 +140,7 @@ return {
             texture = "fishing_ocean.tex",
         },
         fishing_pond = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "fishing_pond.tex",
         },
         food_cooking = {
@@ -196,7 +200,7 @@ return {
             texture = "sailing_sails_and_steering.tex",
         },
         sanity_nightmare_fuel = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "sanity_nightmare_fuel.tex",
         },
         sanity = {
