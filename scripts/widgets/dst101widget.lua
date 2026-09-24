@@ -1621,6 +1621,14 @@ function DST101Widget:SetSearchQuery(value)
     self.search_query = query
     self.topic_scroll_index = 1
 
+    if self.search_clear_button ~= nil then
+        if query == "" then
+            self.search_clear_button:Hide()
+        else
+            self.search_clear_button:Show()
+        end
+    end
+
     self:RefreshSidebar()
 
     if not query_expanded
@@ -1641,6 +1649,28 @@ function DST101Widget:SetSearchQuery(value)
         self.current_page = page_number
         self:RefreshPage()
     end
+end
+
+
+function DST101Widget:ClearSearch(keep_editing)
+    local had_query =
+        (self.search_query or "") ~= ""
+
+    if self.search_edit ~= nil then
+        self.search_edit:SetString("")
+    end
+
+    if had_query then
+        self:SetSearchQuery("")
+    end
+
+    if self.search_edit ~= nil then
+        self.search_edit:SetEditing(
+            keep_editing == true
+        )
+    end
+
+    return had_query
 end
 
 
@@ -1823,8 +1853,16 @@ function DST101Widget:BuildSearchRow()
     local text_left =
         sidebar.topic_text.left
 
+    local clear_button_width = 34
+    local clear_button_gap = 4
+
     local text_right =
-        sidebar.topic_text.right
+        math.min(
+            sidebar.topic_text.right,
+            search.right
+                - clear_button_width
+                - clear_button_gap
+        )
 
     local text_width =
         text_right -
@@ -1900,6 +1938,53 @@ function DST101Widget:BuildSearchRow()
         self.search_query
     )
 
+    self.search_clear_button =
+        self.search_root:AddChild(
+            ImageButton(
+                "images/global.xml",
+                "square.tex"
+            )
+        )
+
+    self.search_clear_button.scale_on_focus = false
+    self.search_clear_button.move_on_click = false
+
+    self.search_clear_button:ForceImageSize(
+        clear_button_width,
+        search.bottom - search.top + 1
+    )
+
+    self.search_clear_button:SetPosition(
+        source_x(
+            search.right - clear_button_width / 2
+        ),
+        center_y
+    )
+
+    self.search_clear_button:SetImageNormalColour(1, 1, 1, 0)
+    self.search_clear_button:SetImageFocusColour(1, 1, 1, 0)
+    self.search_clear_button:SetImageSelectedColour(1, 1, 1, 0)
+
+    local clear_label =
+        self.search_clear_button:AddChild(
+            Text(
+                HEADERFONT,
+                34,
+                "×",
+                LAYOUT.colours.sidebar_text
+            )
+        )
+
+    clear_label:SetClickable(false)
+
+    self.search_clear_button:SetOnClick(function()
+        self:ClearSearch(true)
+    end)
+
+    if self.search_query == "" then
+        self.search_clear_button:Hide()
+    end
+
     local search_edit_on_control =
         self.search_edit.OnControl
 
@@ -1922,6 +2007,21 @@ function DST101Widget:BuildSearchRow()
 
     self.search_edit.OnRawKey =
         function(edit, key, down)
+            if edit.editing
+                and key == KEY_ESCAPE
+            then
+                if down
+                    and (self.search_query or "") ~= ""
+                then
+                    self.search_escape_consumed = true
+                    self:ClearSearch(false)
+                end
+
+                if self.search_escape_consumed then
+                    return true
+                end
+            end
+
             if edit.editing
                 and down
                 and key == KEY_BACKSPACE

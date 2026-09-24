@@ -42,6 +42,19 @@ function DST101PopupScreen:OnDestroy()
 end
 
 function DST101PopupScreen:OnRawKey(key, down)
+    if key == KEY_ESCAPE then
+        if down
+            and (self.book.search_query or "") ~= ""
+        then
+            self.book.search_escape_consumed = true
+            self.book:ClearSearch(false)
+        end
+
+        if self.book.search_escape_consumed then
+            return true
+        end
+    end
+
     if key == KEY_UP
         or key == KEY_DOWN
         or key == KEY_LEFT
@@ -72,6 +85,17 @@ function DST101PopupScreen:OnRawKey(key, down)
 end
 
 function DST101PopupScreen:OnControl(control, down)
+    if not down
+        and (
+            control == CONTROL_MENU_BACK
+            or control == CONTROL_CANCEL
+        )
+        and self.book.search_escape_consumed
+    then
+        self.book.search_escape_consumed = false
+        return true
+    end
+
     if DST101PopupScreen._base.OnControl(self, control, down) then
         return true
     end
