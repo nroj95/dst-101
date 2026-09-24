@@ -127,6 +127,14 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "exploration_biome_edge.tex",
         },
+        exploration_pig_king = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "exploration_pig_king.tex",
+        },
+        exploration_walrus_camp = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "exploration_walrus_camp.tex",
+        },
         farming_plants = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "farming_plants.tex",
@@ -136,11 +144,11 @@ return {
             texture = "farming_upkeep.tex",
         },
         farming_wormwood = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "farming_wormwood.tex",
         },
         fire_tending = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "fire_tending.tex",
         },
         fishing_ocean = {
@@ -196,11 +204,11 @@ return {
             texture = "giants_moose_goose.tex",
         },
         health_recovering = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "health_recovering.tex",
         },
         health_sleeping = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "health_sleeping.tex",
         },
         hounds_distraction = {
@@ -256,11 +264,11 @@ return {
             texture = "seasons_winter.tex",
         },
         setting_out = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "setting_out.tex",
         },
         spiders_growing_den = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "spiders_growing_den.tex",
         },
         spiders_webbing = {
