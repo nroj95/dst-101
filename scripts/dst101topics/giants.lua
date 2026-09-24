@@ -59,6 +59,8 @@ return {
 Deep groans during winter mean Deerclops is on the way. If you are at camp, start moving before it arrives.
 
 Deerclops can tear through structures and trees, so take the encounter somewhere you are willing to let it make a mess.
+
+You do not have to fight it. Lead Deerclops well away from camp before leaving it behind.
 ]],
                     },
                     {
@@ -91,7 +93,7 @@ You can also break away or let another strong creature become involved. You do n
                     {
                         type = "text",
                         text = [[
-Moose/Goose nesting grounds exist before spring. If one is close to camp, the family that arrives there can become a very local problem.
+Moose/Goose nesting grounds exist before spring. Look for a circle of twigs, often near a pond, Berry Bushes, and other useful resources.
 ]],
                     },
                 },
@@ -99,7 +101,7 @@ Moose/Goose nesting grounds exist before spring. If one is close to camp, the fa
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "The Moslings found Wilson's food first.",
+                        text = "Wilson had no idea which Mosling to chase first.",
                     },
                 },
 
@@ -118,14 +120,14 @@ After the egg hatches, Moslings wander around eating food they find. Crock Pots,
                     },
                     {
                         type = "heading",
-                        text = "If Moose/Goose comes back",
+                        text = "A protective mother",
                     },
                     {
                         type = "text",
                         text = [[
 Hurting a Mosling can call Moose/Goose back and make the family hostile.
 
-Her honk can knock the item in your hand away, so keep track of anything important that gets dropped during a fight.
+Her honk can knock the item in your hand away during a fight.
 ]],
                     },
                 },
@@ -153,7 +155,7 @@ Her honk can knock the item in your hand away, so keep track of anything importa
                     {
                         type = "text",
                         text = [[
-Summer sinkholes are Antlion's way of demanding attention from the Oasis Desert.
+Antlion waits somewhere in the Oasis Desert during summer. Sandstorms cover most of that desert then, while the Oasis itself stays clear.
 ]],
                     },
                 },
@@ -161,7 +163,7 @@ Summer sinkholes are Antlion's way of demanding attention from the Oasis Desert.
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "WX-78 had built there before the ground opened.",
+                        text = "The ground opened right through WX-78's camp.",
                     },
                 },
 
@@ -195,7 +197,11 @@ A freezing-white or hot Thermal Stone can provoke Antlion instead, giving you th
                 bottom_left = {
                     {
                         type = "text",
-                        text = "Underground, the same disturbance sends boulders falling instead.",
+                        text = [[
+Fishing at the Oasis during summer can turn up the Desert Goggles blueprint. They make searching through the sandstorm much easier.
+
+Underground, Antlion's disturbance sends boulders falling instead.
+]],
                     },
                 },
 
@@ -223,7 +229,7 @@ Bearger normally starts appearing from the second autumn onward. It wanders in s
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "There had been a lot more Honey here earlier.",
+                        text = "I found broken hives, dead bees, and no Honey left.",
                     },
                 },
 
@@ -242,14 +248,12 @@ Bearger also goes after Honey. It can tear apart natural Beehives and eat the Ho
                     },
                     {
                         type = "heading",
-                        text = "Let it do some work",
+                        text = "It knocks trees down",
                     },
                     {
                         type = "text",
                         text = [[
-Bearger knocks down trees and structures as it moves and attacks. Leading it through a forest can turn the problem into a lot of felled trees.
-
-Treeguards may wake during all that destruction too, so the situation can change again.
+Bearger knocks down trees and structures as it moves and attacks. If it passes through a forest, it can leave a lot of Logs behind.
 ]],
                     },
                 },
@@ -294,14 +298,14 @@ Some giants are already part of the world. Dragonfly lives year-round among the 
                 right = {
                     {
                         type = "heading",
-                        text = "You can leave it there",
+                        text = "Prepare for the fight",
                     },
                     {
                         type = "text",
                         text = [[
-Dragonfly stays around her nest instead of roaming across the world. Finding the Badlands does not mean you need to fight her yet.
+Dragonfly has a lot of health and hits hard. Bring a strong weapon, plenty of armor, and enough healing for a longer fight.
 
-Pull her too far away and she can fly back to the nest and recover, so relocating the whole encounter is not as simple as leading her elsewhere.
+Her attacks have a rhythm you can learn, but she moves quickly. Start cautiously rather than trying to squeeze in as many hits as possible.
 ]],
                     },
                     {
@@ -311,9 +315,9 @@ Pull her too far away and she can fly back to the nest and recover, so relocatin
                     {
                         type = "text",
                         text = [[
-During a fight, Dragonfly can call Lavae from the nearby Magma Pools.
+During the fight, Dragonfly can call Lavae from the nearby Magma Pools. Stone walls can keep them away from you while you deal with Dragonfly.
 
-What happens to those Lavae can change Dragonfly's behavior, so the pools are part of the encounter rather than just scenery.
+When the Lavae die, Dragonfly can become enraged. A Pan Flute can put her to sleep and end that dangerous state early.
 ]],
                     },
                 },
