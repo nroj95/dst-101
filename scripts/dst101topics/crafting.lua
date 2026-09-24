@@ -69,6 +69,70 @@ Learning a recipe for the first time also gives you a small sanity boost. Learn 
         },
 
         {
+            illustration = "crafting_hammer",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Taking things apart",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Hammer can dismantle many structures. It is useful for misplaced builds, old camp pieces, and structures you find in the world.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Wolfgang had not expected that much to come back.",
+                    },
+                },
+
+                bottom_left = {
+                    {
+                        type = "text",
+                        text = [[
+Pig Heads can be hammered too. They give Pig Skin and Twigs without removing a Pig House.
+]],
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "Some materials come back",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Many structures return part of their building materials when hammered. Containers also drop anything stored inside rather than destroying it.
+
+That makes building mistakes less permanent. If something is in the wrong place, taking it apart may give you enough material to rebuild elsewhere.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "What Pig Houses give",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A naturally generated Pig House gives 2 Boards, 2 Cut Stone, and 2 Pig Skins when hammered. Taking apart a few early can save quite a bit of gathering and refining.
+
+The house stops producing Pigs once it is gone. Leave some standing if you still want a renewable source of Pigs.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
+
+        {
             illustration = "crafting_magic",
 
             regions = {
