@@ -41,6 +41,7 @@ local TOPIC_MODULES = {
     "dst101topics/sailing",
     "dst101topics/beefalo",
     "dst101topics/caves",
+    "dst101topics/mysteries",
 }
 
 

@@ -235,6 +235,22 @@ return {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "hunting_tracks.tex",
         },
+        mysteries_glommer = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "mysteries_glommer.tex",
+        },
+        mysteries_mandrake = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "mysteries_mandrake.tex",
+        },
+        mysteries_marble_sculptures = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "mysteries_marble_sculptures.tex",
+        },
+        mysteries_moon_stone = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "mysteries_moon_stone.tex",
+        },
         sailing_first_trip = {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "sailing_first_trip.tex",
@@ -248,19 +264,19 @@ return {
             texture = "sailing_sails_and_steering.tex",
         },
         sanity_nightmare_fuel = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "sanity_nightmare_fuel.tex",
         },
         sanity = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "sanity.tex",
         },
         seasons_overview = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "seasons_overview.tex",
         },
         seasons_spring = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "seasons_spring.tex",
         },
         seasons_summer = {
