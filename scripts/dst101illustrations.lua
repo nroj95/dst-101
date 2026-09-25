@@ -47,6 +47,26 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "bees_hive.tex",
         },
+        biomes_deserts = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "biomes_deserts.tex",
+        },
+        biomes_forests_open = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "biomes_forests_open.tex",
+        },
+        biomes_offshore = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "biomes_offshore.tex",
+        },
+        biomes_reading_world = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "biomes_reading_world.tex",
+        },
+        biomes_rock_marsh = {
+            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "biomes_rock_marsh.tex",
+        },
         camp_home = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "camp_home.tex",
@@ -68,23 +88,23 @@ return {
             texture = "caves_nightmare_cycle.tex",
         },
         combat_study = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "combat_study.tex",
         },
         combat_weapons_armor = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "combat_weapons_armor.tex",
         },
         companions_cave = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "companions_cave.tex",
         },
         companions_chester = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "companions_chester.tex",
         },
         companions_critters = {
-            atlas = "images/illustrations/dst101_illustrations_01.xml",
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "companions_critters.tex",
         },
         companions_pigmen = {
@@ -128,23 +148,23 @@ return {
             texture = "death_ghost.tex",
         },
         death_recovery = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "death_recovery.tex",
         },
         equipment_durability = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "equipment_durability.tex",
         },
         equipment_slots = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "equipment_slots.tex",
         },
         exploration_biome_edge = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "exploration_biome_edge.tex",
         },
         exploration_pig_king = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "exploration_pig_king.tex",
         },
         exploration_walrus_camp = {
@@ -188,23 +208,23 @@ return {
             texture = "food_foraging.tex",
         },
         food_preservation = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "food_preservation.tex",
         },
         gathering_regrowth = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "gathering_regrowth.tex",
         },
         gathering_shadow_servants = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "gathering_shadow_servants.tex",
         },
         giants_antlion = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "giants_antlion.tex",
         },
         giants_bearger = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "giants_bearger.tex",
         },
         giants_deerclops = {
@@ -248,23 +268,23 @@ return {
             texture = "merms_king.tex",
         },
         merms_village = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "merms_village.tex",
         },
         merms_workers = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "merms_workers.tex",
         },
         mysteries_glommer = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "mysteries_glommer.tex",
         },
         mysteries_mandrake = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "mysteries_mandrake.tex",
         },
         mysteries_marble_sculptures = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "mysteries_marble_sculptures.tex",
         },
         mysteries_moon_stone = {
@@ -308,23 +328,23 @@ return {
             texture = "seasons_winter.tex",
         },
         setting_out = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "setting_out.tex",
         },
         spiders_growing_den = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "spiders_growing_den.tex",
         },
         spiders_webbing = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "spiders_webbing.tex",
         },
         storage_supplies = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "storage_supplies.tex",
         },
         survivors_different_ways = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "survivors_different_ways.tex",
         },
         survivors_skill_tree = {

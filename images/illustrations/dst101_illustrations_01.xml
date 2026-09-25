@@ -6,15 +6,15 @@
         <Element name="beefalo.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
         <Element name="bees_bee_boxes.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
         <Element name="bees_hive.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
-        <Element name="camp_home.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
-        <Element name="camp_safety.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
-        <Element name="caves_depths_worms.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
-        <Element name="caves_first_descent.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
-        <Element name="caves_nightmare_cycle.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
-        <Element name="combat_study.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
-        <Element name="combat_weapons_armor.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
-        <Element name="companions_cave.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
-        <Element name="companions_chester.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
-        <Element name="companions_critters.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
+        <Element name="biomes_deserts.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
+        <Element name="biomes_forests_open.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
+        <Element name="biomes_offshore.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
+        <Element name="biomes_reading_world.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
+        <Element name="biomes_rock_marsh.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
+        <Element name="camp_home.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
+        <Element name="camp_safety.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
+        <Element name="caves_depths_worms.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
+        <Element name="caves_first_descent.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="caves_nightmare_cycle.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>

@@ -3,6 +3,7 @@ local TOPIC_MODULES = {
     "dst101topics/setting_out",
     "dst101topics/survivors",
     "dst101topics/exploration",
+    "dst101topics/biomes",
     "dst101topics/teamwork",
     "dst101topics/darkness",
     "dst101topics/fire",
