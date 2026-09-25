@@ -156,7 +156,7 @@ Suspicious Marble pieces belong to broken Rook, Knight, and Bishop sculptures. B
                 illustration_caption = {
                     {
                         type = "caption",
-                        text = "The rook started shaking under the new moon.",
+                        text = "The knight started shaking under the new moon.",
                     },
                 },
 
