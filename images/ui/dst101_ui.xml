@@ -21,6 +21,7 @@
         <Element name="note_animal_crow.tex" u1="0.508300781" u2="0.655761719" v1="0.120605469" v2="0.288574219" />
         <Element name="note_animal_catcoon.tex" u1="0.664550781" u2="0.835449219" v1="0.149902344" v2="0.288574219" />
         <Element name="note_animal_splumonkey.tex" u1="0.844238281" u2="0.991699219" v1="0.120605469" v2="0.288574219" />
+        <Element name="hud_handbook.tex" u1="0.008300781" u2="0.132324219" v1="0.055175781" v2="0.179199219" />
         <Element name="fleur_de_lis_divider.tex" u1="0.008300781" u2="0.491699219" v1="0.318847656" v2="0.397949219" />
         <Element name="fleur_de_lis_divider_asymmetric.tex" u1="0.508300781" u2="0.991699219" v1="0.318847656" v2="0.397949219" />
     </Elements>

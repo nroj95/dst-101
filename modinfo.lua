@@ -146,11 +146,21 @@ local shortcuts = shortcut_options()
 
 configuration_options = {
     {
+        name = "show_hud_button",
+        label = "Show handbook HUD button",
+        hover = "Shows a DST 101 button beside the map controls.",
+        options = {
+            { description = "Enabled", data = true },
+            { description = "Disabled", data = false },
+        },
+        default = true,
+    },
+    {
         name = "open_shortcut",
         label = "Open handbook key",
         hover = "Opens or closes DST 101 while playing.",
         options = shortcuts,
-        default = "f5",
+        default = "b",
     },
     {
         name = "open_modifier",

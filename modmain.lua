@@ -441,6 +441,127 @@ local function add_simple_controller_skill(player)
     player:DoTaskInTime(0, try_register)
 end
 
+if GetModConfigData("show_hud_button") ~= false then
+    local shortcut_display_names = {
+        up = "Up Arrow",
+        down = "Down Arrow",
+        left = "Left Arrow",
+        right = "Right Arrow",
+        pageup = "Page Up",
+        pagedown = "Page Down",
+        backspace = "Backspace",
+        escape = "Escape",
+        minus = "-",
+        equals = "=",
+        period = ".",
+        slash = "/",
+        semicolon = ";",
+        leftbracket = "[",
+        backslash = "\\",
+        rightbracket = "]",
+        tilde = "`",
+        print = "Print Screen",
+        capslock = "Caps Lock",
+        scrolllock = "Scroll Lock",
+        kp_period = "Numpad .",
+        kp_divide = "Numpad /",
+        kp_multiply = "Numpad *",
+        kp_minus = "Numpad -",
+        kp_plus = "Numpad +",
+        kp_enter = "Numpad Enter",
+        kp_equals = "Numpad =",
+    }
+
+    local modifier_display_names = {
+        ctrl = "Ctrl",
+        shift = "Shift",
+        alt = "Alt",
+        ctrl_shift = "Ctrl + Shift",
+        ctrl_alt = "Ctrl + Alt",
+        shift_alt = "Shift + Alt",
+        ctrl_shift_alt = "Ctrl + Shift + Alt",
+    }
+
+    local function get_handbook_shortcut_label()
+        local shortcut =
+            GetModConfigData("open_shortcut")
+
+        if shortcut == nil or shortcut == "disabled" then
+            return nil
+        end
+
+        local key_label =
+            shortcut_display_names[shortcut]
+
+        if key_label == nil then
+            if string.sub(shortcut, 1, 3) == "kp_" then
+                key_label =
+                    "Numpad "
+                    .. string.sub(shortcut, 4)
+            else
+                key_label = string.upper(shortcut)
+            end
+        end
+
+        local modifier =
+            GetModConfigData("open_modifier")
+            or "none"
+
+        local modifier_label =
+            modifier_display_names[modifier]
+
+        if modifier_label ~= nil then
+            return modifier_label .. " + " .. key_label
+        end
+
+        return key_label
+    end
+
+    AddClassPostConstruct("widgets/mapcontrols", function(self)
+        local ImageButton = require("widgets/imagebutton")
+
+        self.dst101_handbook_button = self:AddChild(
+            ImageButton(
+                "images/ui/dst101_ui.xml",
+                "hud_handbook.tex"
+            )
+        )
+
+        self.dst101_handbook_button:SetScale(
+            0.72,
+            0.72,
+            0.72
+        )
+
+        self.dst101_handbook_button:SetPosition(
+            -101,
+            -26,
+            0
+        )
+
+        local shortcut_label =
+            get_handbook_shortcut_label()
+
+        local tooltip = "Show Handbook"
+
+        if shortcut_label ~= nil then
+            tooltip =
+                tooltip
+                .. "\n("
+                .. shortcut_label
+                .. ")"
+        end
+
+        self.dst101_handbook_button:SetTooltip(
+            tooltip
+        )
+
+        self.dst101_handbook_button:SetOnClick(
+            open_handbook
+        )
+    end)
+end
+
 bind_shortcut(
     "open_shortcut",
     "open_modifier",

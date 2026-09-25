@@ -221,6 +221,17 @@ $assets = @(
         Height = 173
     },
 
+    # handbook HUD button: 128 x 128
+    @{
+        Name = 'hud_handbook'
+        File = 'hud_handbook.png'
+        ExpectedSource = '1254x1254'
+        X = 8
+        Y = 840
+        Width = 128
+        Height = 128
+    },
+
     # footer dividers: 496 x 82
     @{
         Name = 'fleur_de_lis_divider'
