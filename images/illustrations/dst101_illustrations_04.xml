@@ -1,20 +1,20 @@
 <Atlas>
     <Texture filename="dst101_illustrations_04.tex" />
     <Elements>
-        <Element name="food_preservation.tex" u1="0.02416992" u2="0.3034668" v1="0.82446289" v2="0.98071289" />
-        <Element name="gathering_regrowth.tex" u1="0.35229492" u2="0.6315918" v1="0.82446289" v2="0.98071289" />
-        <Element name="gathering_shadow_servants.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
-        <Element name="giants_antlion.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
-        <Element name="giants_bearger.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
-        <Element name="giants_deerclops.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
-        <Element name="giants_dragonfly.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
-        <Element name="giants_moose_goose.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
-        <Element name="health_recovering.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
-        <Element name="health_sleeping.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
-        <Element name="hounds_distraction.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
-        <Element name="hunting_herds_nests.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
-        <Element name="hunting_small_game.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
-        <Element name="hunting_tracks.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
-        <Element name="merms_king.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
+        <Element name="food_foraging.tex" u1="0.02416992" u2="0.3034668" v1="0.82446289" v2="0.98071289" />
+        <Element name="food_preservation.tex" u1="0.35229492" u2="0.6315918" v1="0.82446289" v2="0.98071289" />
+        <Element name="gathering_regrowth.tex" u1="0.68041992" u2="0.9597168" v1="0.82446289" v2="0.98071289" />
+        <Element name="gathering_shadow_servants.tex" u1="0.02416992" u2="0.3034668" v1="0.62915039" v2="0.78540039" />
+        <Element name="giants_antlion.tex" u1="0.35229492" u2="0.6315918" v1="0.62915039" v2="0.78540039" />
+        <Element name="giants_bearger.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
+        <Element name="giants_deerclops.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
+        <Element name="giants_dragonfly.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
+        <Element name="giants_moose_goose.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
+        <Element name="health_recovering.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
+        <Element name="health_sleeping.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
+        <Element name="hounds_distraction.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
+        <Element name="hunting_herds_nests.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
+        <Element name="hunting_small_game.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="hunting_tracks.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>

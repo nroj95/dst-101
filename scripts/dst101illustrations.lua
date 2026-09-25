@@ -135,6 +135,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "creatures_observation.tex",
         },
+        credits_thank_you = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            texture = "credits_thank_you.tex",
+        },
         darkness_shadow_hand = {
             atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "darkness_shadow_hand.tex",
@@ -144,7 +148,7 @@ return {
             texture = "darkness.tex",
         },
         death_ghost = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "death_ghost.tex",
         },
         death_recovery = {
@@ -204,7 +208,7 @@ return {
             texture = "food_fire_cooking.tex",
         },
         food_foraging = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "food_foraging.tex",
         },
         food_preservation = {
@@ -264,7 +268,7 @@ return {
             texture = "hunting_tracks.tex",
         },
         merms_king = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "merms_king.tex",
         },
         merms_village = {
@@ -324,7 +328,7 @@ return {
             texture = "seasons_summer.tex",
         },
         seasons_winter = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "seasons_winter.tex",
         },
         setting_out = {
