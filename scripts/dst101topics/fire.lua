@@ -49,7 +49,7 @@ A Fire Pit stays behind and can be fueled again later. Its flames are contained,
                     },
                     {
                         type = "text",
-                        text = "Fires shrink as their fuel runs out. Keep something combustible nearby when you expect to rely on one, especially before settling in for the night.",
+                        text = "Fires shrink as their fuel runs out. A little spare fuel nearby is useful when you expect to rely on one through the night.",
                     },
                 },
 

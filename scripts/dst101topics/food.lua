@@ -33,10 +33,17 @@ return {
 
                 bottom_left = {
                     {
-                        type = "text",
-                        text = [[
-Berries, carrots, and other familiar food can keep a journey moving. Pick up what you need as you go.
-]],
+                        type = "heading",
+                        text = "Related topics",
+                    },
+                    {
+                        type = "related_topics",
+                        topics = {
+                            "farming",
+                            "fishing",
+                            "hunting",
+                            "storage",
+                        },
                     },
                 },
 
@@ -48,7 +55,7 @@ Berries, carrots, and other familiar food can keep a journey moving. Pick up wha
                     {
                         type = "text",
                         text = [[
-Most food does not stay fresh forever. As it goes stale, it becomes less useful; leave it long enough and it rots. Use the older food first when you can.
+Most food does not stay fresh forever. As it goes stale, it becomes less useful; leave it long enough and it rots. Older food is usually worth using first.
 ]],
                     },
                     {

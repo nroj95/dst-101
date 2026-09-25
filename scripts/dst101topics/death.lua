@@ -129,7 +129,12 @@ return {
                     },
                 },
 
-
+                note = {
+                    {
+                        type = "note",
+                        text = "The lightning from a Touch Stone can ignite flammable things left too close.",
+                    },
+                },
             },
         },
     },
