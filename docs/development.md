@@ -22,10 +22,6 @@ do not commit after every small edit merely to keep the working tree clean.
 
 let closely related changes stay together while they are being reviewed, tested, and refined. commit when the work forms a coherent checkpoint that is worth preserving.
 
-several logical local commits may accumulate before pushing. push at useful checkpoints rather than automatically after every commit.
-
-push sooner when changing machines, before risky history work, when collaboration needs the commit, or when an immediate remote backup is useful.
-
 ## main project areas
 
 ```text
