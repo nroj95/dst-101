@@ -8,6 +8,9 @@ dst_compatible = true
 client_only_mod = true
 all_clients_require_mod = false
 
+icon_atlas = "modicon.xml"
+icon = "modicon.tex"
+
 local function add_option(options, description, data)
     options[#options + 1] = {
         description = description,
