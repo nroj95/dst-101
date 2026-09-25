@@ -58,7 +58,7 @@ return {
                         text = [[
 If you split up, tell each other about useful places, dangers, and anything worth coming back to.
 
-Compasses can help separated players find one another when both are carrying one. A Flare can briefly mark your position on everyone's map.
+Compasses can help separated players find one another when both have one equipped. A Flare can briefly mark your position on everyone's map.
 
 Later, a Map Scroll made at a Cartographer's Desk can share the areas you have explored with another player.
 ]],
@@ -77,7 +77,12 @@ If someone finds a difficult fight or a dangerous place worth investigating, reg
                     },
                 },
 
-                note = {},
+                note = {
+                    {
+                        type = "note",
+                        text = "A Map Scroll made on the Surface does not include the Caves, and vice versa.",
+                    },
+                },
             },
         },
     },

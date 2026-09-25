@@ -30,10 +30,16 @@ return {
 
                 bottom_left = {
                     {
-                        type = "text",
-                        text = [[
-Bring a light you can carry if you expect to keep moving into the night. You do not need it during dusk, so save it until the world goes dark.
-]],
+                        type = "heading",
+                        text = "Related topics",
+                    },
+                    {
+                        type = "related_topics",
+                        topics = {
+                            "fire",
+                            "sanity",
+                            "caves",
+                        },
                     },
                 },
 
@@ -45,7 +51,7 @@ Bring a light you can carry if you expect to keep moving into the night. You do 
                     {
                         type = "text",
                         text = [[
-Make another source of light or reach one quickly. Complete darkness is not a safe place to wait and think.
+Make another source of light or reach one quickly. Complete darkness becomes dangerous very quickly.
 ]],
                     },
                     {
@@ -55,7 +61,7 @@ Make another source of light or reach one quickly. Complete darkness is not a sa
                     {
                         type = "text",
                         text = [[
-A fire gives you somewhere bright to spend the night. Portable light lets the journey continue.
+A fire gives you somewhere bright to spend the night. Portable light lets the journey continue after dusk. Dusk itself is still safe without it.
 ]],
                     },
                 },
@@ -63,7 +69,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                 note = {
                     {
                         type = "note",
-                        text = "Something watched from beyond the light. I chose not to investigate.",
+                        text = "Something kept moving just beyond the firelight.",
                     },
                 },
             },
@@ -80,7 +86,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                     },
                     {
                         type = "text",
-                        text = "As sanity falls, strange shadows may begin appearing. They do not all behave the same way.",
+                        text = "Some shadows can start appearing before sanity gets especially low. They do not all behave the same way.",
                     },
                 },
 
