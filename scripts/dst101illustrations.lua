@@ -347,6 +347,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "storage_supplies.tex",
         },
+        survivors_celestial_portal = {
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
+            texture = "survivors_celestial_portal.tex",
+        },
         survivors_different_ways = {
             atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "survivors_different_ways.tex",
