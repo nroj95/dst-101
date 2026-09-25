@@ -20,6 +20,10 @@ return {
             atlas = "images/illustrations/dst101_illustrations_05.xml",
             image = "images/illustrations/dst101_illustrations_05.tex",
         },
+        {
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
+            image = "images/illustrations/dst101_illustrations_06.tex",
+        },
     },
 
     illustrations = {
@@ -235,6 +239,18 @@ return {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "hunting_tracks.tex",
         },
+        merms_king = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "merms_king.tex",
+        },
+        merms_village = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "merms_village.tex",
+        },
+        merms_workers = {
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            texture = "merms_workers.tex",
+        },
         mysteries_glommer = {
             atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "mysteries_glommer.tex",
@@ -252,15 +268,15 @@ return {
             texture = "mysteries_moon_stone.tex",
         },
         sailing_first_trip = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "sailing_first_trip.tex",
         },
         sailing_keeping_afloat = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "sailing_keeping_afloat.tex",
         },
         sailing_sails_and_steering = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "sailing_sails_and_steering.tex",
         },
         sanity_nightmare_fuel = {
@@ -312,15 +328,15 @@ return {
             texture = "survivors_skill_tree.tex",
         },
         teamwork_split_up = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "teamwork_split_up.tex",
         },
         temperature_thermal_stone = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "temperature_thermal_stone.tex",
         },
         wetness_rain = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "wetness_rain.tex",
         },
     },

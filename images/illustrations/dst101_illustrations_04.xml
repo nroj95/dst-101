@@ -9,12 +9,12 @@
         <Element name="hunting_herds_nests.tex" u1="0.68041992" u2="0.9597168" v1="0.62915039" v2="0.78540039" />
         <Element name="hunting_small_game.tex" u1="0.02416992" u2="0.3034668" v1="0.43383789" v2="0.59008789" />
         <Element name="hunting_tracks.tex" u1="0.35229492" u2="0.6315918" v1="0.43383789" v2="0.59008789" />
-        <Element name="mysteries_glommer.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
-        <Element name="mysteries_mandrake.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
-        <Element name="mysteries_marble_sculptures.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
-        <Element name="mysteries_moon_stone.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
-        <Element name="sailing_first_trip.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
-        <Element name="sailing_keeping_afloat.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
-        <Element name="sailing_sails_and_steering.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
+        <Element name="merms_king.tex" u1="0.68041992" u2="0.9597168" v1="0.43383789" v2="0.59008789" />
+        <Element name="merms_village.tex" u1="0.02416992" u2="0.3034668" v1="0.23852539" v2="0.39477539" />
+        <Element name="merms_workers.tex" u1="0.35229492" u2="0.6315918" v1="0.23852539" v2="0.39477539" />
+        <Element name="mysteries_glommer.tex" u1="0.68041992" u2="0.9597168" v1="0.23852539" v2="0.39477539" />
+        <Element name="mysteries_mandrake.tex" u1="0.02416992" u2="0.3034668" v1="0.04321289" v2="0.19946289" />
+        <Element name="mysteries_marble_sculptures.tex" u1="0.35229492" u2="0.6315918" v1="0.04321289" v2="0.19946289" />
+        <Element name="mysteries_moon_stone.tex" u1="0.68041992" u2="0.9597168" v1="0.04321289" v2="0.19946289" />
     </Elements>
 </Atlas>

@@ -1,0 +1,8 @@
+<Atlas>
+    <Texture filename="dst101_illustrations_06.tex" />
+    <Elements>
+        <Element name="teamwork_split_up.tex" u1="0.02416992" u2="0.3034668" v1="0.29785156" v2="0.92285156" />
+        <Element name="temperature_thermal_stone.tex" u1="0.35229492" u2="0.6315918" v1="0.29785156" v2="0.92285156" />
+        <Element name="wetness_rain.tex" u1="0.68041992" u2="0.9597168" v1="0.29785156" v2="0.92285156" />
+    </Elements>
+</Atlas>
