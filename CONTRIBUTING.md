@@ -59,7 +59,7 @@ important goals include:
 
 existing primary visual anchors define the hand. newer images may expand scenery, weather, subject matter, and mood but should not gradually redefine the underlying style.
 
-manual paintovers, anatomy corrections, cleanup, and replacement illustrations are welcome.
+manual paintovers, anatomy corrections, cleanup, full redraws, and replacement illustrations are welcome.
 
 ## code
 
