@@ -83,8 +83,12 @@ return {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
             texture = "companions_chester.tex",
         },
-        companions_pigmen = {
+        companions_critters = {
             atlas = "images/illustrations/dst101_illustrations_01.xml",
+            texture = "companions_critters.tex",
+        },
+        companions_pigmen = {
+            atlas = "images/illustrations/dst101_illustrations_02.xml",
             texture = "companions_pigmen.tex",
         },
         crafting_hammer = {
@@ -144,7 +148,7 @@ return {
             texture = "exploration_pig_king.tex",
         },
         exploration_walrus_camp = {
-            atlas = "images/illustrations/dst101_illustrations_02.xml",
+            atlas = "images/illustrations/dst101_illustrations_03.xml",
             texture = "exploration_walrus_camp.tex",
         },
         farming_plants = {
@@ -204,7 +208,7 @@ return {
             texture = "giants_bearger.tex",
         },
         giants_deerclops = {
-            atlas = "images/illustrations/dst101_illustrations_03.xml",
+            atlas = "images/illustrations/dst101_illustrations_04.xml",
             texture = "giants_deerclops.tex",
         },
         giants_dragonfly = {
@@ -264,7 +268,7 @@ return {
             texture = "mysteries_marble_sculptures.tex",
         },
         mysteries_moon_stone = {
-            atlas = "images/illustrations/dst101_illustrations_04.xml",
+            atlas = "images/illustrations/dst101_illustrations_05.xml",
             texture = "mysteries_moon_stone.tex",
         },
         sailing_first_trip = {
@@ -324,7 +328,7 @@ return {
             texture = "survivors_different_ways.tex",
         },
         survivors_skill_tree = {
-            atlas = "images/illustrations/dst101_illustrations_05.xml",
+            atlas = "images/illustrations/dst101_illustrations_06.xml",
             texture = "survivors_skill_tree.tex",
         },
         teamwork_split_up = {

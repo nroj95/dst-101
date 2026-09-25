@@ -146,6 +146,66 @@ Only ordinary Chester can transform. If a transformed Chester dies, he returns l
         },
 
         {
+            illustration = "companions_critters",
+
+            regions = {
+                top_left = {
+                    {
+                        type = "page_heading",
+                        text = "Critters",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+A Rock Den unlocks recipes for small pets called Critters. Their recipes pair an item connected to the creature with a particular Crock Pot dish.
+]],
+                    },
+                },
+
+                illustration_caption = {
+                    {
+                        type = "caption",
+                        text = "Willow seemed pleased with her choice.",
+                    },
+                },
+
+                bottom_left = {
+                    {
+                        type = "text",
+                        text = [[
+You can keep one Critter at a time. Return to a Rock Den and abandon your current Critter before adopting another. Walter cannot adopt one because he already has Woby.
+]],
+                    },
+                },
+
+                right = {
+                    {
+                        type = "heading",
+                        text = "They are here for company",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Critters stay with their owner until they are deliberately abandoned. They keep away from fights and cannot be attacked or killed.
+]],
+                    },
+                    {
+                        type = "heading",
+                        text = "They still get hungry",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Critters call out when they are hungry. If they go too long without food, they stop nuzzling you and playing with other Critters, but they will not die or leave.
+]],
+                    },
+                },
+
+                note = {},
+            },
+        },
+
+        {
             illustration = "companions_cave",
 
             regions = {
