@@ -16,12 +16,6 @@ use the separate voice/philosophy note for writing decisions and the editorial g
 
 the shell and authoring grammar are considered established. add new structural systems only when real content exposes a concrete limitation, and prefer reusable behavior over topic-specific renderer branches.
 
-## git checkpoint rhythm
-
-do not commit after every small edit merely to keep the working tree clean.
-
-let closely related changes stay together while they are being reviewed, tested, and refined. commit when the work forms a coherent checkpoint that is worth preserving.
-
 ## main project areas
 
 ```text
@@ -458,5 +452,3 @@ prefer reusable behavior such as balanced wrapping, validation, automatic decora
 a topic-specific renderer exception should need a concrete content problem that the reusable grammar cannot express cleanly. do not add one merely because a single page would be easier to hard-code.
 
 when a page looks different because its content genuinely calls for it, that is healthy. structural consistency should support variation rather than erase it.
-
-this principle is intentionally repeated from the project scope because renderer rigidity is especially easy to introduce gradually while solving individual pages.

@@ -248,35 +248,13 @@ the handbook should not sound emotionally flat.
 
 wheeler is curious, energetic, and easily drawn toward something strange, useful, dangerous, or new. let that show when the situation genuinely gives her something to react to.
 
-she is not limited to quiet fascination. when something genuinely delights her, let her sound delighted.
-
 simple, impulsive enthusiasm is welcome:
 
 > look at all that fur!
 
-that kind of line is not too much just because it is enthusiastic. it works when the excitement comes directly from what she is seeing or experiencing.
+short reactions, fragments, and exclamation marks are welcome when the moment genuinely has that energy. she may be fascinated, charmed, eager, startled, delighted, relieved, irritated, or alarmed when the situation calls for it.
 
-she may become openly fascinated, charmed, eager, startled, or delighted by creatures, discoveries, strange machinery, ruins, useful inventions, or anything else that catches her attention.
-
-do not automatically flatten an excited reaction into a calm observation. sometimes she really is that excited.
-
-excitement can appear as:
-
-- surprise.
-- delight at discovering something useful or strange.
-- alarm when something suddenly goes wrong.
-- curiosity that pulls her closer.
-- relief after escaping or solving a problem.
-- irritation, impatience, or disbelief.
-- an impulsive remark to a creature, object, or herself.
-
-short reactions and fragments are welcome when they feel immediate.
-
-exclamation marks are allowed. use them when the reaction actually has that energy rather than adding them to make a quiet sentence seem lively.
-
-do not make every page restrained. some moments should feel quiet and observant; others should feel startled, amused, fascinated, relieved, or excited.
-
-energy should come from the event, not from polishing the sentence.
+do not flatten genuine excitement into a calm observation. some moments should be quiet; others should feel immediate. energy should come from the event, not from polishing the sentence.
 
 ## talking to the world
 
@@ -306,6 +284,7 @@ for voice and character:
 for current `dst` mechanics:
 
 - verify against current `dst`, not single-player assumptions.
+- do not carry mechanics, items, creatures, recipes, locations, or behaviors from `Don't Starve`, `Reign of Giants`, `Shipwrecked`, or `Hamlet` into the handbook unless they are independently verified to exist and behave that way in current `DST`.
 - use wiki.gg for established mechanics and cross-check game context.
 - use official klei changelogs / update posts for recent or change-prone behavior.
 - inspect scripts or game data when exact implementation matters.
@@ -321,17 +300,12 @@ before finalizing any gameplay topic, inspect a useful sample of current communi
 look especially for:
 
 - problems beginners repeatedly report.
-- advice experienced players repeatedly give.
-- mechanics that are technically documented but easy for new players to miss.
-- practical choices, escape options, recovery methods, and quality-of-life knowledge.
-- common misconceptions or traps.
-- places where experienced players disagree.
+- advice or overlooked mechanics experienced players repeatedly surface.
+- practical escape and recovery options, common misconceptions, traps, and meaningful disagreements.
 
 look for repeated patterns across multiple discussions rather than treating one comment or guide as consensus.
 
-community research is a prioritization and player-experience source, not the final authority for mechanics.
-
-when community advice suggests a useful fact or tactic, verify the underlying mechanic separately against current `dst` sources before publishing it.
+community research is a prioritization and player-experience source, not the final authority for mechanics. verify useful facts or tactics separately against current `dst` sources before publishing them.
 
 do not copy community optimization culture blindly. frequent advice may still be too advanced, too spoilery, too rigid, or too efficiency-focused for `dst 101`.
 
@@ -386,16 +360,14 @@ use those clues sparingly.
 for each topic:
 
 1. identify why the page exists.
-2. inspect current community discussions and practical guides for recurring beginner problems, useful advice, overlooked mechanics, and disagreements.
-3. decide what a beginner genuinely needs.
-4. decide what should remain discoverable.
-5. verify candidate mechanics separately against current `dst`.
-6. ask what caught wheeler's attention.
-7. decide what the image contributes.
-8. write the clear teaching first.
-9. add personality only where it naturally belongs.
-10. leave the reader with judgment rather than a script.
-11. read nearby pages and remove repeated rhythms, jokes, warnings, or character clues.
+2. inspect current community discussions and practical guides for recurring beginner problems and useful advice.
+3. decide what a beginner genuinely needs and what should remain discoverable.
+4. verify candidate mechanics separately against current `dst`.
+5. ask what caught wheeler's attention.
+6. write the clear teaching first.
+7. add personality only where it naturally belongs.
+8. leave the reader with judgment rather than a script.
+9. read nearby pages and remove repeated rhythms, jokes, warnings, or character clues.
 
 ## final check
 
@@ -403,17 +375,12 @@ ask:
 
 - is the information useful?
 - does the reader still make meaningful decisions?
-- are we teaching principles rather than brittle scripts where possible?
-- can the reader understand enough danger to choose it?
-- have we preserved useful experimentation?
 - does this help exploration rather than replace it?
 - does the page respect different playstyles?
-- if a dangerous or inconvenient state has useful trade-offs, did we avoid treating it as automatically wrong?
 - if another recognizable survivor is pictured, does the caption preserve the author's identity?
 - does the voice feel human without forcing humor?
 - does any line sound polished, quotable, poetic, dramatic, or deliberately clever when a plainer observation would feel more real?
 - does the subject still feel alive after being explained?
-- does this page vary naturally from neighboring pages while still sounding like the same author?
 
 ## final compass
 

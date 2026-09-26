@@ -121,7 +121,7 @@ before generating, ask:
 
 if yes, redesign the scenery before generating unless the subject genuinely requires that similarity.
 
-the primary anchors define the artist's hand, not the places she keeps visiting.
+the locked image language defines the artist's hand, not the places she keeps visiting.
 
 style does not require recurring scenery. each image should use the environment that best belongs to its subject, moment, and lesson.
 
@@ -181,7 +181,7 @@ repetition is fine when the content genuinely belongs in a similar environment. 
 
 warm evening scenes, pale blue daylight, gray rain, winter cold, dense green forest, murky marsh, dry desert, cave darkness, ocean blue, and other conditions are all valid. none is the default handbook backdrop.
 
-## approved visual anchors
+## visual reference anchors
 
 primary anchors:
 
@@ -190,33 +190,13 @@ primary anchors:
 - `food_foraging.png`
 - `food_cooking.png`
 
-these primary anchors are the style lock. later approved images may expand subject matter, scenery, weather, lighting, and mood, but they do not redefine the underlying hand.
-
-the primary-anchor look is deliberately modest and economical:
-
-- colors are restrained, dusty, natural, and slightly weathered rather than vivid or jewel-saturated. hue and temperature belong to the scene itself; the handbook does not require a warm palette.
-- overall contrast is moderate and fairly soft. important subjects may read more strongly, but the whole image should not become dramatic, glossy, or cinematic.
-- linework is lightly rough, scratchy, and imperfect. contours strengthen selectively around important forms instead of giving every object the same heavy black outline.
-- shading uses simple washes, sparse hatching, and broad value changes rather than highly rendered volume or dense surface treatment.
-- backgrounds are simpler and quieter than the focal subject. they suggest terrain, vegetation, weather, and distance without rendering every small feature at equal importance.
-- compositions leave breathing room. one clear observation is preferable to filling the scene with props, decoration, or visual information merely because space is available.
-- paper and sketch texture should remain visible, but texture should not become dense digital noise across every surface.
-
-when a newer image conflicts with the primary anchors on linework, rendering density, color restraint, contrast, shading, texture, background treatment, or degree of polish, follow the primary anchors.
-
-do not average the style across generations. small deviations can accumulate until the collection becomes cleaner, heavier, more saturated, more detailed, or more digitally polished than the visual language that was originally approved.
-
-variation anchors show what else the same artist can observe. use newer images to expand subject matter, scenery, weather, lighting, and mood; use the primary anchors to decide how that artist actually draws.
-
-use current `dst` screenshots / assets for anatomy, objects, equipment, colors, and behavior. use the handbook layout only for crop, scale, and display integration.
-
-never let the most recent generated image become the sole style reference. before approving a new scene, compare it directly with at least one primary anchor and ask whether it still looks like the same hand before considering whether it merely looks good on its own.
+these images are the concrete reference for how the locked image language should look in practice. newer approved images may expand subject matter, scenery, weather, lighting, and mood without redefining the underlying hand.
 
 ## scene-image production brief
 
 stable instruction:
 
-> create another standalone scene image by the same unnamed explorer who made the original primary handbook anchors. treat those anchors as the style lock even when newer approved images differ. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms.
+> create another standalone scene image by the same unnamed explorer, following the locked handbook image language. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms.
 >
 > match the artist's habits, not the literal scenery of previous images. treat the scenery as newly designed for this specific image rather than as a variation of any previous handbook background. choose an environment that actually belongs in `dst` and fits the subject. if several environments fit equally well, prefer one whose biome, vegetation, terrain, openness, horizon structure, weather, or spatial character differs materially from recent approved scenes. do not default to open temperate hills, a distant lake, pine-lined horizons, rocky spires, or any other successful recurring backdrop. enclosed forest interiors, marshes, savannas, rocky country, deserts, coasts, ocean, lunar terrain, caves, fungal forests, ruins, and other appropriate `dst` environments are all available when the content and spoiler boundary permit them.
 >
@@ -276,7 +256,7 @@ survivors should look redrawn by the same traveler who drew the environments. th
 
 when a survivor already has an approved handbook depiction, use those earlier depictions as secondary identity references for future scenes featuring that survivor.
 
-current `dst` assets and screenshots remain the authority for canonical silhouette, hair, clothing, equipment, proportions, and other identifying traits. the primary handbook anchors remain the authority for the artist's hand. earlier handbook depictions help preserve how that canonical character has already been translated through that hand.
+current `dst` assets and screenshots remain the authority for canonical silhouette, hair, clothing, equipment, proportions, and other identifying traits. the locked handbook image language remains the authority for the artist's hand. earlier handbook depictions help preserve how that canonical character has already been translated through that hand.
 
 do not reinvent a survivor's face, hair shape, proportions, or other major identity cues from scratch on every generation when a strong approved handbook version already exists.
 
@@ -302,7 +282,7 @@ when several survivors appear together, prefer one shared situation in which the
 
 avoid arranging a lineup of signature abilities merely to demonstrate the cast. the scene should still feel like something the handbook author happened to observe.
 
-do not depict wheeler simply because she is the internal author foundation; the author remains visually unconfirmed.
+do not depict wheeler merely because she is the internal author foundation. if she appears naturally in a scene, keep the handbook's authorship visually unconfirmed.
 
 ### character-specific visual hints
 
@@ -524,12 +504,12 @@ before approving an image, ask:
 2. does color behave with similar restraint without forcing every scene toward the same temperature or palette?
 3. is detail concentrated selectively rather than spread evenly across every object and surface?
 4. does the environment differ materially from recent scenes when the subject permits it, or did we merely rearrange props inside another version of the same backdrop?
-5. does distant scenery simplify compatibly with the primary anchors?
+5. does distant scenery simplify compatibly with the locked image language?
 6. does the subject sit naturally in the world rather than looking pasted onto a decorative backdrop?
 7. does the scene feel observed rather than staged or promotional?
 8. when a survivor appears, do silhouette, proportions, facial simplicity, hair, clothing, posture, and other identity cues still read as that `dst` survivor without drifting into a generic character style?
 9. without the handbook frame, would this still look like another drawing by the same traveler?
-10. if the image looks impressive on its own but conflicts with the primary anchors, have we resisted approving polish at the expense of the established hand?
+10. if the image looks impressive on its own but conflicts with the locked image language, have we resisted approving polish at the expense of the established hand?
 
 ## final page audit
 
@@ -537,7 +517,7 @@ ask:
 
 - does every visible element contribute?
 - are headings real divisions rather than labels for every paragraph?
-- do linework, color restraint, detail distribution, and rendering still match the primary-anchor hand?
+- do linework, color restraint, detail distribution, and rendering still match the established handbook hand?
 - does the image show something this explorer would actually notice?
 - does the environment genuinely fit the subject rather than merely provide a convenient backdrop?
 - when the subject allows flexibility, does the setting expand the handbook's recent biome, vegetation, terrain, or spatial variety?
