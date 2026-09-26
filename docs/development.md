@@ -324,6 +324,12 @@ query shrinking or clearing never automatically changes the current page.
 
 manual paging while search remains active wins.
 
+search editing also supports:
+
+- the `×` button clears the query and keeps the field active.
+- `Escape` clears a non-empty query before closing the handbook.
+- `Ctrl+Backspace` deletes the previous word.
+
 ## sidebar scrolling
 
 visible topic slots:
@@ -365,7 +371,7 @@ player handbook shortcut is configurable through `modinfo.lua`.
 default:
 
 ```text
-F5
+B
 modifier: None
 ```
 
@@ -435,6 +441,7 @@ tools/build_topic_atlases.ps1
 runtime atlases:
 
 ```text
+images/ui/base_template.tex/xml
 images/ui/dst101_ui.tex/xml
 images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml
