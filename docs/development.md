@@ -283,16 +283,16 @@ visible footer buttons navigate within the current topic.
 
 ## keyboard navigation
 
-raw arrow-key behavior:
-
 ```text
-Up    -> previous topic, page 1
-Down  -> next topic, page 1
-Left  -> previous page; from page 1, previous topic's final page
-Right -> next page; from final page, next topic's page 1
+Up / W    -> previous topic, page 1
+Down / S  -> next topic, page 1
+Left / A  -> previous page; from page 1, previous topic's final page
+Right / D -> next page; from final page, next topic's page 1
 ```
 
-search editing retains normal text-field arrow behavior.
+while search is active, Left/Right retain normal text-cursor behavior, Up/Down move through filtered topic results and open their matching pages, and WASD remains normal text input.
+
+`Enter` focuses the search field when it is not already being edited.
 
 ## search
 
@@ -327,7 +327,8 @@ manual paging while search remains active wins.
 search editing also supports:
 
 - the `×` button clears the query and keeps the field active.
-- `Escape` clears a non-empty query before closing the handbook.
+- clicking a topic while search is active keeps the field active so typing can continue.
+- `Escape` exits search before closing the handbook; a non-empty query is cleared.
 - `Ctrl+Backspace` deletes the previous word.
 
 ## sidebar scrolling

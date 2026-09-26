@@ -43,11 +43,18 @@ end
 
 function DST101PopupScreen:OnRawKey(key, down)
     if key == KEY_ESCAPE then
-        if down
-            and (self.book.search_query or "") ~= ""
-        then
+        local search_editing =
+            self.book.search_edit ~= nil
+            and self.book.search_edit.editing
+
+        if down and search_editing then
             self.book.search_escape_consumed = true
-            self.book:ClearSearch(false)
+
+            if (self.book.search_query or "") ~= "" then
+                self.book:ClearSearch(false)
+            else
+                self.book:StopSearchEditing()
+            end
         end
 
         if self.book.search_escape_consumed then
@@ -55,25 +62,72 @@ function DST101PopupScreen:OnRawKey(key, down)
         end
     end
 
-    if key == KEY_UP
-        or key == KEY_DOWN
-        or key == KEY_LEFT
-        or key == KEY_RIGHT
+    local search_editing =
+        self.book.search_edit ~= nil
+        and self.book.search_edit.editing
+
+    -- Enter jumps directly into handbook search.
+    if not search_editing
+        and down
+        and key == KEY_ENTER
+        and self.book.search_edit ~= nil
+    then
+        self.book.search_edit:SetEditing(true)
+        return true
+    end
+
+    -- Keep keyboard editing routed to search even if mouse hover has
+    -- moved visual focus onto another handbook control.
+    if search_editing then
+        if key == KEY_UP or key == KEY_DOWN then
+            if down then
+                self.book:NavigateSearchResults(
+                    key == KEY_UP and -1 or 1
+                )
+            end
+
+            return true
+        end
+
+        if key == KEY_ENTER then
+            return true
+        end
+
+        return self.book.search_edit:OnRawKey(key, down)
+    end
+
+    local navigation_key = key
+
+    -- WASD mirrors the arrow keys outside text entry.
+    if key == KEY_W then
+        navigation_key = KEY_UP
+    elseif key == KEY_S then
+        navigation_key = KEY_DOWN
+    elseif key == KEY_A then
+        navigation_key = KEY_LEFT
+    elseif key == KEY_D then
+        navigation_key = KEY_RIGHT
+    end
+
+    if navigation_key == KEY_UP
+        or navigation_key == KEY_DOWN
+        or navigation_key == KEY_LEFT
+        or navigation_key == KEY_RIGHT
     then
         if down then
-            if key == KEY_UP then
+            if navigation_key == KEY_UP then
                 self.book:ChangeTopic(-1)
-            elseif key == KEY_DOWN then
+            elseif navigation_key == KEY_DOWN then
                 self.book:ChangeTopic(1)
-            elseif key == KEY_LEFT then
+            elseif navigation_key == KEY_LEFT then
                 self.book:NavigateBook(-1)
-            elseif key == KEY_RIGHT then
+            elseif navigation_key == KEY_RIGHT then
                 self.book:NavigateBook(1)
             end
         end
 
-        -- Consume both press and release so normal focus movement
-        -- cannot also react to the same physical arrow key.
+        -- Consume press and release so normal focus movement cannot
+        -- react to the same navigation input.
         return true
     end
 
@@ -81,6 +135,19 @@ function DST101PopupScreen:OnRawKey(key, down)
         self,
         key,
         down
+    )
+end
+
+function DST101PopupScreen:OnTextInput(text)
+    if self.book.search_edit ~= nil
+        and self.book.search_edit.editing
+    then
+        return self.book.search_edit:OnTextInput(text)
+    end
+
+    return DST101PopupScreen._base.OnTextInput(
+        self,
+        text
     )
 end
 

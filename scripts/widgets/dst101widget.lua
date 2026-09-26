@@ -2066,8 +2066,15 @@ function DST101Widget:StopSearchEditing()
     end
 end
 
-function DST101Widget:SetCurrentTopic(topic_id, page_number)
-    self:StopSearchEditing()
+function DST101Widget:SetCurrentTopic(
+    topic_id,
+    page_number,
+    keep_search_editing
+)
+    if not keep_search_editing then
+        self:StopSearchEditing()
+    end
+
     if find_topic(self.data, topic_id) == nil then
         return
     end
@@ -2076,7 +2083,7 @@ function DST101Widget:SetCurrentTopic(topic_id, page_number)
     self.current_page = page_number or 1
 
     self:RefreshPage()
-    self:RefreshSidebar()
+    self:RefreshSidebarSelection()
 end
 
 function DST101Widget:GetAdjacentSidebarTopic(offset)
@@ -2116,8 +2123,65 @@ function DST101Widget:GetAdjacentSidebarTopic(offset)
     return topics[target_index], target_index, topics
 end
 
+function DST101Widget:NavigateSearchResults(offset)
+    local topic, target_index, topics =
+        self:GetAdjacentSidebarTopic(offset)
+
+    if topic == nil then
+        return false
+    end
+
+    local previous_scroll_index =
+        self.topic_scroll_index
+
+    self.current_topic_id = topic.id
+    self.current_page =
+        self.search_match_pages
+        and self.search_match_pages[topic.id]
+        or 1
+
+    -- Keep the selected result inside the visible sidebar window.
+    local visible_count =
+        #LAYOUT.sidebar.topic_rows
+
+    if target_index < self.topic_scroll_index then
+        self.topic_scroll_index = target_index
+    elseif target_index
+        > self.topic_scroll_index
+        + visible_count
+        - 1
+    then
+        self.topic_scroll_index =
+            target_index - visible_count + 1
+    end
+
+    local maximum_start =
+        self:GetMaximumTopicScrollStart(topics)
+
+    self.topic_scroll_index = math.max(
+        1,
+        math.min(
+            maximum_start,
+            self.topic_scroll_index
+        )
+    )
+
+    self:RefreshPage()
+
+    if self.topic_scroll_index ~= previous_scroll_index then
+        self:RefreshSidebar()
+    else
+        self:RefreshSidebarSelection()
+    end
+
+    return true
+end
+
 function DST101Widget:ChangeTopic(offset, page_mode)
     self:StopSearchEditing()
+
+    local previous_scroll_index =
+        self.topic_scroll_index
 
     local topic, target_index, topics =
         self:GetAdjacentSidebarTopic(offset)
@@ -2164,7 +2228,12 @@ function DST101Widget:ChangeTopic(offset, page_mode)
     )
 
     self:RefreshPage()
-    self:RefreshSidebar()
+
+    if self.topic_scroll_index ~= previous_scroll_index then
+        self:RefreshSidebar()
+    else
+        self:RefreshSidebarSelection()
+    end
 
     return true
 end
@@ -2683,7 +2752,9 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
             button.AllowOnControlWhenSelected = true
 
             button:SetOnClick(function()
-                self:StopSearchEditing()
+                local keep_search_editing =
+                    self.search_edit ~= nil
+                    and self.search_edit.editing
 
                 local page_number =
                     self.search_match_pages
@@ -2691,10 +2762,13 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
                     or 1
 
                 if topic.id == self.current_topic_id then
+                    if not keep_search_editing then
+                        self:StopSearchEditing()
+                    end
+
                     if self.current_page ~= page_number then
                         self.current_page = page_number
                         self:RefreshPage()
-                        self:RefreshSidebar()
                     end
 
                     return
@@ -2702,7 +2776,8 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
 
                 self:SetCurrentTopic(
                     topic.id,
-                    page_number
+                    page_number,
+                    keep_search_editing
                 )
             end)
 
@@ -2738,17 +2813,29 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
             title:SetPosition(text_center_x, 0)
             title:SetClickable(false)
 
+            button.dst101_topic_id = topic.id
+
             local base_on_select = button.OnSelect
+            local base_on_unselect = button.OnUnselect
 
             button.OnSelect = function(row)
-                base_on_select(row)
+                if base_on_select ~= nil then
+                    base_on_select(row)
+                end
+
                 title:SetColour(
                     unpack(LAYOUT.colours.sidebar_selected_text)
                 )
             end
 
-            if topic.id == self.current_topic_id then
-                button:Select()
+            button.OnUnselect = function(row)
+                if base_on_unselect ~= nil then
+                    base_on_unselect(row)
+                end
+
+                title:SetColour(
+                    unpack(LAYOUT.colours.sidebar_text)
+                )
             end
 
             table.insert(
@@ -2758,7 +2845,31 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
         end
     end
 
-    self.focus_forward = self.sidebar_rows[1]
+    self:RefreshSidebarSelection()
+end
+
+function DST101Widget:RefreshSidebarSelection()
+    local selected_row = nil
+
+    for _, row in ipairs(self.sidebar_rows or {}) do
+        if row.dst101_topic_id == self.current_topic_id then
+            if not row.selected then
+                row:Select()
+            end
+
+            selected_row = row
+        elseif row.selected then
+            row:Unselect()
+        end
+    end
+
+    if selected_row ~= nil then
+        self.focus_forward = selected_row
+    elseif self.sidebar_rows ~= nil then
+        self.focus_forward = self.sidebar_rows[1]
+    else
+        self.focus_forward = nil
+    end
 end
 
 
