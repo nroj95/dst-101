@@ -2,8 +2,11 @@ local illustration_data =
     require("dst101illustrations")
 
 Assets = {
-    Asset("ATLAS", "images/ui/base_template.xml"),
-    Asset("IMAGE", "images/ui/base_template.tex"),
+    Asset("ATLAS", "images/ui/handbook_base.xml"),
+    Asset("IMAGE", "images/ui/handbook_base.tex"),
+
+    Asset("ATLAS", "images/ui/handbook_page.xml"),
+    Asset("IMAGE", "images/ui/handbook_page.tex"),
 
     Asset("ATLAS", "images/ui/dst101_ui.xml"),
     Asset("IMAGE", "images/ui/dst101_ui.tex"),

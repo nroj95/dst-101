@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Atlas>
+    <Texture filename="handbook_page.tex" />
+    <Elements>
+        <Element name="handbook_page.tex" u1="0.000244141" u2="0.748291016" v1="0.155761719" v2="0.999511719" />
+    </Elements>
+</Atlas>

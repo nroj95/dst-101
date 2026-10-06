@@ -91,6 +91,12 @@ after editing topic icons:
 .\tools\build_topic_atlases.ps1
 ```
 
+after editing either full-size handbook shell:
+
+```powershell
+.\tools\build_handbook_shell.ps1
+```
+
 generated atlases should be committed together with the source assets that produced them.
 
 ## focused changes

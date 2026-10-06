@@ -29,7 +29,7 @@ source/assets/illustrations/          production scene PNGs
 source/assets/icons/                  topic/search icons
 images/illustrations/                 runtime scene atlases
 images/topics/                        topic icon atlases
-images/ui/                            runtime UI atlas
+images/ui/                            runtime UI assets and atlases
 tools/                                build/preparation helpers
 ```
 
@@ -435,6 +435,7 @@ builder behavior:
 ## other asset builders
 
 ```text
+tools/build_handbook_shell.ps1
 tools/build_ui_atlas.ps1
 tools/build_topic_atlases.ps1
 ```
@@ -442,7 +443,8 @@ tools/build_topic_atlases.ps1
 runtime atlases:
 
 ```text
-images/ui/base_template.tex/xml
+images/ui/handbook_base.tex/xml
+images/ui/handbook_page.tex/xml
 images/ui/dst101_ui.tex/xml
 images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml

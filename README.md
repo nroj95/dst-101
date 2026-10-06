@@ -171,10 +171,11 @@ scripts/dst101illustrations.lua       generated illustration manifest
 
 source/assets/illustrations/          production illustration pngs
 source/assets/icons/                  topic and search icons
+source/assets/ui/                     handbook shell and ui source assets
 
 images/illustrations/                 generated illustration atlases
 images/topics/                        generated topic icon atlases
-images/ui/                            runtime ui atlas
+images/ui/                            runtime ui assets and atlases
 
 tools/                                build and preparation helpers
 docs/                                 detailed project references
@@ -198,6 +199,12 @@ after changing topic icons:
 
 ```powershell
 .\tools\build_topic_atlases.ps1
+```
+
+after changing `handbook_base.png` or `handbook_page.png`:
+
+```powershell
+.\tools\build_handbook_shell.ps1
 ```
 
 generated `.tex` assets are not refreshed by the handbook development hot reload and normally require restarting `don't starve together`.

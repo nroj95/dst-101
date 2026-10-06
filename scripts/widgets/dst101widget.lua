@@ -7,8 +7,8 @@ local Widget = require("widgets/widget")
 local LAYOUT = require("dst101layout")
 local ILLUSTRATIONS = require("dst101illustrations")
 
-local BACKDROP_ATLAS = "images/ui/base_template.xml"
-local BACKDROP_TEXTURE = "base_template.tex"
+local HANDBOOK_PAGE_ATLAS = "images/ui/handbook_page.xml"
+local HANDBOOK_PAGE_TEXTURE = "handbook_page.tex"
 
 local TOPIC_ATLAS = "images/topics/dst101_topics_color.xml"
 local TOPIC_GRAY_ATLAS = "images/topics/dst101_topics_gray.xml"
@@ -1372,16 +1372,19 @@ local DST101Widget = Class(Widget, function(self, owner)
         1
     )
 
-    -- Illustrations sit behind the handbook template so the authored frame
-    -- and its corner details remain above the page artwork.
+    -- Scene images stay behind the normal framed handbook shell, matching
+    -- the original single-template rendering path exactly.
     self.illustration_root = self.design_root:AddChild(
         Widget("illustration_root")
     )
 
-    self.backdrop = self.design_root:AddChild(
-        Image(BACKDROP_ATLAS, BACKDROP_TEXTURE)
+    self.handbook_page = self.design_root:AddChild(
+        Image(
+            HANDBOOK_PAGE_ATLAS,
+            HANDBOOK_PAGE_TEXTURE
+        )
     )
-    self.backdrop:ScaleToSize(
+    self.handbook_page:ScaleToSize(
         LAYOUT.source.width,
         LAYOUT.source.height
     )
