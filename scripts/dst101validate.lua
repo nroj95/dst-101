@@ -487,6 +487,13 @@ local function validate_topics(data)
                     blocks
                 )
 
+                validate_page_heading(
+                    topic,
+                    page_number,
+                    region_name,
+                    blocks
+                )
+
                 related_block_count =
                     related_block_count +
                     validate_related_topics(
