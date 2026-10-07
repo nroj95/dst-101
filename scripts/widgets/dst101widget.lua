@@ -7,12 +7,17 @@ local Widget = require("widgets/widget")
 local LAYOUT = require("dst101layout")
 local ILLUSTRATIONS = require("dst101illustrations")
 
+local HANDBOOK_BASE_ATLAS = "images/ui/handbook_base.xml"
+local HANDBOOK_BASE_TEXTURE = "handbook_base.tex"
 local HANDBOOK_PAGE_ATLAS = "images/ui/handbook_page.xml"
 local HANDBOOK_PAGE_TEXTURE = "handbook_page.tex"
 
 local TOPIC_ATLAS = "images/topics/dst101_topics_color.xml"
 local TOPIC_GRAY_ATLAS = "images/topics/dst101_topics_gray.xml"
 local UI_ATLAS = "images/ui/dst101_ui.xml"
+local TOC_GRID_ATLAS = "images/ui/dst101_toc_grid.xml"
+
+local CONTENTS_TOPIC_ID = "__contents"
 
 local NOTE_ANIMAL_ORDER = {
     "crow",
@@ -1356,9 +1361,10 @@ local DST101Widget = Class(Widget, function(self, owner)
     Widget._ctor(self, "DST101Widget")
 
     self.owner = owner
-    self.current_topic_id = "setting_out"
+    self.current_topic_id = CONTENTS_TOPIC_ID
     self.current_page = 1
     self.topic_scroll_index = 1
+    self.contents_page = 1
 
     self.root = self:AddChild(Widget("root"))
 
@@ -1377,6 +1383,18 @@ local DST101Widget = Class(Widget, function(self, owner)
     self.illustration_root = self.design_root:AddChild(
         Widget("illustration_root")
     )
+
+    self.handbook_base = self.design_root:AddChild(
+        Image(
+            HANDBOOK_BASE_ATLAS,
+            HANDBOOK_BASE_TEXTURE
+        )
+    )
+    self.handbook_base:ScaleToSize(
+        LAYOUT.source.width,
+        LAYOUT.source.height
+    )
+    self.handbook_base:Hide()
 
     self.handbook_page = self.design_root:AddChild(
         Image(
@@ -1571,13 +1589,93 @@ local function topic_match_page(topic, query)
 end
 
 
+local function find_page_contents_label(
+    strings,
+    topic,
+    page,
+    page_number
+)
+    local wanted_type =
+        page_number == 1
+        and "headline"
+        or "page_heading"
+
+    local top_left =
+        page.regions
+        and page.regions.top_left
+        or {}
+
+    for _, block in ipairs(top_left) do
+        if block.type == wanted_type
+            and block.text ~= nil
+            and block.text ~= ""
+        then
+            return block.text
+        end
+    end
+
+    return string.format(
+        "%s %d",
+        strings.page or "Page",
+        page_number
+    )
+end
+
+
+function DST101Widget:GetContentsSidebarTopic()
+    return {
+        id = CONTENTS_TOPIC_ID,
+        title = self.data.strings.contents or "Contents",
+        icon = "contents",
+    }
+end
+
+
+function DST101Widget:GetContentsBlocks()
+    local blocks = {}
+
+    for _, topic in ipairs(self.data.topics or {}) do
+        local block = {
+            topic_id = topic.id,
+            title = topic.title or "",
+            pages = {},
+        }
+
+        for page_number, page in ipairs(topic.pages or {}) do
+            block.pages[#block.pages + 1] = {
+                page_number = page_number,
+                label = find_page_contents_label(
+                    self.data.strings,
+                    topic,
+                    page,
+                    page_number
+                ),
+            }
+        end
+
+        blocks[#blocks + 1] = block
+    end
+
+    return blocks
+end
+
+
 function DST101Widget:GetSidebarTopics()
     local topics = self.data.topics or {}
     local query = self.search_query or ""
 
     if query == "" then
         self.search_match_pages = {}
-        return topics
+
+        local sidebar_topics = {
+            self:GetContentsSidebarTopic(),
+        }
+
+        for _, topic in ipairs(topics) do
+            sidebar_topics[#sidebar_topics + 1] = topic
+        end
+
+        return sidebar_topics
     end
 
     local filtered_topics = {}
@@ -2069,6 +2167,54 @@ function DST101Widget:StopSearchEditing()
     end
 end
 
+function DST101Widget:RevealSidebarTopic(topic_id)
+    local topics = self:GetSidebarTopics()
+    local target_index = nil
+
+    for index, topic in ipairs(topics) do
+        if topic.id == topic_id then
+            target_index = index
+            break
+        end
+    end
+
+    if target_index == nil then
+        return false
+    end
+
+    local previous_scroll_index =
+        self.topic_scroll_index
+
+    local visible_count =
+        #LAYOUT.sidebar.topic_rows
+
+    if target_index < self.topic_scroll_index then
+        self.topic_scroll_index = target_index
+    elseif target_index
+        > self.topic_scroll_index
+        + visible_count
+        - 1
+    then
+        self.topic_scroll_index =
+            target_index - visible_count + 1
+    end
+
+    local maximum_start =
+        self:GetMaximumTopicScrollStart(topics)
+
+    self.topic_scroll_index = math.max(
+        1,
+        math.min(
+            maximum_start,
+            self.topic_scroll_index
+        )
+    )
+
+    return self.topic_scroll_index
+        ~= previous_scroll_index
+end
+
+
 function DST101Widget:SetCurrentTopic(
     topic_id,
     page_number,
@@ -2078,15 +2224,25 @@ function DST101Widget:SetCurrentTopic(
         self:StopSearchEditing()
     end
 
-    if find_topic(self.data, topic_id) == nil then
+    if topic_id ~= CONTENTS_TOPIC_ID
+        and find_topic(self.data, topic_id) == nil
+    then
         return
     end
 
     self.current_topic_id = topic_id
     self.current_page = page_number or 1
 
+    local sidebar_moved =
+        self:RevealSidebarTopic(topic_id)
+
     self:RefreshPage()
-    self:RefreshSidebarSelection()
+
+    if sidebar_moved then
+        self:RefreshSidebar()
+    else
+        self:RefreshSidebarSelection()
+    end
 end
 
 function DST101Widget:GetAdjacentSidebarTopic(offset)
@@ -2292,6 +2448,45 @@ function DST101Widget:GetScrollbarGeometry()
         ),
     }
 end
+
+function DST101Widget:GetDesignMouseX()
+    local position =
+        self.design_root:GetWorldPosition()
+
+    local scale_x, _, _ =
+        self.design_root.inst.UITransform:GetScale()
+
+    local parent = self.design_root:GetParent()
+
+    while parent ~= nil do
+        local parent_scale_x, _, _ =
+            parent.inst.UITransform:GetScale()
+
+        scale_x = scale_x * parent_scale_x
+        parent = parent:GetParent()
+    end
+
+    return (
+        TheFrontEnd.lastx - position.x
+    ) / scale_x
+end
+
+
+function DST101Widget:IsMouseOverContents()
+    if self.current_topic_id ~= CONTENTS_TOPIC_ID then
+        return false
+    end
+
+    local region = LAYOUT.regions.main
+    local mouse_x = self:GetDesignMouseX()
+    local mouse_y = self:GetDesignMouseY()
+
+    return mouse_x >= source_x(region.left)
+        and mouse_x <= source_x(region.right)
+        and mouse_y <= source_y(region.top)
+        and mouse_y >= source_y(region.bottom)
+end
+
 
 function DST101Widget:GetDesignMouseY()
     local position =
@@ -2784,19 +2979,23 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
                 )
             end)
 
-            local icon = button:AddChild(
-                Image(
-                    TOPIC_ATLAS,
-                    topic.icon .. ".tex"
+            if topic.icon ~= nil
+                and topic.icon ~= ""
+            then
+                local icon = button:AddChild(
+                    Image(
+                        TOPIC_ATLAS,
+                        topic.icon .. ".tex"
+                    )
                 )
-            )
 
-            icon:ScaleToSize(
-                sidebar.topic_icon.size,
-                sidebar.topic_icon.size
-            )
-            icon:SetPosition(icon_x, 0)
-            icon:SetClickable(false)
+                icon:ScaleToSize(
+                    sidebar.topic_icon.size,
+                    sidebar.topic_icon.size
+                )
+                icon:SetPosition(icon_x, 0)
+                icon:SetClickable(false)
+            end
 
             local title = button:AddChild(
                 Text(
@@ -2872,6 +3071,723 @@ function DST101Widget:RefreshSidebarSelection()
         self.focus_forward = self.sidebar_rows[1]
     else
         self.focus_forward = nil
+    end
+end
+
+
+-- =============================================================================
+-- contents
+-- =============================================================================
+
+function DST101Widget:GetContentsRows()
+    local list = LAYOUT.contents.list
+    local blocks = self:GetContentsBlocks()
+
+    local available_width =
+        list.right - list.left + 1
+
+    local minimum_block_width =
+        list.minimum_block_width or 275
+
+    local column_gap =
+        list.column_gap or 34
+
+    local column_count = math.max(
+        1,
+        math.floor(
+            (available_width + column_gap)
+            / (minimum_block_width + column_gap)
+        )
+    )
+
+    local block_width = (
+        available_width
+        - (column_count - 1) * column_gap
+    ) / column_count
+
+    local rows = {}
+
+    for block_index, block in ipairs(blocks) do
+        local column_index =
+            (block_index - 1) % column_count
+
+        local row_index = math.floor(
+            (block_index - 1) / column_count
+        ) + 1
+
+        local block_height =
+            list.topic_line_height
+            + #block.pages * list.page_line_height
+            + (list.row_top_padding or 0)
+            + (list.row_bottom_padding or 0)
+
+        if rows[row_index] == nil then
+            rows[row_index] = {
+                height = 0,
+                blocks = {},
+            }
+        end
+
+        local row = rows[row_index]
+
+        row.height = math.max(
+            row.height,
+            block_height
+        )
+
+        row.blocks[#row.blocks + 1] = {
+            block = block,
+            width = block_width,
+            left = list.left
+                + column_index
+                * (block_width + column_gap),
+        }
+    end
+
+    return rows
+end
+
+
+function DST101Widget:GetContentsPageCount(rows)
+    local page_rows =
+        LAYOUT.contents.list.page_rows or 3
+
+    return math.max(
+        1,
+        math.ceil(#rows / page_rows)
+    )
+end
+
+
+function DST101Widget:SetContentsPage(page_number)
+    local rows = self:GetContentsRows()
+
+    local page_count =
+        self:GetContentsPageCount(rows)
+
+    local new_page = math.max(
+        1,
+        math.min(
+            page_count,
+            page_number
+        )
+    )
+
+    if new_page == self.contents_page then
+        return
+    end
+
+    self.contents_page = new_page
+    self:RefreshContents()
+end
+
+
+function DST101Widget:ScrollContents(offset)
+    self:SetContentsPage(
+        (self.contents_page or 1) + offset
+    )
+end
+
+
+local function add_contents_button(
+    parent,
+    handbook,
+    left,
+    top,
+    width,
+    height,
+    label_text,
+    font,
+    font_size,
+    colour,
+    topic_id,
+    page_number,
+    text_indent
+)
+    local center_x = source_x(
+        left + width / 2
+    )
+
+    local center_y = source_y(
+        top + height / 2
+    )
+
+    local button = parent:AddChild(
+        ImageButton(
+            "images/global.xml",
+            "square.tex"
+        )
+    )
+
+    button.scale_on_focus = false
+    button.move_on_click = false
+
+    button:ForceImageSize(
+        width,
+        height
+    )
+
+    button:SetPosition(
+        center_x,
+        center_y
+    )
+
+    button:SetImageNormalColour(
+        1, 1, 1, 0
+    )
+
+    button:SetImageFocusColour(
+        unpack(LAYOUT.colours.row_hover)
+    )
+
+    button:SetImageSelectedColour(
+        1, 1, 1, 0
+    )
+
+    button:SetOnClick(function()
+        handbook:SetCurrentTopic(
+            topic_id,
+            page_number
+        )
+    end)
+
+    local indent = text_indent or 0
+
+    local text_width = math.max(
+        1,
+        width - indent
+    )
+
+    local label = button:AddChild(
+        Text(
+            font,
+            font_size,
+            "",
+            colour
+        )
+    )
+
+    label:SetRegionSize(
+        text_width,
+        height
+    )
+
+    label:SetHAlign(ANCHOR_LEFT)
+    label:SetVAlign(ANCHOR_MIDDLE)
+    label:SetClickable(false)
+
+    label:SetTruncatedString(
+        label_text or "",
+        text_width,
+        nil,
+        false
+    )
+
+    label:SetPosition(
+        indent / 2,
+        0
+    )
+
+    return button
+end
+
+
+local function add_contents_page_selector(
+    parent,
+    handbook,
+    page_count,
+    current_page
+)
+    local selector =
+        LAYOUT.contents.page_selector
+
+    if selector == nil or page_count <= 1 then
+        return
+    end
+
+    local step =
+        selector.item_height + selector.gap
+
+    local first_center_y =
+        selector.top
+        + selector.item_height / 2
+
+    local last_center_y =
+        first_center_y
+        + (page_count - 1) * step
+
+    local track_height =
+        math.max(
+            1,
+            last_center_y - first_center_y
+        )
+
+    local track = parent:AddChild(
+        Image(
+            "images/global.xml",
+            "square.tex"
+        )
+    )
+
+    track:ScaleToSize(
+        selector.track_width,
+        track_height
+    )
+
+    track:SetTint(
+        LAYOUT.colours.body_text[1],
+        LAYOUT.colours.body_text[2],
+        LAYOUT.colours.body_text[3],
+        selector.track_alpha
+    )
+
+    track:SetPosition(
+        source_x(selector.center_x),
+        source_y(
+            (first_center_y + last_center_y) / 2
+        )
+    )
+
+    track:SetClickable(false)
+
+    for page_number = 1, page_count do
+        local item_center_y =
+            first_center_y
+            + (page_number - 1) * step
+
+        local button = parent:AddChild(
+            ImageButton(
+                "images/global.xml",
+                "square.tex"
+            )
+        )
+
+        button.scale_on_focus = false
+        button.move_on_click = false
+
+        button:ForceImageSize(
+            selector.width,
+            selector.item_height
+        )
+
+        button:SetPosition(
+            source_x(selector.center_x),
+            source_y(item_center_y)
+        )
+
+        local is_current_page =
+            page_number == current_page
+
+        if is_current_page then
+            button:SetImageNormalColour(
+                unpack(LAYOUT.colours.toc_page_selected)
+            )
+
+            button:SetImageFocusColour(
+                unpack(LAYOUT.colours.toc_page_selected)
+            )
+        else
+            button:SetImageNormalColour(
+                1, 1, 1, 0
+            )
+
+            button:SetImageFocusColour(
+                unpack(LAYOUT.colours.row_hover)
+            )
+        end
+
+        button:SetImageSelectedColour(
+            unpack(LAYOUT.colours.toc_page_selected)
+        )
+
+        button:SetOnClick(function()
+            handbook:SetContentsPage(
+                page_number
+            )
+        end)
+
+        local label = button:AddChild(
+            Text(
+                HEADERFONT,
+                selector.font_size,
+                tostring(page_number),
+                is_current_page
+                    and LAYOUT.colours.sidebar_selected_text
+                    or LAYOUT.colours.body_text
+            )
+        )
+
+        label:SetRegionSize(
+            selector.width,
+            selector.item_height
+        )
+
+        label:SetHAlign(ANCHOR_MIDDLE)
+        label:SetVAlign(ANCHOR_MIDDLE)
+        label:SetClickable(false)
+    end
+end
+
+
+function DST101Widget:RefreshContents()
+    self.current_page = 1
+
+    self:RenderIllustration({})
+
+    self.handbook_page:Hide()
+    self.handbook_base:Show()
+
+    if self.page_root ~= nil then
+        self.page_root:Kill()
+    end
+
+    self.page_root = self.design_root:AddChild(
+        Widget("page_root")
+    )
+
+    local contents = LAYOUT.contents
+    local title_region = contents.title
+    local list = contents.list
+
+    local title = self.page_root:AddChild(
+        Text(
+            HEADERFONT,
+            title_region.font_size,
+            self.data.strings.contents or "Contents",
+            LAYOUT.colours.headline_text
+        )
+    )
+
+    title:SetRegionSize(
+        region_width(title_region),
+        region_height(title_region)
+    )
+
+    title:SetHAlign(ANCHOR_LEFT)
+    title:SetVAlign(ANCHOR_MIDDLE)
+    title:SetClickable(false)
+
+    title:SetPosition(
+        region_center_x(title_region),
+        region_center_y(title_region)
+    )
+
+    local rows = self:GetContentsRows()
+
+    local page_rows =
+        list.page_rows or 3
+
+    local page_count =
+        self:GetContentsPageCount(rows)
+
+    self.contents_page = math.max(
+        1,
+        math.min(
+            page_count,
+            self.contents_page or 1
+        )
+    )
+
+    local first_row =
+        (self.contents_page - 1)
+        * page_rows
+        + 1
+
+    local last_row = math.min(
+        #rows,
+        first_row + page_rows - 1
+    )
+
+    add_contents_page_selector(
+        self.page_root,
+        self,
+        page_count,
+        self.contents_page
+    )
+
+    local row_gap =
+        list.row_gap or 30
+
+    local row_top_padding =
+        list.row_top_padding or 0
+
+    local cell_left_padding =
+        list.cell_left_padding or 0
+
+    local cell_right_inset =
+        list.cell_right_inset or 0
+
+    local page_rows_data = {}
+    local content_height = 0
+
+    for row_index = first_row, last_row do
+        local row = rows[row_index]
+
+        if row ~= nil then
+            page_rows_data[#page_rows_data + 1] = {
+                row = row,
+                row_index = row_index,
+            }
+
+            content_height =
+                content_height + row.height
+        end
+    end
+
+    local available_height =
+        list.bottom - list.top + 1
+
+    local gap_count = math.max(
+        0,
+        #page_rows_data - 1
+    )
+
+    local effective_row_gap = row_gap
+
+    if gap_count > 0 then
+        local maximum_gap = (
+            available_height
+            - content_height
+        ) / gap_count
+
+        effective_row_gap = math.max(
+            0,
+            math.min(
+                row_gap,
+                maximum_gap
+            )
+        )
+    end
+
+    local visible_rows = {}
+    local row_top = list.top
+
+    for _, page_row in ipairs(page_rows_data) do
+        visible_rows[#visible_rows + 1] = {
+            row = page_row.row,
+            row_index = page_row.row_index,
+            top = row_top,
+        }
+
+        row_top =
+            row_top
+            + page_row.row.height
+            + effective_row_gap
+    end
+
+    local grid_colour =
+        LAYOUT.colours.body_text
+
+    local grid_alpha =
+        list.grid_alpha or 0.28
+
+    local first_layout_row = rows[1]
+
+    if first_layout_row ~= nil then
+        local divider_count = math.min(
+            2,
+            #first_layout_row.blocks - 1
+        )
+
+        for divider_index = 1, divider_count do
+            local left_block =
+                first_layout_row.blocks[
+                    divider_index
+                ]
+
+            local right_block =
+                first_layout_row.blocks[
+                    divider_index + 1
+                ]
+
+            local divider_x = (
+                left_block.left
+                + left_block.width
+                + right_block.left
+            ) / 2
+
+            local divider =
+                self.page_root:AddChild(
+                    Image(
+                        TOC_GRID_ATLAS,
+                        string.format(
+                            "toc_grid_v_%02d.tex",
+                            divider_index
+                        )
+                    )
+                )
+
+            divider:ScaleToSize(
+                list.grid_vertical_width or 28,
+                list.bottom - list.top + 1
+            )
+
+            divider:SetTint(
+                grid_colour[1],
+                grid_colour[2],
+                grid_colour[3],
+                grid_alpha
+            )
+
+            divider:SetPosition(
+                source_x(
+                    divider_x
+                    + (
+                        list.grid_vertical_offset_x
+                        or 0
+                    )
+                ),
+                source_y(
+                    (list.top + list.bottom) / 2
+                )
+            )
+
+            divider:SetClickable(false)
+        end
+    end
+
+    local grid_right_inset =
+        list.grid_right_inset or 0
+
+    local horizontal_width =
+        list.right - list.left + 1
+        - grid_right_inset
+
+    local horizontal_center_x =
+        list.left + horizontal_width / 2
+
+    local horizontal_variant_count = 3
+
+    local first_horizontal_variant =
+        get_stable_variant_index(
+            "contents-horizontal-"
+            .. tostring(self.contents_page),
+            horizontal_variant_count
+        )
+
+    local second_variant_offset =
+        get_stable_variant_index(
+            "contents-horizontal-offset-"
+            .. tostring(self.contents_page),
+            horizontal_variant_count - 1
+        )
+
+    for visible_index = 1, #visible_rows - 1 do
+        local placement =
+            visible_rows[visible_index]
+
+        local divider_y =
+            placement.top
+            + placement.row.height
+            + effective_row_gap / 2
+
+        local variant =
+            first_horizontal_variant
+
+        if visible_index > 1 then
+            variant = (
+                (
+                    first_horizontal_variant
+                    - 1
+                    + second_variant_offset
+                ) % horizontal_variant_count
+            ) + 1
+        end
+
+        local divider =
+            self.page_root:AddChild(
+                Image(
+                    TOC_GRID_ATLAS,
+                    string.format(
+                        "toc_grid_h_%02d.tex",
+                        variant
+                    )
+                )
+            )
+
+        divider:ScaleToSize(
+            horizontal_width,
+            list.grid_horizontal_height or 36
+        )
+
+        divider:SetTint(
+            grid_colour[1],
+            grid_colour[2],
+            grid_colour[3],
+            grid_alpha
+        )
+
+        divider:SetPosition(
+            source_x(horizontal_center_x),
+            source_y(divider_y)
+        )
+
+        divider:SetClickable(false)
+    end
+
+    for _, placement in ipairs(visible_rows) do
+        local row = placement.row
+
+        local content_row_top =
+            placement.top
+            + row_top_padding
+
+        for _, block_placement
+            in ipairs(row.blocks)
+        do
+            local block =
+                block_placement.block
+
+            local block_left =
+                block_placement.left
+
+            local block_width =
+                block_placement.width
+
+            add_contents_button(
+                self.page_root,
+                self,
+                block_left,
+                content_row_top,
+                block_width - cell_right_inset,
+                list.topic_line_height,
+                block.title,
+                HEADERFONT,
+                list.topic_font_size,
+                LAYOUT.colours.headline_text,
+                block.topic_id,
+                1,
+                cell_left_padding
+            )
+
+            local page_top =
+                content_row_top
+                + list.topic_line_height
+
+            for _, page in ipairs(block.pages) do
+                add_contents_button(
+                    self.page_root,
+                    self,
+                    block_left,
+                    page_top,
+                    block_width
+                        - cell_right_inset,
+                    list.page_line_height,
+                    page.label,
+                    BODY_FONT,
+                    list.page_font_size,
+                    LAYOUT.colours.body_text,
+                    block.topic_id,
+                    page.page_number,
+                    cell_left_padding
+                        + list.page_indent
+                )
+
+                page_top =
+                    page_top
+                    + list.page_line_height
+            end
+        end
     end
 end
 
@@ -3045,6 +3961,14 @@ end
 
 function DST101Widget:NavigateBook(offset)
     self:StopSearchEditing()
+
+    if self.current_topic_id == CONTENTS_TOPIC_ID then
+        if offset > 0 then
+            return self:ChangeTopic(1)
+        end
+
+        return false
+    end
 
     local topic = find_topic(
         self.data,
@@ -3371,6 +4295,14 @@ function DST101Widget:RenderFooter(parent, topic)
 end
 
 function DST101Widget:RefreshPage()
+    if self.current_topic_id == CONTENTS_TOPIC_ID then
+        self:RefreshContents()
+        return
+    end
+
+    self.handbook_base:Hide()
+    self.handbook_page:Show()
+
     local topic = find_topic(
         self.data,
         self.current_topic_id
@@ -3437,12 +4369,22 @@ function DST101Widget:OnControl(control, down)
 
     if down then
         if control == CONTROL_SCROLLBACK then
-            self:ScrollTopics(-1)
+            if self:IsMouseOverContents() then
+                self:ScrollContents(-1)
+            else
+                self:ScrollTopics(-1)
+            end
+
             return true
         end
 
         if control == CONTROL_SCROLLFWD then
-            self:ScrollTopics(1)
+            if self:IsMouseOverContents() then
+                self:ScrollContents(1)
+            else
+                self:ScrollTopics(1)
+            end
+
             return true
         end
     end
@@ -3454,10 +4396,11 @@ function DST101Widget:ReloadData()
     package.loaded["dst101data"] = nil
     self.data = require("dst101data")
 
-    if find_topic(
-        self.data,
-        self.current_topic_id
-    ) == nil
+    if self.current_topic_id ~= CONTENTS_TOPIC_ID
+        and find_topic(
+            self.data,
+            self.current_topic_id
+        ) == nil
         and self.data.topics[1] ~= nil
     then
         self.current_topic_id =

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Atlas>
+    <Texture filename="dst101_toc_grid.tex" />
+    <Elements>
+        <Element name="toc_grid_h_01.tex" u1="0.008300781" u2="0.670410156" v1="0.872070313" v2="0.983398438" />
+        <Element name="toc_grid_h_02.tex" u1="0.008300781" u2="0.670410156" v1="0.743164063" v2="0.854492188" />
+        <Element name="toc_grid_h_03.tex" u1="0.008300781" u2="0.670410156" v1="0.614257813" v2="0.725585938" />
+        <Element name="toc_grid_v_01.tex" u1="0.679199219" u2="0.705566406" v1="0.188476563" v2="0.983398438" />
+        <Element name="toc_grid_v_02.tex" u1="0.714355469" u2="0.740722656" v1="0.188476563" v2="0.983398438" />
+    </Elements>
+</Atlas>

@@ -191,10 +191,11 @@ function Write-AtlasXml {
         '</Atlas>'
     )
 
-    Set-Content `
-        -Path $xmlPath `
-        -Value $lines `
-        -Encoding utf8
+    [System.IO.File]::WriteAllText(
+        $xmlPath,
+        ($lines -join "`n") + "`n",
+        [System.Text.UTF8Encoding]::new($false)
+    )
 }
 
 Write-AtlasXml -Icons $icons -AtlasName $colorAtlasName

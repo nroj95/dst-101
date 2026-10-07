@@ -20,6 +20,7 @@ return {
 
         row_hover = { 0.95, 0.78, 0.30, 0.22 },
         row_selected = { 0.95, 0.72, 0.20, 0.70 },
+        toc_page_selected = { 0.72, 0.55, 0.18, 1 },
 
         sidebar_text = { 0.84, 0.81, 0.70, 1 },
         sidebar_selected_text = { 0.12, 0.10, 0.06, 1 },
@@ -85,6 +86,58 @@ return {
             { top = 667, bottom = 703 },
             { top = 708, bottom = 744 },
             { top = 749, bottom = 785 },
+        },
+    },
+
+    contents = {
+        title = {
+            left = 420,
+            right = 1435,
+            top = 96,
+            bottom = 154,
+            font_size = 52,
+        },
+
+        list = {
+            left = 420,
+            right = 1435,
+            top = 174,
+            bottom = 790,
+
+            minimum_block_width = 275,
+            column_gap = 34,
+            row_gap = 30,
+            page_rows = 3,
+
+            row_top_padding = 24,
+            row_bottom_padding = 24,
+            cell_left_padding = 12,
+            cell_right_inset = 24,
+
+            grid_horizontal_height = 36,
+            grid_vertical_width = 28,
+            grid_vertical_offset_x = -20,
+            grid_right_inset = 48,
+            grid_alpha = 0.28,
+
+            topic_line_height = 32,
+            page_line_height = 26,
+            page_indent = 28,
+            topic_font_size = 30,
+            page_font_size = 24,
+        },
+
+        page_selector = {
+            center_x = 1431,
+            top = 305,
+
+            width = 32,
+            item_height = 34,
+            gap = 6,
+            font_size = 28,
+
+            track_width = 2,
+            track_alpha = 0.16,
         },
     },
 

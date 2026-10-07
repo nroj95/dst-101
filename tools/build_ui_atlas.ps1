@@ -1,8 +1,9 @@
 # =============================================================================
 # dst 101 ui atlas builder
 #
-# builds one runtime atlas containing the standalone ui artwork:
+# builds the runtime atlases containing the standalone ui artwork:
 # - dividers
+# - toc grid dividers
 # - fleur-de-lis footer dividers
 # - page buttons
 # - related-topic tiles
@@ -410,10 +411,11 @@ $lines += @(
     '</Atlas>'
 )
 
-Set-Content `
-    -Path $atlasXml `
-    -Value $lines `
-    -Encoding utf8
+[System.IO.File]::WriteAllText(
+    $atlasXml,
+    ($lines -join "`n") + "`n",
+    [System.Text.UTF8Encoding]::new($false)
+)
 
 
 # =============================================================================
@@ -452,6 +454,265 @@ Write-Host
 Write-Host 'Elements:'
 
 $assets |
+    Select-Object Name, X, Y, Width, Height |
+    Format-Table -AutoSize
+
+
+# =============================================================================
+# toc grid atlas
+# =============================================================================
+
+$tocAtlasName = 'dst101_toc_grid'
+$tocAtlasWidth = 1024
+$tocAtlasHeight = 512
+
+$tocAtlasPng = Join-Path $buildDirectory "$tocAtlasName.png"
+$tocAtlasXml = Join-Path $outputDirectory "$tocAtlasName.xml"
+$tocAtlasTex = Join-Path $outputDirectory "$tocAtlasName.tex"
+
+$tocAssets = @(
+    # Horizontal variants preserve one shared logical canvas.
+    @{
+        Name = 'toc_grid_h_01'
+        File = 'toc_grid_h_01.png'
+        ExpectedSource = '878x75'
+        X = 8
+        Y = 8
+        Width = 679
+        Height = 58
+    },
+    @{
+        Name = 'toc_grid_h_02'
+        File = 'toc_grid_h_02.png'
+        ExpectedSource = '878x75'
+        X = 8
+        Y = 74
+        Width = 679
+        Height = 58
+    },
+    @{
+        Name = 'toc_grid_h_03'
+        File = 'toc_grid_h_03.png'
+        ExpectedSource = '878x75'
+        X = 8
+        Y = 140
+        Width = 679
+        Height = 58
+    },
+
+    # Vertical variants preserve one shared logical canvas.
+    @{
+        Name = 'toc_grid_v_01'
+        File = 'toc_grid_v_01.png'
+        ExpectedSource = '65x947'
+        X = 695
+        Y = 8
+        Width = 28
+        Height = 408
+    },
+    @{
+        Name = 'toc_grid_v_02'
+        File = 'toc_grid_v_02.png'
+        ExpectedSource = '65x947'
+        X = 731
+        Y = 8
+        Width = 28
+        Height = 408
+    }
+)
+
+
+# =============================================================================
+# toc grid validation
+# =============================================================================
+
+foreach ($asset in $tocAssets) {
+    $sourcePath = Join-Path $sourceDirectory $asset.File
+
+    if (-not (Test-Path $sourcePath)) {
+        throw "Missing source asset: $sourcePath"
+    }
+
+    $sourceSize = & magick identify `
+        -format '%wx%h' `
+        $sourcePath
+
+    if ($sourceSize -ne $asset.ExpectedSource) {
+        throw (
+            "Unexpected source size for {0}: expected {1}, got {2}" -f
+                $asset.File,
+                $asset.ExpectedSource,
+                $sourceSize
+        )
+    }
+
+    if (
+        $asset.X -lt 0 -or
+        $asset.Y -lt 0 -or
+        ($asset.X + $asset.Width) -gt $tocAtlasWidth -or
+        ($asset.Y + $asset.Height) -gt $tocAtlasHeight
+    ) {
+        throw "TOC atlas element lies outside the atlas: $($asset.Name)"
+    }
+}
+
+for (
+    $leftIndex = 0;
+    $leftIndex -lt $tocAssets.Count;
+    $leftIndex++
+) {
+    $left = $tocAssets[$leftIndex]
+
+    for (
+        $rightIndex = $leftIndex + 1;
+        $rightIndex -lt $tocAssets.Count;
+        $rightIndex++
+    ) {
+        $right = $tocAssets[$rightIndex]
+
+        $overlaps = (
+            $left.X -lt ($right.X + $right.Width) -and
+            ($left.X + $left.Width) -gt $right.X -and
+            $left.Y -lt ($right.Y + $right.Height) -and
+            ($left.Y + $left.Height) -gt $right.Y
+        )
+
+        if ($overlaps) {
+            throw (
+                "TOC atlas elements overlap: {0} and {1}" -f
+                    $left.Name,
+                    $right.Name
+            )
+        }
+    }
+}
+
+
+# =============================================================================
+# toc grid atlas png generation
+# =============================================================================
+
+$tocArguments = @(
+    '-size',
+    "${tocAtlasWidth}x${tocAtlasHeight}",
+    'xc:none'
+)
+
+foreach ($asset in $tocAssets) {
+    $sourcePath = Join-Path $sourceDirectory $asset.File
+
+    $tocArguments += '('
+    $tocArguments += $sourcePath
+    $tocArguments += '-filter'
+    $tocArguments += 'Lanczos'
+    $tocArguments += '-resize'
+    $tocArguments += "$($asset.Width)x$($asset.Height)!"
+    $tocArguments += ')'
+
+    $tocArguments += '-geometry'
+    $tocArguments += "+$($asset.X)+$($asset.Y)"
+
+    $tocArguments += '-composite'
+}
+
+$tocArguments += '-define'
+$tocArguments += 'png:color-type=6'
+$tocArguments += $tocAtlasPng
+
+& magick @tocArguments
+
+if ($LASTEXITCODE -ne 0) {
+    throw 'ImageMagick failed while building the TOC grid atlas.'
+}
+
+
+# =============================================================================
+# toc grid atlas xml generation
+# =============================================================================
+
+$tocLines = @(
+    '<?xml version="1.0"?>',
+    '<Atlas>',
+    "    <Texture filename=`"$tocAtlasName.tex`" />",
+    '    <Elements>'
+)
+
+foreach ($asset in $tocAssets) {
+    $u1 = ($asset.X + 0.5) / $tocAtlasWidth
+    $u2 = (
+        $asset.X + $asset.Width - 0.5
+    ) / $tocAtlasWidth
+
+    $v1 = (
+        $tocAtlasHeight -
+        ($asset.Y + $asset.Height) +
+        0.5
+    ) / $tocAtlasHeight
+
+    $v2 = (
+        $tocAtlasHeight -
+        $asset.Y -
+        0.5
+    ) / $tocAtlasHeight
+
+    $tocLines += (
+        '        <Element name="{0}.tex" u1="{1}" u2="{2}" v1="{3}" v2="{4}" />' -f
+            $asset.Name,
+            (Format-Uv $u1),
+            (Format-Uv $u2),
+            (Format-Uv $v1),
+            (Format-Uv $v2)
+    )
+}
+
+$tocLines += @(
+    '    </Elements>',
+    '</Atlas>'
+)
+
+[System.IO.File]::WriteAllText(
+    $tocAtlasXml,
+    ($tocLines -join "`n") + "`n",
+    [System.Text.UTF8Encoding]::new($false)
+)
+
+
+# =============================================================================
+# toc grid tex conversion
+# =============================================================================
+
+$tocContainerInput = "/data/.build/ui/$tocAtlasName.png"
+$tocContainerOutput = "/data/images/ui/$tocAtlasName.tex"
+
+& docker run --rm `
+    -v "${projectRoot}:/data/" `
+    dstmodders/ktools:4.5.1 `
+    ktech --pow2 --extend `
+    $tocContainerInput `
+    $tocContainerOutput
+
+if ($LASTEXITCODE -ne 0) {
+    throw 'ktech failed while converting the TOC grid atlas.'
+}
+
+
+# =============================================================================
+# toc grid summary
+# =============================================================================
+
+Write-Host
+Write-Host 'Generated TOC grid atlas:'
+
+Get-Item `
+    $tocAtlasPng,
+    $tocAtlasXml,
+    $tocAtlasTex |
+    Select-Object Name, Length
+
+Write-Host
+Write-Host 'TOC grid elements:'
+
+$tocAssets |
     Select-Object Name, X, Y, Width, Height |
     Format-Table -AutoSize
 

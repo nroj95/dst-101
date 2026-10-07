@@ -11,6 +11,9 @@ Assets = {
     Asset("ATLAS", "images/ui/dst101_ui.xml"),
     Asset("IMAGE", "images/ui/dst101_ui.tex"),
 
+    Asset("ATLAS", "images/ui/dst101_toc_grid.xml"),
+    Asset("IMAGE", "images/ui/dst101_toc_grid.tex"),
+
     Asset("ATLAS", "images/topics/dst101_topics_color.xml"),
     Asset("IMAGE", "images/topics/dst101_topics_color.tex"),
 
