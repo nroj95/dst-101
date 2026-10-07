@@ -1365,6 +1365,8 @@ local DST101Widget = Class(Widget, function(self, owner)
     self.current_page = 1
     self.topic_scroll_index = 1
     self.contents_page = 1
+    self.contents_return_topic_id = nil
+    self.contents_return_page = 1
 
     self.root = self:AddChild(Widget("root"))
 
@@ -2215,6 +2217,39 @@ function DST101Widget:RevealSidebarTopic(topic_id)
 end
 
 
+function DST101Widget:ToggleContents()
+    self:ClearSearch(false)
+
+    if self.current_topic_id == CONTENTS_TOPIC_ID then
+        local topic_id =
+            self.contents_return_topic_id
+
+        if topic_id == nil
+            or find_topic(
+                self.data,
+                topic_id
+            ) == nil
+        then
+            return false
+        end
+
+        self:SetCurrentTopic(
+            topic_id,
+            self.contents_return_page or 1
+        )
+
+        return true
+    end
+
+    self:SetCurrentTopic(
+        CONTENTS_TOPIC_ID,
+        1
+    )
+
+    return true
+end
+
+
 function DST101Widget:SetCurrentTopic(
     topic_id,
     page_number,
@@ -2228,6 +2263,16 @@ function DST101Widget:SetCurrentTopic(
         and find_topic(self.data, topic_id) == nil
     then
         return
+    end
+
+    if topic_id == CONTENTS_TOPIC_ID
+        and self.current_topic_id ~= CONTENTS_TOPIC_ID
+    then
+        self.contents_return_topic_id =
+            self.current_topic_id
+
+        self.contents_return_page =
+            self.current_page
     end
 
     self.current_topic_id = topic_id

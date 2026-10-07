@@ -211,6 +211,43 @@ local function is_simple_controller_active()
         and player.components.simplecontroller ~= nil
 end
 
+local function restore_handbook_state(
+    screen,
+    player
+)
+    if screen == nil
+        or screen.book == nil
+        or player == nil
+        or GetModConfigData("reopen_behavior") == "contents"
+    then
+        return
+    end
+
+    local state =
+        player._dst101_handbook_state
+
+    if state == nil
+        or state.topic_id == nil
+    then
+        return
+    end
+
+    screen.book.contents_page =
+        state.contents_page or 1
+
+    screen.book.contents_return_topic_id =
+        state.contents_return_topic_id
+
+    screen.book.contents_return_page =
+        state.contents_return_page or 1
+
+    screen.book:SetCurrentTopic(
+        state.topic_id,
+        state.page_number or 1
+    )
+end
+
+
 local function open_handbook()
     if GLOBAL.ThePlayer == nil
         or GLOBAL.TheWorld == nil
@@ -237,8 +274,15 @@ local function open_handbook()
     local DST101PopupScreen =
         require("screens/dst101popupscreen")
 
-    GLOBAL.TheFrontEnd:PushScreen(
-        DST101PopupScreen(GLOBAL.ThePlayer)
+    local player = GLOBAL.ThePlayer
+    local screen =
+        DST101PopupScreen(player)
+
+    GLOBAL.TheFrontEnd:PushScreen(screen)
+
+    restore_handbook_state(
+        screen,
+        player
     )
 end
 
@@ -289,6 +333,9 @@ local function reload_handbook()
 
     local topic_id = nil
     local page_number = nil
+    local contents_page = nil
+    local contents_return_topic_id = nil
+    local contents_return_page = nil
 
     if was_open and active_screen.book ~= nil then
         topic_id =
@@ -296,6 +343,15 @@ local function reload_handbook()
 
         page_number =
             active_screen.book.current_page
+
+        contents_page =
+            active_screen.book.contents_page
+
+        contents_return_topic_id =
+            active_screen.book.contents_return_topic_id
+
+        contents_return_page =
+            active_screen.book.contents_return_page
     end
 
     if was_open then
@@ -332,6 +388,15 @@ local function reload_handbook()
         if screen.book ~= nil
             and topic_id ~= nil
         then
+            screen.book.contents_page =
+                contents_page or 1
+
+            screen.book.contents_return_topic_id =
+                contents_return_topic_id
+
+            screen.book.contents_return_page =
+                contents_return_page or 1
+
             screen.book:SetCurrentTopic(
                 topic_id,
                 page_number or 1
@@ -365,6 +430,22 @@ local function bind_shortcut(
         function()
             if not modifiers_match(modifier) then
                 return
+            end
+
+            -- If Tab itself opens the handbook, reserve it for
+            -- Contents navigation once the handbook is already open.
+            if key_config_name == "open_shortcut"
+                and shortcut == "tab"
+                and GLOBAL.TheFrontEnd ~= nil
+            then
+                local active_screen =
+                    GLOBAL.TheFrontEnd:GetActiveScreen()
+
+                if active_screen ~= nil
+                    and active_screen.name == "DST101PopupScreen"
+                then
+                    return
+                end
             end
 
             -- Do not steal ordinary typing keys from active text fields.

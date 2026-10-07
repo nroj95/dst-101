@@ -36,6 +36,28 @@ local DST101PopupScreen = Class(Screen, function(self, owner)
 end)
 
 function DST101PopupScreen:OnDestroy()
+    if self.owner ~= nil
+        and self.owner:IsValid()
+        and self.book ~= nil
+    then
+        self.owner._dst101_handbook_state = {
+            topic_id =
+                self.book.current_topic_id,
+
+            page_number =
+                self.book.current_page,
+
+            contents_page =
+                self.book.contents_page,
+
+            contents_return_topic_id =
+                self.book.contents_return_topic_id,
+
+            contents_return_page =
+                self.book.contents_return_page,
+        }
+    end
+
     SetAutopaused(false)
 
     DST101PopupScreen._base.OnDestroy(self)
@@ -60,6 +82,15 @@ function DST101PopupScreen:OnRawKey(key, down)
         if self.book.search_escape_consumed then
             return true
         end
+    end
+
+    -- Tab toggles between Contents and the previous reading location.
+    if key == KEY_TAB then
+        if down then
+            self.book:ToggleContents()
+        end
+
+        return true
     end
 
     local search_editing =

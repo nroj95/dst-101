@@ -159,6 +159,22 @@ configuration_options = {
         default = true,
     },
     {
+        name = "reopen_behavior",
+        label = "Handbook reopening",
+        hover = "Choose whether DST 101 resumes where you left off or always opens Contents.",
+        options = {
+            {
+                description = "Remember last page",
+                data = "remember",
+            },
+            {
+                description = "Always open Contents",
+                data = "contents",
+            },
+        },
+        default = "remember",
+    },
+    {
         name = "open_shortcut",
         label = "Open handbook key",
         hover = "Opens or closes DST 101 while playing.",
