@@ -22,6 +22,7 @@ $outputDirectory = Join-Path $projectRoot 'images\ui'
 
 $atlasName = 'dst101_ui'
 $atlasSize = 1024
+$atlasGutter = 4
 
 $atlasPng = Join-Path $buildDirectory "$atlasName.png"
 $atlasXml = Join-Path $outputDirectory "$atlasName.xml"
@@ -34,10 +35,101 @@ New-Item -ItemType Directory -Force -Path `
 
 
 # =============================================================================
+# atlas gutter validation
+# =============================================================================
+
+function Assert-AtlasGutters {
+    param(
+        [Parameter(Mandatory)]
+        [array]$Assets,
+
+        [Parameter(Mandatory)]
+        [int]$AtlasWidth,
+
+        [Parameter(Mandatory)]
+        [int]$AtlasHeight,
+
+        [Parameter(Mandatory)]
+        [int]$Gutter,
+
+        [Parameter(Mandatory)]
+        [string]$AtlasName
+    )
+
+    foreach ($asset in $Assets) {
+        $rightEdge =
+            $asset.X + $asset.Width
+
+        $bottomEdge =
+            $asset.Y + $asset.Height
+
+        if (
+            $asset.X -lt $Gutter -or
+            $asset.Y -lt $Gutter -or
+            ($rightEdge + $Gutter) -gt $AtlasWidth -or
+            ($bottomEdge + $Gutter) -gt $AtlasHeight
+        ) {
+            throw (
+                "Atlas element lacks a {0}px edge gutter in {1}: {2}" -f
+                    $Gutter,
+                    $AtlasName,
+                    $asset.Name
+            )
+        }
+    }
+
+    for (
+        $leftIndex = 0;
+        $leftIndex -lt $Assets.Count;
+        $leftIndex++
+    ) {
+        $left = $Assets[$leftIndex]
+
+        $leftRight =
+            $left.X + $left.Width
+
+        $leftBottom =
+            $left.Y + $left.Height
+
+        for (
+            $rightIndex = $leftIndex + 1;
+            $rightIndex -lt $Assets.Count;
+            $rightIndex++
+        ) {
+            $right = $Assets[$rightIndex]
+
+            $rightRight =
+                $right.X + $right.Width
+
+            $rightBottom =
+                $right.Y + $right.Height
+
+            $separated = (
+                ($leftRight + $Gutter) -le $right.X -or
+                ($rightRight + $Gutter) -le $left.X -or
+                ($leftBottom + $Gutter) -le $right.Y -or
+                ($rightBottom + $Gutter) -le $left.Y
+            )
+
+            if (-not $separated) {
+                throw (
+                    "Atlas elements lack a {0}px gutter in {1}: {2} and {3}" -f
+                        $Gutter,
+                        $AtlasName,
+                        $left.Name,
+                        $right.Name
+                )
+            }
+        }
+    }
+}
+
+
+# =============================================================================
 # atlas layout
 #
-# each element uses the whole shared source canvas for its group.
-# this preserves consistent alignment between related variants.
+# tightly trimmed sources may reconstruct a shared logical canvas.
+# this preserves alignment between related variants without source padding.
 # =============================================================================
 
 $assets = @(
@@ -45,7 +137,10 @@ $assets = @(
     @{
         Name = 'related_topic_tile_01'
         File = 'related_topic_tile_01.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '1167x1153'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 44
+        SourceOffsetY = 50
         X = 8
         Y = 8
         Width = 240
@@ -54,7 +149,10 @@ $assets = @(
     @{
         Name = 'related_topic_tile_02'
         File = 'related_topic_tile_02.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '1167x1153'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 44
+        SourceOffsetY = 50
         X = 256
         Y = 8
         Width = 240
@@ -63,7 +161,10 @@ $assets = @(
     @{
         Name = 'related_topic_tile_03'
         File = 'related_topic_tile_03.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '1167x1153'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 44
+        SourceOffsetY = 50
         X = 504
         Y = 8
         Width = 240
@@ -72,7 +173,10 @@ $assets = @(
     @{
         Name = 'related_topic_tile_04'
         File = 'related_topic_tile_04.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '1167x1153'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 43
+        SourceOffsetY = 50
         X = 8
         Y = 256
         Width = 240
@@ -81,7 +185,10 @@ $assets = @(
     @{
         Name = 'related_topic_tile_05'
         File = 'related_topic_tile_05.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '1167x1153'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 43
+        SourceOffsetY = 50
         X = 256
         Y = 256
         Width = 240
@@ -90,7 +197,10 @@ $assets = @(
     @{
         Name = 'related_topic_tile_06'
         File = 'related_topic_tile_06.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '1167x1153'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 43
+        SourceOffsetY = 50
         X = 504
         Y = 256
         Width = 240
@@ -132,54 +242,72 @@ $assets = @(
     @{
         Name = 'divider_01'
         File = 'divider_01.png'
-        ExpectedSource = '2112x106'
+        ExpectedSource = '2104x100'
+        LogicalSource = '2112x106'
+        SourceOffsetX = 0
+        SourceOffsetY = 2
         X = 8
-        Y = 496
+        Y = 500
         Width = 496
         Height = 25
     },
     @{
         Name = 'divider_02'
         File = 'divider_02.png'
-        ExpectedSource = '2112x106'
+        ExpectedSource = '2104x100'
+        LogicalSource = '2112x106'
+        SourceOffsetX = 0
+        SourceOffsetY = 2
         X = 520
-        Y = 496
+        Y = 500
         Width = 496
         Height = 25
     },
     @{
         Name = 'divider_03'
         File = 'divider_03.png'
-        ExpectedSource = '2112x106'
+        ExpectedSource = '2104x100'
+        LogicalSource = '2112x106'
+        SourceOffsetX = 0
+        SourceOffsetY = 3
         X = 8
-        Y = 534
+        Y = 538
         Width = 496
         Height = 25
     },
     @{
         Name = 'divider_04'
         File = 'divider_04.png'
-        ExpectedSource = '2112x106'
+        ExpectedSource = '2104x100'
+        LogicalSource = '2112x106'
+        SourceOffsetX = 0
+        SourceOffsetY = 2
         X = 520
-        Y = 534
+        Y = 538
         Width = 496
         Height = 25
     },
     @{
         Name = 'divider_05'
         File = 'divider_05.png'
-        ExpectedSource = '2112x106'
+        ExpectedSource = '2104x100'
+        LogicalSource = '2112x106'
+        SourceOffsetX = 0
+        SourceOffsetY = 2
         X = 8
-        Y = 572
+        Y = 576
         Width = 496
         Height = 25
     },
     @{
         Name = 'divider_06'
         File = 'divider_06.png'
-        ExpectedSource = '2112x106'
+        ExpectedSource = '2104x100'
+        LogicalSource = '2112x106'
+        SourceOffsetX = 0
+        SourceOffsetY = 2
         X = 520
-        Y = 572
+        Y = 576
         Width = 496
         Height = 25
     },
@@ -226,7 +354,10 @@ $assets = @(
     @{
         Name = 'hud_handbook'
         File = 'hud_handbook.png'
-        ExpectedSource = '1254x1254'
+        ExpectedSource = '905x964'
+        LogicalSource = '1254x1254'
+        SourceOffsetX = 220
+        SourceOffsetY = 145
         X = 8
         Y = 840
         Width = 128
@@ -279,6 +410,61 @@ foreach ($asset in $assets) {
         )
     }
 
+    if ($asset.ContainsKey('LogicalSource')) {
+        if (
+            -not $asset.ContainsKey('SourceOffsetX') -or
+            -not $asset.ContainsKey('SourceOffsetY')
+        ) {
+            throw (
+                "Logical source offsets are missing for {0}" -f
+                    $asset.File
+            )
+        }
+
+        if ($sourceSize -notmatch '^(?<Width>\d+)x(?<Height>\d+)$') {
+            throw "Could not parse source size for $($asset.File)"
+        }
+
+        $sourceWidth = [int]$Matches['Width']
+        $sourceHeight = [int]$Matches['Height']
+
+        if (
+            $asset.LogicalSource -notmatch
+                '^(?<Width>\d+)x(?<Height>\d+)$'
+        ) {
+            throw (
+                "Could not parse logical source size for {0}: {1}" -f
+                    $asset.File,
+                    $asset.LogicalSource
+            )
+        }
+
+        $logicalWidth = [int]$Matches['Width']
+        $logicalHeight = [int]$Matches['Height']
+
+        $sourceRight =
+            $asset.SourceOffsetX + $sourceWidth
+
+        $sourceBottom =
+            $asset.SourceOffsetY + $sourceHeight
+
+        if (
+            $asset.SourceOffsetX -lt 0 -or
+            $asset.SourceOffsetY -lt 0 -or
+            $sourceRight -gt $logicalWidth -or
+            $sourceBottom -gt $logicalHeight
+        ) {
+            throw (
+                "Logical source placement clips {0}: {1} at +{2}+{3} does not fit inside {4}" -f
+                    $asset.File,
+                    $sourceSize,
+                    $asset.SourceOffsetX,
+                    $asset.SourceOffsetY,
+                    $asset.LogicalSource
+            )
+        }
+    }
+
     if (
         $asset.X -lt 0 -or
         $asset.Y -lt 0 -or
@@ -289,32 +475,13 @@ foreach ($asset in $assets) {
     }
 }
 
-for ($leftIndex = 0; $leftIndex -lt $assets.Count; $leftIndex++) {
-    $left = $assets[$leftIndex]
 
-    for (
-        $rightIndex = $leftIndex + 1;
-        $rightIndex -lt $assets.Count;
-        $rightIndex++
-    ) {
-        $right = $assets[$rightIndex]
-
-        $overlaps = (
-            $left.X -lt ($right.X + $right.Width) -and
-            ($left.X + $left.Width) -gt $right.X -and
-            $left.Y -lt ($right.Y + $right.Height) -and
-            ($left.Y + $left.Height) -gt $right.Y
-        )
-
-        if ($overlaps) {
-            throw (
-                "Atlas elements overlap: {0} and {1}" -f
-                    $left.Name,
-                    $right.Name
-            )
-        }
-    }
-}
+Assert-AtlasGutters `
+    -Assets $assets `
+    -AtlasWidth $atlasSize `
+    -AtlasHeight $atlasSize `
+    -Gutter $atlasGutter `
+    -AtlasName $atlasName
 
 
 # =============================================================================
@@ -331,7 +498,28 @@ foreach ($asset in $assets) {
     $sourcePath = Join-Path $sourceDirectory $asset.File
 
     $arguments += '('
-    $arguments += $sourcePath
+
+    if ($asset.ContainsKey('LogicalSource')) {
+        $arguments += '-size'
+        $arguments += $asset.LogicalSource
+        $arguments += 'xc:none'
+
+        $arguments += '('
+        $arguments += $sourcePath
+        $arguments += ')'
+
+        $arguments += '-geometry'
+        $arguments += (
+            "+{0}+{1}" -f
+                $asset.SourceOffsetX,
+                $asset.SourceOffsetY
+        )
+
+        $arguments += '-composite'
+    } else {
+        $arguments += $sourcePath
+    }
+
     $arguments += '-filter'
     $arguments += 'Lanczos'
     $arguments += '-resize'
@@ -556,36 +744,13 @@ foreach ($asset in $tocAssets) {
     }
 }
 
-for (
-    $leftIndex = 0;
-    $leftIndex -lt $tocAssets.Count;
-    $leftIndex++
-) {
-    $left = $tocAssets[$leftIndex]
 
-    for (
-        $rightIndex = $leftIndex + 1;
-        $rightIndex -lt $tocAssets.Count;
-        $rightIndex++
-    ) {
-        $right = $tocAssets[$rightIndex]
-
-        $overlaps = (
-            $left.X -lt ($right.X + $right.Width) -and
-            ($left.X + $left.Width) -gt $right.X -and
-            $left.Y -lt ($right.Y + $right.Height) -and
-            ($left.Y + $left.Height) -gt $right.Y
-        )
-
-        if ($overlaps) {
-            throw (
-                "TOC atlas elements overlap: {0} and {1}" -f
-                    $left.Name,
-                    $right.Name
-            )
-        }
-    }
-}
+Assert-AtlasGutters `
+    -Assets $tocAssets `
+    -AtlasWidth $tocAtlasWidth `
+    -AtlasHeight $tocAtlasHeight `
+    -Gutter $atlasGutter `
+    -AtlasName $tocAtlasName
 
 
 # =============================================================================
