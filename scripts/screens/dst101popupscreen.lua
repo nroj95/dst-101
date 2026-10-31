@@ -3,6 +3,18 @@ local Widget = require("widgets/widget")
 local ImageButton = require("widgets/dst101quietimagebutton")
 local DST101Widget = require("widgets/dst101widget")
 
+-- Outside search, WASD mirrors the arrow keys.
+local NAVIGATION_KEYS = {
+    [KEY_UP] = { "ChangeTopic", -1 },
+    [KEY_W] = { "ChangeTopic", -1 },
+    [KEY_DOWN] = { "ChangeTopic", 1 },
+    [KEY_S] = { "ChangeTopic", 1 },
+    [KEY_LEFT] = { "NavigateBook", -1 },
+    [KEY_A] = { "NavigateBook", -1 },
+    [KEY_RIGHT] = { "NavigateBook", 1 },
+    [KEY_D] = { "NavigateBook", 1 },
+}
+
 local DST101PopupScreen = Class(Screen, function(self, owner)
     self.owner = owner
 
@@ -47,11 +59,9 @@ function DST101PopupScreen:OnDestroy()
 end
 
 function DST101PopupScreen:OnRawKey(key, down)
-    if key == KEY_ESCAPE then
-        local search_editing =
-            self.book.search_edit ~= nil
-            and self.book.search_edit.editing
+    local search_editing = self.book.search_edit.editing
 
+    if key == KEY_ESCAPE then
         if down and search_editing then
             self.book.search_escape_consumed = true
 
@@ -76,15 +86,10 @@ function DST101PopupScreen:OnRawKey(key, down)
         return true
     end
 
-    local search_editing =
-        self.book.search_edit ~= nil
-        and self.book.search_edit.editing
-
     -- Enter jumps directly into handbook search.
     if not search_editing
         and down
         and key == KEY_ENTER
-        and self.book.search_edit ~= nil
     then
         self.book.search_edit:SetEditing(true)
         return true
@@ -110,34 +115,13 @@ function DST101PopupScreen:OnRawKey(key, down)
         return self.book.search_edit:OnRawKey(key, down)
     end
 
-    local navigation_key = key
+    local navigation = NAVIGATION_KEYS[key]
 
-    -- WASD mirrors the arrow keys outside text entry.
-    if key == KEY_W then
-        navigation_key = KEY_UP
-    elseif key == KEY_S then
-        navigation_key = KEY_DOWN
-    elseif key == KEY_A then
-        navigation_key = KEY_LEFT
-    elseif key == KEY_D then
-        navigation_key = KEY_RIGHT
-    end
-
-    if navigation_key == KEY_UP
-        or navigation_key == KEY_DOWN
-        or navigation_key == KEY_LEFT
-        or navigation_key == KEY_RIGHT
-    then
+    if navigation ~= nil then
         if down then
-            if navigation_key == KEY_UP then
-                self.book:ChangeTopic(-1)
-            elseif navigation_key == KEY_DOWN then
-                self.book:ChangeTopic(1)
-            elseif navigation_key == KEY_LEFT then
-                self.book:NavigateBook(-1)
-            elseif navigation_key == KEY_RIGHT then
-                self.book:NavigateBook(1)
-            end
+            local method, offset = unpack(navigation)
+
+            self.book[method](self.book, offset)
         end
 
         -- Consume press and release so normal focus movement cannot
@@ -153,9 +137,7 @@ function DST101PopupScreen:OnRawKey(key, down)
 end
 
 function DST101PopupScreen:OnTextInput(text)
-    if self.book.search_edit ~= nil
-        and self.book.search_edit.editing
-    then
+    if self.book.search_edit.editing then
         return self.book.search_edit:OnTextInput(text)
     end
 
