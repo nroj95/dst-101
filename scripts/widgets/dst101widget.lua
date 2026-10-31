@@ -1319,6 +1319,13 @@ end
 
 
 local function block_matches_search(block, query)
+    -- Nearly every topic has this heading, so it would match them all.
+    if block.type == "heading"
+        and block.text == "Related topics"
+    then
+        return false
+    end
+
     if search_text_matches(
         block.text,
         query
