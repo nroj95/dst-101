@@ -183,6 +183,35 @@ local function modifiers_match(modifier_name)
 end
 
 
+-- Keys the open handbook uses itself.
+local handbook_keys = {
+    tab = true,
+    enter = true,
+    escape = true,
+    up = true,
+    down = true,
+    left = true,
+    right = true,
+    w = true,
+    a = true,
+    s = true,
+    d = true,
+}
+
+
+local function get_handbook_screen()
+    local active_screen =
+        GLOBAL.TheFrontEnd ~= nil
+        and GLOBAL.TheFrontEnd:GetActiveScreen()
+
+    if active_screen
+        and active_screen.name == "DST101PopupScreen"
+    then
+        return active_screen
+    end
+end
+
+
 local function is_text_input_active()
     if GLOBAL.TheFrontEnd == nil then
         return false
@@ -192,14 +221,10 @@ local function is_text_input_active()
         return true
     end
 
-    local active_screen =
-        GLOBAL.TheFrontEnd:GetActiveScreen()
+    local screen = get_handbook_screen()
 
-    return active_screen ~= nil
-        and active_screen.name == "DST101PopupScreen"
-        and active_screen.book ~= nil
-        and active_screen.book.search_edit ~= nil
-        and active_screen.book.search_edit.editing == true
+    return screen ~= nil
+        and screen.book.search_edit.editing == true
 end
 
 
@@ -236,14 +261,12 @@ local function open_handbook()
         return
     end
 
-    local active_screen = GLOBAL.TheFrontEnd:GetActiveScreen()
-
-    if active_screen ~= nil
-        and active_screen.name == "DST101PopupScreen"
-    then
+    if get_handbook_screen() ~= nil then
         GLOBAL.TheFrontEnd:PopScreen()
         return
     end
+
+    local active_screen = GLOBAL.TheFrontEnd:GetActiveScreen()
 
     if active_screen == nil
         or active_screen.name ~= "HUD"
@@ -270,16 +293,7 @@ end
 
 
 local function reload_handbook()
-    if GLOBAL.TheFrontEnd == nil then
-        return
-    end
-
-    local active_screen =
-        GLOBAL.TheFrontEnd:GetActiveScreen()
-
-    local was_open =
-        active_screen ~= nil
-        and active_screen.name == "DST101PopupScreen"
+    local was_open = get_handbook_screen() ~= nil
 
     if was_open then
         GLOBAL.TheFrontEnd:PopScreen()
@@ -287,14 +301,12 @@ local function reload_handbook()
 
     clear_handbook_modules()
 
-    if not was_open then
-        print("[dst 101] handbook modules reloaded")
-        return
-    end
-
     local player = GLOBAL.ThePlayer
 
-    if player == nil or not player:IsValid() then
+    if not was_open
+        or player == nil
+        or not player:IsValid()
+    then
         print("[dst 101] handbook modules reloaded")
         return
     end
@@ -331,20 +343,13 @@ local function bind_shortcut(
                 return
             end
 
-            -- If Tab itself opens the handbook, reserve it for
-            -- Contents navigation once the handbook is already open.
+            -- An open key the handbook also uses for navigation must not
+            -- close it mid-navigation.
             if key_config_name == "open_shortcut"
-                and shortcut == "tab"
-                and GLOBAL.TheFrontEnd ~= nil
+                and handbook_keys[shortcut]
+                and get_handbook_screen() ~= nil
             then
-                local active_screen =
-                    GLOBAL.TheFrontEnd:GetActiveScreen()
-
-                if active_screen ~= nil
-                    and active_screen.name == "DST101PopupScreen"
-                then
-                    return
-                end
+                return
             end
 
             -- Do not steal ordinary typing keys from active text fields.
