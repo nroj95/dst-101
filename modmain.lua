@@ -257,35 +257,14 @@ local function open_handbook()
     )
 end
 
+-- Every handbook module, topics included, carries "dst101" in its name.
 local function clear_handbook_modules()
-    local modules = {
-        "dst101data",
-        "dst101validate",
-        "dst101illustrations",
-        "dst101layout",
-        "widgets/dst101widget",
-        "screens/dst101popupscreen",
-    }
-
-    for _, module_name in ipairs(modules) do
-        GLOBAL.package.loaded[module_name] = nil
-    end
-
-    -- Topic files are separate modules so content can scale without turning
-    -- dst101data.lua into one enormous authoring file.
-    local topic_modules = {}
-
     for module_name in pairs(GLOBAL.package.loaded) do
-        if
-            type(module_name) == "string"
-            and module_name:sub(1, 13) == "dst101topics/"
+        if type(module_name) == "string"
+            and module_name:find("dst101", 1, true)
         then
-            topic_modules[#topic_modules + 1] = module_name
+            GLOBAL.package.loaded[module_name] = nil
         end
-    end
-
-    for _, module_name in ipairs(topic_modules) do
-        GLOBAL.package.loaded[module_name] = nil
     end
 end
 
