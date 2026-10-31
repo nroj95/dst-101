@@ -65,7 +65,7 @@ function DST101PopupScreen:OnRawKey(key, down)
         if down and search_editing then
             self.book.search_escape_consumed = true
 
-            if (self.book.search_query or "") ~= "" then
+            if self.book.search_query ~= "" then
                 self.book:ClearSearch(false)
             else
                 self.book:StopSearchEditing()

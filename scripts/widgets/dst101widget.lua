@@ -1222,6 +1222,8 @@ local DST101Widget = Class(Widget, function(self, owner)
     self.contents_page = 1
     self.contents_return_topic_id = nil
     self.contents_return_page = 1
+    self.search_query = ""
+    self.search_match_pages = {}
 
     self.root = self:AddChild(Widget("root"))
 
@@ -1235,8 +1237,7 @@ local DST101Widget = Class(Widget, function(self, owner)
         1
     )
 
-    -- Scene images stay behind the normal framed handbook shell, matching
-    -- the original single-template rendering path exactly.
+    -- Scene images sit behind the handbook shell, which frames them.
     self.illustration_root = self.design_root:AddChild(
         Widget("illustration_root")
     )
@@ -1277,7 +1278,10 @@ local DST101Widget = Class(Widget, function(self, owner)
         self:StopSearchEditing()
     end)
 
-    self:ReloadData()
+    self.data = require("dst101data")
+
+    self:RefreshPage()
+    self:RefreshSidebar()
 end)
 
 
@@ -1286,13 +1290,7 @@ end)
 -- =============================================================================
 
 local function normalize_search_text(value)
-    local text = string.lower(value or "")
-
-    -- Lua's normal string.lower() is ASCII-oriented.
-    -- Cover the Norwegian letters used by the handbook translation.
-    text = text:gsub("Å", "å")
-    text = text:gsub("Æ", "æ")
-    text = text:gsub("Ø", "ø")
+    local text = string.lower(value)
 
     text = text:gsub("^%s+", "")
     text = text:gsub("%s+$", "")
@@ -1445,7 +1443,7 @@ local function find_page_contents_label(
 
     return string.format(
         "%s %d",
-        strings.page or "Page",
+        strings.page,
         page_number
     )
 end
@@ -1454,7 +1452,7 @@ end
 function DST101Widget:GetContentsSidebarTopic()
     return {
         id = CONTENTS_TOPIC_ID,
-        title = self.data.strings.contents or "Contents",
+        title = self.data.strings.contents,
         icon = "contents",
     }
 end
@@ -1491,7 +1489,7 @@ end
 
 function DST101Widget:GetSidebarTopics()
     local topics = self.data.topics or {}
-    local query = self.search_query or ""
+    local query = self.search_query
 
     if query == "" then
         self.search_match_pages = {}
@@ -1535,7 +1533,7 @@ end
 
 function DST101Widget:SetSearchQuery(value)
     local previous_query =
-        self.search_query or ""
+        self.search_query
 
     local query = normalize_search_text(
         value
@@ -1568,8 +1566,7 @@ function DST101Widget:SetSearchQuery(value)
     end
 
     local page_number =
-        self.search_match_pages
-        and self.search_match_pages[
+        self.search_match_pages[
             self.current_topic_id
         ]
 
@@ -1584,7 +1581,7 @@ end
 
 function DST101Widget:ClearSearch(keep_editing)
     local had_query =
-        (self.search_query or "") ~= ""
+        self.search_query ~= ""
 
     if self.search_edit ~= nil then
         self.search_edit:SetString("")
@@ -1710,12 +1707,6 @@ function DST101Widget:BuildSearchRow()
         return
     end
 
-    self.search_query =
-        self.search_query or ""
-
-    self.search_match_pages =
-        self.search_match_pages or {}
-
     local sidebar = LAYOUT.sidebar
     local search = sidebar.search
 
@@ -1833,8 +1824,7 @@ function DST101Widget:BuildSearchRow()
     self.search_edit:EnableScrollEditWindow(true)
 
     self.search_edit:SetTextPrompt(
-        self.data.strings.search_placeholder
-            or "Search...",
+        self.data.strings.search_placeholder,
         {
             LAYOUT.colours.sidebar_text[1],
             LAYOUT.colours.sidebar_text[2],
@@ -1899,21 +1889,6 @@ function DST101Widget:BuildSearchRow()
 
     self.search_edit.OnRawKey =
         function(edit, key, down)
-            if edit.editing
-                and key == KEY_ESCAPE
-            then
-                if down
-                    and (self.search_query or "") ~= ""
-                then
-                    self.search_escape_consumed = true
-                    self:ClearSearch(false)
-                end
-
-                if self.search_escape_consumed then
-                    return true
-                end
-            end
-
             if edit.editing
                 and down
                 and key == KEY_BACKSPACE
@@ -2583,7 +2558,7 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
         Text(
             HEADERFONT,
             sidebar.header.font_size,
-            self.data.strings.topics or "",
+            self.data.strings.topics,
             LAYOUT.colours.sidebar_text
         )
     )
@@ -2663,8 +2638,7 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
                     and self.search_edit.editing
 
                 local page_number =
-                    self.search_match_pages
-                    and self.search_match_pages[topic.id]
+                    self.search_match_pages[topic.id]
                     or 1
 
                 if topic.id == self.current_topic_id then
@@ -2795,10 +2769,10 @@ function DST101Widget:GetContentsRows()
         list.right - list.left + 1
 
     local minimum_block_width =
-        list.minimum_block_width or 275
+        list.minimum_block_width
 
     local column_gap =
-        list.column_gap or 34
+        list.column_gap
 
     local column_count = math.max(
         1,
@@ -2826,8 +2800,8 @@ function DST101Widget:GetContentsRows()
         local block_height =
             list.topic_line_height
             + #block.pages * list.page_line_height
-            + (list.row_top_padding or 0)
-            + (list.row_bottom_padding or 0)
+            + list.row_top_padding
+            + list.row_bottom_padding
 
         if rows[row_index] == nil then
             rows[row_index] = {
@@ -2858,7 +2832,7 @@ end
 
 function DST101Widget:GetContentsPageCount(rows)
     local page_rows =
-        LAYOUT.contents.list.page_rows or 3
+        LAYOUT.contents.list.page_rows
 
     return math.max(
         1,
@@ -2892,7 +2866,7 @@ end
 
 function DST101Widget:ScrollContents(offset)
     self:SetContentsPage(
-        (self.contents_page or 1) + offset
+        self.contents_page + offset
     )
 end
 
@@ -2989,7 +2963,7 @@ local function add_contents_page_selector(
     local selector =
         LAYOUT.contents.page_selector
 
-    if selector == nil or page_count <= 1 then
+    if page_count <= 1 then
         return
     end
 
@@ -3125,7 +3099,7 @@ function DST101Widget:RefreshContents()
         Text(
             HEADERFONT,
             title_region.font_size,
-            self.data.strings.contents or "Contents",
+            self.data.strings.contents,
             LAYOUT.colours.headline_text
         )
     )
@@ -3147,7 +3121,7 @@ function DST101Widget:RefreshContents()
     local rows = self:GetContentsRows()
 
     local page_rows =
-        list.page_rows or 3
+        list.page_rows
 
     local page_count =
         self:GetContentsPageCount(rows)
@@ -3156,7 +3130,7 @@ function DST101Widget:RefreshContents()
         1,
         math.min(
             page_count,
-            self.contents_page or 1
+            self.contents_page
         )
     )
 
@@ -3178,16 +3152,16 @@ function DST101Widget:RefreshContents()
     )
 
     local row_gap =
-        list.row_gap or 30
+        list.row_gap
 
     local row_top_padding =
-        list.row_top_padding or 0
+        list.row_top_padding
 
     local cell_left_padding =
-        list.cell_left_padding or 0
+        list.cell_left_padding
 
     local cell_right_inset =
-        list.cell_right_inset or 0
+        list.cell_right_inset
 
     local page_rows_data = {}
     local content_height = 0
@@ -3251,7 +3225,7 @@ function DST101Widget:RefreshContents()
         LAYOUT.colours.body_text
 
     local grid_alpha =
-        list.grid_alpha or 0.28
+        list.grid_alpha
 
     local first_layout_row = rows[1]
 
@@ -3290,7 +3264,7 @@ function DST101Widget:RefreshContents()
                 )
 
             divider:ScaleToSize(
-                list.grid_vertical_width or 28,
+                list.grid_vertical_width,
                 list.bottom - list.top + 1
             )
 
@@ -3304,10 +3278,7 @@ function DST101Widget:RefreshContents()
             divider:SetPosition(
                 source_x(
                     divider_x
-                    + (
-                        list.grid_vertical_offset_x
-                        or 0
-                    )
+                    + list.grid_vertical_offset_x
                 ),
                 source_y(
                     (list.top + list.bottom) / 2
@@ -3319,7 +3290,7 @@ function DST101Widget:RefreshContents()
     end
 
     local grid_right_inset =
-        list.grid_right_inset or 0
+        list.grid_right_inset
 
     local horizontal_width =
         list.right - list.left + 1
@@ -3379,7 +3350,7 @@ function DST101Widget:RefreshContents()
 
         divider:ScaleToSize(
             horizontal_width,
-            list.grid_horizontal_height or 36
+            list.grid_horizontal_height
         )
 
         divider:SetTint(
@@ -3484,11 +3455,7 @@ function DST101Widget:RenderIllustration(page)
     end
 
     local illustration =
-        ILLUSTRATIONS.illustrations
-        and ILLUSTRATIONS.illustrations[
-            illustration_name
-        ]
-        or nil
+        ILLUSTRATIONS.illustrations[illustration_name]
 
     if illustration == nil then
         print(
@@ -3501,10 +3468,6 @@ function DST101Widget:RenderIllustration(page)
 
     local region =
         LAYOUT.regions.illustration
-
-    if region == nil then
-        return
-    end
 
     self.page_illustration =
         self.illustration_root:AddChild(
@@ -3538,8 +3501,7 @@ function DST101Widget:RenderRegion(
         and page.regions[region_name]
         or nil
 
-    if region == nil
-        or blocks == nil
+    if blocks == nil
         or #blocks == 0
     then
         return
@@ -3724,10 +3686,6 @@ end
 
 function DST101Widget:RenderFooter(parent, topic)
     local region = LAYOUT.regions.bottom_footer
-
-    if region == nil then
-        return
-    end
 
     local pages = topic.pages or {}
     local page_count = #pages
@@ -4062,27 +4020,6 @@ function DST101Widget:OnControl(control, down)
     end
 
     return false
-end
-
-function DST101Widget:ReloadData()
-    package.loaded["dst101data"] = nil
-    self.data = require("dst101data")
-
-    if self.current_topic_id ~= CONTENTS_TOPIC_ID
-        and find_topic(
-            self.data,
-            self.current_topic_id
-        ) == nil
-        and self.data.topics[1] ~= nil
-    then
-        self.current_topic_id =
-            self.data.topics[1].id
-
-        self.current_page = 1
-    end
-
-    self:RefreshPage()
-    self:RefreshSidebar()
 end
 
 return DST101Widget
