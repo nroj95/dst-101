@@ -97,6 +97,12 @@ after editing either full-size handbook shell:
 .\tools\build_handbook_shell.ps1
 ```
 
+after editing other ui artwork:
+
+```powershell
+.\tools\build_ui_atlas.ps1
+```
+
 generated atlases should be committed together with the source assets that produced them.
 
 ## focused changes

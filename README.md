@@ -165,6 +165,7 @@ read the relevant reference before making substantial changes in that area.
 scripts/dst101topics/                 handbook topic data
 scripts/dst101data.lua                ordered topic loader
 scripts/dst101validate.lua            authoring validation
+scripts/dst101layout.lua              handbook layout
 scripts/widgets/dst101widget.lua      handbook renderer
 scripts/screens/dst101popupscreen.lua popup and keyboard handling
 scripts/dst101illustrations.lua       generated illustration manifest
@@ -172,10 +173,12 @@ scripts/dst101illustrations.lua       generated illustration manifest
 source/assets/illustrations/          production illustration pngs
 source/assets/icons/                  topic and search icons
 source/assets/ui/                     handbook shell and ui source assets
+source/fonts/alegreya/                font sources
 
 images/illustrations/                 generated illustration atlases
 images/topics/                        generated topic icon atlases
 images/ui/                            runtime ui assets and atlases
+fonts/                                generated bitmap fonts
 
 tools/                                build and preparation helpers
 docs/                                 detailed project references
@@ -205,6 +208,18 @@ after changing `handbook_base.png` or `handbook_page.png`:
 
 ```powershell
 .\tools\build_handbook_shell.ps1
+```
+
+after changing other ui artwork in `source/assets/ui/`:
+
+```powershell
+.\tools\build_ui_atlas.ps1
+```
+
+after changing the fonts or `charset.txt`:
+
+```powershell
+.\tools\build_alegreya_fonts.ps1
 ```
 
 generated `.tex` assets are not refreshed by the handbook development hot reload and normally require restarting `don't starve together`.

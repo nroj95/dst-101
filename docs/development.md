@@ -2,12 +2,6 @@
 
 status: production reference
 
-project:
-
-```text
-D:\dev\projects\dst\dst-101
-```
-
 ## scope
 
 this note documents the technical handbook implementation.
@@ -19,17 +13,24 @@ the shell and authoring grammar are considered established. add new structural s
 ## main project areas
 
 ```text
+modmain.lua                           assets, shortcuts, HUD button, hot reload
+modinfo.lua                           mod metadata and config options
 scripts/dst101topics/                 topic modules
 scripts/dst101data.lua                ordered topic loader
 scripts/dst101validate.lua            authoring validation
+scripts/dst101layout.lua              source-coordinate layout
 scripts/widgets/dst101widget.lua      handbook renderer
+scripts/widgets/dst101quietimagebutton.lua  handbook-local button
 scripts/screens/dst101popupscreen.lua popup / keyboard handling
 scripts/dst101illustrations.lua       generated scene manifest
 source/assets/illustrations/          production scene PNGs
 source/assets/icons/                  topic/search icons
+source/assets/ui/                     shell and UI source PNGs
+source/fonts/alegreya/                font sources and charset
 images/illustrations/                 runtime scene atlases
 images/topics/                        topic icon atlases
 images/ui/                            runtime UI assets and atlases
+fonts/                                runtime bitmap fonts
 tools/                                build/preparation helpers
 ```
 
@@ -65,7 +66,6 @@ heading
 text
 bullets
 related_topics
-spacer
 caption
 note
 ```
@@ -85,6 +85,8 @@ related subjects may sit near one another, and foundational topics may appear ea
 currently enforced:
 
 - topic ids exist and are unique.
+- regions are known, and each region holds only the block types it renders.
+- a note region holds at most one note.
 - headline is immediately followed by subtitle.
 - subtitle never appears without its headline.
 - `page_heading` may appear only as the first `top_left` block on page 2+.
@@ -109,8 +111,8 @@ currently enforced:
 custom fonts:
 
 ```text
-body:              dst101_alegreya_regular
-subtitle/caption:  dst101_alegreya_italic
+body:                          dst101_alegreya_regular
+subtitle/caption/note:         dst101_alegreya_italic
 headline/page_heading/heading: HEADERFONT
 ```
 
@@ -126,7 +128,7 @@ heading line_height      36
 heading spacing           5
 
 body size                24
-body spacing        32
+body spacing             32
 ```
 
 fixed heading `line_height` keeps divider placement stable despite glyph-height differences.
@@ -281,6 +283,14 @@ next button
 
 visible footer buttons navigate within the current topic.
 
+## contents
+
+Contents is the first sidebar entry and where the handbook first opens. it lists every topic with its pages in a grid on the frameless `handbook_base` shell: page 1 by its headline, later pages by their `page_heading`, or `Page N` without one.
+
+when the grid needs more than one Contents page, a numbered page selector appears on the right. the mouse wheel over the grid turns Contents pages; elsewhere it scrolls the sidebar.
+
+`Tab` toggles between Contents and the topic page it was opened from.
+
 ## keyboard navigation
 
 ```text
@@ -288,7 +298,11 @@ Up / W    -> previous topic, page 1
 Down / S  -> next topic, page 1
 Left / A  -> previous page; from page 1, previous topic's final page
 Right / D -> next page; from final page, next topic's page 1
+Tab       -> Contents, or back to the page it was opened from
+Escape    -> leave search, otherwise close the handbook
 ```
+
+stepping before the first topic reaches Contents.
 
 while search is active, Left/Right retain normal text-cursor behavior, Up/Down move through filtered topic results and open their matching pages, and WASD remains normal text input.
 
@@ -301,6 +315,7 @@ search indexes:
 ```text
 topic title
 topic tags
+headline
 subtitle
 page heading
 heading
@@ -309,6 +324,8 @@ bullets
 caption
 note
 ```
+
+the `Related topics` heading is left out, since nearly every topic has one.
 
 page selection:
 
@@ -365,7 +382,7 @@ it preserves focus visuals, hover textures, clicking, and click sounds while omi
 
 do not globally mute dst UI sounds.
 
-## shortcuts
+## opening the handbook
 
 player handbook shortcut is configurable through `modinfo.lua`.
 
@@ -382,9 +399,19 @@ modifier matching is exact.
 
 plain typing shortcuts are suppressed while a text field is active; intentionally modified chords remain available.
 
+an open shortcut that the handbook also navigates with (WASD, arrows, Enter, Escape, Tab) does not close it while it is open.
+
+other ways in:
+
+- a HUD button beside the map controls, which can be turned off in config. its tooltip names the shortcut.
+- a controller's Menu Misc 3 button.
+- with the Simple Controller mod active, an LB+RB skill slot instead.
+
+closing remembers the topic, page and Contents position. reopening returns there unless the reopen option is set to always open Contents.
+
 ## hot reload
 
-the development reload clears and reloads handbook Lua/data modules while preserving the current topic/page when possible.
+the development reload clears every module with `dst101` in its name and, if the handbook was open, reopens it at the same topic and page.
 
 it covers Lua, layout, widget, screen, data, and manifest code.
 
@@ -435,9 +462,10 @@ builder behavior:
 ## other asset builders
 
 ```text
-tools/build_handbook_shell.ps1
-tools/build_ui_atlas.ps1
-tools/build_topic_atlases.ps1
+tools/build_handbook_shell.ps1     handbook_base / handbook_page shells
+tools/build_ui_atlas.ps1           UI atlas and Contents grid atlas
+tools/build_topic_atlases.ps1      colour and grayscale topic icons
+tools/build_alegreya_fonts.ps1     bitmap fonts (BMFont + ktech in Docker)
 ```
 
 runtime atlases:
@@ -446,10 +474,15 @@ runtime atlases:
 images/ui/handbook_base.tex/xml
 images/ui/handbook_page.tex/xml
 images/ui/dst101_ui.tex/xml
+images/ui/dst101_toc_grid.tex/xml
 images/topics/dst101_topics_color.tex/xml
 images/topics/dst101_topics_gray.tex/xml
 images/illustrations/dst101_illustrations_*.tex/xml
+fonts/dst101_alegreya_regular.zip
+fonts/dst101_alegreya_italic.zip
 ```
+
+`tools/handbook_overview.ps1` lists topics in sidebar order with page counts, page headings, and illustrations without starting the game.
 
 ## workshop releases
 

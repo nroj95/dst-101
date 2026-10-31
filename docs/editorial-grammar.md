@@ -480,7 +480,7 @@ do not invent an extra lesson merely to justify page 2, and do not compress usef
 
 ## search metadata
 
-search already indexes topic title, topic tags, subtitle, page headings, headings, body text, bullets, captions, and notes.
+search already indexes topic title, topic tags, headlines, subtitle, page headings, headings, body text, bullets, captions, and notes.
 
 use topic-level tags only for useful vocabulary a reader might search for that visible content does not already provide.
 
