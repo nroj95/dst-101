@@ -211,40 +211,20 @@ local function is_simple_controller_active()
         and player.components.simplecontroller ~= nil
 end
 
-local function restore_handbook_state(
-    screen,
-    player
-)
-    if screen == nil
-        or screen.book == nil
-        or player == nil
-        or GetModConfigData("reopen_behavior") == "contents"
-    then
-        return
+-- The popup saves the reading position on the player when it closes.
+local function push_handbook(player, restore_position)
+    local DST101PopupScreen =
+        require("screens/dst101popupscreen")
+
+    local screen = DST101PopupScreen(player)
+
+    GLOBAL.TheFrontEnd:PushScreen(screen)
+
+    local state = player._dst101_handbook_state
+
+    if restore_position and state ~= nil then
+        screen.book:RestoreState(state)
     end
-
-    local state =
-        player._dst101_handbook_state
-
-    if state == nil
-        or state.topic_id == nil
-    then
-        return
-    end
-
-    screen.book.contents_page =
-        state.contents_page or 1
-
-    screen.book.contents_return_topic_id =
-        state.contents_return_topic_id
-
-    screen.book.contents_return_page =
-        state.contents_return_page or 1
-
-    screen.book:SetCurrentTopic(
-        state.topic_id,
-        state.page_number or 1
-    )
 end
 
 
@@ -271,18 +251,9 @@ local function open_handbook()
         return
     end
 
-    local DST101PopupScreen =
-        require("screens/dst101popupscreen")
-
-    local player = GLOBAL.ThePlayer
-    local screen =
-        DST101PopupScreen(player)
-
-    GLOBAL.TheFrontEnd:PushScreen(screen)
-
-    restore_handbook_state(
-        screen,
-        player
+    push_handbook(
+        GLOBAL.ThePlayer,
+        GetModConfigData("reopen_behavior") ~= "contents"
     )
 end
 
@@ -331,29 +302,6 @@ local function reload_handbook()
         active_screen ~= nil
         and active_screen.name == "DST101PopupScreen"
 
-    local topic_id = nil
-    local page_number = nil
-    local contents_page = nil
-    local contents_return_topic_id = nil
-    local contents_return_page = nil
-
-    if was_open and active_screen.book ~= nil then
-        topic_id =
-            active_screen.book.current_topic_id
-
-        page_number =
-            active_screen.book.current_page
-
-        contents_page =
-            active_screen.book.contents_page
-
-        contents_return_topic_id =
-            active_screen.book.contents_return_topic_id
-
-        contents_return_page =
-            active_screen.book.contents_return_page
-    end
-
     if was_open then
         GLOBAL.TheFrontEnd:PopScreen()
     end
@@ -373,35 +321,7 @@ local function reload_handbook()
     end
 
     player:DoTaskInTime(0, function()
-        if GLOBAL.TheFrontEnd == nil then
-            return
-        end
-
-        local DST101PopupScreen =
-            require("screens/dst101popupscreen")
-
-        local screen =
-            DST101PopupScreen(player)
-
-        GLOBAL.TheFrontEnd:PushScreen(screen)
-
-        if screen.book ~= nil
-            and topic_id ~= nil
-        then
-            screen.book.contents_page =
-                contents_page or 1
-
-            screen.book.contents_return_topic_id =
-                contents_return_topic_id
-
-            screen.book.contents_return_page =
-                contents_return_page or 1
-
-            screen.book:SetCurrentTopic(
-                topic_id,
-                page_number or 1
-            )
-        end
+        push_handbook(player, true)
 
         print("[dst 101] handbook hot reloaded")
     end)

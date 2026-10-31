@@ -2290,6 +2290,31 @@ function DST101Widget:SetCurrentTopic(
     end
 end
 
+function DST101Widget:GetState()
+    return {
+        topic_id = self.current_topic_id,
+        page_number = self.current_page,
+        contents_page = self.contents_page,
+        contents_return_topic_id = self.contents_return_topic_id,
+        contents_return_page = self.contents_return_page,
+    }
+end
+
+function DST101Widget:RestoreState(state)
+    if state.topic_id == nil then
+        return
+    end
+
+    self.contents_page = state.contents_page or 1
+    self.contents_return_topic_id = state.contents_return_topic_id
+    self.contents_return_page = state.contents_return_page or 1
+
+    self:SetCurrentTopic(
+        state.topic_id,
+        state.page_number
+    )
+end
+
 function DST101Widget:GetAdjacentSidebarTopic(offset)
     local topics = self:GetSidebarTopics()
 
