@@ -451,6 +451,18 @@ images/topics/dst101_topics_gray.tex/xml
 images/illustrations/dst101_illustrations_*.tex/xml
 ```
 
+## workshop releases
+
+the repository is the dev copy. build a release copy for the Don't Starve Mod Tools ModUploader:
+
+```powershell
+py .\tools\build_release.py 1.1.0
+```
+
+the copy lands in `.build/release/<yyyyMMdd-HHmmss>/` with only runtime files and licenses, the name `DST 101`, the given version, and no developer reload options. point ModUploader at that folder.
+
+the version must differ from the one on the Workshop. ModUploader writes it to the item's version tag, which `DST` compares with installed copies, so publish through ModUploader rather than SteamCMD, which cannot set tags.
+
 ## implementation versatility
 
 avoid turning today's successful page into tomorrow's mandatory template.
