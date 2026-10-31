@@ -1,20 +1,99 @@
+-- Level 0: the message names the content location, and the line inside
+-- this validator would only mislead.
+local function content_error(message)
+    error(
+        "[dst 101] invalid handbook content: " .. message,
+        0
+    )
+end
+
+
 local function authoring_error(
     topic_id,
     page_number,
     region_name,
     message
 )
-    error(
+    content_error(
         string.format(
-            "[dst 101] invalid handbook content: " ..
             "topic=%s page=%s region=%s: %s",
             tostring(topic_id),
             tostring(page_number),
             tostring(region_name),
             message
-        ),
-        2
+        )
     )
+end
+
+
+-- Block types each region renders. Anything else would silently vanish.
+local REGION_BLOCK_TYPES = {
+    top_left = {
+        headline = true,
+        subtitle = true,
+        page_heading = true,
+        heading = true,
+        text = true,
+        bullets = true,
+    },
+    illustration_caption = {
+        caption = true,
+    },
+    bottom_left = {
+        heading = true,
+        text = true,
+        bullets = true,
+        related_topics = true,
+    },
+    right = {
+        heading = true,
+        text = true,
+        bullets = true,
+    },
+    note = {
+        note = true,
+    },
+}
+
+
+local function validate_block_types(
+    topic,
+    page_number,
+    region_name,
+    blocks
+)
+    local allowed = REGION_BLOCK_TYPES[region_name]
+
+    if allowed == nil then
+        authoring_error(
+            topic.id,
+            page_number,
+            region_name,
+            "unknown region"
+        )
+    end
+
+    -- The note strip shows a single note.
+    if region_name == "note" and #blocks > 1 then
+        authoring_error(
+            topic.id,
+            page_number,
+            region_name,
+            "note region may contain at most one note"
+        )
+    end
+
+    for _, block in ipairs(blocks) do
+        if not allowed[block.type] then
+            authoring_error(
+                topic.id,
+                page_number,
+                region_name,
+                "unsupported block type: " ..
+                tostring(block.type)
+            )
+        end
+    end
 end
 
 
@@ -65,13 +144,8 @@ local function validate_page_heading(
     region_name,
     blocks
 )
-    local page_heading_count = 0
-
     for block_index, block in ipairs(blocks) do
         if block.type == "page_heading" then
-            page_heading_count =
-                page_heading_count + 1
-
             if region_name ~= "top_left" then
                 authoring_error(
                     topic.id,
@@ -108,15 +182,6 @@ local function validate_page_heading(
                 )
             end
         end
-    end
-
-    if page_heading_count > 1 then
-        authoring_error(
-            topic.id,
-            page_number,
-            region_name,
-            "top_left may contain at most one page_heading"
-        )
     end
 end
 
@@ -246,15 +311,6 @@ local function validate_right_region(
             end
 
             section_has_body = true
-
-        else
-            authoring_error(
-                topic.id,
-                page_number,
-                "right",
-                "unsupported block type in right region: " ..
-                tostring(block.type)
-            )
         end
 
         previous_type = block.type
@@ -432,17 +488,12 @@ local function validate_topics(data)
 
     for _, topic in ipairs(data.topics or {}) do
         if topic.id == nil or topic.id == "" then
-            error(
-                "[dst 101] invalid handbook content: topic id is missing",
-                2
-            )
+            content_error("topic id is missing")
         end
 
         if topic_ids[topic.id] then
-            error(
-                "[dst 101] invalid handbook content: duplicate topic id: " ..
-                tostring(topic.id),
-                2
+            content_error(
+                "duplicate topic id: " .. topic.id
             )
         end
 
@@ -464,7 +515,12 @@ local function validate_topics(data)
             for region_name, blocks in pairs(
                 page.regions or {}
             ) do
-                blocks = blocks or {}
+                validate_block_types(
+                    topic,
+                    page_number,
+                    region_name,
+                    blocks
+                )
 
                 if region_name == "right" then
                     validate_right_region(
@@ -507,11 +563,9 @@ local function validate_topics(data)
         end
 
         if related_block_count > 1 then
-            error(
-                "[dst 101] invalid handbook content: topic=" ..
-                tostring(topic.id) ..
-                " contains more than one related_topics block",
-                2
+            content_error(
+                "topic=" .. topic.id ..
+                " contains more than one related_topics block"
             )
         end
     end
