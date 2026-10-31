@@ -2074,6 +2074,13 @@ function DST101Widget:RevealSidebarTopic(topic_id)
         return false
     end
 
+    return self:ScrollSidebarTo(target_index, topics)
+end
+
+
+-- Scrolls the sidebar just far enough to show topics[target_index].
+-- Returns whether the visible window moved.
+function DST101Widget:ScrollSidebarTo(target_index, topics)
     local previous_scroll_index =
         self.topic_scroll_index
 
@@ -2091,15 +2098,10 @@ function DST101Widget:RevealSidebarTopic(topic_id)
             target_index - visible_count + 1
     end
 
-    local maximum_start =
-        self:GetMaximumTopicScrollStart(topics)
-
-    self.topic_scroll_index = math.max(
+    self.topic_scroll_index = math.clamp(
+        self.topic_scroll_index,
         1,
-        math.min(
-            maximum_start,
-            self.topic_scroll_index
-        )
+        self:GetMaximumTopicScrollStart(topics)
     )
 
     return self.topic_scroll_index
@@ -2242,65 +2244,13 @@ function DST101Widget:GetAdjacentSidebarTopic(offset)
     return topics[target_index], target_index, topics
 end
 
-function DST101Widget:NavigateSearchResults(offset)
-    local topic, target_index, topics =
-        self:GetAdjacentSidebarTopic(offset)
-
-    if topic == nil then
-        return false
-    end
-
-    local previous_scroll_index =
-        self.topic_scroll_index
-
-    self.current_topic_id = topic.id
-    self.current_page =
-        self.search_match_pages
-        and self.search_match_pages[topic.id]
-        or 1
-
-    -- Keep the selected result inside the visible sidebar window.
-    local visible_count =
-        #LAYOUT.sidebar.topic_rows
-
-    if target_index < self.topic_scroll_index then
-        self.topic_scroll_index = target_index
-    elseif target_index
-        > self.topic_scroll_index
-        + visible_count
-        - 1
-    then
-        self.topic_scroll_index =
-            target_index - visible_count + 1
-    end
-
-    local maximum_start =
-        self:GetMaximumTopicScrollStart(topics)
-
-    self.topic_scroll_index = math.max(
-        1,
-        math.min(
-            maximum_start,
-            self.topic_scroll_index
-        )
-    )
-
-    self:RefreshPage()
-
-    if self.topic_scroll_index ~= previous_scroll_index then
-        self:RefreshSidebar()
-    else
-        self:RefreshSidebarSelection()
-    end
-
-    return true
-end
-
+-- Moves to the adjacent sidebar topic, on page 1 by default.
+-- page_mode "last" opens its final page. "search" opens its matching
+-- search page and keeps search editing active.
 function DST101Widget:ChangeTopic(offset, page_mode)
-    self:StopSearchEditing()
-
-    local previous_scroll_index =
-        self.topic_scroll_index
+    if page_mode ~= "search" then
+        self:StopSearchEditing()
+    end
 
     local topic, target_index, topics =
         self:GetAdjacentSidebarTopic(offset)
@@ -2316,39 +2266,19 @@ function DST101Widget:ChangeTopic(offset, page_mode)
             1,
             #(topic.pages or {})
         )
+    elseif page_mode == "search" then
+        self.current_page =
+            self.search_match_pages[topic.id] or 1
     else
         self.current_page = 1
     end
 
-    -- Keep keyboard-selected topics inside the visible sidebar window.
-    local visible_count =
-        #LAYOUT.sidebar.topic_rows
-
-    if target_index < self.topic_scroll_index then
-        self.topic_scroll_index = target_index
-    elseif target_index
-        > self.topic_scroll_index
-        + visible_count
-        - 1
-    then
-        self.topic_scroll_index =
-            target_index - visible_count + 1
-    end
-
-    local maximum_start =
-        self:GetMaximumTopicScrollStart(topics)
-
-    self.topic_scroll_index = math.max(
-        1,
-        math.min(
-            maximum_start,
-            self.topic_scroll_index
-        )
-    )
+    local sidebar_moved =
+        self:ScrollSidebarTo(target_index, topics)
 
     self:RefreshPage()
 
-    if self.topic_scroll_index ~= previous_scroll_index then
+    if sidebar_moved then
         self:RefreshSidebar()
     else
         self:RefreshSidebarSelection()
@@ -2409,26 +2339,28 @@ function DST101Widget:GetScrollbarGeometry()
     }
 end
 
-function DST101Widget:GetDesignMouseX()
+-- The mouse position in design_root units, relative to its centre.
+function DST101Widget:GetDesignMousePosition()
     local position =
         self.design_root:GetWorldPosition()
 
-    local scale_x, _, _ =
+    local scale_x, scale_y =
         self.design_root.inst.UITransform:GetScale()
 
     local parent = self.design_root:GetParent()
 
     while parent ~= nil do
-        local parent_scale_x, _, _ =
+        local parent_scale_x, parent_scale_y =
             parent.inst.UITransform:GetScale()
 
         scale_x = scale_x * parent_scale_x
+        scale_y = scale_y * parent_scale_y
         parent = parent:GetParent()
     end
 
-    return (
-        TheFrontEnd.lastx - position.x
-    ) / scale_x
+    return
+        (TheFrontEnd.lastx - position.x) / scale_x,
+        (TheFrontEnd.lasty - position.y) / scale_y
 end
 
 
@@ -2438,8 +2370,7 @@ function DST101Widget:IsMouseOverContents()
     end
 
     local region = LAYOUT.regions.main
-    local mouse_x = self:GetDesignMouseX()
-    local mouse_y = self:GetDesignMouseY()
+    local mouse_x, mouse_y = self:GetDesignMousePosition()
 
     return mouse_x >= source_x(region.left)
         and mouse_x <= source_x(region.right)
@@ -2448,26 +2379,31 @@ function DST101Widget:IsMouseOverContents()
 end
 
 
-function DST101Widget:GetDesignMouseY()
-    local position =
-        self.design_root:GetWorldPosition()
+-- Maps a handle y position onto the scroll index it stands for.
+-- Returns the index and the y clamped to the handle's travel.
+function DST101Widget:GetScrollIndexAt(handle_y, maximum_start)
+    local geometry =
+        self:GetScrollbarGeometry()
 
-    local _, scale_y, _ =
-        self.design_root.inst.UITransform:GetScale()
+    handle_y = math.clamp(
+        handle_y,
+        geometry.bottom_y,
+        geometry.top_y
+    )
 
-    local parent = self.design_root:GetParent()
+    local scroll_ratio =
+        (geometry.top_y - handle_y)
+        / (geometry.top_y - geometry.bottom_y)
 
-    while parent ~= nil do
-        local _, parent_scale_y, _ =
-            parent.inst.UITransform:GetScale()
+    local index =
+        1
+        + math.floor(
+            scroll_ratio
+            * (maximum_start - 1)
+            + 0.5
+        )
 
-        scale_y = scale_y * parent_scale_y
-        parent = parent:GetParent()
-    end
-
-    return (
-        TheFrontEnd.lasty - position.y
-    ) / scale_y
+    return index, handle_y
 end
 
 function DST101Widget:StopScrollbarDragging()
@@ -2494,35 +2430,17 @@ function DST101Widget:DragScrollbar()
         return
     end
 
-    local geometry =
-        self:GetScrollbarGeometry()
+    local _, mouse_y = self:GetDesignMousePosition()
 
-    local mouse_y =
-        self:GetDesignMouseY()
-        + (self.scrollbar_drag_offset_y or 0)
-
-    local handle_y = math.clamp(
-        mouse_y,
-        geometry.bottom_y,
-        geometry.top_y
+    local new_index, handle_y = self:GetScrollIndexAt(
+        mouse_y + self.scrollbar_drag_offset_y,
+        maximum_start
     )
 
     self.scrollbar_handle:SetPosition(
-        geometry.center_x,
+        self:GetScrollbarGeometry().center_x,
         handle_y
     )
-
-    local scroll_ratio =
-        (geometry.top_y - handle_y)
-        / (geometry.top_y - geometry.bottom_y)
-
-    local new_index =
-        1
-        + math.floor(
-            scroll_ratio
-            * (maximum_start - 1)
-            + 0.5
-        )
 
     if new_index == self.topic_scroll_index then
         return
@@ -2573,26 +2491,12 @@ function DST101Widget:BuildScrollbar()
             return
         end
 
-        local geometry =
-            self:GetScrollbarGeometry()
+        local _, mouse_y = self:GetDesignMousePosition()
 
-        local click_y = math.clamp(
-            self:GetDesignMouseY(),
-            geometry.bottom_y,
-            geometry.top_y
+        self.topic_scroll_index = self:GetScrollIndexAt(
+            mouse_y,
+            maximum_start
         )
-
-        local scroll_ratio =
-            (geometry.top_y - click_y)
-            / (geometry.top_y - geometry.bottom_y)
-
-        self.topic_scroll_index =
-            1
-            + math.floor(
-                scroll_ratio
-                * (maximum_start - 1)
-                + 0.5
-            )
 
         self:RefreshSidebar()
     end)
@@ -2633,9 +2537,10 @@ function DST101Widget:BuildScrollbar()
         local handle_position =
             self.scrollbar_handle:GetPosition()
 
+        local _, mouse_y = self:GetDesignMousePosition()
+
         self.scrollbar_drag_offset_y =
-            handle_position.y
-            - self:GetDesignMouseY()
+            handle_position.y - mouse_y
     end)
 
     self.scrollbar_handle:SetWhileDown(function()

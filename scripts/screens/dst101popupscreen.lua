@@ -100,8 +100,9 @@ function DST101PopupScreen:OnRawKey(key, down)
     if search_editing then
         if key == KEY_UP or key == KEY_DOWN then
             if down then
-                self.book:NavigateSearchResults(
-                    key == KEY_UP and -1 or 1
+                self.book:ChangeTopic(
+                    key == KEY_UP and -1 or 1,
+                    "search"
                 )
             end
 
