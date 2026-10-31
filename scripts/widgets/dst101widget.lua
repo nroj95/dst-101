@@ -172,6 +172,30 @@ local function region_center_y(region)
 end
 
 
+-- An invisible button over a box, positioned in display coordinates.
+-- Callers tint its focus or selected state when it should highlight.
+local function add_hitbox(parent, x, y, width, height)
+    local button = parent:AddChild(
+        ImageButton(
+            "images/global.xml",
+            "square.tex"
+        )
+    )
+
+    button.scale_on_focus = false
+    button.move_on_click = false
+
+    button:ForceImageSize(width, height)
+    button:SetPosition(x, y)
+
+    button:SetImageNormalColour(1, 1, 1, 0)
+    button:SetImageFocusColour(1, 1, 1, 0)
+    button:SetImageSelectedColour(1, 1, 1, 0)
+
+    return button
+end
+
+
 -- =============================================================================
 -- topic/content helpers
 -- =============================================================================
@@ -1341,41 +1365,13 @@ local DST101Widget = Class(Widget, function(self, owner)
         LAYOUT.source.height
     )
 
-    local search_defocus_button =
-        self.design_root:AddChild(
-            ImageButton(
-                "images/global.xml",
-                "square.tex"
-            )
-        )
-
-    search_defocus_button.scale_on_focus = false
-    search_defocus_button.move_on_click = false
-
-    search_defocus_button:ForceImageSize(
+    -- Clicking anywhere else on the book ends search editing.
+    local search_defocus_button = add_hitbox(
+        self.design_root,
+        0,
+        0,
         LAYOUT.source.width,
         LAYOUT.source.height
-    )
-
-    search_defocus_button:SetImageNormalColour(
-        1,
-        1,
-        1,
-        0
-    )
-
-    search_defocus_button:SetImageFocusColour(
-        1,
-        1,
-        1,
-        0
-    )
-
-    search_defocus_button:SetImageSelectedColour(
-        1,
-        1,
-        1,
-        0
     )
 
     search_defocus_button:SetOnClick(function()
@@ -1835,34 +1831,13 @@ function DST101Widget:BuildSearchRow()
         ) / 2
     )
 
-    local row_button = self.search_root:AddChild(
-        ImageButton(
-            "images/global.xml",
-            "square.tex"
-        )
+    local row_button = add_hitbox(
+        self.search_root,
+        region_center_x(search),
+        center_y,
+        region_width(search),
+        region_height(search)
     )
-
-    row_button.scale_on_focus = false
-    row_button.move_on_click = false
-
-    row_button:ForceImageSize(
-        search.right - search.left + 1,
-        search.bottom - search.top + 1
-    )
-
-    row_button:SetPosition(
-        source_x(
-            (
-                search.left +
-                search.right
-            ) / 2
-        ),
-        center_y
-    )
-
-    row_button:SetImageNormalColour(1, 1, 1, 0)
-    row_button:SetImageFocusColour(1, 1, 1, 0)
-    row_button:SetImageSelectedColour(1, 1, 1, 0)
 
     local icon = self.search_root:AddChild(
         Image(
@@ -1916,7 +1891,7 @@ function DST101Widget:BuildSearchRow()
 
     self.search_edit:SetRegionSize(
         text_width,
-        search.bottom - search.top + 1
+        region_height(search)
     )
 
     self.search_edit:SetHAlign(
@@ -1973,32 +1948,15 @@ function DST101Widget:BuildSearchRow()
         self.search_query
     )
 
-    self.search_clear_button =
-        self.search_root:AddChild(
-            ImageButton(
-                "images/global.xml",
-                "square.tex"
-            )
-        )
-
-    self.search_clear_button.scale_on_focus = false
-    self.search_clear_button.move_on_click = false
-
-    self.search_clear_button:ForceImageSize(
-        clear_button_width,
-        search.bottom - search.top + 1
-    )
-
-    self.search_clear_button:SetPosition(
+    self.search_clear_button = add_hitbox(
+        self.search_root,
         source_x(
             search.right - clear_button_width / 2
         ),
-        center_y
+        center_y,
+        clear_button_width,
+        region_height(search)
     )
-
-    self.search_clear_button:SetImageNormalColour(1, 1, 1, 0)
-    self.search_clear_button:SetImageFocusColour(1, 1, 1, 0)
-    self.search_clear_button:SetImageSelectedColour(1, 1, 1, 0)
 
     local clear_label =
         self.search_clear_button:AddChild(
@@ -2592,34 +2550,17 @@ function DST101Widget:BuildScrollbar()
     local track_left = scrollbar.left - 4
     local track_right = scrollbar.right + 4
 
-    self.scrollbar_track =
-        self.scrollbar_root:AddChild(
-            ImageButton(
-                "images/global.xml",
-                "square.tex"
-            )
-        )
-
-    self.scrollbar_track.scale_on_focus = false
-    self.scrollbar_track.move_on_click = false
-
-    self.scrollbar_track:ForceImageSize(
-        track_right - track_left + 1,
-        scrollbar.bottom - scrollbar.top + 1
-    )
-
-    self.scrollbar_track:SetPosition(
+    self.scrollbar_track = add_hitbox(
+        self.scrollbar_root,
         source_x(
             (track_left + track_right) / 2
         ),
         source_y(
             (scrollbar.top + scrollbar.bottom) / 2
-        )
+        ),
+        track_right - track_left + 1,
+        scrollbar.bottom - scrollbar.top + 1
     )
-
-    self.scrollbar_track:SetImageNormalColour(1, 1, 1, 0)
-    self.scrollbar_track:SetImageFocusColour(1, 1, 1, 0)
-    self.scrollbar_track:SetImageSelectedColour(1, 1, 1, 0)
 
     self.scrollbar_track:SetOnClick(function()
         self:StopSearchEditing()
@@ -2718,33 +2659,13 @@ function DST101Widget:BuildScrollbar()
         bottom,
         offset
     )
-        local left = scrollbar.left - 4
-        local right = scrollbar.right + 4
-
-        local button =
-            self.scrollbar_root:AddChild(
-                ImageButton(
-                    "images/global.xml",
-                    "square.tex"
-                )
-            )
-
-        button.scale_on_focus = false
-        button.move_on_click = false
-
-        button:ForceImageSize(
-            right - left + 1,
+        local button = add_hitbox(
+            self.scrollbar_root,
+            source_x((track_left + track_right) / 2),
+            source_y((top + bottom) / 2),
+            track_right - track_left + 1,
             bottom - top + 1
         )
-
-        button:SetPosition(
-            source_x((left + right) / 2),
-            source_y((top + bottom) / 2)
-        )
-
-        button:SetImageNormalColour(1, 1, 1, 0)
-        button:SetImageFocusColour(1, 1, 1, 0)
-        button:SetImageSelectedColour(1, 1, 1, 0)
 
         button:SetOnClick(function()
             self:StopSearchEditing()
@@ -2914,31 +2835,12 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
                 (slot.top + slot.bottom) / 2
             )
 
-            local button = self.sidebar_root:AddChild(
-                ImageButton(
-                    "images/global.xml",
-                    "square.tex"
-                )
-            )
-
-            button.scale_on_focus = false
-            button.move_on_click = false
-
-            button:ForceImageSize(
+            local button = add_hitbox(
+                self.sidebar_root,
+                row_center_x,
+                row_center_y,
                 row_width,
                 row_height
-            )
-
-            button:SetPosition(
-                row_center_x,
-                row_center_y
-            )
-
-            button:SetImageNormalColour(
-                1,
-                1,
-                1,
-                0
             )
 
             button:SetImageFocusColour(
@@ -3214,36 +3116,16 @@ local function add_contents_button(
         top + height / 2
     )
 
-    local button = parent:AddChild(
-        ImageButton(
-            "images/global.xml",
-            "square.tex"
-        )
-    )
-
-    button.scale_on_focus = false
-    button.move_on_click = false
-
-    button:ForceImageSize(
+    local button = add_hitbox(
+        parent,
+        center_x,
+        center_y,
         width,
         height
     )
 
-    button:SetPosition(
-        center_x,
-        center_y
-    )
-
-    button:SetImageNormalColour(
-        1, 1, 1, 0
-    )
-
     button:SetImageFocusColour(
         unpack(LAYOUT.colours.row_hover)
-    )
-
-    button:SetImageSelectedColour(
-        1, 1, 1, 0
     )
 
     button:SetOnClick(function()
@@ -3357,24 +3239,12 @@ local function add_contents_page_selector(
             first_center_y
             + (page_number - 1) * step
 
-        local button = parent:AddChild(
-            ImageButton(
-                "images/global.xml",
-                "square.tex"
-            )
-        )
-
-        button.scale_on_focus = false
-        button.move_on_click = false
-
-        button:ForceImageSize(
+        local button = add_hitbox(
+            parent,
+            source_x(selector.center_x),
+            source_y(item_center_y),
             selector.width,
             selector.item_height
-        )
-
-        button:SetPosition(
-            source_x(selector.center_x),
-            source_y(item_center_y)
         )
 
         local is_current_page =
@@ -3389,10 +3259,6 @@ local function add_contents_page_selector(
                 unpack(LAYOUT.colours.toc_page_selected)
             )
         else
-            button:SetImageNormalColour(
-                1, 1, 1, 0
-            )
-
             button:SetImageFocusColour(
                 unpack(LAYOUT.colours.row_hover)
             )
