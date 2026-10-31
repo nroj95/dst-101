@@ -1,5 +1,5 @@
-local ImageButton = require "widgets/imagebutton"
-local Widget = require "widgets/widget"
+local ImageButton = require("widgets/imagebutton")
+local Widget = require("widgets/widget")
 
 
 -- =============================================================================
@@ -11,30 +11,11 @@ local Widget = require "widgets/widget"
 -- click sounds remain unchanged.
 -- =============================================================================
 
+-- DST's Class does not inherit constructors, so pass the arguments on.
 local DST101QuietImageButton = Class(
     ImageButton,
-    function(
-        self,
-        atlas,
-        normal,
-        focus,
-        disabled,
-        down,
-        selected,
-        scale,
-        offset
-    )
-        ImageButton._ctor(
-            self,
-            atlas,
-            normal,
-            focus,
-            disabled,
-            down,
-            selected,
-            scale,
-            offset
-        )
+    function(self, ...)
+        ImageButton._ctor(self, ...)
     end
 )
 
