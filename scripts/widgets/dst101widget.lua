@@ -38,7 +38,6 @@ local NOTE_ANIMALS = {
         width = 100,
         height = 114,
         right_inset = 8,
-        bottom_offset = 0,
         text_gap = 18,
     },
 
@@ -47,7 +46,6 @@ local NOTE_ANIMALS = {
         width = 118,
         height = 96,
         right_inset = 5,
-        bottom_offset = 0,
         text_gap = 18,
     },
 
@@ -56,7 +54,6 @@ local NOTE_ANIMALS = {
         width = 96,
         height = 109,
         right_inset = 7,
-        bottom_offset = 0,
         text_gap = 20,
     },
 }
@@ -74,6 +71,7 @@ local BLOCK_STYLES = {
         font = HEADERFONT,
         colour = LAYOUT.colours.headline_text,
         size = 64,
+        wrapped_size = 48,
         spacing = 7,
         wrapped_spacing = 2,
     },
@@ -174,16 +172,6 @@ local function region_center_y(region)
 end
 
 
-local function apply_tint(image, colour)
-    image:SetTint(
-        colour[1],
-        colour[2],
-        colour[3],
-        colour[4]
-    )
-end
-
-
 -- =============================================================================
 -- topic/content helpers
 -- =============================================================================
@@ -225,11 +213,6 @@ local function get_stable_variant_index(key, variant_count)
 end
 
 
-local function get_divider_index(key)
-    return get_stable_variant_index(key, 6)
-end
-
-
 local function add_divider(
     parent,
     region,
@@ -237,7 +220,7 @@ local function add_divider(
     divider_key
 )
     local divider_index =
-        get_divider_index(divider_key)
+        get_stable_variant_index(divider_key, 6)
 
     local divider_texture = string.format(
         "divider_%02d.tex",
@@ -530,17 +513,13 @@ local function render_bullets(
     block,
     horizontal_inset
 )
-    local style = BLOCK_STYLES.text
-    local body_size = block.size or style.size
-    local marker_size = body_size * 0.84
+    local style = BLOCK_STYLES.bullets
+    local marker_size = style.size * 0.84
 
     local left_inset = horizontal_inset or 0
     local available_width =
-        block.width
-        or (
-            region_width(region) -
-            left_inset
-        )
+        region_width(region) -
+        left_inset
 
     local marker_width = 16
     local marker_gap = 7
@@ -554,15 +533,15 @@ local function render_bullets(
         item_indent
     )
 
-    local item_gap = block.item_gap or 3
+    local item_gap = 3
 
-    for _, item in ipairs(block.items or {}) do
+    for _, item in ipairs(block.items) do
         local item_text = parent:AddChild(
             Text(
                 style.font,
-                body_size,
+                style.size,
                 "",
-                style.colour or UICOLOURS.BROWN_DARK
+                style.colour
             )
         )
 
@@ -602,7 +581,7 @@ local function render_bullets(
                 style.font,
                 marker_size,
                 "◆",
-                style.colour or UICOLOURS.BROWN_DARK
+                style.colour
             )
         )
 
@@ -633,8 +612,7 @@ local function render_bullets(
 
         local row_height = math.max(
             item_height,
-            marker_height + 2,
-            style.line_height or 0
+            marker_height + 2
         )
 
         source_cursor_y =
@@ -643,8 +621,7 @@ local function render_bullets(
             item_gap
     end
 
-    return source_cursor_y
-        + (block.spacing or style.spacing or 0)
+    return source_cursor_y + style.spacing
 end
 
 
@@ -658,10 +635,6 @@ local function render_flow_block(
     divider_key,
     horizontal_inset
 )
-    if block.type == "spacer" then
-        return source_cursor_y + (block.height or 10)
-    end
-
     if block.type == "related_topics" then
         return render_related_topics(
             handbook,
@@ -670,15 +643,6 @@ local function render_flow_block(
             region,
             source_cursor_y,
             block
-        )
-    end
-
-    if block.type == "divider" then
-        return add_divider(
-            parent,
-            region,
-            source_cursor_y,
-            divider_key
         )
     end
 
@@ -701,24 +665,22 @@ local function render_flow_block(
     local text = parent:AddChild(
         Text(
             style.font,
-            block.size or style.size,
+            style.size,
             "",
-            style.colour or UICOLOURS.BROWN_DARK
+            style.colour
         )
     )
 
     local value = get_block_text(block, topic)
     local left_inset = horizontal_inset or 0
-    local width = block.width or region_width(region)
+    local width = region_width(region)
     local text_position_x = region_center_x(region)
 
     if left_inset > 0 then
-        if block.width == nil then
-            width = math.max(
-                1,
-                region_width(region) - left_inset
-            )
-        end
+        width = math.max(
+            1,
+            region_width(region) - left_inset
+        )
 
         text_position_x = source_x(
             region.left +
@@ -732,20 +694,14 @@ local function render_flow_block(
     text:SetClickable(false)
 
     if block.type == "headline" then
-        local one_line_size =
-            block.size or style.size
-
-        local two_line_size =
-            block.wrapped_size or 48
+        local one_line_size = style.size
+        local two_line_size = style.wrapped_size
 
         local maximum_headline_height =
-            block.max_height
-            or region.headline_max_height
+            region.headline_max_height
 
         local line_gap =
-            block.line_gap
-            or region.headline_line_gap
-            or 0
+            region.headline_line_gap
 
         local words = {}
 
@@ -949,7 +905,6 @@ local function render_flow_block(
                         headline_size,
                         "",
                         style.colour
-                            or UICOLOURS.BROWN_DARK
                     )
                 )
 
@@ -988,21 +943,10 @@ local function render_flow_block(
             end
         end
 
-        local headline_spacing
-
-        if #headline_lines > 1 then
-            headline_spacing =
-                block.wrapped_spacing
-                or style.wrapped_spacing
-                or block.spacing
-                or style.spacing
-                or 0
-        else
-            headline_spacing =
-                block.spacing
-                or style.spacing
-                or 0
-        end
+        local headline_spacing =
+            #headline_lines > 1
+            and style.wrapped_spacing
+            or style.spacing
 
         return headline_cursor_y
             + headline_spacing
@@ -1121,9 +1065,7 @@ local function render_flow_block(
 
     local layout_height = math.max(
         measured_height,
-        block.line_height
-            or style.line_height
-            or 0
+        style.line_height or 0
     )
 
     -- Keep the full authored region width so left alignment is meaningful.
@@ -1154,8 +1096,7 @@ local function render_flow_block(
         )
     end
 
-    return source_cursor_y
-        + (block.spacing or style.spacing or 0)
+    return source_cursor_y + style.spacing
 end
 
 local function render_box_region(
@@ -1249,8 +1190,7 @@ local function render_box_region(
             local animal_right =
                 strip_right - animal.right_inset
 
-            local animal_bottom =
-                strip_bottom + animal.bottom_offset
+            local animal_bottom = strip_bottom
 
             local animal_center_x =
                 animal_right - animal.width / 2
@@ -1272,23 +1212,15 @@ local function render_box_region(
             )
 
             animal_image:SetClickable(false)
-
-            -- Note animals are full-colour authored assets. Do not tint them.
-            animal_image:SetTint(
-                1,
-                1,
-                1,
-                1
-            )
         end
     end
 
     local text = parent:AddChild(
         Text(
             style.font,
-            block.size or style.size,
+            style.size,
             "",
-            style.colour or UICOLOURS.BROWN_DARK
+            style.colour
         )
     )
 
@@ -1297,7 +1229,7 @@ local function render_box_region(
     text:SetClickable(false)
 
     local value = get_block_text(block, topic)
-    local width = block.width or region_width(region)
+    local width = region_width(region)
     local text_position_x =
         region_center_x(region)
 
