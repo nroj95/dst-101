@@ -1,3 +1,23 @@
+-- =============================================================================
+-- dst 101 handbook widget
+--
+-- renders the handbook: the shell, the topic sidebar with search and
+-- scrollbar, the Contents pages, and topic pages built from authored
+-- blocks.
+--
+-- all geometry is authored in dst101layout.lua's source coordinates under
+-- design_root; source_x and source_y convert to widget coordinates.
+--
+-- decorative choices (divider and tile variants, the note animal) come
+-- from stable hashes of topic, page and region keys, so adding content
+-- elsewhere never reshuffles existing pages.
+--
+-- navigation state is current_topic_id and current_page, contents_page,
+-- the Contents return location, and topic_scroll_index, the single source
+-- of truth for the sidebar scroll position. GetState and RestoreState
+-- carry it across reopening and hot reload.
+-- =============================================================================
+
 local Image = require("widgets/image")
 local ImageButton = require("widgets/dst101quietimagebutton")
 local Text = require("widgets/text")

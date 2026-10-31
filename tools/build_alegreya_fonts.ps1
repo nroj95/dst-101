@@ -1,3 +1,19 @@
+# =============================================================================
+# dst 101 font builder
+#
+# builds the runtime Alegreya bitmap fonts into fonts/*.zip: regular for
+# body text, italic for subtitles, captions and notes.
+# - BMFont renders each TTF at size 50 over charset.txt.
+# - ktech (the dstmodders/ktools Docker image) converts the glyph page to
+#   a DXT5 .tex.
+# - the .fnt and .tex are zipped as the FONT asset DST loads.
+#
+# needs BMFont at $bmfont below and Docker. intermediates land in
+# .build/fonts/. the Medium weights in source/fonts/alegreya are kept as
+# sources but not built. fonts do not hot reload; restart DST after
+# rebuilding.
+# =============================================================================
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 

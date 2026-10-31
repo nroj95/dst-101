@@ -1,3 +1,16 @@
+-- =============================================================================
+-- dst 101 handbook data
+--
+-- loads the topic modules in sidebar order and the interface strings,
+-- then checks the result with dst101validate.lua. an authoring error stops
+-- the handbook from opening, with a message naming the topic, page and
+-- region.
+--
+-- sidebar order is loose thematic grouping, not a progression path.
+-- tools/handbook_overview.ps1 also reads TOPIC_MODULES, so keep one module
+-- per line.
+-- =============================================================================
+
 local TOPIC_MODULES = {
     -- getting started
     "dst101topics/setting_out",

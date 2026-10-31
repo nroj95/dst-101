@@ -1,3 +1,18 @@
+-- =============================================================================
+-- dst 101 popup screen
+--
+-- hosts the handbook widget over a dimmed backdrop that closes it when
+-- clicked, requests autopause while open, and routes the keyboard:
+-- - Escape leaves search first, clearing a non-empty query, then closes.
+-- - Tab toggles between Contents and the last reading location.
+-- - Enter starts search. while searching, Up/Down step through results
+--   and other keys go to the search field even if hover moved focus.
+-- - otherwise Up/Down (W/S) change topic and Left/Right (A/D) turn pages,
+--   continuing into the neighbouring topic.
+--
+-- closing stores the reading position on the owner for the next opening.
+-- =============================================================================
+
 local Screen = require("widgets/screen")
 local Widget = require("widgets/widget")
 local ImageButton = require("widgets/dst101quietimagebutton")

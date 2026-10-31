@@ -1,3 +1,15 @@
+-- =============================================================================
+-- dst 101 mod metadata and configuration options
+--
+-- this is the dev copy. tools/build_release.py rewrites the top-level name
+-- and version lines and drops the developer reload options for the
+-- Workshop copy, so keep those lines and the reload option blocks in
+-- their current shape.
+--
+-- shortcut data names are the game's KEY_* constant names in lower case;
+-- modmain.lua derives each key from its name.
+-- =============================================================================
+
 name = "dst 101 (dev)"
 description = "a simple in-game guide to dst's basics and survival systems"
 author = "nroj"

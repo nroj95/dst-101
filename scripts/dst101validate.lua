@@ -1,3 +1,14 @@
+-- =============================================================================
+-- dst 101 authoring validation
+--
+-- returns a function that checks the loaded handbook data and raises an
+-- error naming the topic, page and region of the first broken rule. the
+-- rules are the authoring grammar in docs/development.md: known regions
+-- and block types, headline/subtitle pairs, page_heading placement,
+-- captions for illustrated pages, right-column heading/body structure,
+-- and related-topic placement and links.
+-- =============================================================================
+
 -- Level 0: the message names the content location, and the line inside
 -- this validator would only mislead.
 local function content_error(message)

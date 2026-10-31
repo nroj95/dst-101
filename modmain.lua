@@ -1,3 +1,24 @@
+-- =============================================================================
+-- dst 101 mod entry point
+--
+-- registers the handbook's runtime assets and fonts, and the ways to open
+-- it:
+-- - the configured keyboard shortcut. modifiers must match exactly, plain
+--   typing keys are ignored while a text field is active, and a key the
+--   open handbook navigates with never closes it.
+-- - the HUD button beside the map controls, unless turned off in config.
+-- - a controller's Menu Misc 3 button, or an LB+RB skill slot when the
+--   Simple Controller mod is active.
+--
+-- closing the popup stores the reading position on the player. opening
+-- restores it unless the reopen option is set to always open Contents.
+--
+-- the developer reload shortcut clears every dst101 module and reopens the
+-- handbook at the same place. it does not reload modmain.lua, modinfo.lua,
+-- textures or fonts. release builds drop its config options, which leaves
+-- it unbound.
+-- =============================================================================
+
 local illustration_data =
     require("dst101illustrations")
 

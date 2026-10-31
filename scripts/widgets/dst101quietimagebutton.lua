@@ -1,15 +1,20 @@
-local ImageButton = require("widgets/imagebutton")
-local Widget = require("widgets/widget")
-
-
 -- =============================================================================
 -- dst 101 quiet image button
 --
--- behaves like the normal DST ImageButton, except gaining focus does not play
--- the standard mouseover sound or an optional ImageButton focus sound.
+-- behaves like the normal DST ImageButton, except gaining focus plays
+-- neither the standard mouseover sound nor an ImageButton focus sound.
+-- click sounds remain unchanged. every handbook control uses it so moving
+-- the mouse across the book stays quiet, without muting DST's ui sounds
+-- anywhere else.
 --
--- click sounds remain unchanged.
+-- OnGainFocus mirrors Button and ImageButton:OnGainFocus without their
+-- sound calls; recheck it against widgets/imagebutton.lua after game
+-- updates.
 -- =============================================================================
+
+local ImageButton = require("widgets/imagebutton")
+local Widget = require("widgets/widget")
+
 
 -- DST's Class does not inherit constructors, so pass the arguments on.
 local DST101QuietImageButton = Class(

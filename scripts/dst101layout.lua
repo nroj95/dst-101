@@ -1,3 +1,16 @@
+-- =============================================================================
+-- dst 101 handbook layout
+--
+-- every position and size, in the 1533x865 source-art coordinates of the
+-- handbook shell: (0, 0) is the top-left corner, y grows downward, and
+-- region edges are inclusive pixel rows and columns. the widget scales
+-- the whole design to display.width and converts to DST's centred, y-up
+-- widget coordinates.
+--
+-- flow regions stack their blocks from the top; box regions centre a
+-- single block.
+-- =============================================================================
+
 local SOURCE_WIDTH = 1533
 local SOURCE_HEIGHT = 865
 local DISPLAY_WIDTH = 1020

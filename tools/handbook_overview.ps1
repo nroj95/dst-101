@@ -1,3 +1,19 @@
+# =============================================================================
+# dst 101 handbook overview
+#
+# lists the topics in sidebar order, read from scripts/dst101data.lua,
+# with their page counts, without starting the game.
+#
+# views:
+#   Summary  topic, title and page count, plus totals (default)
+#   Names    topic module names only
+#   Details  pages, secondary page headings and illustrations
+#   Full     every topic file's source, in sidebar order
+#
+# usage:
+#   .\tools\handbook_overview.ps1 [-View Summary|Names|Details|Full]
+# =============================================================================
+
 [CmdletBinding()]
 param(
     [ValidateSet('Summary', 'Names', 'Details', 'Full')]
