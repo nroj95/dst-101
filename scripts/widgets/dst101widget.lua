@@ -649,6 +649,69 @@ local function render_bullets(
 end
 
 
+local function split_words(value)
+    local words = {}
+
+    for word in value:gmatch("%S+") do
+        words[#words + 1] = word
+    end
+
+    return words
+end
+
+
+-- Splits words into the two lines of most similar width that both fit,
+-- preferring the narrower pair on ties. measure(line) returns the line's
+-- width and height. Returns nil when no split fits.
+local function choose_balanced_split(words, width, measure)
+    local best = nil
+
+    for split_index = 1, #words - 1 do
+        local first_line =
+            table.concat(words, " ", 1, split_index)
+
+        local second_line =
+            table.concat(words, " ", split_index + 1, #words)
+
+        local first_width, first_height =
+            measure(first_line)
+
+        local second_width, second_height =
+            measure(second_line)
+
+        if first_width <= width
+            and second_width <= width
+        then
+            local width_difference =
+                math.abs(first_width - second_width)
+
+            local widest_line =
+                math.max(first_width, second_width)
+
+            if best == nil
+                or width_difference
+                    < best.width_difference
+                or (
+                    width_difference
+                        == best.width_difference
+                    and widest_line
+                        < best.widest_line
+                )
+            then
+                best = {
+                    lines = { first_line, second_line },
+                    heights = { first_height, second_height },
+                    width_difference = width_difference,
+                    widest_line = widest_line,
+                }
+            end
+        end
+    end
+
+    return best
+end
+
+
 local function render_flow_block(
     handbook,
     parent,
@@ -717,6 +780,12 @@ local function render_flow_block(
     text:SetVAlign(ANCHOR_TOP)
     text:SetClickable(false)
 
+    local function measure_line(line)
+        text:SetString(line)
+
+        return text:GetRegionSize()
+    end
+
     if block.type == "headline" then
         local one_line_size = style.size
         local two_line_size = style.wrapped_size
@@ -727,11 +796,7 @@ local function render_flow_block(
         local line_gap =
             region.headline_line_gap
 
-        local words = {}
-
-        for word in tostring(value):gmatch("%S+") do
-            words[#words + 1] = word
-        end
+        local words = split_words(value)
 
         local full_line =
             table.concat(words, " ")
@@ -740,98 +805,9 @@ local function render_flow_block(
         local headline_lines = nil
         local headline_heights = nil
 
-        local function measure_line(line)
-            text:SetString(line)
-
-            local line_width, line_height =
-                text:GetRegionSize()
-
-            return line_width, line_height
-        end
-
         local function fits_height(height)
             return maximum_headline_height == nil
                 or height <= maximum_headline_height
-        end
-
-        local function choose_balanced_two_lines()
-            local best = nil
-
-            for split_index = 1, #words - 1 do
-                local first_line =
-                    table.concat(
-                        words,
-                        " ",
-                        1,
-                        split_index
-                    )
-
-                local second_line =
-                    table.concat(
-                        words,
-                        " ",
-                        split_index + 1,
-                        #words
-                    )
-
-                local first_width, first_height =
-                    measure_line(first_line)
-
-                local second_width, second_height =
-                    measure_line(second_line)
-
-                if first_width <= width
-                    and second_width <= width
-                then
-                    local width_difference =
-                        math.abs(
-                            first_width -
-                            second_width
-                        )
-
-                    local widest_line =
-                        math.max(
-                            first_width,
-                            second_width
-                        )
-
-                    if best == nil
-                        or width_difference
-                            < best.width_difference
-                        or (
-                            width_difference
-                                == best.width_difference
-                            and widest_line
-                                < best.widest_line
-                        )
-                    then
-                        best = {
-                            lines = {
-                                first_line,
-                                second_line,
-                            },
-
-                            heights = {
-                                first_height,
-                                second_height,
-                            },
-
-                            height =
-                                first_height +
-                                line_gap +
-                                second_height,
-
-                            width_difference =
-                                width_difference,
-
-                            widest_line =
-                                widest_line,
-                        }
-                    end
-                end
-            end
-
-            return best
         end
 
         -- Keep one-line headlines at their authored display size.
@@ -859,12 +835,17 @@ local function render_flow_block(
         if headline_lines == nil then
             text:SetSize(two_line_size)
 
-            local candidate =
-                choose_balanced_two_lines()
+            local candidate = choose_balanced_split(
+                words,
+                width,
+                measure_line
+            )
 
             if candidate ~= nil
                 and fits_height(
-                    candidate.height
+                    candidate.heights[1] +
+                    line_gap +
+                    candidate.heights[2]
                 )
             then
                 headline_size =
@@ -980,98 +961,16 @@ local function render_flow_block(
     -- Keep headings on one line whenever they fit. Only headings that would
     -- wrap are given a deliberate, balanced two-line split.
     if block.type == "heading" or block.type == "page_heading" then
-        text:SetString(value)
-
-        local one_line_width =
-            select(
-                1,
-                text:GetRegionSize()
+        if measure_line(value) > width then
+            local split = choose_balanced_split(
+                split_words(value),
+                width,
+                measure_line
             )
 
-        if one_line_width > width then
-            local words = {}
-
-            for word in value:gmatch("%S+") do
-                words[#words + 1] = word
-            end
-
-            local best_split = nil
-
-            for split_index = 1, #words - 1 do
-                local first_line =
-                    table.concat(
-                        words,
-                        " ",
-                        1,
-                        split_index
-                    )
-
-                local second_line =
-                    table.concat(
-                        words,
-                        " ",
-                        split_index + 1,
-                        #words
-                    )
-
-                text:SetString(first_line)
-
-                local first_width =
-                    select(
-                        1,
-                        text:GetRegionSize()
-                    )
-
-                text:SetString(second_line)
-
-                local second_width =
-                    select(
-                        1,
-                        text:GetRegionSize()
-                    )
-
-                if first_width <= width
-                    and second_width <= width
-                then
-                    local width_difference =
-                        math.abs(
-                            first_width
-                            - second_width
-                        )
-
-                    local widest_line =
-                        math.max(
-                            first_width,
-                            second_width
-                        )
-
-                    if best_split == nil
-                        or width_difference
-                            < best_split.width_difference
-                        or (
-                            width_difference
-                                == best_split.width_difference
-                            and widest_line
-                                < best_split.widest_line
-                        )
-                    then
-                        best_split = {
-                            first_line = first_line,
-                            second_line = second_line,
-                            width_difference =
-                                width_difference,
-                            widest_line =
-                                widest_line,
-                        }
-                    end
-                end
-            end
-
-            if best_split ~= nil then
+            if split ~= nil then
                 rendered_value =
-                    best_split.first_line
-                    .. "\n"
-                    .. best_split.second_line
+                    table.concat(split.lines, "\n")
             end
         end
     end
