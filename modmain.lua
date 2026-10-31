@@ -24,9 +24,7 @@ Assets = {
     Asset("FONT", "fonts/dst101_alegreya_italic.zip"),
 }
 
-for _, illustration_atlas in ipairs(
-    illustration_data.atlases or {}
-) do
+for _, illustration_atlas in ipairs(illustration_data.atlases) do
     table.insert(
         Assets,
         Asset("ATLAS", illustration_atlas.atlas)
@@ -37,113 +35,26 @@ for _, illustration_atlas in ipairs(
         Asset("IMAGE", illustration_atlas.image)
     )
 end
+
 local TheInput = GLOBAL.TheInput
 
-local key_by_shortcut = {
-    tab = GLOBAL.KEY_TAB,
-    minus = GLOBAL.KEY_MINUS,
-    equals = GLOBAL.KEY_EQUALS,
-    space = GLOBAL.KEY_SPACE,
-    enter = GLOBAL.KEY_ENTER,
-    escape = GLOBAL.KEY_ESCAPE,
-    home = GLOBAL.KEY_HOME,
-    insert = GLOBAL.KEY_INSERT,
-    delete = GLOBAL.KEY_DELETE,
-    ["end"] = GLOBAL.KEY_END,
-    pause = GLOBAL.KEY_PAUSE,
-    print = GLOBAL.KEY_PRINT,
-    capslock = GLOBAL.KEY_CAPSLOCK,
-    scrolllock = GLOBAL.KEY_SCROLLOCK,
-    backspace = GLOBAL.KEY_BACKSPACE,
-    period = GLOBAL.KEY_PERIOD,
-    slash = GLOBAL.KEY_SLASH,
-    semicolon = GLOBAL.KEY_SEMICOLON,
-    leftbracket = GLOBAL.KEY_LEFTBRACKET,
-    backslash = GLOBAL.KEY_BACKSLASH,
-    rightbracket = GLOBAL.KEY_RIGHTBRACKET,
-    tilde = GLOBAL.KEY_TILDE,
 
-    up = GLOBAL.KEY_UP,
-    down = GLOBAL.KEY_DOWN,
-    right = GLOBAL.KEY_RIGHT,
-    left = GLOBAL.KEY_LEFT,
-    pageup = GLOBAL.KEY_PAGEUP,
-    pagedown = GLOBAL.KEY_PAGEDOWN,
+-- Shortcut names follow the game's KEY_* constants, apart from the
+-- game's own KEY_SCROLLOCK spelling. rawget keeps strict mode quiet
+-- for names such as "disabled".
+local function get_key(shortcut)
+    if shortcut == "scrolllock" then
+        return GLOBAL.KEY_SCROLLOCK
+    end
 
-    kp_period = GLOBAL.KEY_KP_PERIOD,
-    kp_divide = GLOBAL.KEY_KP_DIVIDE,
-    kp_multiply = GLOBAL.KEY_KP_MULTIPLY,
-    kp_minus = GLOBAL.KEY_KP_MINUS,
-    kp_plus = GLOBAL.KEY_KP_PLUS,
-    kp_enter = GLOBAL.KEY_KP_ENTER,
-    kp_equals = GLOBAL.KEY_KP_EQUALS,
-}
-
-for number = 1, 12 do
-    key_by_shortcut["f" .. number] =
-        GLOBAL["KEY_F" .. number]
-end
-
-for code = string.byte("a"), string.byte("z") do
-    local letter = string.char(code)
-
-    key_by_shortcut[letter] =
-        GLOBAL["KEY_" .. string.upper(letter)]
-end
-
-for number = 0, 9 do
-    key_by_shortcut[tostring(number)] =
-        GLOBAL["KEY_" .. number]
-
-    key_by_shortcut["kp_" .. number] =
-        GLOBAL["KEY_KP_" .. number]
+    return GLOBAL.rawget(
+        GLOBAL,
+        "KEY_" .. string.upper(shortcut)
+    )
 end
 
 
-local modifier_requirements = {
-    none = {
-        ctrl = false,
-        shift = false,
-        alt = false,
-    },
-    ctrl = {
-        ctrl = true,
-        shift = false,
-        alt = false,
-    },
-    shift = {
-        ctrl = false,
-        shift = true,
-        alt = false,
-    },
-    alt = {
-        ctrl = false,
-        shift = false,
-        alt = true,
-    },
-    ctrl_shift = {
-        ctrl = true,
-        shift = true,
-        alt = false,
-    },
-    ctrl_alt = {
-        ctrl = true,
-        shift = false,
-        alt = true,
-    },
-    shift_alt = {
-        ctrl = false,
-        shift = true,
-        alt = true,
-    },
-    ctrl_shift_alt = {
-        ctrl = true,
-        shift = true,
-        alt = true,
-    },
-}
-
-
+-- Single letters and digits type text, and so do these.
 local text_input_shortcuts = {
     tab = true,
     minus = true,
@@ -160,26 +71,23 @@ local text_input_shortcuts = {
     tilde = true,
 }
 
-for code = string.byte("a"), string.byte("z") do
-    text_input_shortcuts[string.char(code)] = true
+
+local function types_text(shortcut)
+    return #shortcut == 1
+        or text_input_shortcuts[shortcut] == true
 end
 
-for number = 0, 9 do
-    text_input_shortcuts[tostring(number)] = true
-end
 
-
+-- Modifier names such as "ctrl_shift" list the keys they require.
+-- Matching is exact, so "ctrl" also requires Shift and Alt to be up.
 local function modifiers_match(modifier_name)
-    local required =
-        modifier_requirements[modifier_name]
-        or modifier_requirements.none
+    local function requires(name)
+        return modifier_name:find(name, 1, true) ~= nil
+    end
 
-    return TheInput:IsKeyDown(GLOBAL.KEY_CTRL)
-            == required.ctrl
-        and TheInput:IsKeyDown(GLOBAL.KEY_SHIFT)
-            == required.shift
-        and TheInput:IsKeyDown(GLOBAL.KEY_ALT)
-            == required.alt
+    return TheInput:IsKeyDown(GLOBAL.KEY_CTRL) == requires("ctrl")
+        and TheInput:IsKeyDown(GLOBAL.KEY_SHIFT) == requires("shift")
+        and TheInput:IsKeyDown(GLOBAL.KEY_ALT) == requires("alt")
 end
 
 
@@ -232,7 +140,6 @@ local function is_simple_controller_active()
     local player = GLOBAL.ThePlayer
 
     return player ~= nil
-        and player.components ~= nil
         and player.components.simplecontroller ~= nil
 end
 
@@ -330,9 +237,10 @@ local function bind_shortcut(
         GetModConfigData(modifier_config_name)
         or "none"
 
-    local key = key_by_shortcut[shortcut]
+    -- Release builds drop the reload options, leaving shortcut nil.
+    local key = shortcut ~= nil and get_key(shortcut)
 
-    if key == nil then
+    if not key then
         return
     end
 
@@ -356,7 +264,7 @@ local function bind_shortcut(
             -- Function/navigation keys such as F5 still work normally.
             if is_text_input_active()
                 and modifier == "none"
-                and text_input_shortcuts[shortcut]
+                and types_text(shortcut)
             then
                 return
             end
@@ -383,13 +291,12 @@ local function add_simple_controller_skill(player)
     local function try_register()
         attempts = attempts + 1
 
-        if player == nil or not player:IsValid() then
+        if not player:IsValid() then
             return
         end
 
         local simple_controller =
-            player.components
-            and player.components.simplecontroller
+            player.components.simplecontroller
 
         if simple_controller ~= nil
             and simple_controller.AddTemporarySkill ~= nil
