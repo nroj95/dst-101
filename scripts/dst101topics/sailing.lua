@@ -161,7 +161,7 @@ Collisions can damage a boat, and a leak keeps draining its hull until you deal 
                     {
                         type = "text",
                         text = [[
-If the boat sinks anyway, everything built on it breaks apart. Floating items can be picked up again; the rest sinks. You wash ashore soaked, having lost a fair amount of health, sanity, and hunger, plus the item in your hand. Sinking close to the coast costs much less.
+If the boat sinks anyway, you lose it and everything built on it, and wash ashore soaked and worse for wear. Sinking near the coast costs much less.
 ]],
                     },
                 },
