@@ -50,6 +50,16 @@ return {
                 right = {
                     {
                         type = "heading",
+                        text = "Easy food to start with",
+                    },
+                    {
+                        type = "text",
+                        text = [[
+Berry Bushes and Carrots can be picked by hand as you travel, and both are fine to eat raw.
+]],
+                    },
+                    {
+                        type = "heading",
                         text = "Food spoils",
                     },
                     {

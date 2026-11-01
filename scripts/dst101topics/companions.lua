@@ -125,7 +125,7 @@ On a Full Moon, put one Nightmare Fuel or one Blue Gem in each of Chester's nine
                     {
                         type = "bullets",
                         items = {
-                            "Nightmare Fuel turns him into Shadow Chester. He gains three extra storage slots, but food spoils faster inside him.",
+                            "Nightmare Fuel turns him into Shadow Chester. He opens the same shared storage as a Magician's Chest, with three extra slots, but food spoils faster there.",
                             "Blue Gems turn him into Snow Chester. Food lasts twice as long, Ice does not melt, and Thermal Stones cool inside him.",
                         },
                     },
@@ -136,7 +136,7 @@ On a Full Moon, put one Nightmare Fuel or one Blue Gem in each of Chester's nine
                     {
                         type = "text",
                         text = [[
-Only ordinary Chester can transform. If a transformed Chester dies, he returns later as ordinary Chester, so you can choose again on another Full Moon.
+Only ordinary Chester can transform. When Chester dies, he drops what he carries and returns a day later as ordinary Chester, ready for another Full Moon. Shadow Chester drops nothing; his storage stays shared.
 ]],
                     },
                 },
@@ -233,7 +233,7 @@ The caves have their own companions. Hutch carries supplies, while some creature
                     {
                         type = "text",
                         text = [[
-Hutch has two other forms. With a light source inside, add a spear-type weapon for Fugu Hutch, which damages attackers. Use a One-man Band instead for Music Box Hutch, which restores sanity nearby.
+Hutch has two other forms. With a Light Bulb inside, add a Spear for Fugu Hutch, which damages attackers. Use a One-man Band instead for Music Box Hutch, which restores sanity nearby.
 ]],
                     },
                 },

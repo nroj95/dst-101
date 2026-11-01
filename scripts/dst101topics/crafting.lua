@@ -109,7 +109,7 @@ Pig Heads can be hammered too. They give Pig Skin and Twigs without removing a P
                     {
                         type = "text",
                         text = [[
-Many structures return part of their building materials when hammered. Containers also drop anything stored inside rather than destroying it.
+Many structures return part of their building materials when hammered. Containers also drop anything stored inside, except a Magician's Chest, whose storage is shared.
 
 That makes building mistakes less permanent. If something is in the wrong place, taking it apart may give you enough material to rebuild elsewhere.
 ]],

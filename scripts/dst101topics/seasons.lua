@@ -155,11 +155,11 @@ With enough warmth and fuel, you can keep exploring instead of waiting for bette
                     },
                     {
                         type = "heading",
-                        text = "Give lightning somewhere safe to go",
+                        text = "Storms bring more than rain",
                     },
                     {
                         type = "text",
-                        text = "Spring storms bring frequent lightning. A Lightning Rod helps protect nearby camp structures from strikes and the fires they can start.",
+                        text = "Spring storms bring frequent lightning. A Lightning Rod helps protect nearby camp structures from strikes and the fires they can start.\n\nSome heavy downpours rain Frogs as well. They attack anyone nearby, so be ready to fight or move on.",
                     },
                     {
                         type = "heading",

@@ -112,7 +112,7 @@ Not every harmless creature needs to become food or materials. The world quietly
                     {
                         type = "text",
                         text = [[
-This hidden value is called Naughtiness. Some innocent creatures count more than others, and it belongs to the player who made the kill.
+This hidden value is called Naughtiness. Some innocent creatures count more than others, and it belongs to the player who made the kill. Innocent does not always mean harmless; Tallbirds count too.
 
 Leave them alone for a while and it gradually falls again.
 ]],

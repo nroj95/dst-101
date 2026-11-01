@@ -74,7 +74,7 @@ return {
                     },
                     {
                         type = "text",
-                        text = "Touch Stones, Meat Effigies, and Life Giving Amulets can also revive ghosts. Which options you have depends on what you have found, prepared, and unlocked.",
+                        text = "Touch Stones and Meat Effigies can also revive ghosts. A Life Giving Amulet brings you back on its own if you die wearing it, and a ghost can haunt one left on the ground.",
                     },
                 },
             },
