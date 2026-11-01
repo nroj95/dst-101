@@ -87,7 +87,7 @@ If you want a closer look, leave yourself room to back away. What seemed harmles
                 top_left = {
                     {
                         type = "page_heading",
-                        text = "Leave some creatures alone",
+                        text = "Naughtiness",
                     },
                     {
                         type = "text",

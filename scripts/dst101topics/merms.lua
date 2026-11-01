@@ -87,7 +87,7 @@ Wurt can craft Marsh Turf and moves faster across it. That means a Merm settleme
                 top_left = {
                     {
                         type = "page_heading",
-                        text = "A Merm village",
+                        text = "Merm houses",
                     },
                     {
                         type = "text",
