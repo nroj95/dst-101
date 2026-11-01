@@ -27,6 +27,9 @@ return {
     },
 
     colours = {
+        page_button_hover = { 1, 0.84, 0.38, 1 },
+        page_button_disabled = { 0.40, 0.40, 0.40, 0.45 },
+
         row_hover = { 0.95, 0.78, 0.30, 0.22 },
         row_selected = { 0.95, 0.72, 0.20, 0.70 },
         toc_page_selected = { 0.72, 0.55, 0.18, 1 },
@@ -204,13 +207,42 @@ return {
             top = 740,
             bottom = 783,
             mode = "box",
+
+            -- The strip behind the note, with its animal at the right end.
+            strip = {
+                center_x = 1220,
+                center_y = 762,
+                width = 462,
+                height = 98,
+            },
         },
 
+        -- Footer parts share one line, offset_y above the region's middle.
+        -- Single-page topics show only the divider.
         bottom_footer = {
             left = 419,
             right = 951,
             top = 790,
             bottom = 817,
+
+            offset_y = -3,
+            font_size = 22,
+            label_height = 28,
+            button_width = 32,
+            button_height = 29,
+
+            previous_button = { center_x = 452 },
+            previous_label = { center_x = 530, width = 110 },
+            divider = { center_x = 715, width = 150, height = 29 },
+            counter = {
+                center_x = 795,
+                offset_y = -4,
+                width = 120,
+                height = 52,
+                font_size = 42,
+            },
+            next_label = { center_x = 890, width = 100 },
+            next_button = { center_x = 953 },
         },
     },
 }
