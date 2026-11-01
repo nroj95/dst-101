@@ -36,7 +36,7 @@ the project is intended to be distributed freely as an unofficial, non-commercia
 
 ## contributing
 
-contributions are welcome, especially natural english editing, illustration review, code cleanup, and gameplay accuracy and testing. see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+help is welcome, from a single clearer sentence to illustrations, code, testing, and translations. an issue saying which page feels off is already useful. see [`CONTRIBUTING.md`](CONTRIBUTING.md) for a quick start.
 
 ## ai assistance
 
