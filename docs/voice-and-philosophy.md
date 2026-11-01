@@ -186,6 +186,8 @@ avoid generic coaching phrases such as `pay attention`, `remember to`, `make sur
 
 describe the useful fact, consequence, or trade-off and let the reader make the judgment. direct warnings are still appropriate when immediate danger genuinely calls for one.
 
+agency is about the reader's goals, not softened grammar. once the reader has chosen something, state its facts, prerequisites, and steps plainly. a softened recommendation still needs its reason.
+
 ### perspective
 
 use `i` when experience matters, `you` when advice matters, and `we` occasionally for companionship or shared absurdity.
@@ -288,6 +290,7 @@ for current `dst` mechanics:
 - use wiki.gg for established mechanics and cross-check game context.
 - use official klei changelogs / update posts for recent or change-prone behavior.
 - inspect scripts or game data when exact implementation matters.
+- when sources disagree, the current game scripts win. wikis and guides can lag behind updates for years.
 
 practical rule:
 
@@ -295,7 +298,7 @@ practical rule:
 
 ### community perspective is required
 
-before finalizing any gameplay topic, inspect a useful sample of current community discussions and practical guides.
+before writing or substantially changing a gameplay topic, inspect a useful sample of current community discussions and practical guides. a wording change or a single verified fact does not need a fresh survey. stop once the evidence settles the decision at the handbook's level.
 
 look especially for:
 
