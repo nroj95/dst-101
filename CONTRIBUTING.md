@@ -8,16 +8,24 @@ open an [issue](https://github.com/nroj95/dst-101/issues) saying which page and 
 
 ## your first text edit
 
-each topic is one file in `scripts/dst101topics/`, named after it: `fire.lua`, `sailing.lua`, and so on. the words are in the `text` lines, the longer ones between `[[` and `]]`:
+each topic is one file in `scripts/dst101topics/`, named after it: `fire.lua`, `sailing.lua`, and so on. the words are in the `text` lines. short ones sit in quotes, longer ones between `[[` and `]]`, where a blank line starts a new paragraph:
 
 ```lua
 {
+    type = "heading",
+    text = "Campfire or Fire Pit?",
+},
+{
     type = "text",
-    text = [[A Campfire is quick and temporary. Once it burns out, it is gone.]],
+    text = [[
+A Campfire is quick and temporary. Once it burns out, it is gone.
+
+A Fire Pit stays behind and can be fueled again later.
+]],
 },
 ```
 
-change the words, leave the rest as it is, and open a pull request. text edits need no build and no formatting step.
+change the words, leave the rest as it is, and open a pull request. text edits need no build and no formatting step. a check runs on every pull request and names the file and line if a comma or quote went missing. to run it yourself, install `lupa` once with `py -m pip install lupa`, then run `py tools/check_handbook.py`.
 
 to see your change in game, put the repository in DST's `mods` folder, enable `dst 101 (dev)`, and pick a key for `Developer: reload handbook key` in its options. that key reloads the text without restarting. if you can't test, just say so; every change is checked before it's merged.
 

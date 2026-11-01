@@ -48,14 +48,14 @@ this is the one build workflow; other documents link here.
 - Docker with the `dstmodders/ktools:4.5.1` image. every builder that writes a `.tex` (atlases, shells and fonts) runs `ktech` from it.
 - `pngquant` on `PATH`, for `prepare_illustration.ps1`. the script looks it up before doing anything, so it is required even when it ends up keeping the lossless resize.
 - BMFont, for `build_alegreya_fonts.ps1` only. the script expects it at the `$bmfont` path near its top.
-- Python (`py`), for `build_release.py` only.
+- Python (`py`), for `build_release.py`, and for `check_handbook.py` with `lupa` installed.
 - [StyLua](https://github.com/JohnnyMorganz/StyLua), for formatting.
 
 ### the loop
 
 1. edit the source.
 2. run the builder for what changed.
-3. reload or restart as the table says.
+3. reload or restart as the table says. after a Lua or topic change, `py tools/check_handbook.py` runs the loader and validation in every registered language without the game (it needs `py -m pip install lupa` once). the same check runs on every push and pull request.
 4. look at the result in game at actual size. validation proves structure, not fit (see [what validation does not prove](#what-validation-does-not-prove)).
 5. format Lua from the repository root with `stylua .`. `stylua.toml` holds the settings, and `.styluaignore` leaves topic data and the generated manifest alone.
 6. commit the source and its generated outputs together.
@@ -116,7 +116,7 @@ the illustration is a page field, not a block region, and the footer is generate
 - `page_heading` appears only as the first `top_left` block on page 2 or later.
 - an illustrated page has an `illustration_caption` region with exactly one caption; a page without an illustration has no caption region.
 - a non-empty right column begins with a heading, and every right-column heading has body content (`text`, `bullets`, or both).
-- adjacent `text` blocks in the right column are always rejected. paragraphs go inside one text block, separated by blank lines.
+- adjacent `text` blocks in the right column are always rejected. paragraphs go inside one text block, separated by blank lines. multi-paragraph text is written between `[[` and `]]`, never with `\n` escapes.
 - `bottom_left` has no headings.
 
 related topics:
