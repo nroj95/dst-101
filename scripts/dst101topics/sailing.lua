@@ -161,7 +161,7 @@ Collisions can damage a boat, and a leak keeps draining its hull until you deal 
                     {
                         type = "text",
                         text = [[
-If the boat sinks anyway, everything built on it breaks apart. Floating items can be picked up again; the rest sinks. You wash ashore soaked and usually lose 25 health, 25 sanity, up to 25 hunger, and the item in your hand. Near the coast, the cost is a third.
+If the boat sinks anyway, everything built on it breaks apart. Floating items can be picked up again; the rest sinks. You wash ashore soaked, having lost a fair amount of health, sanity, and hunger, plus the item in your hand. Sinking close to the coast costs much less.
 ]],
                     },
                 },
