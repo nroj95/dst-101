@@ -2,17 +2,17 @@
 
 > consistency should come from the book's visual language, not from repeating the same page template.
 >
-> another drawing by the same person, not another interpretation of the style.
+> same hand, same taste, same materials, same worldview — different things worth stopping to draw.
 
 status: production reference
 
 ## purpose
 
-this note defines page composition, scene-image direction, visual consistency, captions, notes, related topics, and search metadata.
+this note owns where information belongs on a page and the judgment behind captions, notes, related topics, search tags and illustrations.
 
-use the voice note for how the unnamed author thinks and teaches, and the development note for implementation details.
+[`voice-and-philosophy.md`](voice-and-philosophy.md) owns how the unnamed author thinks, teaches and sounds. [`development.md`](development.md) owns what the schema enforces, display limits and the asset pipeline; this note links there instead of repeating them.
 
-## the governing principle: versatile, not random
+## versatile, not random
 
 pages should feel collected from one journey, not cloned from one template.
 
@@ -33,21 +33,140 @@ consistency should come from:
 - the same artistic hand and rendering habits.
 - the same caption, divider, note, bullet, and tile treatments.
 
-never add or remove an element merely to make neighboring pages different. equally, never flatten every page into one repeated arrangement for the sake of consistency.
+never add or remove an element merely to make neighboring pages different. equally, never flatten every page into one repeated arrangement for the sake of consistency. when a page looks different because its content genuinely calls for it, that is healthy.
 
-> consistency comes from authorship, not cloning.
+## page grammar
 
-## the imagined artist
+the hard rules (which blocks each region accepts, headline/subtitle pairing, right-column structure, related-topic placement) are enforced by validation and listed in [development](development.md#authoring-rules-enforced-by-validation). this section covers the judgment those rules leave open.
+
+### sidebar label
+
+short, literal navigation name.
+
+### headline and subtitle
+
+an optional page-level statement of lesson, angle, or mood. headline and subtitle are one unit; a subtitle never appears alone.
+
+headlines may appear on any page, not only page 1. do not add one merely because the page number changed.
+
+a headline that does not fit in two lines should be rewritten, not shrunk.
+
+### page labels in Contents
+
+Contents labels page 1 by its headline and later pages by their `page_heading`, falling back to `Page N`. the label is optional as a layout element, but when used it also has to identify the page's subject to someone scanning Contents or searching.
+
+### secondary-page openings
+
+after page 1, use a compact `page_heading` when a distinct subtopic benefits from being recognizable immediately.
+
+`page_heading` is a small page label, not another headline or section heading. it normally sits above concise body text, and the body should continue from the label rather than repeat it: after `Winter`, begin with the useful fact rather than another sentence beginning `Winter...`.
+
+plain body text or a short bullet list is still valid when a label adds nothing. do not add a `page_heading` merely because the page number changed.
+
+### headings
+
+use headings only for real conceptual divisions. some pages need several, one, or none. headings receive their divider automatically; authors never place dividers.
+
+normal `heading` blocks are conceptual divisions, not substitutes for `page_heading`.
+
+### top-left region
+
+`top_left` is flexible, not a title slot. it may contain:
+
+- headline + subtitle.
+- page heading + text.
+- heading + text.
+- text only.
+- multiple prose blocks.
+- nothing.
+
+### bottom-left region
+
+`bottom_left` is quieter supporting space beneath the illustration: body text, bullets when the items are genuinely parallel, or related topics. conceptual sections that need headings belong in the right column.
+
+### right column
+
+the right column is deliberately more structured: heading, body, heading, body. body may be prose, bullets, or both. paragraphs of one thought stay in one text block.
+
+left-side regions remain deliberately looser.
+
+### balancing page density
+
+do not crowd the right column simply because it is the most structured region.
+
+when a secondary idea does not need its own heading, `bottom_left` may carry concise prose that gives the page more breathing room, especially when the right column already holds the main explanation.
+
+move information because its role fits the quieter region, not merely to fill empty parchment.
+
+### paragraphs and bullets
+
+use prose for reasoning, cause and effect, observation, context, trade-offs, and judgment. concise does not mean every sentence needs its own heading.
+
+use bullets for genuinely parallel items such as supplies, warning signs, possible responses, short examples, or preparation checks. do not turn reasoning into bullets when context matters more than scanability.
+
+### topic length and page density
+
+there is no fixed page-count quota, and empty parchment is allowed.
+
+some pages may be sparse; others moderately dense. add pages only when the subject genuinely needs them. do not invent an extra lesson merely to justify page 2, and do not compress useful explanation simply to preserve empty space.
+
+## captions
+
+every illustrated page has exactly one caption, and it shows one line.
+
+it should add authored perspective rather than narrate the visible image: an observation, reaction, question, memory, small discovery, or restrained dry aside.
+
+do not force advice, explanation, or a lesson into it merely because the image has one. the body teaches; the caption may simply react. how captions sound is in the [voice note](voice-and-philosophy.md#captions).
+
+### viewpoint
+
+choose first-person, neutral, or survivor-specific phrasing according to the scene.
+
+first person is welcome when the scene can plausibly be the author's own. when another recognizable survivor is pictured, avoid first person that makes that survivor look like the handbook's author; neutral phrasing, or naming or referring to the pictured survivor, is fine. this matters most when the image demonstrates a mechanic belonging to that survivor, but it applies to every cameo.
+
+## notes
+
+notes are intentionally rare, and show at most two lines.
+
+use one when a private reminder, warning, mistake, aside, creature remark, useful contradiction, unresolved thought, or short memorable factual oddity genuinely adds something without duplicating the body. do not manufacture a note merely because the strip exists.
+
+the animal beside the note is decoration chosen by the renderer, not a reason to write one.
+
+essential survival information must not depend only on a note.
+
+## related topics
+
+related-topic tiles are optional navigation, not decoration. content chooses only whether the section belongs and which topics it links.
+
+they live on page 1 only, so they clearly relate to the whole topic rather than a later subtopic.
+
+- use 2–4 genuinely close, distinct topics.
+- omit the section if fewer than two strong links qualify.
+- links do not need to be reciprocal.
+
+## search tags
+
+search already indexes every visible piece of text on a page (the full list is in [development](development.md#search)).
+
+use topic-level tags only for useful vocabulary a reader might search for that the visible content does not already provide. there is no tag count; zero tags is valid.
+
+a tag match opens page 1, while an exact `page_heading` match opens that page. avoid page-specific tags unless a `page_heading` already routes that term to the intended page.
+
+## illustrations
+
+illustrations are `573x321` scenes; the production files and builders are in [development](development.md#asset-pipeline).
+
+### the imagined artist
 
 internally, imagine wheeler as a capable, observant field sketcher with strong taste.
 
 she is not making flawless promotional art. images may be beautiful and carefully composed while still showing searching strokes, simplification, asymmetry, and uneven finish.
 
-an image should exist because something made her stop and look: beauty, danger, usefulness, behavior, expression, mystery, atmosphere, or simple fascination.
+an image should exist because something made her stop and look: beauty, danger, usefulness, behavior, expression, mystery, atmosphere, or simple fascination. it records an observed moment, not a diagram of every fact on the page.
 
-## the locked image language
+### the locked image language
 
-### hand and linework
+#### hand and linework
 
 - dark graphite / ink-like linework.
 - lightly rough, exploratory marks.
@@ -59,33 +178,27 @@ an image should exist because something made her stop and look: beauty, danger, 
 
 avoid vector-clean outlines and equally finished detail everywhere.
 
-### color
+#### color
 
 use restrained, natural, slightly weathered washes / fills rather than glossy digital rendering.
 
-common daylight colors include parchment neutrals, straw, ochre, muted olive, dusty green, warm brown, rust, soft orange, charcoal, and restrained blues.
+common daylight colors include parchment neutrals, straw, ochre, muted olive, dusty green, warm brown, rust, soft orange, charcoal, and restrained blues. these are a family, not a fixed palette.
 
-these are a family, not a fixed palette.
+keep the treatment consistent without preferring one mood. the subject, weather, biome, season, and time of day decide whether a scene feels warm, cool, bright, dark, dry, wet, snowy, underground, or otherwise. sunset light, autumn warmth, pale blue daylight, gray rain, winter cold, murky marsh, cave darkness, and ocean blue are all valid; none is the default handbook look.
 
-recognizable subject colors, weather, biome, season, and time of day may pull an image cooler, darker, greener, brighter, or less warm.
-
-keep the color treatment consistent without preferring one mood. the scene itself should decide whether it feels warm, cool, bright, dark, dry, wet, snowy, underground, or otherwise. sunset light, autumn warmth, pale blue daylight, gray rain, winter cold, and other conditions are all valid when the subject calls for them; none is the default handbook look.
-
-### rendering
+#### rendering
 
 shading is economical and illustrative. texture and linework carry much of the description.
 
 avoid photorealism, smooth airbrushing, cinematic concept-art grading, bloom, glossy rendering, or hyper-detailed materials.
 
-### focal hierarchy
+#### focal hierarchy
 
 ask what the explorer was actually studying.
 
-that point receives the clearest silhouette, strongest useful lines, most identifying detail, and most deliberate contrast or local color.
+that point receives the clearest silhouette, strongest useful lines, most identifying detail, and most deliberate contrast or local color. secondary scenery should support rather than compete.
 
-secondary scenery should support rather than compete.
-
-### environment
+#### environment
 
 - simplify distant trees and hills.
 - use loose grass and ground marks.
@@ -93,45 +206,46 @@ secondary scenery should support rather than compete.
 - reduce detail with distance.
 - let paths, rocks, trees, camp objects, and terrain feel encountered rather than decoratively arranged.
 
-### composition
+#### composition
 
 prefer an observed moment over a promotional pose.
 
 subjects do not need to be centered. asymmetry is welcome. the environment should feel inhabited rather than pasted behind the subject.
 
-### finish range
+#### finish range
 
 quick observations and more careful studies may coexist. the amount of attention may change; the artist's materials and habits should not.
 
-## style is not recurring scenery
+### visual reference anchors
 
-### treat every scene as a fresh location decision
+primary anchors:
 
-do not begin a new illustration by inheriting the scenery, terrain structure, horizon, vegetation, framing, or background arrangement of an earlier image.
+- `setting_out.png`
+- `crafting.png`
+- `food_foraging.png`
+- `food_cooking.png`
 
-choose the environment again from the world of `dst` based on the subject, mechanic, mood, season, time of day, and spoiler boundary. use the environmental range listed below as an active source of possibilities rather than repeatedly returning to scenery that has already worked.
+these are the concrete reference for how the locked image language looks in practice. newer approved images may expand subject matter, scenery, weather, lighting, and mood without redefining the underlying hand.
 
-when several environments would fit, deliberately choose one that gives the handbook genuinely new scenery.
-
-reusing a biome is sometimes correct. reusing the same scenery is not. two forest scenes, for example, can still differ substantially in density, terrain, openness, tree type, foreground framing, weather, light, water, horizon, and spatial structure.
-
-before generating, ask:
-
-> if the subject were removed, would this background look substantially like one we have already used?
-
-if yes, redesign the scenery before generating unless the subject genuinely requires that similarity.
+### style is not recurring scenery
 
 the locked image language defines the artist's hand, not the places she keeps visiting.
 
-style does not require recurring scenery. each image should use the environment that best belongs to its subject, moment, and lesson.
+treat every scene as a fresh location decision. do not inherit the scenery, terrain structure, horizon, vegetation, framing, or background arrangement of an earlier image. choose the environment again from the world of `dst` based on the subject, mechanic, mood, season, time of day, and spoiler boundary.
 
-do not carry forward a landscape merely because it worked in earlier illustrations. repeated pines, lakes, rocky spires, autumn grass, distant cliffs, similar horizons, or the same open hillside can become visual habits just as easily as repeated poses.
+reusing a biome is sometimes correct; reusing the same scenery is not. two forest scenes can still differ in density, terrain, openness, tree type, foreground framing, weather, light, water, horizon, and spatial structure. repeated autumn hills, distant rocky spires, lakes, pine-lined horizons, open grassland, or birch framing count as repetition even when the characters and lesson differ.
 
-before generating, compare against recent approved scenes and deliberately avoid repeating the same background structure unless the subject genuinely calls for something similar.
+before generating, compare against recent approved scenes and ask:
 
-### use the environmental range of dst
+> if the subject were removed, would this background look substantially like one we have already used?
 
-the constant contains far more visual variety than one temperate open landscape. when the subject and spoiler boundary allow it, draw from environments such as:
+if yes, redesign the scenery unless the subject genuinely requires that similarity.
+
+variety never outranks mechanical accuracy, spoiler restraint, or the subject of the page. do not reveal a late, hidden, or memorable environment merely because recent images need variety. when several environments would serve equally well, prefer the one that expands the handbook's visual range.
+
+#### environments to draw from
+
+these are possibilities, not a rotation schedule or quota:
 
 - dense evergreen forest and enclosed forest interiors.
 - deciduous woodland.
@@ -148,19 +262,9 @@ the constant contains far more visual variety than one temperate open landscape.
 - lunar grotto and other unusual underground environments.
 - ancient ruins, labyrinths, residential ruins, sacred areas, military ruins, and the atrium.
 
-these are possibilities, not a rotation schedule or quota. choose an environment because it plausibly belongs to the scene.
+#### spatial structure, not only biome labels
 
-variety never outranks mechanical accuracy, spoiler restraint, or the subject of the page. do not reveal a late, hidden, or memorable environment merely because the recent images need variety.
-
-when several environments would serve equally well, prefer one that expands the handbook's visual range rather than returning automatically to the most familiar backdrop.
-
-### vary spatial structure, not only biome labels
-
-changing a few props inside the same landscape is not enough. an open hillside with different trees, weather, or foreground objects may still be fundamentally the same composition.
-
-vary terrain, vegetation, openness, water presence, horizon shape, weather, season, time of day, foreground framing, background density, and how much of the world is visible when the subject allows it.
-
-vary not only the named biome but the structure of the scene:
+changing a few props inside the same landscape is not enough. vary the structure of the scene when the subject allows it:
 
 - enclosed or open.
 - near or distant horizon.
@@ -175,26 +279,61 @@ vary not only the named biome but the structure of the scene:
 
 a visible horizon is not required. some scenes should be enclosed by trees, vegetation, rock, structures, darkness, weather, or terrain, with little or no distant vista.
 
-do not let a successful backdrop become the generator's default. repeated autumn hills, distant rocky spires, lakes, pine-lined horizons, open grassland, birch framing, or similar foreground-and-horizon arrangements still count as repetition even when the characters and lesson are different.
+### edge treatment and vignette
 
-repetition is fine when the content genuinely belongs in a similar environment. it should come from the subject, not from treating familiar scenery as part of the handbook style.
+do not apply a uniform vignette, dark border, rough ink frame, or parchment halo around every scene. the handbook already supplies the frame.
 
-warm evening scenes, pale blue daylight, gray rain, winter cold, dense green forest, murky marsh, dry desert, cave darkness, ocean blue, and other conditions are all valid. none is the default handbook backdrop.
+edge darkness and roughness should come from the composition itself: foreground trees, rocks, cave walls, weather, shadow, or grass may gather along some edges while others stay open. vary which edges carry visual weight.
 
-## visual reference anchors
+if an image feels artificially enclosed when viewed without the handbook frame, reduce the edge treatment.
 
-primary anchors:
+### accuracy and visual spoilers
 
-- `setting_out.png`
-- `crafting.png`
-- `food_foraging.png`
-- `food_cooking.png`
+stylization should preserve the recognition cues the reader needs. verify current `dst` creatures, objects, equipment, environments, and behavior separately from the art style.
 
-these images are the concrete reference for how the locked image language should look in practice. newer approved images may expand subject matter, scenery, weather, lighting, and mood without redefining the underlying hand.
+visual spoilers count: an image can solve a mystery even when the prose stays coy. do not reveal a memorable transformation, deeper area, reward, creature, or solution merely because an image slot exists. the [spoiler rule](voice-and-philosophy.md#the-central-spoiler-rule) applies to pictures as it does to text: protect the first encounter, and explain opaque useful mechanics when the reader deliberately seeks that subject.
 
-## scene-image production brief
+### survivors
 
-stable instruction:
+three separate decisions: is the survivor recognizable, is it drawn in the handbook's hand, and is this the right survivor for the scene?
+
+#### identity
+
+current `dst` assets and screenshots are the authority for silhouette, hair, clothing, equipment, proportions, and other identifying traits.
+
+- preserve identity through silhouette first: hair and head shape, posture, body proportions, clothing, equipment, and other distinctive traits should read before small facial details.
+- keep the exaggerated, stylized anatomy of `dst`: oversized heads, narrow bodies, thin or lanky limbs, and unusual posture where they belong to that survivor, without forcing everyone into one body template.
+- keep faces simple and graphic. expression comes mainly from eye shape, brows, mouth, pose, and gesture.
+- preserve individual differences. do not drift toward one shared face, body type, prettiness standard, or generic cartoon / anime design.
+- keep signature clothing, hair, equipment, and companions character-specific. never borrow another survivor's belongings or traits.
+
+if the generated character is ambiguous or wrong, fix the image rather than explaining the mismatch away.
+
+when a survivor already has an approved handbook depiction, use it as a secondary reference for how that character has been translated into the handbook's hand. compare the new image with it; if the reader would wonder whether it is the same character, correct the drift. a mistake repeated in an earlier image does not become canon: the `dst` references still win. borrow identity only, never the earlier pose, composition, scenery, lighting, or background.
+
+#### drawing
+
+render those traits through the same hand as everything else: lightly rough exploratory linework, selective contour emphasis, restrained color, economical shading, visible sketch character, and modest finish.
+
+survivors should look redrawn by the same traveler who drew the environments, not pasted in from official game art or rendered as cleaner concept art than the scene around them.
+
+#### casting
+
+when a survivor is shown, choose the current `dst` character who fits the scene best: personality, abilities, equipment, companions, interests, habits, silhouette, and the activity or environment.
+
+no survivor is the default choice; wilson gets no special preference. broad representation across the handbook is desirable, and ideally every current survivor appears eventually, but never choose a worse fit merely to complete the roster.
+
+omit survivors entirely when an environment, creature, object, or activity study is stronger.
+
+when several survivors appear together, prefer one shared situation in which their different strengths emerge naturally, not a lineup of signature abilities. the scene should still feel like something the author happened to observe.
+
+do not depict wheeler merely because she is the internal author foundation. if she appears naturally, keep the handbook's authorship visually unconfirmed.
+
+a survivor's selection may quietly teach something true about them: a distinctive strength, companion, resistance, tool, or mechanic shown in use. the page must still make sense to a reader who does not recognize the hint, and the hint does not need explaining. do not force character-specific casting when another survivor, no survivor, or an object or environment study would serve the page better. the caption may reinforce the hint, following the [viewpoint rule](#viewpoint).
+
+### scene-image production brief
+
+a paste-ready prompt. it repeats the rules above on purpose, because the image generator does not read this note.
 
 > create another standalone scene image by the same unnamed explorer, following the locked handbook image language. preserve lightly rough exploratory dark linework, selective rather than uniformly heavy contours, simplified quieter backgrounds, restrained natural color, economical hand-drawn shading, visible paper-and-sketch character, and the sense of an observed field-journal moment. keep backgrounds visibly simpler, lower-detail, and lower-contrast than the main subject unless the environment itself is the subject. avoid drifting toward polished digital concept art, crisp graphic rendering, heavy saturation, excessive detail, or uniformly clean forms.
 >
@@ -212,293 +351,11 @@ subject-specific decisions should answer only what matters:
 - what environment naturally belongs around it, and how will its background differ from recent approved scenes?
 - what crop or safe-area requirement matters?
 
-## edge treatment and vignette
+## audits
 
-do not apply a uniform vignette, dark border, rough ink frame, or parchment halo around every scene.
+### same-artist audit
 
-edge darkness and roughness should come from the composition itself. foreground trees, rocks, cave walls, weather, shadow, grass, or other forms may naturally gather along some edges while other edges remain open.
-
-vary which edges carry visual weight. some images may have strong framing on one or two sides; others may remain mostly open.
-
-avoid making every scene look like a separate framed card inside the handbook. the handbook already supplies the frame.
-
-if an image feels artificially enclosed when viewed without the handbook frame, reduce the vignette or edge treatment.
-
-## accuracy and spoilers
-
-stylization should preserve the recognition cues the reader needs.
-
-verify current `dst` creatures, objects, equipment, environments, and behavior separately from the art style.
-
-visual spoilers count. do not reveal a memorable transformation, deeper area, reward, creature, or solution merely because an image slot exists.
-
-when a named or recognizable survivor appears, verify the identifying visual cues that matter: silhouette, hair, clothing, signature equipment, companions, and other distinctive details. do not borrow another survivor's signature belongings or visual traits. if the generated character is ambiguous or wrong, fix the image rather than explaining the mismatch away.
-
-### survivor drawing style
-
-the current handbook direction is recognizable `dst` survivor design translated through the same field-sketch hand as the rest of the book.
-
-preserve character identity through silhouette first. hair shape, head shape, posture, body proportions, clothing, equipment, and other distinctive traits should remain recognizable before relying on small facial details.
-
-keep the exaggerated, stylized anatomy of `dst` rather than normalizing survivors toward realism. oversized heads, narrow bodies, thin or lanky limbs, unusual posture, and other exaggerated proportions are welcome where they belong to that survivor, but do not force every character into one shared body template.
-
-faces should remain simple and graphic rather than realistically modeled or highly rendered. expression should come mainly from eye shape, brows, mouth, pose, and gesture.
-
-preserve individual differences across the cast. do not force survivors toward one shared face shape, body type, expression style, prettiness standard, or generic cartoon / anime design.
-
-signature clothing, hair, equipment, companions, and other recognition cues should remain character-specific.
-
-render those traits through the handbook's established hand: lightly rough exploratory linework, selective contour emphasis, restrained color, economical shading, visible sketch character, and modest finish.
-
-survivors should look redrawn by the same traveler who drew the environments. they should not look pasted in from official game art or rendered as cleaner, more polished character concept art than the surrounding scene.
-
-### survivor continuity across illustrations
-
-when a survivor already has an approved handbook depiction, use those earlier depictions as secondary identity references for future scenes featuring that survivor.
-
-current `dst` assets and screenshots remain the authority for canonical silhouette, hair, clothing, equipment, proportions, and other identifying traits. the locked handbook image language remains the authority for the artist's hand. earlier handbook depictions help preserve how that canonical character has already been translated through that hand.
-
-do not reinvent a survivor's face, hair shape, proportions, or other major identity cues from scratch on every generation when a strong approved handbook version already exists.
-
-compare the new character directly with earlier approved depictions of the same survivor. if the new image would make the reader wonder whether it is the same character, correct the character rather than accepting the drift.
-
-use previous character images for identity continuity only. do not inherit their pose, composition, scenery, lighting, or background; those should still be newly decided for the current scene.
-
-protect the first encounter; explain opaque useful mechanics when the reader deliberately seeks that subject.
-
-## survivor selection
-
-when a survivor is shown, choose the current `dst` character who fits the scene best.
-
-consider their personality, abilities, equipment, companions, interests, habits, silhouette, and the activity or environment being shown. a character-specific connection is welcome when it makes the scene feel more natural or adds a useful second layer.
-
-no survivor is the default generic choice. wilson receives no special preference over the rest of the cast.
-
-keep track of who has already appeared and actively look for natural opportunities to use survivors who have not. broad representation across the handbook is desirable, and ideally every current `dst` survivor will eventually appear at least once, but never choose a worse fit merely to complete the roster.
-
-omit survivors entirely when an environment, creature, object, or activity study is stronger.
-
-when several survivors appear together, prefer one shared situation in which their different strengths emerge naturally.
-
-avoid arranging a lineup of signature abilities merely to demonstrate the cast. the scene should still feel like something the handbook author happened to observe.
-
-do not depict wheeler merely because she is the internal author foundation. if she appears naturally in a scene, keep the handbook's authorship visually unconfirmed.
-
-### character-specific visual hints
-
-when a survivor appears, their selection may quietly teach something true about that character.
-
-a scene can show a survivor using a distinctive strength, companion, resistance, tool, or other mechanic when it fits the page naturally. this should add a second layer of information without turning a general topic into a character guide.
-
-the page must still make sense to a reader who does not recognize the character-specific hint.
-
-do not force character-specific casting when another survivor, no survivor, or an object/environment study would serve the page better.
-
-when another recognizable survivor is pictured, avoid first-person captions that make that survivor appear to be the handbook's internal author. neutral phrasing or naming or referring to the pictured survivor is fine. this is especially important when the image demonstrates a mechanic belonging specifically to that survivor.
-
-a caption may quietly reinforce a character-specific connection. use neutral or survivor-specific wording so the hint does not confuse the handbook author's identity.
-
-the hint does not need to explain the mechanic. it may simply reward a reader who recognizes why that survivor fits the scene.
-
-## page grammar
-
-### sidebar label
-
-short, literal navigation name.
-
-### headline + subtitle
-
-an optional page-level statement of lesson, angle, or mood.
-
-when used, headline and subtitle are one unit:
-
-```text
-headline
-subtitle
-```
-
-never use a subtitle alone.
-
-headlines may appear on any page, not only page 1.
-
-do not add one merely because the page number changed.
-
-### headline wrapping
-
-- if the headline fits on one line, keep the large one-line treatment.
-- only if it does not fit, switch to the fixed two-line treatment and choose a balanced word-boundary split.
-- if it still does not fit, rewrite the headline rather than shrinking indefinitely.
-
-### headings
-
-use headings only for real conceptual divisions.
-
-some pages may need several, one, or none.
-
-normal headings stay on one line whenever they fit. only headings that cannot fit are deliberately split at a balanced word boundary.
-
-headings receive their divider automatically.
-
-### top-left region
-
-`top_left` is flexible, not a title slot. it may contain:
-
-- headline + subtitle.
-- page heading + text.
-- heading + text.
-- text only.
-- multiple prose blocks.
-- nothing.
-
-### secondary-page openings
-
-after page 1, use a compact `page_heading` when a distinct subtopic benefits from being recognizable immediately.
-
-`page_heading` is a small page label, not another headline or section heading. it uses the handbook header font without a divider and normally sits above concise body text.
-
-the body should continue from the label rather than repeat it. for example, after `Winter`, begin with the useful fact rather than another sentence beginning `Winter...`.
-
-plain body text or a short bullet list is still valid when a label adds nothing. do not add a `page_heading` merely because the page number changed.
-
-normal `heading` blocks remain conceptual divisions, not substitutes for `page_heading`.
-
-### bottom-left region
-
-`bottom_left` is quieter supporting space beneath the illustration.
-
-normally use:
-
-- body text.
-- bullets when the items are genuinely parallel.
-- related topics.
-
-do not use normal `heading` blocks in `bottom_left`. conceptual sections that need headings belong in the right column or another more suitable part of the page.
-
-the only standard heading allowed in `bottom_left` is `Related topics`, when related-topic tiles are present.
-
-### balancing page density
-
-do not crowd the right column simply because it is the most structured region.
-
-when a secondary or supporting idea does not need its own heading, `bottom_left` may carry concise prose that gives the page more breathing room. this is especially useful when the right column already contains the page's main explanation.
-
-move information because its role fits the quieter region, not merely to fill empty parchment.
-
-### right column
-
-right-column content is deliberately more structured:
-
-```text
-heading
-body
-
-heading
-body
-```
-
-body may be prose, bullets, or both.
-
-do not start the right column with standalone body content.
-
-do not use separate consecutive text blocks merely to represent paragraphs in one thought; keep those paragraphs inside one text block.
-
-### paragraphs
-
-use prose for reasoning, cause and effect, observation, context, trade-offs, and judgment.
-
-concise does not mean every sentence needs its own heading.
-
-### bullets
-
-use bullets for genuinely parallel items such as supplies, warning signs, possible responses, short examples, or preparation checks.
-
-do not turn reasoning into bullets when context matters more than scanability.
-
-### dividers
-
-```text
-headline     -> no divider
-page_heading -> no divider
-heading      -> automatic divider
-text         -> no divider
-```
-
-authors do not independently place decorative dividers.
-
-## captions
-
-every illustrated page has exactly one caption.
-
-it should add authored perspective rather than narrate the visible image.
-
-it may contain an observation, reaction, question, memory, small discovery, or restrained dry aside.
-
-keep it brief.
-
-do not force advice, explanation, or a lesson into the caption merely because the image has one. instructional work belongs primarily in the page text.
-
-choose first-person, neutral, or survivor-specific phrasing according to the scene. first person is welcome when the scene can plausibly belong to the author; recognizable survivor cameos should preserve the author mystery.
-
-## notes
-
-notes are intentionally rare.
-
-use them when a private reminder, warning, mistake, aside, creature remark, useful contradiction, or unresolved thought genuinely adds something.
-
-do not manufacture a note merely because the strip exists.
-
-a short factual oddity may also earn the margin when it adds something memorable without duplicating the body.
-
-essential survival information must not depend only on a note.
-
-## related topics
-
-related-topic tiles are optional navigation, not decoration.
-
-when used:
-
-- place them at the bottom of page 1 only, so they clearly relate to the overall topic rather than a later subtopic.
-- when present, `bottom_left` contains only the `Related topics` heading and the related-topic tiles.
-- introduce them with a normal `Related topics` heading.
-- use 2–4 genuinely close, distinct topic links.
-- never link the topic to itself.
-- omit the section if fewer than two strong links qualify.
-
-links do not need to be reciprocal.
-
-the renderer chooses decorative tile variants automatically; content data chooses only whether the section belongs and which topics it links.
-
-## topic length and page density
-
-there is no fixed page-count quota.
-
-empty parchment is allowed.
-
-some pages may be sparse; others may be moderately dense. add pages only when the subject genuinely needs them.
-
-do not invent an extra lesson merely to justify page 2, and do not compress useful explanation simply to preserve empty space.
-
-## search metadata
-
-search already indexes topic title, topic tags, headlines, subtitle, page headings, headings, body text, bullets, captions, and notes.
-
-use topic-level tags only for useful vocabulary a reader might search for that visible content does not already provide.
-
-there is no mandatory tag count. zero extra tags is valid.
-
-remember:
-
-```text
-exact page_heading match -> that page
-topic title/tag match -> page 1
-other visible page-content match -> first matching page
-```
-
-avoid page-specific topic tags unless an exact page_heading match routes that term to the intended page.
-
-## same-artist audit
-
-before approving an image, ask:
+the image on its own, before approval:
 
 1. does the linework look like the same hand, including its roughness, searching contours, and selective emphasis?
 2. does color behave with similar restraint without forcing every scene toward the same temperature or palette?
@@ -507,35 +364,24 @@ before approving an image, ask:
 5. does distant scenery simplify compatibly with the locked image language?
 6. does the subject sit naturally in the world rather than looking pasted onto a decorative backdrop?
 7. does the scene feel observed rather than staged or promotional?
-8. when a survivor appears, do silhouette, proportions, facial simplicity, hair, clothing, posture, and other identity cues still read as that `dst` survivor without drifting into a generic character style?
-9. without the handbook frame, would this still look like another drawing by the same traveler?
-10. if the image looks impressive on its own but conflicts with the locked image language, have we resisted approving polish at the expense of the established hand?
+8. does edge treatment arise from the composition rather than an automatic vignette?
+9. when a survivor appears, do silhouette, proportions, facial simplicity, hair, clothing, posture, and other identity cues still read as that `dst` survivor?
+10. does the image keep the discovery the page's text keeps?
+11. without the handbook frame, would this still look like another drawing by the same traveler?
+12. if the image looks impressive on its own but conflicts with the locked image language, have we resisted approving polish at the expense of the established hand?
 
-## final page audit
+### page audit
 
-ask:
+the assembled page, read in game at actual size:
 
 - does every visible element contribute?
 - are headings real divisions rather than labels for every paragraph?
-- do linework, color restraint, detail distribution, and rendering still match the established handbook hand?
-- does the image show something this explorer would actually notice?
-- does the environment genuinely fit the subject rather than merely provide a convenient backdrop?
-- when the subject allows flexibility, does the setting expand the handbook's recent biome, vegetation, terrain, or spatial variety?
-- did we vary the underlying spatial structure rather than merely swap weather, props, or characters inside the same open-landscape composition?
 - does the page vary naturally without copying a neighboring layout?
 - are mechanics and recognition cues current and correct?
-- when a recognizable survivor appears, are their silhouette, proportions, facial simplicity, clothing, and other identity cues preserved?
-- do text and image preserve discovery?
-- does the crop work at real display size?
-- does the image still read clearly at real handbook size?
-- does edge treatment arise naturally from the composition rather than an automatic vignette?
+- do text and image together preserve discovery?
+- does the crop work, and does the image read clearly at real handbook size?
+- is every word visible, including the one-line caption and two-line note?
 - does the caption add rather than describe?
 - did the note, if present, earn its place?
 - are related links selective?
-- do useful search terms land on the right topic/page?
-
-## final compass
-
-same hand, same taste, same materials, same worldview — different things worth stopping to draw.
-
-clear without being rigid. authored without being messy. consistent without being sterile.
+- does the page label read well in Contents, and do useful search terms land on the right topic and page?

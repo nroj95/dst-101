@@ -4,121 +4,150 @@ status: production reference
 
 ## scope
 
-this note documents the technical handbook implementation.
+this note owns what the implementation accepts and how to work on it: the topic schema, what validation does and does not prove, rendering and navigation behavior, the asset pipeline, and the build workflow.
 
-use the separate voice/philosophy note for writing decisions and the editorial grammar note for composition and image direction.
+[`voice-and-philosophy.md`](voice-and-philosophy.md) owns how the handbook writes and teaches. [`editorial-grammar.md`](editorial-grammar.md) owns where information belongs on a page and how images support it.
 
-the shell and authoring grammar are considered established. add new structural systems only when real content exposes a concrete limitation, and prefer reusable behavior over topic-specific renderer branches.
+the shell and authoring grammar are established. renderer rules protect consistency and prevent broken layouts without dictating one composition for every topic, so avoid turning today's successful page into tomorrow's mandatory template. prefer reusable behavior (balanced wrapping, validation, automatic decorative variants, generic block rendering) over topic-specific branches. a topic-specific renderer exception needs a concrete content problem the reusable grammar cannot express cleanly, not a page that would merely be easier to hard-code.
 
-## main project areas
+## repository map
 
 ```text
 modmain.lua                           assets, shortcuts, HUD button, hot reload
 modinfo.lua                           mod metadata and config options
 scripts/dst101topics/                 topic modules
-scripts/dst101data.lua                ordered topic loader
+scripts/dst101data.lua                ordered topic loader and interface strings
 scripts/dst101validate.lua            authoring validation
 scripts/dst101layout.lua              source-coordinate layout
 scripts/widgets/dst101widget.lua      handbook renderer
 scripts/widgets/dst101quietimagebutton.lua  handbook-local button
-scripts/screens/dst101popupscreen.lua popup / keyboard handling
+scripts/screens/dst101popupscreen.lua popup and keyboard handling
 scripts/dst101illustrations.lua       generated scene manifest
 source/assets/illustrations/          production scene PNGs
-source/assets/icons/                  topic/search icons
+source/assets/icons/                  topic and search icons
 source/assets/ui/                     shell and UI source PNGs
 source/fonts/alegreya/                font sources and charset
-images/illustrations/                 runtime scene atlases
-images/topics/                        topic icon atlases
-images/ui/                            runtime UI assets and atlases
-fonts/                                runtime bitmap fonts
-tools/                                build/preparation helpers
+images/illustrations/                 generated scene atlases
+images/topics/                        generated topic icon atlases
+images/ui/                            generated UI atlases
+fonts/                                generated bitmap fonts
+tools/                                build and preparation helpers
+.build/                               ignored build intermediates and release copies
 ```
 
-## handbook coordinate system
+## build workflow
 
-the handbook uses the high-resolution `1533x865` source coordinate system and scales the full `design_root` for display.
+this is the one build workflow; other documents link here.
 
-overall size and placement are considered locked unless real content exposes a problem.
+### prerequisites
 
-main authored regions:
+- PowerShell 7. the illustration, shell and preparation scripts declare `#Requires -Version 7.0`.
+- ImageMagick's `magick` on `PATH`, for illustration preparation and every atlas builder.
+- Docker with the `dstmodders/ktools:4.5.1` image. every builder that writes a `.tex` (atlases, shells and fonts) runs `ktech` from it.
+- `pngquant` on `PATH`, for `prepare_illustration.ps1`. the script looks it up before doing anything, so it is required even when it ends up keeping the lossless resize.
+- BMFont, for `build_alegreya_fonts.ps1` only. the script expects it at the `$bmfont` path near its top.
+- Python (`py`), for `build_release.py` only.
+- [StyLua](https://github.com/JohnnyMorganz/StyLua), for formatting.
+
+### the loop
+
+1. edit the source.
+2. run the builder for what changed.
+3. reload or restart as the table says.
+4. look at the result in game at actual size. validation proves structure, not fit (see [what validation does not prove](#what-validation-does-not-prove)).
+5. format Lua from the repository root with `stylua .`. `stylua.toml` holds the settings, and `.styluaignore` leaves topic data and the generated manifest alone.
+6. commit the source and its generated outputs together.
 
 ```text
-top_left
-illustration
-illustration_caption
-bottom_left
-right
-note
-bottom_footer
+changed                                    run                                      then
+scripts/ Lua, topic data                   nothing                                  hot reload
+source/assets/illustrations/*.png          .\tools\build_illustration_atlases.ps1   restart DST
+source/assets/icons/                       .\tools\build_topic_atlases.ps1          restart DST
+handbook_base.png or handbook_page.png     .\tools\build_handbook_shell.ps1         restart DST
+other source/assets/ui/ artwork            .\tools\build_ui_atlas.ps1               restart DST
+source/fonts/alegreya/ or charset.txt      .\tools\build_alegreya_fonts.ps1         restart DST
+modmain.lua or modinfo.lua                 nothing                                  reload the mod
 ```
+
+the game loads only the generated outputs, and the repository is itself the dev mod folder. a source change without its outputs is not what anyone sees in game, and outputs without their sources cannot be rebuilt, so the two always land in the same commit.
+
+source files use LF line endings; `.gitattributes` enforces it.
+
+### hot reload
+
+the reload shortcut is the `Developer: reload handbook key` option in the mod config, disabled by default. it clears every module with `dst101` in its name and, if the handbook was open, reopens it at the same topic and page.
+
+it covers topic data, layout, widget, screen, loader, validator and manifest code.
+
+it does **not** reload rebuilt `.tex` assets or fonts. those normally need a DST restart. changes to `modmain.lua` or `modinfo.lua` need a proper mod or game reload, because startup handlers and config metadata are registered only once.
+
+`tools/handbook_overview.ps1` lists topics in sidebar order with page counts, page headings and illustrations without starting the game.
+
+## topic schema
+
+`dst101data.lua` loads the topic modules in sidebar order, then runs `dst101validate.lua`. an authoring error stops the handbook from opening, with a message naming the topic, page and region.
+
+a topic holds `id`, `title`, `icon`, optional `tags`, and `pages`. a page holds an optional `illustration` name and a `regions` table.
+
+the five authored block regions, and the block types each renders:
+
+```text
+top_left              headline, subtitle, page_heading, heading, text, bullets
+right                 heading, text, bullets
+bottom_left           text, bullets, the Related topics heading, related_topics
+illustration_caption  caption
+note                  note
+```
+
+the illustration is a page field, not a block region, and the footer is generated navigation. neither is authored as a block list.
 
 `top_left` is intentionally flexible. it is not a dedicated title slot.
 
-## block types
-
-current reusable content blocks:
-
-```text
-headline
-subtitle
-page_heading
-heading
-text
-bullets
-related_topics
-caption
-note
-```
-
-normal authored data should stay inside these reusable types rather than creating topic-specific renderer branches.
-
-## topic ordering
-
-sidebar order uses loose thematic grouping for readability. it is not a progression path, prerequisite tree, or recommended play order.
-
-related subjects may sit near one another, and foundational topics may appear earlier, but players should remain free to jump directly to whatever interests or troubles them.
-
-## authoring grammar enforced by validation
-
-`dst101data.lua` loads the ordered topic modules, then runs `dst101validate.lua`.
-
-currently enforced:
+## authoring rules enforced by validation
 
 - topic ids exist and are unique.
 - every topic has a title, an icon, and at least one page with a `regions` table.
-- every block has its text, except headlines (which fall back to the topic title); bullets have items.
-- regions are known, and each region holds only the block types it renders.
+- every block has its text, except headlines (which fall back to the topic title) and related topics; bullets have items.
+- every region is one of the five above and holds only the block types it renders. anything else would silently vanish.
 - a note region holds at most one note.
-- headline is immediately followed by subtitle.
-- subtitle never appears without its headline.
-- `page_heading` may appear only as the first `top_left` block on page 2+.
-- each page may contain at most one non-empty `page_heading`.
-- every illustrated page has exactly one non-empty caption block.
-- caption regions do not exist without an illustration.
-- non-empty right columns begin with a heading.
-- each right-column heading has body content.
-- right-column body currently uses `text` and/or `bullets`.
-- no consecutive right-column text blocks for one thought.
-- `bottom_left` does not use normal headings; `Related topics` is the only allowed heading there.
-- related topics appear at most once per topic.
-- related topics live in `bottom_left` on page 1 only.
-- when present, `bottom_left` contains only the `Related topics` heading and related topics.
-- they immediately follow `Related topics`.
-- they are the final block in `bottom_left`.
-- they contain 2–4 distinct valid topic ids.
-- a topic cannot link to itself.
+- a headline is immediately followed by a subtitle, and a subtitle never appears without its headline.
+- `page_heading` appears only as the first `top_left` block on page 2 or later.
+- an illustrated page has an `illustration_caption` region with exactly one caption; a page without an illustration has no caption region.
+- a non-empty right column begins with a heading, and every right-column heading has body content (`text`, `bullets`, or both).
+- adjacent `text` blocks in the right column are always rejected. paragraphs go inside one text block, separated by blank lines.
+- `bottom_left` uses no heading other than `Related topics`.
 
-## typography
+related topics:
 
-custom fonts:
+- at most one `related_topics` block per topic, on page 1, in `bottom_left`.
+- that region then holds exactly the `Related topics` heading followed by the `related_topics` block.
+- 2–4 distinct, valid topic ids, never the topic itself.
+
+### what validation does not prove
+
+validation checks structure, not that every word is visible. the renderer truncates rather than overflowing in these places:
+
+```text
+caption             one line
+note                two lines
+headline fallback   two lines, when even the wrapped treatment does not fit
+```
+
+body regions are not measured against the page either. read every changed page in game at actual size.
+
+## rendering
+
+### coordinate system
+
+the handbook uses the high-resolution `1533x865` source coordinate system from `dst101layout.lua` and scales the whole `design_root` for display. overall size and placement are locked unless real content exposes a problem.
+
+### typography
 
 ```text
 body:                          dst101_alegreya_regular
 subtitle/caption/note:         dst101_alegreya_italic
 headline/page_heading/heading: HEADERFONT
 ```
-
-important values:
 
 ```text
 page_heading size        30
@@ -133,79 +162,37 @@ body size                24
 body spacing             32
 ```
 
-fixed heading `line_height` keeps divider placement stable despite glyph-height differences.
+`spacing` is the gap after a block ends, not line spacing.
 
-## headline rendering
+the fixed heading `line_height` keeps divider placement stable despite glyph-height differences between headings.
 
-headlines use two fixed treatments:
+### headlines
 
 ```text
 one line -> 64
 wrapped  -> 48, maximum two lines
 ```
 
-one-line headlines stay large whenever they fit.
+a headline stays at the large one-line size whenever it fits. only a headline that cannot fit switches to the two-line treatment, with a balanced word-boundary split. if it still does not fit, rewrite it rather than shrinking type; the fallback truncates.
 
-only headlines that cannot fit switch to the fixed two-line treatment, where the renderer chooses a balanced word-boundary split.
+### headings and page headings
 
-if copy still cannot fit, rewrite the headline rather than progressively shrinking type.
+`heading` and `page_heading` stay on one line whenever they fit. one that cannot fit is split into two balanced lines at a word boundary, which prevents weak orphan lines such as a single final word while leaving shorter headings unchanged.
 
-## secondary-page headings
+`page_heading` uses `HEADERFONT` at size `30` and creates no divider.
 
-`page_heading` is a compact identifier for a distinct subtopic on page 2 or later.
+### text-only openings
 
-it uses `HEADERFONT` at size `30`, shares the balanced heading-wrapping behavior, and does not create a divider.
-
-when used, it is the first block in `top_left`. body text that follows should continue the thought rather than repeat the label.
-
-plain prose openings remain valid when a secondary page does not benefit from a label.
-
-## normal heading wrapping
-
-normal section headings also preserve one-line rendering whenever possible.
-
-only headings that cannot fit the region are deliberately split into a balanced two-line word-boundary layout.
-
-this prevents weak orphan lines such as a single final word while leaving shorter headings unchanged.
-
-headings automatically create their ornamental divider.
-
-## top-left text-only openings
-
-when `top_left` begins with body text rather than a headline/page heading/heading, the renderer applies:
+when `top_left` begins with body text rather than a headline, page heading or heading, the renderer applies:
 
 ```text
 vertical offset: 24 source units
 left inset:      20 source units
 ```
 
-this makes prose-only openings intentional without forcing a headline.
+this makes prose-only openings look intentional without forcing a headline.
 
-## right-column grammar
-
-right column:
-
-```text
-heading
-body
-
-heading
-body
-```
-
-body may contain prose, bullets, or both.
-
-paragraphs belonging to the same right-column thought stay inside one text block separated by paragraph breaks.
-
-left-side regions remain deliberately looser.
-
-## dividers
-
-six divider variants are available:
-
-```text
-divider_01 ... divider_06
-```
+### dividers
 
 authors do not choose divider presence or variant.
 
@@ -216,13 +203,9 @@ page_heading -> no divider
 text         -> no divider
 ```
 
-variant selection is deterministic from topic/page/region/block context.
+the variant (`divider_01` … `divider_06`) comes from a stable hash of topic, page, region and block position. related-topic tile variants and the note animal work the same way, so adding content elsewhere never reshuffles existing pages.
 
-## bullets
-
-bullet lists use a dedicated renderer.
-
-current treatment:
+### bullets
 
 ```text
 marker:          ◆
@@ -232,15 +215,11 @@ marker/text gap: 7
 item gap:        3
 ```
 
-marker and text are separate so wrapped items retain hanging indentation.
+marker and text are separate widgets so wrapped items keep their hanging indentation.
 
-## notes
+### notes
 
-note regions are optional.
-
-when no note exists, the note strip and animal are hidden.
-
-current animals:
+when a page has no note, the note strip and animal are hidden.
 
 ```text
 crow
@@ -248,31 +227,15 @@ catcoon
 splumonkey
 ```
 
-the starting animal is derived deterministically from the topic id, then rotates by page number. adding or removing notes elsewhere does not reshuffle existing pages.
+each topic gets a starting animal from a hash of its id, which then rotates by page number. text clearance adapts to the current animal.
 
-text clearance adapts to the current animal.
+### related topics
 
-## related topics
+the layout supports up to four tiles. content data chooses only the linked topic ids; the renderer gives the whole tile group one stable decorative variant per topic.
 
-current layout supports up to four columns.
+### page footer
 
-important rules:
-
-- optional.
-- 2–4 valid close links.
-- page 1 only.
-- introduced by `Related topics` heading.
-- final block in `bottom_left`.
-
-content data chooses only the linked topic ids.
-
-the renderer chooses one stable decorative tile variant per containing topic, and the whole tile group shares that variant.
-
-## page footer
-
-single-page topics show the normal fleur divider only.
-
-multi-page topics show:
+single-page topics show the plain fleur divider. multi-page topics show:
 
 ```text
 previous button
@@ -283,17 +246,31 @@ Next page
 next button
 ```
 
-visible footer buttons navigate within the current topic.
+footer buttons page only within the current topic; keyboard paging crosses topics.
 
-## contents
+## navigation and search
 
-Contents is the first sidebar entry and where the handbook first opens. it lists every topic with its pages in a grid on the frameless `handbook_base` shell: page 1 by its headline, later pages by their `page_heading`, or `Page N` without one.
+### opening the handbook
+
+- the configured shortcut, `B` with no modifier by default (`open_shortcut` and `open_modifier` in `modinfo.lua`). modifier matching is exact, so `Ctrl` also requires Shift and Alt to be up.
+- the HUD button beside the map controls, unless `show_hud_button` turns it off. its tooltip names the shortcut.
+- a controller's Menu Misc 3 button, or an LB+RB skill slot instead when the Simple Controller mod is active.
+
+it opens only from the normal HUD, not over another screen.
+
+plain typing shortcuts are ignored while a text field is active; modified chords still work. an open shortcut that the handbook also navigates with (WASD, arrows, Enter, Escape, Tab) does not close it while it is open.
+
+closing stores the topic, page and Contents position on the player, so it lasts until the player entity goes away, not across launches. reopening returns there unless `reopen_behavior` is set to always open Contents.
+
+### contents
+
+Contents is the first sidebar entry and where a fresh handbook opens. it lists every topic with its pages in a grid on the frameless `handbook_base` shell: page 1 by its headline, later pages by their `page_heading`, or `Page N` without one.
 
 when the grid needs more than one Contents page, a numbered page selector appears on the right. the mouse wheel over the grid turns Contents pages; elsewhere it scrolls the sidebar.
 
 `Tab` toggles between Contents and the topic page it was opened from.
 
-## keyboard navigation
+### keyboard
 
 ```text
 Up / W    -> previous topic, page 1
@@ -301,145 +278,54 @@ Down / S  -> next topic, page 1
 Left / A  -> previous page; from page 1, previous topic's final page
 Right / D -> next page; from final page, next topic's page 1
 Tab       -> Contents, or back to the page it was opened from
+Enter     -> start search
 Escape    -> leave search, otherwise close the handbook
 ```
 
 stepping before the first topic reaches Contents.
 
-while search is active, Left/Right retain normal text-cursor behavior, Up/Down move through filtered topic results and open their matching pages, and WASD remains normal text input.
+while search is active, Left/Right keep normal text-cursor behavior, Up/Down move through the filtered results and open their matching pages, and WASD is ordinary text input.
 
-`Enter` focuses the search field when it is not already being edited.
+### search
 
-## search
-
-search indexes:
-
-```text
-topic title
-topic tags
-headline
-subtitle
-page heading
-heading
-body text
-bullets
-caption
-note
-```
-
-the `Related topics` heading is left out, since nearly every topic has one.
+search indexes topic title, topic tags, headline, subtitle, page heading, heading, body text, bullets, caption and note. the `Related topics` heading is left out, since nearly every topic has one.
 
 page selection:
 
 ```text
 exact page_heading match -> that page
-topic title/tag match     -> page 1
-other page-content match  -> first matching page
+topic title/tag match    -> page 1
+other page-content match -> first matching page
 ```
 
-query growth may move the current topic to its matching page.
-
-query shrinking or clearing never automatically changes the current page.
-
-manual paging while search remains active wins.
-
-a query that matches nothing shows `No matches` in the sidebar; the current page stays open.
-
-search editing also supports:
+a growing query may move the current topic to its matching page. a shrinking or cleared query never changes the page by itself, and manual paging while search stays active wins. a query that matches nothing shows `No matches` in the sidebar and leaves the current page open.
 
 - the `×` button clears the query and keeps the field active.
-- clicking a topic while search is active keeps the field active so typing can continue.
-- `Escape` exits search before closing the handbook; a non-empty query is cleared.
+- clicking a topic while searching keeps the field active, so typing can continue.
+- `Escape` leaves search and clears a non-empty query; the next press closes the handbook.
 - `Ctrl+Backspace` deletes the previous word.
 
-## sidebar scrolling
+### sidebar
 
-visible topic slots:
+sidebar order (`TOPIC_MODULES` in `dst101data.lua`) is loose thematic grouping for readability, not a progression path or recommended play order. players should stay free to jump to whatever interests or troubles them.
 
-```text
-16
-```
+sixteen topic slots are visible. the mouse wheel, the baked scrollbar arrows, track clicks, slider drags and keyboard topic navigation all move `topic_scroll_index`, the single source of truth for the scroll position. search-filtered lists get the right scroll range automatically.
 
-supported interaction:
+### quiet buttons
 
-- mouse wheel.
-- baked top/bottom scrollbar arrows.
-- track click.
-- slider drag.
-- keyboard topic navigation.
+handbook controls use `scripts/widgets/dst101quietimagebutton.lua` instead of the normal `widgets/imagebutton`. it keeps focus visuals, hover textures, clicking and click sounds, but drops the hover and focus sounds, so moving the mouse across the book stays quiet.
 
-`topic_scroll_index` is the single source of truth.
+it is local on purpose: muting DST's UI sounds globally would silence every other screen too.
 
-search-filtered topic lists automatically receive the correct scroll range.
+## asset pipeline
 
-## handbook-local quiet buttons
+### canonical sources and intermediates
 
-use:
+`source/assets/illustrations/*.png` holds the canonical editable artwork: one prepared `573x321` PNG per scene, matching the illustration opening exactly so it renders 1:1 without stretching. keep, review and edit that file. paintovers, character corrections and other art fixes go directly into it, followed by an atlas rebuild.
 
-```text
-scripts/widgets/dst101quietimagebutton.lua
-```
+larger image-generation outputs are working intermediates. they do not belong in the repository unless one has editing value the production image cannot preserve.
 
-for handbook controls rather than the normal `widgets/imagebutton`.
-
-it preserves focus visuals, hover textures, clicking, and click sounds while omitting handbook hover/focus sounds.
-
-do not globally mute dst UI sounds.
-
-## opening the handbook
-
-player handbook shortcut is configurable through `modinfo.lua`.
-
-default:
-
-```text
-B
-modifier: None
-```
-
-developer hot reload is also configurable but disabled by default.
-
-modifier matching is exact.
-
-plain typing shortcuts are suppressed while a text field is active; intentionally modified chords remain available.
-
-an open shortcut that the handbook also navigates with (WASD, arrows, Enter, Escape, Tab) does not close it while it is open.
-
-other ways in:
-
-- a HUD button beside the map controls, which can be turned off in config. its tooltip names the shortcut.
-- a controller's Menu Misc 3 button.
-- with the Simple Controller mod active, an LB+RB skill slot instead.
-
-closing remembers the topic, page and Contents position. reopening returns there unless the reopen option is set to always open Contents.
-
-## hot reload
-
-the development reload clears every module with `dst101` in its name and, if the handbook was open, reopens it at the same topic and page.
-
-it covers Lua, layout, widget, screen, data, and manifest code.
-
-it does **not** reload rebuilt `.tex` assets or fonts. those require rebuilding and normally a dst restart.
-
-changes to `modmain.lua` or `modinfo.lua` also require a proper mod/game reload because startup handlers/config metadata are not re-registered by handbook hot reload.
-
-## scene-image pipeline
-
-### production image source of truth
-
-`source/assets/illustrations/*.png` contains the canonical editable handbook artwork.
-
-the prepared `573x321` production png is the version to keep, review, and edit. manual cleanup, paintovers, character corrections, and other small art fixes should normally be made directly to that production image, then the runtime atlases should be rebuilt.
-
-larger image-generation outputs are working intermediates rather than required project assets. they do not need to be committed or archived in the repository unless one has specific future editing value that the production image cannot preserve.
-
-production scene opening:
-
-```text
-573x321
-```
-
-prepare one source image:
+prepare one source image from anywhere:
 
 ```powershell
 .\tools\prepare_illustration.ps1 `
@@ -447,23 +333,15 @@ prepare one source image:
     -Name '<scene_name>'
 ```
 
-this center-crops/resizes to `573x321` and uses `pngquant` when useful.
+it center-crops and resizes to `573x321`, then keeps the `pngquant` result only if it meets the quality floor and is smaller. the master stays untouched, so a crop can always be revised.
 
-rebuild runtime atlases:
+`build_illustration_atlases.ps1`:
 
-```powershell
-.\tools\build_illustration_atlases.ps1
-```
+- checks that every production image is `573x321` with a lower-case `snake_case` name.
+- packs a `3x5` grid of `672x400` cells into atlases of at most `2048x2048`. the cell padding protects sampling at the image edges.
+- writes the runtime `.tex/.xml` files and regenerates `scripts/dst101illustrations.lua`, which tells the renderer which atlas holds each scene.
 
-builder behavior:
-
-- validates all production images are `573x321`.
-- uses a `3x5` grid of `672x400` cells.
-- maximum atlas size `2048x2048`.
-- generates runtime `.tex/.xml` files.
-- regenerates `scripts/dst101illustrations.lua`.
-
-## other asset builders
+### other builders
 
 ```text
 tools/build_handbook_shell.ps1     handbook_base / handbook_page shells
@@ -472,7 +350,7 @@ tools/build_topic_atlases.ps1      colour and grayscale topic icons
 tools/build_alegreya_fonts.ps1     bitmap fonts (BMFont + ktech in Docker)
 ```
 
-runtime atlases:
+runtime outputs:
 
 ```text
 images/ui/handbook_base.tex/xml
@@ -486,8 +364,6 @@ fonts/dst101_alegreya_regular.zip
 fonts/dst101_alegreya_italic.zip
 ```
 
-`tools/handbook_overview.ps1` lists topics in sidebar order with page counts, page headings, and illustrations without starting the game.
-
 ## workshop releases
 
 the repository is the dev copy. build a release copy for the Don't Starve Mod Tools ModUploader:
@@ -498,16 +374,4 @@ py .\tools\build_release.py 1.1.0
 
 the copy lands in `.build/release/<yyyyMMdd-HHmmss>/` with only runtime files and licenses, the name `DST 101`, the given version, and no developer reload options. point ModUploader at that folder.
 
-the version must differ from the one on the Workshop. ModUploader writes it to the item's version tag, which `DST` compares with installed copies, so publish through ModUploader rather than SteamCMD, which cannot set tags.
-
-## implementation versatility
-
-avoid turning today's successful page into tomorrow's mandatory template.
-
-renderer rules should protect consistency and prevent broken layouts without dictating one composition for every topic.
-
-prefer reusable behavior such as balanced wrapping, validation, automatic decorative variants, and generic block rendering over topic-specific branches.
-
-a topic-specific renderer exception should need a concrete content problem that the reusable grammar cannot express cleanly. do not add one merely because a single page would be easier to hard-code.
-
-when a page looks different because its content genuinely calls for it, that is healthy. structural consistency should support variation rather than erase it.
+the version must differ from the one on the Workshop. ModUploader writes it to the item's version tag, which DST compares with installed copies, so publish through ModUploader rather than SteamCMD, which cannot set tags.

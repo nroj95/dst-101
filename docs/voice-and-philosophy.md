@@ -12,7 +12,7 @@ it defines the unnamed handbook author's mind, tone, teaching philosophy, and sp
 
 our premise — an older, more experienced wheeler organizing expedition notes into a survival handbook — is a creative extension, not established canon.
 
-use the separate editorial grammar note for page composition and image direction, and the development note for implementation details.
+[`editorial-grammar.md`](editorial-grammar.md) owns page composition, caption viewpoint and image direction; [`development.md`](development.md) owns implementation details.
 
 ## the core idea
 
@@ -46,7 +46,7 @@ likewise, the writing itself should not become formulaic. consistency comes from
 
 ### adaptability
 
-plans fail. weather changes. supplies run short. the useful lesson is often how to notice that the old plan no longer fits.
+plans fail. weather changes. supplies run short. the useful lesson is often how to notice that the old plan no longer fits: observe what you can, prepare for what seems likely, leave room to adapt, then choose.
 
 ### prioritization
 
@@ -94,10 +94,6 @@ survivor differences usually change strengths, costs, options, speed, safety, or
 
 describe those differences as trade-offs and opportunities. do not turn survivors into fixed classes or imply that one character is the correct choice for a task.
 
-### living with uncertainty
-
-observe what you can, prepare for what seems likely, leave room to adapt, then choose.
-
 ## the central spoiler rule
 
 before including information, ask:
@@ -117,6 +113,8 @@ once the player has encountered the thing, or deliberately seeks help about it, 
 > protect the surprise itself. explain the obscure useful lesson afterward.
 
 for exploratory areas, prepare, entice, and stop before the handbook becomes a biome tour, walkthrough, or loot route.
+
+the same rule governs what illustrations show; see [visual spoilers](editorial-grammar.md#accuracy-and-visual-spoilers).
 
 ## what catches wheeler's attention
 
@@ -138,7 +136,7 @@ she uses practical judgment, but curiosity sometimes wins. that contradiction is
 
 ## her relationship with the reader
 
-wheeler likes the reader as another potential explorer, not as a child to manage.
+wheeler likes the reader as another potential explorer, not as a child to manage. she is a fellow traveler, not a wiki narrator, all-knowing developer, boss coach, quest marker, flawless guru, reckless idiot, motivational speaker, or mother figure.
 
 her kindness is practical and light:
 
@@ -153,6 +151,8 @@ she teaches from beside or slightly behind the reader:
 success means the reader eventually needs the handbook less.
 
 > confidence without the handbook.
+
+she does not want the reader to spend the whole journey reading her book. she wants them to close it and go find out.
 
 ## voice
 
@@ -321,11 +321,7 @@ captions can carry more emotional range than the instructional prose. some shoul
 
 a caption does not need to contain a lesson, joke, reflection, or clever turn. if the moment genuinely made her grin, stare, recoil, laugh, or blurt something out, the caption can simply preserve that reaction.
 
-prefer concrete first-person experience when the scene can plausibly be the author's own.
-
-when another recognizable survivor is pictured, avoid first person that makes that survivor appear to be the handbook author. use neutral or survivor-specific phrasing instead. this matters even when the scene is not demonstrating a character-specific mechanic.
-
-do not force advice into a caption. the body teaches; the caption may simply react to what happened.
+prefer concrete first-person experience when the scene can plausibly be the author's own; when another survivor is pictured, follow the [viewpoint rule](editorial-grammar.md#viewpoint).
 
 do not make every caption sound composed after the fact. sometimes the most convincing field note is simply what escaped her mouth in the moment.
 
@@ -341,20 +337,6 @@ recognition should come from personality and occasional natural clues: restless 
 
 use those clues sparingly.
 
-## avoid turning her into
-
-- a wiki narrator.
-- an all-knowing developer.
-- a boss coach or quest marker.
-- a flawless guru.
-- a reckless idiot.
-- a motivational speaker.
-- a mother figure.
-- a nonstop comedian.
-- someone who thinks efficiency is the purpose of life.
-- someone who explains every mystery.
-- someone too experienced to be amazed.
-
 ## drafting workflow
 
 for each topic:
@@ -368,26 +350,3 @@ for each topic:
 7. add personality only where it naturally belongs.
 8. leave the reader with judgment rather than a script.
 9. read nearby pages and remove repeated rhythms, jokes, warnings, or character clues.
-
-## final check
-
-ask:
-
-- is the information useful?
-- does the reader still make meaningful decisions?
-- does this help exploration rather than replace it?
-- does the page respect different playstyles?
-- if another recognizable survivor is pictured, does the caption preserve the author's identity?
-- does the voice feel human without forcing humor?
-- does any line sound polished, quotable, poetic, dramatic, or deliberately clever when a plainer observation would feel more real?
-- does the subject still feel alive after being explained?
-
-## final compass
-
-wheeler is an experienced, curious, lightly mischievous explorer who shares enough practical knowledge to help a newcomer act, enough enthusiasm to make the world inviting, and enough restraint to leave the adventure theirs.
-
-preparation creates freedom. failure can teach. plans should bend. appearances deserve a second look. retreat can be intelligent. chosen risk can be worthwhile. knowing more should not make the world smaller.
-
-and above all, she does not want the reader to spend the whole journey reading her book.
-
-she wants them to close it and go find out.

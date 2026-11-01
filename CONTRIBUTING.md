@@ -2,128 +2,68 @@
 
 thanks for considering helping with `dst 101`.
 
-the project values careful improvement more than adding material for its own sake. a smaller handbook that is clear, accurate, natural, and visually coherent is preferable to a larger one that explains everything.
+the project values careful improvement more than adding material for its own sake. a smaller handbook that is clear, accurate, natural, and visually coherent is preferable to a larger one that explains everything, so new content should solve a genuine player need.
 
-## start with the relevant reference
+## the references
 
-before making a substantial change, read the reference that governs that part of the project:
+each rule has one home. read the one that governs your change first:
 
-- `docs/voice-and-philosophy.md` for writing, teaching philosophy, spoiler restraint, and research.
-- `docs/editorial-grammar.md` for page composition, captions, illustrations, and visual consistency.
-- `docs/development.md` for implementation, validation, navigation, search, and asset pipelines.
+- [`docs/voice-and-philosophy.md`](docs/voice-and-philosophy.md) — writing voice, teaching philosophy, spoiler restraint, and research.
+- [`docs/editorial-grammar.md`](docs/editorial-grammar.md) — where information belongs on a page, captions, notes, related topics, and illustrations.
+- [`docs/development.md`](docs/development.md) — repository map, schema and validation, rendering, navigation, search, the asset pipeline, and the build workflow.
 
-## writing and editing
+## where help is most useful
 
-manual editing from native english speakers is particularly welcome.
+### natural english editing
 
-when revising handbook prose:
+a manual pass from native english speakers is very welcome:
 
-- preserve the meaning unless the mechanic itself needs correction.
-- prefer natural, concrete language.
-- preserve spoiler restraint.
-- avoid turning the handbook into a walkthrough or optimization guide.
-- avoid manufactured wit, aphorisms, dramatic lines, or overly polished captions.
-- let personality come from what the handbook author actually noticed or experienced.
-- read nearby pages so the same warning, rhythm, joke, or phrase does not repeat unnecessarily.
+- making sentences sound more natural.
+- catching awkward or overly formal wording.
+- reducing repetition across nearby pages.
+- improving rhythm without making the prose more elaborate.
+- finding captions that sound written rather than genuinely observed.
+- catching terminology that feels unnatural to experienced players.
 
-captions should add an authored observation or reaction rather than explain the illustration or repeat the body text.
+preserve the meaning unless the mechanic itself needs correction, and keep the teaching intent and spoiler restraint rather than rewriting the handbook into wiki prose.
 
-## gameplay changes
+### illustration review and cleanup
 
-current `don't starve together` mechanics are the authority.
+- correcting survivor, creature, equipment, structure, or environment details.
+- improving survivor identity and silhouette consistency.
+- reducing style drift between illustrations.
+- simplifying backgrounds that became too detailed.
+- correcting awkward anatomy or generation artifacts.
+- improving compositions that read poorly at actual handbook size.
+- improving scenery variety where several images feel too similar.
 
-community discussions are useful for finding recurring beginner problems and practical advice, but mechanics discovered through community sources should be verified separately before publication.
+manual paintovers, anatomy corrections, cleanup, full redraws, and replacement illustrations are all welcome, within the [locked image language](docs/editorial-grammar.md#illustrations).
 
-prefer:
+### code cleanup
 
-- current game data or scripts when exact behavior matters.
-- official klei posts for recent or change-prone behavior.
-- `dontstarve.wiki.gg` for established mechanics.
+the implementation grew alongside the content and would benefit from another engineering pass: removing duplication and dead code or assets, improving names and organization, simplifying control flow, tightening validation, and documenting non-obvious behavior.
 
-avoid silently carrying mechanics over from the original `don't starve`, `shipwrecked`, or `hamlet` when they differ from `don't starve together`.
+preserve established user-facing behavior unless a change solves a real problem. large structural rewrites should solve a concrete problem rather than replace working systems for architectural preference.
 
-## illustrations
+### gameplay accuracy and testing
 
-illustrations should remain recognizable as work by the same field-journal artist.
+mechanical corrections and in-game testing are welcome. current `don't starve together` is the authority; how to verify a mechanic is in the [research discipline](docs/voice-and-philosophy.md#research-discipline).
 
-important goals include:
+## submitting a change
 
-- lightly rough exploratory linework.
-- restrained natural color.
-- economical shading.
-- selective detail.
-- quieter backgrounds.
-- accurate survivor and creature identity.
-- varied scenery rather than recurring background templates.
-- clear reading at actual handbook size.
+keep pull requests focused. a change that mixes unrelated writing, artwork, renderer changes, and cleanup is easier to review as separate pieces.
 
-existing primary visual anchors define the hand. newer images may expand scenery, weather, subject matter, and mood but should not gradually redefine the underlying style.
+before submitting:
 
-manual paintovers, anatomy corrections, cleanup, full redraws, and replacement illustrations are welcome.
-
-## code
-
-prefer reusable behavior over topic-specific renderer branches.
-
-good cleanup includes:
-
-- removing duplication.
-- improving names.
-- simplifying control flow.
-- removing dead code.
-- tightening validation.
-- documenting non-obvious behavior.
-- preserving established user-facing behavior unless a change solves a real problem.
-
-please keep source files using lf line endings.
-
-format Lua code with [StyLua](https://github.com/JohnnyMorganz/StyLua) from the repository root. `stylua.toml` holds the settings, and `.styluaignore` leaves topic data and the generated illustration manifest alone:
-
-```powershell
-stylua .
-```
-
-## generated assets
-
-after editing production illustrations:
-
-```powershell
-.\tools\build_illustration_atlases.ps1
-```
-
-after editing topic icons:
-
-```powershell
-.\tools\build_topic_atlases.ps1
-```
-
-after editing either full-size handbook shell:
-
-```powershell
-.\tools\build_handbook_shell.ps1
-```
-
-after editing other ui artwork:
-
-```powershell
-.\tools\build_ui_atlas.ps1
-```
-
-generated atlases should be committed together with the source assets that produced them.
-
-## focused changes
-
-keep pull requests reasonably focused.
-
-if a change mixes unrelated writing, artwork, renderer changes, and cleanup, separating those pieces usually makes review easier.
+- follow the [build workflow](docs/development.md#build-workflow): rebuild what changed, read the affected pages in game at actual size, format Lua with StyLua, and commit sources together with their generated outputs.
+- for a gameplay change, say how you verified it.
+- say how you would like to be credited.
 
 ## credit
 
-meaningful contributors will be credited.
+meaningful contributors will be credited, in the repository and in the in-game handbook credits where appropriate. this includes substantial writing and editing, illustration work, code, research, testing, localization, and similar contributions.
 
-credit may appear in the repository and in the in-game handbook credits where appropriate.
-
-when contributing, state the name or handle you would like used for credit. if you prefer not to be listed publicly, say so.
+when contributing, state the name or handle you would like used. anonymous credit is fine, and so is not being listed publicly; just say so.
 
 ## contribution licensing
 
@@ -137,4 +77,4 @@ visual contributions may contain or depict klei entertainment intellectual prope
 
 do not submit artwork, code, text, or other material taken from another creator unless its license or the creator's permission allows it and the required attribution is included.
 
-see `LICENSE.md` for the repository's licensing scope.
+see [`LICENSE.md`](LICENSE.md) for the repository's licensing scope.
