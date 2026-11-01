@@ -95,6 +95,29 @@ local function validate_block_types(
     end
 
     for _, block in ipairs(blocks) do
+        -- Headlines fall back to the topic title; related topics and
+        -- bullets carry lists instead of text.
+        if block.type == "bullets" then
+            if type(block.items) ~= "table" or #block.items == 0 then
+                authoring_error(
+                    topic.id,
+                    page_number,
+                    region_name,
+                    "bullets need at least one item"
+                )
+            end
+        elseif block.type ~= "headline"
+            and block.type ~= "related_topics"
+            and (type(block.text) ~= "string" or block.text == "")
+        then
+            authoring_error(
+                topic.id,
+                page_number,
+                region_name,
+                "empty " .. tostring(block.type) .. " block"
+            )
+        end
+
         if not allowed[block.type] then
             authoring_error(
                 topic.id,
@@ -183,15 +206,6 @@ local function validate_page_heading(
                     "page_heading must be the first top_left block"
                 )
             end
-
-            if block.text == nil or block.text == "" then
-                authoring_error(
-                    topic.id,
-                    page_number,
-                    region_name,
-                    "page_heading text may not be empty"
-                )
-            end
         end
     end
 end
@@ -201,8 +215,7 @@ local function validate_illustration_caption(
     page_number,
     page
 )
-    local regions =
-        page.regions or {}
+    local regions = page.regions
 
     local caption_blocks =
         regions.illustration_caption
@@ -235,17 +248,6 @@ local function validate_illustration_caption(
                 page_number,
                 "illustration_caption",
                 "illustration_caption block must use type 'caption'"
-            )
-        end
-
-        if caption.text == nil
-            or caption.text == ""
-        then
-            authoring_error(
-                topic.id,
-                page_number,
-                "illustration_caption",
-                "illustration caption text may not be empty"
             )
         end
 
@@ -441,10 +443,12 @@ local function validate_related_topics(
                 )
             end
 
-            local related =
-                block.topics or {}
+            local related = block.topics
 
-            if #related < 2 or #related > 4 then
+            if type(related) ~= "table"
+                or #related < 2
+                or #related > 4
+            then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -494,11 +498,40 @@ local function validate_related_topics(
 end
 
 
+-- The fields the renderer reads without checking.
+local function validate_topic_structure(topic)
+    for _, field in ipairs({ "title", "icon" }) do
+        if type(topic[field]) ~= "string" or topic[field] == "" then
+            content_error(
+                "topic=" .. topic.id .. " is missing its " .. field
+            )
+        end
+    end
+
+    if type(topic.pages) ~= "table" or #topic.pages == 0 then
+        content_error(
+            "topic=" .. topic.id .. " needs at least one page"
+        )
+    end
+
+    for page_number, page in ipairs(topic.pages) do
+        if type(page.regions) ~= "table" then
+            authoring_error(
+                topic.id,
+                page_number,
+                nil,
+                "page needs a regions table"
+            )
+        end
+    end
+end
+
+
 local function validate_topics(data)
     local topic_ids = {}
 
-    for _, topic in ipairs(data.topics or {}) do
-        if topic.id == nil or topic.id == "" then
+    for _, topic in ipairs(data.topics) do
+        if type(topic.id) ~= "string" or topic.id == "" then
             content_error("topic id is missing")
         end
 
@@ -509,23 +542,21 @@ local function validate_topics(data)
         end
 
         topic_ids[topic.id] = true
+
+        validate_topic_structure(topic)
     end
 
-    for _, topic in ipairs(data.topics or {}) do
+    for _, topic in ipairs(data.topics) do
         local related_block_count = 0
 
-        for page_number, page in ipairs(
-            topic.pages or {}
-        ) do
+        for page_number, page in ipairs(topic.pages) do
             validate_illustration_caption(
                 topic,
                 page_number,
                 page
             )
 
-            for region_name, blocks in pairs(
-                page.regions or {}
-            ) do
+            for region_name, blocks in pairs(page.regions) do
                 validate_block_types(
                     topic,
                     page_number,

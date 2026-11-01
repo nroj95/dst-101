@@ -85,6 +85,8 @@ related subjects may sit near one another, and foundational topics may appear ea
 currently enforced:
 
 - topic ids exist and are unique.
+- every topic has a title, an icon, and at least one page with a `regions` table.
+- every block has its text, except headlines (which fall back to the topic title); bullets have items.
 - regions are known, and each region holds only the block types it renders.
 - a note region holds at most one note.
 - headline is immediately followed by subtitle.
