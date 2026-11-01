@@ -1831,9 +1831,8 @@ function DST101Widget:UpdateScrollbar(topics)
 
     local geometry = self:GetScrollbarGeometry()
 
-    local handle_y = geometry.top_y
-        + (geometry.bottom_y - geometry.top_y)
-            * scroll_ratio
+    local travel = geometry.bottom_y - geometry.top_y
+    local handle_y = geometry.top_y + travel * scroll_ratio
 
     self.scrollbar_handle:SetPosition(geometry.center_x, handle_y)
 end
