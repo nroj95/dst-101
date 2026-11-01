@@ -131,7 +131,6 @@ local shortcuts = {
     { description = "Numpad equals", data = "kp_equals" },
 }
 
-
 local modifier_options = {
     { description = "None", data = "none" },
     { description = "Ctrl", data = "ctrl" },
@@ -142,7 +141,6 @@ local modifier_options = {
     { description = "Shift + Alt", data = "shift_alt" },
     { description = "Ctrl + Shift + Alt", data = "ctrl_shift_alt" },
 }
-
 
 configuration_options = {
     {

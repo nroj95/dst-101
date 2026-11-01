@@ -12,19 +12,10 @@
 -- Level 0: the message names the content location, and the line inside
 -- this validator would only mislead.
 local function content_error(message)
-    error(
-        "[dst 101] invalid handbook content: " .. message,
-        0
-    )
+    error("[dst 101] invalid handbook content: " .. message, 0)
 end
 
-
-local function authoring_error(
-    topic_id,
-    page_number,
-    region_name,
-    message
-)
+local function authoring_error(topic_id, page_number, region_name, message)
     content_error(
         string.format(
             "topic=%s page=%s region=%s: %s",
@@ -35,7 +26,6 @@ local function authoring_error(
         )
     )
 end
-
 
 -- Block types each region renders. Anything else would silently vanish.
 local REGION_BLOCK_TYPES = {
@@ -66,22 +56,11 @@ local REGION_BLOCK_TYPES = {
     },
 }
 
-
-local function validate_block_types(
-    topic,
-    page_number,
-    region_name,
-    blocks
-)
+local function validate_block_types(topic, page_number, region_name, blocks)
     local allowed = REGION_BLOCK_TYPES[region_name]
 
     if allowed == nil then
-        authoring_error(
-            topic.id,
-            page_number,
-            region_name,
-            "unknown region"
-        )
+        authoring_error(topic.id, page_number, region_name, "unknown region")
     end
 
     -- The note strip shows a single note.
@@ -106,7 +85,8 @@ local function validate_block_types(
                     "bullets need at least one item"
                 )
             end
-        elseif block.type ~= "headline"
+        elseif
+            block.type ~= "headline"
             and block.type ~= "related_topics"
             and (type(block.text) ~= "string" or block.text == "")
         then
@@ -123,28 +103,18 @@ local function validate_block_types(
                 topic.id,
                 page_number,
                 region_name,
-                "unsupported block type: " ..
-                tostring(block.type)
+                "unsupported block type: " .. tostring(block.type)
             )
         end
     end
 end
 
-
-local function validate_headline_pair(
-    topic,
-    page_number,
-    region_name,
-    blocks
-)
+local function validate_headline_pair(topic, page_number, region_name, blocks)
     for block_index, block in ipairs(blocks) do
         if block.type == "headline" then
-            local next_block =
-                blocks[block_index + 1]
+            local next_block = blocks[block_index + 1]
 
-            if next_block == nil
-                or next_block.type ~= "subtitle"
-            then
+            if next_block == nil or next_block.type ~= "subtitle" then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -152,14 +122,10 @@ local function validate_headline_pair(
                     "headline must be immediately followed by subtitle"
                 )
             end
-
         elseif block.type == "subtitle" then
-            local previous_block =
-                blocks[block_index - 1]
+            local previous_block = blocks[block_index - 1]
 
-            if previous_block == nil
-                or previous_block.type ~= "headline"
-            then
+            if previous_block == nil or previous_block.type ~= "headline" then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -171,13 +137,7 @@ local function validate_headline_pair(
     end
 end
 
-
-local function validate_page_heading(
-    topic,
-    page_number,
-    region_name,
-    blocks
-)
+local function validate_page_heading(topic, page_number, region_name, blocks)
     for block_index, block in ipairs(blocks) do
         if block.type == "page_heading" then
             if region_name ~= "top_left" then
@@ -210,15 +170,10 @@ local function validate_page_heading(
     end
 end
 
-local function validate_illustration_caption(
-    topic,
-    page_number,
-    page
-)
+local function validate_illustration_caption(topic, page_number, page)
     local regions = page.regions
 
-    local caption_blocks =
-        regions.illustration_caption
+    local caption_blocks = regions.illustration_caption
 
     if page.illustration ~= nil then
         if caption_blocks == nil then
@@ -239,8 +194,7 @@ local function validate_illustration_caption(
             )
         end
 
-        local caption =
-            caption_blocks[1]
+        local caption = caption_blocks[1]
 
         if caption.type ~= "caption" then
             authoring_error(
@@ -250,7 +204,6 @@ local function validate_illustration_caption(
                 "illustration_caption block must use type 'caption'"
             )
         end
-
     elseif caption_blocks ~= nil then
         authoring_error(
             topic.id,
@@ -261,11 +214,7 @@ local function validate_illustration_caption(
     end
 end
 
-local function validate_right_region(
-    topic,
-    page_number,
-    blocks
-)
+local function validate_right_region(topic, page_number, blocks)
     if #blocks == 0 then
         return
     end
@@ -284,11 +233,9 @@ local function validate_right_region(
 
     for _, block in ipairs(blocks) do
         if block.type == "heading" then
-            if previous_type == "heading"
-                or (
-                    previous_type ~= nil
-                    and not section_has_body
-                )
+            if
+                previous_type == "heading"
+                or (previous_type ~= nil and not section_has_body)
             then
                 authoring_error(
                     topic.id,
@@ -299,10 +246,7 @@ local function validate_right_region(
             end
 
             section_has_body = false
-
-        elseif block.type == "text"
-            or block.type == "bullets"
-        then
+        elseif block.type == "text" or block.type == "bullets" then
             if previous_type == nil then
                 authoring_error(
                     topic.id,
@@ -312,9 +256,7 @@ local function validate_right_region(
                 )
             end
 
-            if block.type == "text"
-                and previous_type == "text"
-            then
+            if block.type == "text" and previous_type == "text" then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -339,15 +281,9 @@ local function validate_right_region(
     end
 end
 
-local function validate_bottom_left_region(
-    topic,
-    page_number,
-    blocks
-)
+local function validate_bottom_left_region(topic, page_number, blocks)
     for _, block in ipairs(blocks) do
-        if block.type == "heading"
-            and block.text ~= "Related topics"
-        then
+        if block.type == "heading" and block.text ~= "Related topics" then
             authoring_error(
                 topic.id,
                 page_number,
@@ -357,7 +293,6 @@ local function validate_bottom_left_region(
         end
     end
 end
-
 
 local function validate_related_topics(
     topic,
@@ -369,15 +304,10 @@ local function validate_related_topics(
     local related_block_count = 0
 
     for block_index, block in ipairs(blocks) do
-        if block.type == "heading"
-            and block.text == "Related topics"
-        then
-            local next_block =
-                blocks[block_index + 1]
+        if block.type == "heading" and block.text == "Related topics" then
+            local next_block = blocks[block_index + 1]
 
-            if next_block == nil
-                or next_block.type ~= "related_topics"
-            then
+            if next_block == nil or next_block.type ~= "related_topics" then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -385,10 +315,8 @@ local function validate_related_topics(
                     "'Related topics' heading must immediately precede related_topics"
                 )
             end
-
         elseif block.type == "related_topics" then
-            related_block_count =
-                related_block_count + 1
+            related_block_count = related_block_count + 1
 
             if region_name ~= "bottom_left" then
                 authoring_error(
@@ -399,9 +327,7 @@ local function validate_related_topics(
                 )
             end
 
-            if region_name == "bottom_left"
-                and block_index ~= 2
-            then
+            if region_name == "bottom_left" and block_index ~= 2 then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -428,10 +354,10 @@ local function validate_related_topics(
                 )
             end
 
-            local previous_block =
-                blocks[block_index - 1]
+            local previous_block = blocks[block_index - 1]
 
-            if previous_block == nil
+            if
+                previous_block == nil
                 or previous_block.type ~= "heading"
                 or previous_block.text ~= "Related topics"
             then
@@ -445,10 +371,7 @@ local function validate_related_topics(
 
             local related = block.topics
 
-            if type(related) ~= "table"
-                or #related < 2
-                or #related > 4
-            then
+            if type(related) ~= "table" or #related < 2 or #related > 4 then
                 authoring_error(
                     topic.id,
                     page_number,
@@ -474,8 +397,8 @@ local function validate_related_topics(
                         topic.id,
                         page_number,
                         region_name,
-                        "related topic appears more than once: " ..
-                        tostring(related_id)
+                        "related topic appears more than once: "
+                            .. tostring(related_id)
                     )
                 end
 
@@ -484,8 +407,7 @@ local function validate_related_topics(
                         topic.id,
                         page_number,
                         region_name,
-                        "unknown related topic: " ..
-                        tostring(related_id)
+                        "unknown related topic: " .. tostring(related_id)
                     )
                 end
 
@@ -497,21 +419,16 @@ local function validate_related_topics(
     return related_block_count
 end
 
-
 -- The fields the renderer reads without checking.
 local function validate_topic_structure(topic)
     for _, field in ipairs({ "title", "icon" }) do
         if type(topic[field]) ~= "string" or topic[field] == "" then
-            content_error(
-                "topic=" .. topic.id .. " is missing its " .. field
-            )
+            content_error("topic=" .. topic.id .. " is missing its " .. field)
         end
     end
 
     if type(topic.pages) ~= "table" or #topic.pages == 0 then
-        content_error(
-            "topic=" .. topic.id .. " needs at least one page"
-        )
+        content_error("topic=" .. topic.id .. " needs at least one page")
     end
 
     for page_number, page in ipairs(topic.pages) do
@@ -526,7 +443,6 @@ local function validate_topic_structure(topic)
     end
 end
 
-
 local function validate_topics(data)
     local topic_ids = {}
 
@@ -536,9 +452,7 @@ local function validate_topics(data)
         end
 
         if topic_ids[topic.id] then
-            content_error(
-                "duplicate topic id: " .. topic.id
-            )
+            content_error("duplicate topic id: " .. topic.id)
         end
 
         topic_ids[topic.id] = true
@@ -550,51 +464,23 @@ local function validate_topics(data)
         local related_block_count = 0
 
         for page_number, page in ipairs(topic.pages) do
-            validate_illustration_caption(
-                topic,
-                page_number,
-                page
-            )
+            validate_illustration_caption(topic, page_number, page)
 
             for region_name, blocks in pairs(page.regions) do
-                validate_block_types(
-                    topic,
-                    page_number,
-                    region_name,
-                    blocks
-                )
+                validate_block_types(topic, page_number, region_name, blocks)
 
                 if region_name == "right" then
-                    validate_right_region(
-                        topic,
-                        page_number,
-                        blocks
-                    )
+                    validate_right_region(topic, page_number, blocks)
                 elseif region_name == "bottom_left" then
-                    validate_bottom_left_region(
-                        topic,
-                        page_number,
-                        blocks
-                    )
+                    validate_bottom_left_region(topic, page_number, blocks)
                 end
 
-                validate_headline_pair(
-                    topic,
-                    page_number,
-                    region_name,
-                    blocks
-                )
+                validate_headline_pair(topic, page_number, region_name, blocks)
 
-                validate_page_heading(
-                    topic,
-                    page_number,
-                    region_name,
-                    blocks
-                )
+                validate_page_heading(topic, page_number, region_name, blocks)
 
-                related_block_count =
-                    related_block_count +
-                    validate_related_topics(
+                related_block_count = related_block_count
+                    + validate_related_topics(
                         topic,
                         page_number,
                         region_name,
@@ -606,12 +492,12 @@ local function validate_topics(data)
 
         if related_block_count > 1 then
             content_error(
-                "topic=" .. topic.id ..
-                " contains more than one related_topics block"
+                "topic="
+                    .. topic.id
+                    .. " contains more than one related_topics block"
             )
         end
     end
 end
-
 
 return validate_topics

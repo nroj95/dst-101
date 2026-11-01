@@ -60,7 +60,6 @@ local TOPIC_MODULES = {
     "dst101topics/credits",
 }
 
-
 local data = {
     strings = {
         topics = "Topics",
@@ -74,12 +73,9 @@ local data = {
     topics = {},
 }
 
-
 for _, module_name in ipairs(TOPIC_MODULES) do
-    data.topics[#data.topics + 1] =
-        require(module_name)
+    data.topics[#data.topics + 1] = require(module_name)
 end
-
 
 require("dst101validate")(data)
 

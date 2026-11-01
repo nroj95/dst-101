@@ -35,9 +35,7 @@ local DST101PopupScreen = Class(Screen, function(self, owner)
 
     Screen._ctor(self, "DST101PopupScreen")
 
-    local black = self:AddChild(
-        ImageButton("images/global.xml", "square.tex")
-    )
+    local black = self:AddChild(ImageButton("images/global.xml", "square.tex"))
 
     black.image:SetVRegPoint(ANCHOR_MIDDLE)
     black.image:SetHRegPoint(ANCHOR_MIDDLE)
@@ -64,8 +62,7 @@ end)
 
 function DST101PopupScreen:OnDestroy()
     if self.owner:IsValid() then
-        self.owner._dst101_handbook_state =
-            self.book:GetState()
+        self.owner._dst101_handbook_state = self.book:GetState()
     end
 
     SetAutopaused(false)
@@ -102,10 +99,7 @@ function DST101PopupScreen:OnRawKey(key, down)
     end
 
     -- Enter jumps directly into handbook search.
-    if not search_editing
-        and down
-        and key == KEY_ENTER
-    then
+    if not search_editing and down and key == KEY_ENTER then
         self.book.search_edit:SetEditing(true)
         return true
     end
@@ -115,10 +109,7 @@ function DST101PopupScreen:OnRawKey(key, down)
     if search_editing then
         if key == KEY_UP or key == KEY_DOWN then
             if down then
-                self.book:ChangeTopic(
-                    key == KEY_UP and -1 or 1,
-                    "search"
-                )
+                self.book:ChangeTopic(key == KEY_UP and -1 or 1, "search")
             end
 
             return true
@@ -145,11 +136,7 @@ function DST101PopupScreen:OnRawKey(key, down)
         return true
     end
 
-    return DST101PopupScreen._base.OnRawKey(
-        self,
-        key,
-        down
-    )
+    return DST101PopupScreen._base.OnRawKey(self, key, down)
 end
 
 function DST101PopupScreen:OnTextInput(text)
@@ -157,18 +144,13 @@ function DST101PopupScreen:OnTextInput(text)
         return self.book.search_edit:OnTextInput(text)
     end
 
-    return DST101PopupScreen._base.OnTextInput(
-        self,
-        text
-    )
+    return DST101PopupScreen._base.OnTextInput(self, text)
 end
 
 function DST101PopupScreen:OnControl(control, down)
-    if not down
-        and (
-            control == CONTROL_MENU_BACK
-            or control == CONTROL_CANCEL
-        )
+    if
+        not down
+        and (control == CONTROL_MENU_BACK or control == CONTROL_CANCEL)
         and self.book.search_escape_consumed
     then
         self.book.search_escape_consumed = false
@@ -179,7 +161,8 @@ function DST101PopupScreen:OnControl(control, down)
         return true
     end
 
-    if not down
+    if
+        not down
         and (control == CONTROL_MENU_BACK or control == CONTROL_CANCEL)
     then
         TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/click_move")
@@ -193,10 +176,9 @@ end
 function DST101PopupScreen:GetHelpText()
     local controller_id = TheInput:GetControllerID()
 
-    return TheInput:GetLocalizedControl(
-        controller_id,
-        CONTROL_CANCEL
-    ) .. " " .. STRINGS.UI.HELP.BACK
+    return TheInput:GetLocalizedControl(controller_id, CONTROL_CANCEL)
+        .. " "
+        .. STRINGS.UI.HELP.BACK
 end
 
 return DST101PopupScreen

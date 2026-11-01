@@ -15,15 +15,10 @@
 local ImageButton = require("widgets/imagebutton")
 local Widget = require("widgets/widget")
 
-
 -- DST's Class does not inherit constructors, so pass the arguments on.
-local DST101QuietImageButton = Class(
-    ImageButton,
-    function(self, ...)
-        ImageButton._ctor(self, ...)
-    end
-)
-
+local DST101QuietImageButton = Class(ImageButton, function(self, ...)
+    ImageButton._ctor(self, ...)
+end)
 
 function DST101QuietImageButton:OnGainFocus()
     -- Button:OnGainFocus() normally plays:
@@ -33,18 +28,12 @@ function DST101QuietImageButton:OnGainFocus()
     -- Reproduce its non-audio behaviour directly instead.
     Widget.OnGainFocus(self)
 
-    if self:IsEnabled()
-        and not self:IsSelected()
-    then
-        self.text:SetColour(
-            self.textfocuscolour
-        )
+    if self:IsEnabled() and not self:IsSelected() then
+        self.text:SetColour(self.textfocuscolour)
     end
 
     if self.ongainfocus then
-        self.ongainfocus(
-            self:IsEnabled()
-        )
+        self.ongainfocus(self:IsEnabled())
     end
 
     -- Preserve ImageButton's normal visual focus behaviour.
@@ -52,41 +41,27 @@ function DST101QuietImageButton:OnGainFocus()
         self.hover_overlay:Show()
     end
 
-    if self:IsSelected()
-        or self:IsDisabledState()
-    then
+    if self:IsSelected() or self:IsDisabledState() then
         return
     end
 
     if self:IsEnabled() then
-        self.image:SetTexture(
-            self.atlas,
-            self.image_focus
-        )
+        self.image:SetTexture(self.atlas, self.image_focus)
 
-        if self.size_x
-            and self.size_y
-        then
-            if self.ignore_standard_scaling
-                and self.focus_scale
-            then
+        if self.size_x and self.size_y then
+            if self.ignore_standard_scaling and self.focus_scale then
                 self.image:ScaleToSize(
-                    self.size_x *
-                        self.focus_scale[1],
-                    self.size_y *
-                        self.focus_scale[2]
+                    self.size_x * self.focus_scale[1],
+                    self.size_y * self.focus_scale[2]
                 )
             else
-                self.image:ScaleToSize(
-                    self.size_x,
-                    self.size_y
-                )
+                self.image:ScaleToSize(self.size_x, self.size_y)
             end
         end
 
-        if not self.ignore_standard_scaling
-            and self.image_focus ==
-                self.image_normal
+        if
+            not self.ignore_standard_scaling
+            and self.image_focus == self.image_normal
             and self.scale_on_focus
             and self.focus_scale
         then
@@ -98,11 +73,7 @@ function DST101QuietImageButton:OnGainFocus()
         end
 
         if self.imagefocuscolour then
-            self.image:SetTint(
-                unpack(
-                    self.imagefocuscolour
-                )
-            )
+            self.image:SetTint(unpack(self.imagefocuscolour))
         end
 
         -- Deliberately omit:
@@ -111,6 +82,5 @@ function DST101QuietImageButton:OnGainFocus()
         --   self.focus_sound
     end
 end
-
 
 return DST101QuietImageButton
