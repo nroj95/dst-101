@@ -202,7 +202,12 @@ Raw Monster Meat is one thing he refuses. A bird in a Birdcage can turn many unw
                     },
                 },
 
-                note = {},
+                note = {
+                    {
+                        type = "note",
+                        text = "The Pig King will not trade with Wurt at all.",
+                    },
+                },
             },
         },
     },

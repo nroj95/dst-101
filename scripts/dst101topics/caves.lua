@@ -55,7 +55,7 @@ return {
                     {
                         type = "text",
                         text = [[
-Opening a plugged Sinkhole with a pickaxe reveals the stairs below. Those stairs are also your way back to the surface.
+Opening a plugged Sinkhole with a pickaxe reveals the stairs below. Those stairs are also your way back to the surface. An open Sinkhole lets Batilisks out at dusk and night, too.
 
 Light Flowers grow underground. Their bulbs are used to make Lanterns and can refuel both Lanterns and Miner Hats, giving you a renewable way to keep portable light going.
 ]],

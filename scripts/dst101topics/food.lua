@@ -191,7 +191,7 @@ Pierogi are useful for healing. One Monster Meat, one Egg, one Carrot, and one B
                         text = [[
 One piece of Monster Meat can safely count as meat in many Crock Pot dishes.
 
-Two or more Monster Meats usually turn the result into Monster Lasagna. Start with one until you know a recipe can handle more.
+Two or more Monster Meats usually turn the result into Monster Lasagna, which costs health and sanity to eat. Start with one until you know a recipe can handle more.
 ]],
                     },
                 },

@@ -104,7 +104,7 @@ A fire gives you somewhere bright to spend the night. Portable light lets the jo
                     },
                     {
                         type = "text",
-                        text = "If a shadowy hand creeps toward the flames, step toward it. It will pull back. Keep following it away from the fire and it eventually disappears.",
+                        text = "If a shadowy hand creeps toward the flames, step toward it with a torch in hand. It will pull back. Keep following it away from the fire and it eventually disappears.",
                     },
                     {
                         type = "heading",

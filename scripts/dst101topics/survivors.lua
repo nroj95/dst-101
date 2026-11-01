@@ -196,7 +196,7 @@ A Moon Rock Idol costs one Moon Rock and one Purple Gem. Offer one to the Celest
                 note = {
                     {
                         type = "note",
-                        text = "Empty Woby before changing from Walter. Anything she is carrying goes with her.",
+                        text = "Woby drops everything she is carrying beside the portal too.",
                     },
                 },
             },

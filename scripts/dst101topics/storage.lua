@@ -78,7 +78,7 @@ Put the things you use often somewhere easy to find. Use whatever arrangement wo
                 note = {
                     {
                         type = "note",
-                        text = "Some creatures are surprisingly interested in other people's things.",
+                        text = "Moleworms help themselves to Rocks, Flint, Gold, and gems left on the ground.",
                     },
                 },
             },

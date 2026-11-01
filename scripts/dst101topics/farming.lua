@@ -107,7 +107,7 @@ Farm plants check their surroundings as they grow. Better conditions mean faster
                     {
                         type = "text",
                         text = [[
-A Watering Can moistens the whole farm-soil tile at once. You do not need to keep it soaked; watering once during each growth stage is enough for the plant's moisture need.
+A Watering Can moistens the whole farm-soil tile at once. You do not need to keep it soaked; watering once during each growth stage is usually enough for the plant's moisture need.
 
 Refill the can at a Pond. Rain can help keep the soil wet too.
 ]],

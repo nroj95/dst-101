@@ -323,7 +323,7 @@ Once you can sail, the coast stops being the edge of the world. The ocean has it
                     {
                         type = "text",
                         text = [[
-Water near shore gives way to different ocean regions farther out. Conditions, fish, and things you can find change with them.
+Water near shore gives way to different ocean regions farther out, such as Waterlogged. Conditions, fish, and things you can find change with them.
 ]],
                     },
                     {
@@ -345,7 +345,7 @@ Its plants, creatures, and materials are different, and Sanity is replaced by En
                     {
                         type = "text",
                         text = [[
-Not every island belongs to the same group. Exploring farther can reveal places such as Waterlogged and Hermit Island with their own landmarks and resources.
+Not every island belongs to the same group. Exploring farther can reveal places such as Hermit Island with their own landmarks and resources.
 ]],
                     },
                 },

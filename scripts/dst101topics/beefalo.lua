@@ -55,7 +55,7 @@ A red rear means a Beefalo is in heat. Give the herd plenty of space; nearby adu
                     {
                         type = "text",
                         text = [[
-Beefalo leave manure as they wander, and sleeping wild Beefalo can be shaved for wool.
+Beefalo leave manure as they wander, and sleeping wild Beefalo can be shaved with a Razor for wool.
 
 Killing one gives meat and wool, with a chance of a Beefalo Horn. If you hunt them, avoid wiping out the whole herd.
 ]],

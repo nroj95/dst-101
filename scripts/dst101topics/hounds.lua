@@ -58,7 +58,7 @@ return {
                         text = [[
 When distant growling starts, hounds are on the way. Get your weapon and armor ready, bring enough light to see the fight, and choose somewhere with room to move.
 
-I would rather leave camp for the fight than discover what the hounds can damage while I am busy with them. If an open Sinkhole is nearby, heading underground before they arrive postpones the attack until you return to the surface.
+I would rather fight away from camp; Fire Hounds burst into flames when they die. If an open Sinkhole is nearby, heading underground before they arrive postpones the attack until you return to the surface.
 ]],
                     },
                     {

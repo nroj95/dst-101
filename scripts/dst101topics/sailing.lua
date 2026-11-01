@@ -157,6 +157,15 @@ Collisions can damage a boat, and a leak keeps draining its hull until you deal 
                     },
                 },
 
+                bottom_left = {
+                    {
+                        type = "text",
+                        text = [[
+If the boat sinks anyway, you wash ashore having lost some health, hunger, and sanity, along with whatever was in your hand.
+]],
+                    },
+                },
+
                 right = {
                     {
                         type = "heading",
@@ -165,7 +174,7 @@ Collisions can damage a boat, and a leak keeps draining its hull until you deal 
                     {
                         type = "text",
                         text = [[
-Boards are a convenient way to repair hull damage. Logs work too, but an active leak still needs a Boat Patch.
+Boards are a convenient way to repair hull damage. Logs work too, but an active leak still needs a Boat Patch. In a pinch, standing on a leak plugs it for as long as you stay, though you will get soaked.
 
 Keep both aboard when you travel far from shore. A small mistake is much easier to handle when the repair materials are already on the boat.
 ]],
