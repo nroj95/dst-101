@@ -77,6 +77,12 @@ good cleanup includes:
 
 please keep source files using lf line endings.
 
+format Lua code with [StyLua](https://github.com/JohnnyMorganz/StyLua) from the repository root. `stylua.toml` holds the settings, and `.styluaignore` leaves topic data and the generated illustration manifest alone:
+
+```powershell
+stylua .
+```
+
 ## generated assets
 
 after editing production illustrations:
