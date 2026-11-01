@@ -66,6 +66,7 @@ local data = {
         contents = "Contents",
         page = "Page",
         search_placeholder = "Search...",
+        no_matches = "No matches",
         previous_page = "Previous page",
         next_page = "Next page",
     },

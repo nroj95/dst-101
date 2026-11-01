@@ -343,6 +343,8 @@ query shrinking or clearing never automatically changes the current page.
 
 manual paging while search remains active wins.
 
+a query that matches nothing shows `No matches` in the sidebar; the current page stays open.
+
 search editing also supports:
 
 - the `×` button clears the query and keeps the field active.

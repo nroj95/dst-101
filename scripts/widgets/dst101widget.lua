@@ -2010,6 +2010,30 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
         end
     end
 
+    -- Contents is always listed without a query, so an empty list means the
+    -- search matched nothing.
+    if #topics == 0 then
+        local slot = sidebar.topic_rows[1]
+
+        local message = self.sidebar_root:AddChild(
+            Text(
+                HEADERFONT,
+                sidebar.topic_text.font_size,
+                self.data.strings.no_matches,
+                LAYOUT.colours.sidebar_text
+            )
+        )
+
+        message:SetRegionSize(row_width, slot.bottom - slot.top + 1)
+        message:SetHAlign(ANCHOR_MIDDLE)
+        message:SetVAlign(ANCHOR_MIDDLE)
+        message:SetClickable(false)
+        message:SetPosition(
+            row_center_x,
+            source_y((slot.top + slot.bottom) / 2)
+        )
+    end
+
     self:RefreshSidebarSelection()
 end
 
