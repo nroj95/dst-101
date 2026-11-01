@@ -39,7 +39,8 @@ return {
                     },
                     {
                         type = "text",
-                        text = [[A Campfire is quick and temporary. Once it burns out, it is gone. It can also ignite flammable things that are too close.
+                        text = [[
+A Campfire is quick and temporary. Once it burns out, it is gone. It can also ignite flammable things that are too close.
 
 A Fire Pit stays behind and can be fueled again later. Its flames are contained, which makes it a much friendlier choice around things you would rather not burn.]],
                     },

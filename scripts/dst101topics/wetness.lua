@@ -56,7 +56,8 @@ return {
                     },
                     {
                         type = "text",
-                        text = [[Rain protection adds together, up to full coverage. An Umbrella already blocks most rain, so even a little more protection can make a large difference.
+                        text = [[
+Rain protection adds together, up to full coverage. An Umbrella already blocks most rain, so even a little more protection can make a large difference.
 
 If you are already soaked, warm up near a fire. A Backpack can get wet, but the items inside stay dry. Chests protect their contents too.]],
                     },

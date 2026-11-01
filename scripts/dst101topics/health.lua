@@ -39,11 +39,10 @@ return {
                     },
                     {
                         type = "text",
-                        text = table.concat({
-                            "A bite is only one way to lose health. Starvation, fire, freezing, overheating, and a few unfortunate meals can do it too.",
-                            "",
-                            "Armor can soften ordinary physical hits, but it will not solve every kind of damage.",
-                        }, "\n"),
+                        text = [[
+A bite is only one way to lose health. Starvation, fire, freezing, overheating, and a few unfortunate meals can do it too.
+
+Armor can soften ordinary physical hits, but it will not solve every kind of damage.]],
                     },
                     {
                         type = "heading",
@@ -51,13 +50,12 @@ return {
                     },
                     {
                         type = "text",
-                        text = table.concat({
-                            "Food can restore health. Spider Glands can be used directly or made into Healing Salve, and most survivors can also recover health by sleeping at the cost of hunger.",
-                            "",
-                            "Character abilities can change the details, so food, sleep, and other recovery options do not work the same way for everyone.",
-                            "",
-                            "I like to keep a little healing in reserve before setting out. It is easy to need more than expected.",
-                        }, "\n"),
+                        text = [[
+Food can restore health. Spider Glands can be used directly or made into Healing Salve, and most survivors can also recover health by sleeping at the cost of hunger.
+
+Character abilities can change the details, so food, sleep, and other recovery options do not work the same way for everyone.
+
+I like to keep a little healing in reserve before setting out. It is easy to need more than expected.]],
                     },
                 },
 

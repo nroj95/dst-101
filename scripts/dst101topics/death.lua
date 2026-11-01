@@ -62,7 +62,10 @@ return {
                     },
                     {
                         type = "text",
-                        text = "A living survivor can craft a Telltale Heart from Cut Grass and a Spider Gland, then use it on your ghost. Making one costs some health, and being revived this way blocks part of your maximum health until a Booster Shot restores it.\n\nIn Survival, if everyone is a ghost at once, the world resets after two minutes unless someone comes back first.",
+                        text = [[
+A living survivor can craft a Telltale Heart from Cut Grass and a Spider Gland, then use it on your ghost. Making one costs some health, and being revived this way blocks part of your maximum health until a Booster Shot restores it.
+
+In Survival, if everyone is a ghost at once, the world resets after two minutes unless someone comes back first.]],
                     },
                     {
                         type = "heading",
