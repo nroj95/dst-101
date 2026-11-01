@@ -27,6 +27,10 @@ a manual pass from native english speakers is very welcome:
 
 preserve the meaning unless the mechanic itself needs correction, and keep the teaching intent and spoiler restraint rather than rewriting the handbook into wiki prose.
 
+### translations
+
+a translation can start with the interface strings and a single topic; everything untranslated stays English. the steps are in [translations](docs/development.md#translations). keep the handbook's voice and restraint rather than translating word for word, and read each translated page in game, since longer languages run out of room first.
+
 ### illustration review and cleanup
 
 - correcting survivor, creature, equipment, structure, or environment details.

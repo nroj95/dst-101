@@ -22,6 +22,8 @@ open the handbook with **B**, or with the handbook button beside the map control
 
 by default the handbook reopens where you left it while you stay in the world. the `Handbook reopening` option can make it always open Contents instead.
 
+the handbook follows the game's language where a translation exists and is English otherwise; the `Handbook language` option can choose one. translations are welcome — see [contributing](CONTRIBUTING.md#translations).
+
 ## project status
 
 `dst 101` is approaching its initial public release. the main systems and initial content are in place, and current work is refinement, testing, accuracy, visual consistency, and release preparation rather than more content.

@@ -64,10 +64,6 @@ If something is still unfamiliar, the map can help you find it again later.
 
                 bottom_left = {
                     {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
                         type = "related_topics",
                         topics = {
                             "setting_out",

@@ -70,10 +70,6 @@ If you are already soaked, warm up near a fire. A Backpack can get wet, but the 
                 },
                 bottom_left = {
                     {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
                         type = "related_topics",
                         topics = {
                             "temperature",

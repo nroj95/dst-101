@@ -468,10 +468,12 @@ local function render_bullets(
     return source_cursor_y + style.spacing
 end
 
+-- Explicit whitespace: %s follows the C locale, and under a Windows code page
+-- it also matches byte 0xA0, the second half of UTF-8 letters such as à.
 local function split_words(value)
     local words = {}
 
-    for word in value:gmatch("%S+") do
+    for word in value:gmatch("[^ \t\r\n]+") do
         words[#words + 1] = word
     end
 
@@ -858,7 +860,7 @@ end
 -- widget
 -- =============================================================================
 
-local DST101Widget = Class(Widget, function(self, owner)
+local DST101Widget = Class(Widget, function(self, owner, language)
     Widget._ctor(self, "DST101Widget")
 
     self.owner = owner
@@ -906,7 +908,7 @@ local DST101Widget = Class(Widget, function(self, owner)
         self:StopSearchEditing()
     end)
 
-    self.data = require("dst101data")
+    self.data = require("dst101data").load(language)
 
     self:RefreshPage()
     self:RefreshSidebar()
@@ -916,12 +918,50 @@ end)
 -- sidebar
 -- =============================================================================
 
-local function normalize_search_text(value)
-    local text = string.lower(value)
+-- Search folds case and whitespace byte by byte, because string.lower and %s
+-- follow the C locale and can mangle UTF-8 under a Windows code page (see
+-- split_words). Beyond ASCII, the handbook
+-- font covers Latin-1 and Latin Extended-A (U+00C0-U+017F), whose two-byte
+-- UTF-8 capitals fold here.
+local function lower_ascii_letter(letter)
+    return string.char(letter:byte() + 32)
+end
 
-    text = text:gsub("^%s+", "")
-    text = text:gsub("%s+$", "")
-    text = text:gsub("%s+", " ")
+local function lower_latin_letter(letter)
+    local lead, trail = letter:byte(1, 2)
+    local code = (lead - 0xC0) * 64 + (trail - 0x80)
+
+    if code == 0x130 then
+        return "i" -- İ
+    elseif code == 0x178 then
+        code = 0xFF -- Ÿ
+    elseif code < 0x100 then
+        -- À-Þ, except ×.
+        if code <= 0xDE and code ~= 0xD7 then
+            code = code + 0x20
+        end
+    elseif
+        (code >= 0x139 and code <= 0x148) or (code >= 0x179 and code <= 0x17E)
+    then
+        -- These pairs start on an odd code point.
+        if code % 2 == 1 then
+            code = code + 1
+        end
+    elseif code ~= 0x138 and code % 2 == 0 then
+        code = code + 1
+    end
+
+    return string.char(0xC0 + math.floor(code / 64), 0x80 + code % 64)
+end
+
+local function normalize_search_text(value)
+    local text = value
+        :gsub("[A-Z]", lower_ascii_letter)
+        :gsub("[\195-\197][\128-\191]", lower_latin_letter)
+
+    text = text:gsub("^[ \t\r\n]+", "")
+    text = text:gsub("[ \t\r\n]+$", "")
+    text = text:gsub("[ \t\r\n]+", " ")
 
     return text
 end
@@ -937,11 +977,6 @@ local function search_text_matches(value, query)
 end
 
 local function block_matches_search(block, query)
-    -- Nearly every topic has this heading, so it would match them all.
-    if block.type == "heading" and block.text == "Related topics" then
-        return false
-    end
-
     if search_text_matches(block.text, query) then
         return true
     end
@@ -1023,7 +1058,7 @@ local function find_page_contents_label(strings, topic, page, page_number)
         end
     end
 
-    return string.format("%s %d", strings.page, page_number)
+    return string.format(strings.page, page_number)
 end
 
 function DST101Widget:GetContentsSidebarTopic()
@@ -2575,6 +2610,15 @@ function DST101Widget:RenderRegion(parent, topic, page, region_name)
 
     if blocks == nil or #blocks == 0 then
         return
+    end
+
+    -- Topics author only the tiles; the heading comes from the interface
+    -- strings so every translation shares one wording.
+    if blocks[1].type == "related_topics" then
+        blocks = {
+            { type = "heading", text = self.data.strings.related_topics },
+            blocks[1],
+        }
     end
 
     if region.mode == "box" then

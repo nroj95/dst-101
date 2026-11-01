@@ -15,8 +15,10 @@ the shell and authoring grammar are established. renderer rules protect consiste
 ```text
 modmain.lua                           assets, shortcuts, HUD button, hot reload
 modinfo.lua                           mod metadata and config options
-scripts/dst101topics/                 topic modules
+scripts/dst101topics/                 topic modules (English, the source)
 scripts/dst101data.lua                ordered topic loader and interface strings
+scripts/dst101translations.lua        translation registry
+scripts/dst101translations/<code>/    translated strings and topics
 scripts/dst101validate.lua            authoring validation
 scripts/dst101layout.lua              source-coordinate layout
 scripts/widgets/dst101widget.lua      handbook renderer
@@ -85,7 +87,7 @@ it does **not** reload rebuilt `.tex` assets or fonts. those normally need a DST
 
 ## topic schema
 
-`dst101data.lua` loads the topic modules in sidebar order, then runs `dst101validate.lua`. an authoring error stops the handbook from opening, with a message naming the topic, page and region.
+`dst101data.lua` loads the topic modules in sidebar order, swapping in any [translated](#translations) ones, then runs `dst101validate.lua`. an authoring error stops the handbook from opening, with a message naming the topic, page and region.
 
 a topic holds `id`, `title`, `icon`, optional `tags`, and `pages`. a page holds an optional `illustration` name and a `regions` table.
 
@@ -94,7 +96,7 @@ the five authored block regions, and the block types each renders:
 ```text
 top_left              headline, subtitle, page_heading, heading, text, bullets
 right                 heading, text, bullets
-bottom_left           text, bullets, the Related topics heading, related_topics
+bottom_left           text, bullets, related_topics
 illustration_caption  caption
 note                  note
 ```
@@ -115,12 +117,11 @@ the illustration is a page field, not a block region, and the footer is generate
 - an illustrated page has an `illustration_caption` region with exactly one caption; a page without an illustration has no caption region.
 - a non-empty right column begins with a heading, and every right-column heading has body content (`text`, `bullets`, or both).
 - adjacent `text` blocks in the right column are always rejected. paragraphs go inside one text block, separated by blank lines.
-- `bottom_left` uses no heading other than `Related topics`.
+- `bottom_left` has no headings.
 
 related topics:
 
-- at most one `related_topics` block per topic, on page 1, in `bottom_left`.
-- that region then holds exactly the `Related topics` heading followed by the `related_topics` block.
+- at most one `related_topics` block per topic, on page 1, as the only block in `bottom_left`. the renderer adds the `Related topics` heading above it from the interface strings.
 - 2–4 distinct, valid topic ids, never the topic itself.
 
 ### what validation does not prove
@@ -231,7 +232,7 @@ each topic gets a starting animal from a hash of its id, which then rotates by p
 
 ### related topics
 
-the layout supports up to four tiles. content data chooses only the linked topic ids; the renderer gives the whole tile group one stable decorative variant per topic.
+the layout supports up to four tiles under a heading the renderer draws from the interface strings. content data chooses only the linked topic ids; the renderer gives the whole tile group one stable decorative variant per topic.
 
 ### page footer
 
@@ -288,7 +289,7 @@ while search is active, Left/Right keep normal text-cursor behavior, Up/Down mov
 
 ### search
 
-search indexes topic title, topic tags, headline, subtitle, page heading, heading, body text, bullets, caption and note. the `Related topics` heading is left out, since nearly every topic has one.
+search indexes topic title, topic tags, headline, subtitle, page heading, heading, body text, bullets, caption and note. matching ignores case, including the accented capitals the handbook font covers (Latin-1 and Latin Extended-A).
 
 page selection:
 
@@ -363,6 +364,22 @@ images/illustrations/dst101_illustrations_*.tex/xml
 fonts/dst101_alegreya_regular.zip
 fonts/dst101_alegreya_italic.zip
 ```
+
+## translations
+
+English in `scripts/dst101topics/` and `dst101data.lua`'s `ENGLISH_STRINGS` is the source. a translation may cover any part of it; everything else stays English, so one can grow a topic at a time.
+
+to add or extend a language:
+
+1. use the game's language code (`fr`, `de`, `pl`, `ru`, ...) so the `Game language` option finds it. a language the game does not offer, such as `nb`, also needs a line in `modinfo.lua`'s `language` option.
+2. register it in `scripts/dst101translations.lua` with the ids of the topics it translates.
+3. add `scripts/dst101translations/<code>/strings.lua`, returning the interface strings it translates. keys match `ENGLISH_STRINGS`; `page` is a `string.format` pattern such as `Page %d`.
+4. copy each listed topic from `scripts/dst101topics/` to `scripts/dst101translations/<code>/` and translate its text and tags. keep the id, illustrations and related topic ids. pages may be reworded or split differently when the language needs it; validation applies as usual.
+5. read every translated page in game. longer languages overflow first in captions (one line), notes (two lines) and the right column.
+
+loading fails with a message for an unknown string key, a registered topic that does not exist, or a translated topic with a changed id.
+
+the handbook's body font covers Latin-1 and Latin Extended-A, which suits most western and central European languages. Cyrillic, Greek, CJK or Romanian `ș`/`ț` need glyphs added to `source/fonts/alegreya/charset.txt` and a font rebuild, if Alegreya has them. HUD key names come from the game in its language. `modinfo.lua` labels stay English.
 
 ## workshop releases
 

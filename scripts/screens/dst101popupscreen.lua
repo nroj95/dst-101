@@ -30,7 +30,7 @@ local NAVIGATION_KEYS = {
     [KEY_D] = { "NavigateBook", 1 },
 }
 
-local DST101PopupScreen = Class(Screen, function(self, owner)
+local DST101PopupScreen = Class(Screen, function(self, owner, language)
     self.owner = owner
 
     Screen._ctor(self, "DST101PopupScreen")
@@ -54,7 +54,7 @@ local DST101PopupScreen = Class(Screen, function(self, owner)
     root:SetVAnchor(ANCHOR_MIDDLE)
     root:SetPosition(0, -25)
 
-    self.book = root:AddChild(DST101Widget(owner))
+    self.book = root:AddChild(DST101Widget(owner, language))
     self.default_focus = self.book
 
     SetAutopaused(true)

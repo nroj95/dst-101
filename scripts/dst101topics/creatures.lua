@@ -33,10 +33,6 @@ return {
 
                 bottom_left = {
                     {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
                         type = "related_topics",
                         topics = {
                             "combat",

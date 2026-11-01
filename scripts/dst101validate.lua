@@ -41,7 +41,6 @@ local REGION_BLOCK_TYPES = {
         caption = true,
     },
     bottom_left = {
-        heading = true,
         text = true,
         bullets = true,
         related_topics = true,
@@ -281,19 +280,6 @@ local function validate_right_region(topic, page_number, blocks)
     end
 end
 
-local function validate_bottom_left_region(topic, page_number, blocks)
-    for _, block in ipairs(blocks) do
-        if block.type == "heading" and block.text ~= "Related topics" then
-            authoring_error(
-                topic.id,
-                page_number,
-                "bottom_left",
-                "bottom_left may not contain normal headings"
-            )
-        end
-    end
-end
-
 local function validate_related_topics(
     topic,
     page_number,
@@ -303,19 +289,8 @@ local function validate_related_topics(
 )
     local related_block_count = 0
 
-    for block_index, block in ipairs(blocks) do
-        if block.type == "heading" and block.text == "Related topics" then
-            local next_block = blocks[block_index + 1]
-
-            if next_block == nil or next_block.type ~= "related_topics" then
-                authoring_error(
-                    topic.id,
-                    page_number,
-                    region_name,
-                    "'Related topics' heading must immediately precede related_topics"
-                )
-            end
-        elseif block.type == "related_topics" then
+    for _, block in ipairs(blocks) do
+        if block.type == "related_topics" then
             related_block_count = related_block_count + 1
 
             if region_name ~= "bottom_left" then
@@ -327,12 +302,13 @@ local function validate_related_topics(
                 )
             end
 
-            if region_name == "bottom_left" and block_index ~= 2 then
+            -- The renderer adds the translated heading above the tiles.
+            if #blocks ~= 1 then
                 authoring_error(
                     topic.id,
                     page_number,
                     region_name,
-                    "bottom_left with related_topics may contain only the 'Related topics' heading and related_topics"
+                    "related_topics must be the only block in bottom_left"
                 )
             end
 
@@ -342,30 +318,6 @@ local function validate_related_topics(
                     page_number,
                     region_name,
                     "related_topics must be on page 1"
-                )
-            end
-
-            if block_index ~= #blocks then
-                authoring_error(
-                    topic.id,
-                    page_number,
-                    region_name,
-                    "related_topics must be the final block in bottom_left"
-                )
-            end
-
-            local previous_block = blocks[block_index - 1]
-
-            if
-                previous_block == nil
-                or previous_block.type ~= "heading"
-                or previous_block.text ~= "Related topics"
-            then
-                authoring_error(
-                    topic.id,
-                    page_number,
-                    region_name,
-                    "related_topics must immediately follow the 'Related topics' heading"
                 )
             end
 
@@ -471,8 +423,6 @@ local function validate_topics(data)
 
                 if region_name == "right" then
                     validate_right_region(topic, page_number, blocks)
-                elseif region_name == "bottom_left" then
-                    validate_bottom_left_region(topic, page_number, blocks)
                 end
 
                 validate_headline_pair(topic, page_number, region_name, blocks)

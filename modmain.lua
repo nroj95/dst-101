@@ -13,6 +13,10 @@
 -- closing the popup stores the reading position on the player. opening
 -- restores it unless the reopen option is set to always open Contents.
 --
+-- the handbook follows the game's language unless the language option picks
+-- one, and falls back to English for anything untranslated. key names in
+-- the HUD tooltip come from the game, so they follow its language too.
+--
 -- the developer reload shortcut clears every dst101 module and reopens the
 -- handbook at the same place. it does not reload modmain.lua, modinfo.lua,
 -- textures or fonts. release builds drop its config options, which leaves
@@ -140,11 +144,23 @@ local function is_simple_controller_active()
     return player ~= nil and player.components.simplecontroller ~= nil
 end
 
+-- "auto" follows the game's language. dst101data.lua uses English for
+-- anything a language does not translate.
+local function get_language()
+    local language = GetModConfigData("language")
+
+    if language == nil or language == "auto" then
+        return GLOBAL.LOC.GetLocaleCode()
+    end
+
+    return language
+end
+
 -- The popup saves the reading position on the player when it closes.
 local function push_handbook(player, restore_position)
     local DST101PopupScreen = require("screens/dst101popupscreen")
 
-    local screen = DST101PopupScreen(player)
+    local screen = DST101PopupScreen(player, get_language())
 
     GLOBAL.TheFrontEnd:PushScreen(screen)
 
@@ -320,45 +336,11 @@ local function add_simple_controller_skill(player)
 end
 
 if GetModConfigData("show_hud_button") ~= false then
-    local shortcut_display_names = {
-        up = "Up Arrow",
-        down = "Down Arrow",
-        left = "Left Arrow",
-        right = "Right Arrow",
-        pageup = "Page Up",
-        pagedown = "Page Down",
-        backspace = "Backspace",
-        escape = "Escape",
-        minus = "-",
-        equals = "=",
-        period = ".",
-        slash = "/",
-        semicolon = ";",
-        leftbracket = "[",
-        backslash = "\\",
-        rightbracket = "]",
-        tilde = "`",
-        print = "Print Screen",
-        capslock = "Caps Lock",
-        scrolllock = "Scroll Lock",
-        kp_period = "Numpad .",
-        kp_divide = "Numpad /",
-        kp_multiply = "Numpad *",
-        kp_minus = "Numpad -",
-        kp_plus = "Numpad +",
-        kp_enter = "Numpad Enter",
-        kp_equals = "Numpad =",
-    }
-
-    local modifier_display_names = {
-        ctrl = "Ctrl",
-        shift = "Shift",
-        alt = "Alt",
-        ctrl_shift = "Ctrl + Shift",
-        ctrl_alt = "Ctrl + Alt",
-        shift_alt = "Shift + Alt",
-        ctrl_shift_alt = "Ctrl + Shift + Alt",
-    }
+    -- The game's key names follow its language. It has none for Numpad =.
+    local function get_key_label(shortcut)
+        return GLOBAL.STRINGS.UI.CONTROLSSCREEN.INPUTS[1][get_key(shortcut)]
+            or "Num ="
+    end
 
     local function get_handbook_shortcut_label()
         local shortcut = GetModConfigData("open_shortcut")
@@ -367,25 +349,19 @@ if GetModConfigData("show_hud_button") ~= false then
             return nil
         end
 
-        local key_label = shortcut_display_names[shortcut]
-
-        if key_label == nil then
-            if string.sub(shortcut, 1, 3) == "kp_" then
-                key_label = "Numpad " .. string.sub(shortcut, 4)
-            else
-                key_label = string.upper(shortcut)
-            end
-        end
+        local labels = {}
 
         local modifier = GetModConfigData("open_modifier") or "none"
 
-        local modifier_label = modifier_display_names[modifier]
-
-        if modifier_label ~= nil then
-            return modifier_label .. " + " .. key_label
+        if modifier ~= "none" then
+            for name in string.gmatch(modifier, "[^_]+") do
+                labels[#labels + 1] = get_key_label(name)
+            end
         end
 
-        return key_label
+        labels[#labels + 1] = get_key_label(shortcut)
+
+        return table.concat(labels, " + ")
     end
 
     AddClassPostConstruct("widgets/mapcontrols", function(self)
@@ -401,7 +377,8 @@ if GetModConfigData("show_hud_button") ~= false then
 
         local shortcut_label = get_handbook_shortcut_label()
 
-        local tooltip = "Show Handbook"
+        local tooltip =
+            require("dst101data").load_strings(get_language()).show_handbook
 
         if shortcut_label ~= nil then
             tooltip = tooltip .. "\n(" .. shortcut_label .. ")"

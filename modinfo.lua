@@ -144,6 +144,17 @@ local modifier_options = {
 
 configuration_options = {
     {
+        name = "language",
+        label = "Handbook language",
+        hover = "Game language uses the handbook's translation when one exists, otherwise English.",
+        -- Add one line per translation in scripts/dst101translations.lua.
+        options = {
+            { description = "Game language", data = "auto" },
+            { description = "English", data = "en" },
+        },
+        default = "auto",
+    },
+    {
         name = "show_hud_button",
         label = "Show handbook HUD button",
         hover = "Shows a DST 101 button beside the map controls.",

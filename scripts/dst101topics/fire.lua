@@ -55,10 +55,6 @@ A Fire Pit stays behind and can be fueled again later. Its flames are contained,
 
                 bottom_left = {
                     {
-                        type = "heading",
-                        text = "Related topics",
-                    },
-                    {
                         type = "related_topics",
                         topics = {
                             "darkness",
