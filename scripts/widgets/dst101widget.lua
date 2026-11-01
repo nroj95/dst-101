@@ -214,7 +214,7 @@ end
 -- =============================================================================
 
 local function find_topic(data, topic_id)
-    for _, topic in ipairs(data.topics or {}) do
+    for _, topic in ipairs(data.topics) do
         if topic.id == topic_id then
             return topic
         end
@@ -225,10 +225,10 @@ end
 
 local function get_block_text(block, topic)
     if block.type == "headline" then
-        return block.text or topic.title or ""
+        return block.text or topic.title
     end
 
-    return block.text or ""
+    return block.text
 end
 
 
@@ -332,7 +332,7 @@ local function render_related_topics(
 )
     local related_topics = {}
 
-    for _, topic_id in ipairs(block.topics or {}) do
+    for _, topic_id in ipairs(block.topics) do
         local related_topic = find_topic(
             handbook.data,
             topic_id
@@ -507,7 +507,7 @@ local function render_related_topics(
         )
 
         label:SetTruncatedString(
-            related_topic.title or "",
+            related_topic.title,
             tile_size + 24,
             nil,
             false
@@ -1228,6 +1228,7 @@ local DST101Widget = Class(Widget, function(self, owner)
     self.contents_page = 1
     self.contents_return_topic_id = nil
     self.contents_return_page = 1
+    self.sidebar_rows = {}
     self.search_query = ""
     self.search_match_pages = {}
 
@@ -1340,7 +1341,7 @@ local function block_matches_search(block, query)
     end
 
     if block.type == "bullets" then
-        for _, item in ipairs(block.items or {}) do
+        for _, item in ipairs(block.items) do
             if search_text_matches(
                 item,
                 query
@@ -1355,10 +1356,8 @@ end
 
 
 local function page_matches_search(page, query)
-    for _, blocks in pairs(
-        page.regions or {}
-    ) do
-        for _, block in ipairs(blocks or {}) do
+    for _, blocks in pairs(page.regions) do
+        for _, block in ipairs(blocks) do
             if block_matches_search(
                 block,
                 query
@@ -1375,19 +1374,12 @@ end
 local function topic_match_page(topic, query)
     -- An exact secondary-page label is the most
     -- specific navigation target available.
-    for page_index, page in ipairs(
-        topic.pages or {}
-    ) do
-        local top_left =
-            page.regions
-            and page.regions.top_left
-            or {}
+    for page_index, page in ipairs(topic.pages) do
+        local top_left = page.regions.top_left or {}
 
         for _, block in ipairs(top_left) do
             if block.type == "page_heading"
-                and normalize_search_text(
-                    tostring(block.text or "")
-                ) == query
+                and normalize_search_text(block.text) == query
             then
                 return page_index
             end
@@ -1414,9 +1406,7 @@ local function topic_match_page(topic, query)
 
     -- Other page-content matches jump to the first
     -- matching page.
-    for page_index, page in ipairs(
-        topic.pages or {}
-    ) do
+    for page_index, page in ipairs(topic.pages) do
         if page_matches_search(
             page,
             query
@@ -1440,10 +1430,7 @@ local function find_page_contents_label(
         and "headline"
         or "page_heading"
 
-    local top_left =
-        page.regions
-        and page.regions.top_left
-        or {}
+    local top_left = page.regions.top_left or {}
 
     for _, block in ipairs(top_left) do
         if block.type == wanted_type
@@ -1474,14 +1461,14 @@ end
 function DST101Widget:GetContentsBlocks()
     local blocks = {}
 
-    for _, topic in ipairs(self.data.topics or {}) do
+    for _, topic in ipairs(self.data.topics) do
         local block = {
             topic_id = topic.id,
-            title = topic.title or "",
+            title = topic.title,
             pages = {},
         }
 
-        for page_number, page in ipairs(topic.pages or {}) do
+        for page_number, page in ipairs(topic.pages) do
             block.pages[#block.pages + 1] = {
                 page_number = page_number,
                 label = find_page_contents_label(
@@ -1501,7 +1488,7 @@ end
 
 
 function DST101Widget:GetSidebarTopics()
-    local topics = self.data.topics or {}
+    local topics = self.data.topics
     local query = self.search_query
 
     if query == "" then
@@ -2148,6 +2135,7 @@ function DST101Widget:ChangeTopic(offset, page_mode)
 
     self.current_topic_id = topic.id
 
+    -- The Contents entry has no pages; it always shows its first.
     if page_mode == "last" then
         self.current_page = math.max(
             1,
@@ -2696,7 +2684,7 @@ function DST101Widget:RefreshSidebar(preserve_scrollbar_handle)
                 Text(
                     HEADERFONT,
                     sidebar.topic_text.font_size,
-                    topic.title or "",
+                    topic.title,
                     LAYOUT.colours.sidebar_text
                 )
             )
@@ -2748,7 +2736,7 @@ end
 function DST101Widget:RefreshSidebarSelection()
     local selected_row = nil
 
-    for _, row in ipairs(self.sidebar_rows or {}) do
+    for _, row in ipairs(self.sidebar_rows) do
         if row.dst101_topic_id == self.current_topic_id then
             if not row.selected then
                 row:Select()
@@ -2760,13 +2748,8 @@ function DST101Widget:RefreshSidebarSelection()
         end
     end
 
-    if selected_row ~= nil then
-        self.focus_forward = selected_row
-    elseif self.sidebar_rows ~= nil then
-        self.focus_forward = self.sidebar_rows[1]
-    else
-        self.focus_forward = nil
-    end
+    self.focus_forward =
+        selected_row or self.sidebar_rows[1]
 end
 
 
@@ -2952,7 +2935,7 @@ local function add_contents_button(
     label:SetClickable(false)
 
     label:SetTruncatedString(
-        label_text or "",
+        label_text,
         text_width,
         nil,
         false
@@ -3510,9 +3493,7 @@ function DST101Widget:RenderRegion(
 )
     local region = LAYOUT.regions[region_name]
 
-    local blocks = page.regions
-        and page.regions[region_name]
-        or nil
+    local blocks = page.regions[region_name]
 
     if blocks == nil
         or #blocks == 0
@@ -3528,7 +3509,7 @@ function DST101Widget:RenderRegion(
             -- page number. Adding notes elsewhere cannot reshuffle it.
             local topic_animal_start =
                 get_stable_variant_index(
-                    topic.id or "",
+                    topic.id,
                     #NOTE_ANIMAL_ORDER
                 )
 
@@ -3574,7 +3555,7 @@ function DST101Widget:RenderRegion(
     for block_index, block in ipairs(blocks) do
         local divider_key = table.concat(
             {
-                topic.id or "",
+                topic.id,
                 tostring(self.current_page),
                 region_name,
                 tostring(block_index),
@@ -3622,15 +3603,11 @@ function DST101Widget:NavigateBook(offset)
         self.current_topic_id
     )
 
-    if topic == nil or topic.pages == nil then
+    if topic == nil then
         return false
     end
 
     local page_count = #topic.pages
-
-    if page_count == 0 then
-        return false
-    end
 
     if offset < 0 then
         if self.current_page > 1 then
@@ -3670,7 +3647,7 @@ function DST101Widget:ChangePage(offset)
         self.current_topic_id
     )
 
-    if topic == nil or topic.pages == nil then
+    if topic == nil then
         return
     end
 
@@ -3798,15 +3775,11 @@ function DST101Widget:RefreshPage()
         self.current_topic_id
     )
 
-    if topic == nil or topic.pages == nil then
+    if topic == nil then
         return
     end
 
     local page_count = #topic.pages
-
-    if page_count == 0 then
-        return
-    end
 
     self.current_page = math.max(
         1,
